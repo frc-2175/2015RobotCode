@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ToteElevator extends Subsystem {
+public class ToteElevator {
     
 	private DigitalInput topSwitch; 
 	private DigitalInput bottomSwitch;
@@ -44,11 +44,6 @@ public class ToteElevator extends Subsystem {
 	
 	public double getHeight(){
 		return elevatorEncoder.getDistance();
-	}
-
-	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 	}
 }
 
