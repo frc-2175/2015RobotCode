@@ -1,0 +1,73 @@
+package org.usfirst.frc.team2175.robot.subsystems;
+
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+
+/**
+ *
+ */
+public class Drivetrain extends Subsystem {
+	
+	private Talon leftTalon;
+	private Talon rightTalon;
+	public Encoder leftEncoder;
+	public Encoder rightEncoder;
+	private Gyro gyro;
+	private RobotDrive drivetrain;
+	
+	public Drivetrain() {
+		drivetrain = new RobotDrive(1, 2, 3, 4);
+		rightEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
+		leftEncoder = new Encoder (1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
+		gyro = new Gyro(0);
+				
+	}
+	
+	public void resetEncoders(){
+		leftEncoder.reset();
+		rightEncoder.reset();
+	}
+	
+	public void getEncoderdistance(){
+		leftEncoder.getDistance();
+		rightEncoder.getDistance();
+	}
+	
+	public void getEncoderrate(){
+		leftEncoder.getRate();
+		rightEncoder.getRate();
+	}
+	
+	public void getEncodermean(){
+		
+	}
+	
+	public void getGyro(){
+		gyro.getAngle();
+		gyro.getRate();
+		// I'm not sure what you meant with "Get Gyro," so I put in these.
+	}
+		
+	public void tankDrive(){
+		
+	}
+	
+	public void arcadeDrive(){
+		
+	}
+	
+    
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+}
+
