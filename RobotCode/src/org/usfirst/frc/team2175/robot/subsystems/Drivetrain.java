@@ -33,19 +33,13 @@ public class Drivetrain extends Subsystem {
 		rightEncoder.reset();
 	}
 	
-	public void getEncoderdistance(){
-		leftEncoder.getDistance();
-		rightEncoder.getDistance();
-	}
 	
-	public void getEncoderrate(){
-		leftEncoder.getRate();
-		rightEncoder.getRate();
-	}
 	
-	public void getEncodermean(){
-		
-	}
+	public double getMeanEncoderRate(){
+		return (leftEncoder.getRate() + rightEncoder.getRate()) / 2;
+		}
+	public double getMeanEncoderDistance(){
+		return (leftEncoder.getDistance() + rightEncoder.getDistance()) / 2;
 	
 	public void getGyro(){
 		gyro.getAngle();
