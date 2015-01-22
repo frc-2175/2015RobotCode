@@ -19,22 +19,22 @@ public class RobotMap {
     // public static int leftMotor = 1;
     // public static int rightMotor = 2;
 	
-	public static Talon toteElevatorTalon = new Talon(0);
-	public static DigitalInput topSwitch = new DigitalInput(0);
-	public static DigitalInput bottomSwitch = new DigitalInput(1);
-	public static Encoder elevatorEncoder = new Encoder(1,2,false,EncodingType.k2X);
-	public static Encoder containerElevatorEncoder = new Encoder(3,4,false,EncodingType.k2X);
-	public static Talon containerElevatorMotor = new Talon(1);
-	public static DigitalInput containerTopSwitch = new DigitalInput(3);
-	public static DigitalInput containerBottomSwitch = new DigitalInput(4);
-	public static Talon leftTalon = new Talon(2);
-	public static Talon rightTalon = new Talon(3);
-	public static Encoder leftEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
-	public static Encoder rightEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
-	public static Gyro gyro = new Gyro(0);
-	public static RobotDrive drivetrain = new RobotDrive(1, 2, 3, 4);
+	public static final Talon leftTalon = new Talon(0);
+	public static final Talon rightTalon = new Talon(0);
+	public static final Encoder leftEncoder = new Encoder(0,0,false,EncodingType.k2X);
+	public static final Encoder rightEncoder = new Encoder(0,0,false,EncodingType.k2X);;
+	public static final Gyro gyro = new Gyro(0);
+	public static RobotDrive drivetrain;
 
+	public static final Talon toteElevatorTalon = new Talon(0);
+	public static final DigitalInput topSwitch = new DigitalInput(0);
+	public static final DigitalInput bottomSwitch = new DigitalInput(0);
+	public static final Encoder elevatorEncoder = new Encoder(0,0,false,EncodingType.k2X);
 	
+	public static final DigitalInput containerTopSwitch = new DigitalInput(0);
+	public static final DigitalInput containerBottomSwitch = new DigitalInput(0);
+	public static final Talon containerElevatorMotor = new Talon(0);
+	public static final Encoder containerElevatorEncoder = new Encoder(0,0,false,EncodingType.k2X); //Specify actual port numbers later.
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:

@@ -1,50 +1,38 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
+import org.usfirst.frc.team2175.robot.RobotMap;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class ToteElevator {
 
-	private DigitalInput topSwitch;
-	private DigitalInput bottomSwitch;
-	private Talon elevatorMotor;
-	private Encoder elevatorEncoder;
-
 	public ToteElevator() {
-		topSwitch = new DigitalInput(0); // specify port later!
-		bottomSwitch = new DigitalInput(1); // specify port later!
-
-		elevatorEncoder = new Encoder(1, 2, false, EncodingType.k4X); // specify
-																		// channel
-																		// later!
-		elevatorEncoder.setDistancePerPulse(0); // set distance per pulse!
-		elevatorEncoder.setReverseDirection(false);
+		RobotMap.elevatorEncoder.setDistancePerPulse(0); // set distance per pulse!
+		RobotMap.elevatorEncoder.setReverseDirection(false);
 		// Add other encoder-related initializations here if needed.
 	}
 
 	public boolean isAtBottom() {
-		return bottomSwitch.get();
+		return RobotMap.bottomSwitch.get();
 	}
 
 	public boolean isAtTop() {
-		return topSwitch.get();
+		return RobotMap.topSwitch.get();
 	}
 
 	public void setSpeed(double toteElevatorSpeed) {
-		elevatorMotor.set(toteElevatorSpeed);
+		RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
 	}
 
 	public void resetEncoder() {
-		elevatorEncoder.reset();
+		RobotMap.elevatorEncoder.reset();
 	}
 
 	public double getHeight() {
-		return elevatorEncoder.getDistance();
+		return RobotMap.elevatorEncoder.getDistance();
 	}
 }
