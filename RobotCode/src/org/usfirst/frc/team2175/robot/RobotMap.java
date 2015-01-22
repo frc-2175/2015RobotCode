@@ -29,10 +29,12 @@ public class RobotMap {
 	public static DigitalInput containerBottomSwitch = new DigitalInput(4);
 	public static Talon leftTalon;
 	public static Talon rightTalon;
-	public static Encoder leftEncoder;
-	public static Encoder rightEncoder;
-	public static Gyro gyro;
-	private RobotDrive drivetrain;
+	public static Encoder leftEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
+	public static Encoder rightEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
+	public static Gyro gyro = new Gyro(0);
+	public static RobotDrive drivetrain = new RobotDrive(1, 2, 3, 4);
+
+	
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
