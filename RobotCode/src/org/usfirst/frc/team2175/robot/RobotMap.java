@@ -27,8 +27,8 @@ public class RobotMap {
 	public static Talon containerElevatorMotor = new Talon(1);
 	public static DigitalInput containerTopSwitch = new DigitalInput(3);
 	public static DigitalInput containerBottomSwitch = new DigitalInput(4);
-	public static Talon leftTalon;
-	public static Talon rightTalon;
+	public static Talon leftTalon = new Talon(2);
+	public static Talon rightTalon = new Talon(3);
 	public static Encoder leftEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
 	public static Encoder rightEncoder = new Encoder(1, 2, false, edu.wpi.first.wpilibj.CounterBase.EncodingType.k4X);
 	public static Gyro gyro = new Gyro(0);
