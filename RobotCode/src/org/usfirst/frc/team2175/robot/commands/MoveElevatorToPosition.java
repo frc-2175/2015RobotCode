@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class moveElevatorToPosition1 extends Command {
+public class MoveElevatorToPosition extends Command {
 
-    public moveElevatorToPosition1() {
+    public MoveElevatorToPosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.pidToteElevator);
