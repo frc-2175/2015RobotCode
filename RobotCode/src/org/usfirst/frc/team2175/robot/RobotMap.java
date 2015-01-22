@@ -3,6 +3,8 @@ package org.usfirst.frc.team2175.robot;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -25,6 +27,12 @@ public class RobotMap {
 	public static Talon containerElevatorMotor = new Talon(1);
 	public static DigitalInput containerTopSwitch = new DigitalInput(3);
 	public static DigitalInput containerBottomSwitch = new DigitalInput(4);
+	public static Talon leftTalon;
+	public static Talon rightTalon;
+	public static Encoder leftEncoder;
+	public static Encoder rightEncoder;
+	public static Gyro gyro;
+	private RobotDrive drivetrain;
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
