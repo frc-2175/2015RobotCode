@@ -21,6 +21,10 @@ public class RobotMap {
 	public static DigitalInput topSwitch = new DigitalInput(0);
 	public static DigitalInput bottomSwitch = new DigitalInput(1);
 	public static Encoder elevatorEncoder = new Encoder(1,2,false,EncodingType.k2X);
+	public static Encoder containerElevatorEncoder = new Encoder(3,4,false,EncodingType.k2X);
+	public static Talon containerElevatorMotor = new Talon(1);
+	public static DigitalInput containerTopSwitch = new DigitalInput(3);
+	public static DigitalInput containerBottomSwitch = new DigitalInput(4);
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
