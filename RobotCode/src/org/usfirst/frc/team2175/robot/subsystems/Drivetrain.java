@@ -20,12 +20,8 @@ public class Drivetrain extends Subsystem {
 
 	public double getMeanEncoderDistance() {
 		return (RobotMap.leftEncoder.getDistance() + RobotMap.rightEncoder.getDistance()) / 2;
-		return (RobotMap.leftEncoder.getRate() + RobotMap.rightEncoder.getRate()) / 2;
 	}
 
-	public double getMeanEncoderDistance() {
-		return (RobotMap.leftEncoder.getDistance() + RobotMap.rightEncoder.getDistance()) / 2;
-	}
 
 	public void tankDrive(double leftSpeed, double rightSpeed) {
 		RobotMap.drivetrain.tankDrive(leftSpeed, rightSpeed);
