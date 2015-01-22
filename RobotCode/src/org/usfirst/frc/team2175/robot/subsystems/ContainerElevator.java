@@ -14,16 +14,16 @@ public class ContainerElevator extends Subsystem {
 		RobotMap.containerElevatorEncoder.setReverseDirection(false);
 	}
 
-	public boolean containerIsAtTop(){
+	public boolean isAtTop(){
 		return RobotMap.containerTopSwitch.get();
 	}
-	public boolean containerIsAtBottom(){
+	public boolean isAtBottom(){
 		return RobotMap.containerBottomSwitch.get();
 	}
-	public void setContainerSpeed(double containerSpeed){
+	public void setSpeed(double containerSpeed){
 		RobotMap.containerElevatorMotor.set(containerSpeed);
 	}
-	public double getContainerHeight(){
+	public double getHeight(){
 		return RobotMap.containerElevatorEncoder.get();
 	}
 	public void resetElevatorEncoder(){
