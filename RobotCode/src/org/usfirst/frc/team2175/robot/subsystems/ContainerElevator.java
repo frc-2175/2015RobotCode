@@ -1,46 +1,34 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
+import org.usfirst.frc.team2175.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class ContainerElevator extends Subsystem {
-	public DigitalInput containerTopSwitch;
-	public DigitalInput containerBottomSwitch;
-	public Talon containerElevatorMotor;
-	public Encoder containerElevatorEncoder;
-
+	
 	public ContainerElevator() {
-		containerTopSwitch = new DigitalInput(3);
-		containerBottomSwitch = new DigitalInput(4);
-
-		containerElevatorMotor = new Talon(0);
-
-		containerElevatorEncoder = new Encoder(3, 4, false, EncodingType.k4X);
-		containerElevatorEncoder.setDistancePerPulse(0);
-		containerElevatorEncoder.setReverseDirection(false);
+		RobotMap.containerElevatorEncoder.setDistancePerPulse(0);
+		RobotMap.containerElevatorEncoder.setReverseDirection(false);
 
 	}
 
 	public boolean containerIsAtTop(){
-		return containerTopSwitch.get();
+		return RobotMap.containerTopSwitch.get();
 	}
 	public boolean containerIsAtBottom(){
-		return containerBottomSwitch.get();
+		return RobotMap.containerBottomSwitch.get();
 	}
 	public void setContainerSpeed(double containerSpeed){
-		containerElevatorMotor.set(containerSpeed);
+		RobotMap.containerElevatorMotor.set(containerSpeed);
 	}
 	public double getContainerHeight(){
-		return containerElevatorEncoder.get();
+		return RobotMap.containerElevatorEncoder.get();
 	}
 	public void resetElevatorEncoder(){
-		containerElevatorEncoder.reset();
+		RobotMap.containerElevatorEncoder.reset();
 	}
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
