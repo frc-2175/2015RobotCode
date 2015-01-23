@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class moveElevatorToPosition1 extends Command {
+public class MoveElevatorToPosition extends Command {
 
-    public moveElevatorToPosition1() {
+	double position;
+    public MoveElevatorToPosition(double position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.pidToteElevator);
+    	this.position = position;
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +23,7 @@ public class moveElevatorToPosition1 extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pidToteElevator.setSetpoint(100); //TODO figure out distance needed
+    	Robot.pidToteElevator.setSetpoint(position);
     }
 
     // Make this return true when this Command no longer needs to run execute()
