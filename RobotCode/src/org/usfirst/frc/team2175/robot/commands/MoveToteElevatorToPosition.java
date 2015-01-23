@@ -7,18 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-<<<<<<< HEAD:RobotCode/src/org/usfirst/frc/team2175/robot/commands/MoveElevatorToPosition.java
-public class MoveElevatorToPosition extends Command {
 
-	double position;
-    public MoveElevatorToPosition(double position) {
-=======
 public class MoveToteElevatorToPosition extends Command {
 
-    public MoveToteElevatorToPosition() {
->>>>>>> f7e398e44b1db88ec874c683b6a3ca1a04445d60:RobotCode/src/org/usfirst/frc/team2175/robot/commands/MoveToteElevatorToPosition.java
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	double position;
+    public MoveToteElevatorToPosition(double position) {
+
     	requires(Robot.pidToteElevator);
     	this.position = position;
     }

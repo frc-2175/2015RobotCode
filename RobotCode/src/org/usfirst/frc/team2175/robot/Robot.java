@@ -2,14 +2,11 @@
 package org.usfirst.frc.team2175.robot;
 
 import org.usfirst.frc.team2175.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
+//import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team2175.robot.subsystems.PIDToteElevator;
-<<<<<<< HEAD
-=======
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
->>>>>>> f7e398e44b1db88ec874c683b6a3ca1a04445d60
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,7 +26,7 @@ public class Robot extends IterativeRobot {
 	public static final PIDToteElevator pidToteElevator = new PIDToteElevator();
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final ToteElevator toteElevator = new ToteElevator();
-	public static final ContainerElevator containerElevator = new ContainerElevator(); 
+	//public static final ContainerElevator containerElevator = new ContainerElevator(); 
 	public static OI oi;
 
     Command autonomousCommand;
