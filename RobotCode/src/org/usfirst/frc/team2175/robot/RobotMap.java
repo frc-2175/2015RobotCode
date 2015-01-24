@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -27,30 +28,40 @@ import edu.wpi.first.wpilibj.Talon;
  * <p>
  * If you are using multiple modules, make sure to define both the port number
  * and the module. For example with a rangefinder:
+ * 
  * <pre>
  * public static int rangefinderPort = 1;
  * public static int rangefinderModule = 1;
  * </pre>
+ * 
  * </p>
  */
 public class RobotMap {
-	//drivetrain
+	// drivetrain
 	public static final Talon leftTalon = new Talon(0);
 	public static final Talon rightTalon = new Talon(0);
-	public static final Encoder leftEncoder = new Encoder(0,0,false,EncodingType.k2X);
-	public static final Encoder rightEncoder = new Encoder(0,0,false,EncodingType.k2X);;
+	public static final Encoder leftEncoder = new Encoder(0, 0, false,
+			EncodingType.k2X);
+	public static final Encoder rightEncoder = new Encoder(0, 0, false,
+			EncodingType.k2X);;
 	public static final Gyro gyro = new Gyro(0);
 	public static RobotDrive drivetrain;
 
-	//tote elevator
+	// tote elevator
 	public static final Talon toteElevatorTalon = new Talon(0);
 	public static final DigitalInput topSwitch = new DigitalInput(0);
 	public static final DigitalInput bottomSwitch = new DigitalInput(0);
-	public static final Encoder elevatorEncoder = new Encoder(0,0,false,EncodingType.k2X);
-	
-	//container elevator
+	public static final Encoder elevatorEncoder = new Encoder(0, 0, false,
+			EncodingType.k2X);
+
+	// container elevator
 	public static final DigitalInput containerTopSwitch = new DigitalInput(0);
 	public static final DigitalInput containerBottomSwitch = new DigitalInput(0);
 	public static final Talon containerElevatorMotor = new Talon(0);
-	public static final Encoder containerElevatorEncoder = new Encoder(0,0,false,EncodingType.k2X); //Specify actual port numbers later.
+	public static final Encoder containerElevatorEncoder = new Encoder(0, 0,
+			false, EncodingType.k2X); // Specify actual port numbers later.
+
+	// tote intake
+	public static final Talon intakeWheelMotor = new Talon(0);
+	public static final Solenoid intakeArms = new Solenoid(0);
 }
