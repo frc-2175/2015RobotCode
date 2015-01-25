@@ -1,11 +1,12 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
 import org.usfirst.frc.team2175.robot.RobotMap;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class ToteElevator {
+public class ToteElevator extends Subsystem{
 
 	public ToteElevator() {
 		RobotMap.elevatorEncoder.setDistancePerPulse(0); // set distance per pulse!
@@ -31,5 +32,11 @@ public class ToteElevator {
 
 	public double getHeight() {
 		return RobotMap.elevatorEncoder.getDistance();
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }
