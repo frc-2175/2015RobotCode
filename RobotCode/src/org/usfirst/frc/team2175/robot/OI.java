@@ -38,6 +38,7 @@ public class OI {
 	public Joystick rightStick;
 	public Joystick gamepad;
 
+	public double deadbandValue = 0.05;
 	public OI() {
 		leftStick = new Joystick(0);
 		rightStick = new Joystick(1);
@@ -45,9 +46,16 @@ public class OI {
 	}
 
 	public double getMoveValue() {
-		return leftStick.getY();
+		return handleDeadband(leftStick.getY());
 	}
 	public double getTurnValue() {
-		return rightStick.getX();
+		return handleDeadband(rightStick.getX());
+	}
+	private double handleDeadband(double input){
+		if(input<=deadbandValue){
+			return 0;
+		} else {
+			return input;
+		}
 	}
 }
