@@ -1,20 +1,15 @@
 package org.usfirst.frc.team2175.robot.commands;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
+public class OpenToteIntake extends CommandBase {
 
-public class MoveToteElevatorToPosition extends Command {
-
-	double position;
-    public MoveToteElevatorToPosition(double position) {
-
-    	requires(Robot.pidToteElevator);
-    	this.position = position;
+    public OpenToteIntake() {
+    	requires(Robot.toteIntake);
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +18,7 @@ public class MoveToteElevatorToPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pidToteElevator.setSetpoint(position);
+    	Robot.toteIntake.setIntakeArms(false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
