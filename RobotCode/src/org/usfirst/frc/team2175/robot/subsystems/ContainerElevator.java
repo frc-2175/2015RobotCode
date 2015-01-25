@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class containerElevator extends Subsystem {
+public class ContainerElevator extends Subsystem {
     public DigitalInput containerTopSwitch;
     public DigitalInput containerBottomSwitch;
     public Talon containerElevatorMotor;
     public Encoder containerElevatorEncoder;
 
-    public containerElevator() {
+    public ContainerElevator() {
         containerTopSwitch = new DigitalInput(3);
         containerBottomSwitch = new DigitalInput(4);
 
