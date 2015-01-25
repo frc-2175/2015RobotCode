@@ -58,12 +58,17 @@ public class RobotMap {
 	public static final Encoder containerElevatorEncoder = new Encoder(0, 0, false, EncodingType.k2X); 
 
 	// tote intake
-	public static final Talon intakeWheelMotor = new Talon(0);
-	public static final Solenoid intakeArms = new Solenoid(0);
+	public static final Talon toteIntakeWheelMotor = new Talon(0);
+	public static final Solenoid toteIntakeArms = new Solenoid(0);
 	
 	//tote pusher
 	public static final Talon totePusherArm = new Talon(0);
+
 	public static final DigitalInput pusherInSwitch = new DigitalInput(0);
 	public static final DigitalInput pusherOutSwitch = new DigitalInput(0);
-	//TODO Specify actual port numbers later.
+
+	//container intake
+	public static final Solenoid ContainerIntakeArms = new Solenoid(0);
+	
+
 }

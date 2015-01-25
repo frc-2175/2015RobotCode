@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ToteIntake extends Subsystem{
 	
 	public void setWheelSpeed(double wheelSpeed) {
-		RobotMap.intakeWheelMotor.set(wheelSpeed);
+		RobotMap.toteIntakeWheelMotor.set(wheelSpeed);
 	}
 	
 	public void setIntakeArms(boolean in){
-		RobotMap.intakeArms.set(in);
+		RobotMap.toteIntakeArms.set(in);
 	}
 
 	@Override
