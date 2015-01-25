@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveToteElevatorManually extends Command {
 
     public MoveToteElevatorManually() {
-        requires(Robot.oi);
         requires(Robot.toteElevator);
         
     }
@@ -22,7 +21,7 @@ public class MoveToteElevatorManually extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double elevatorSpeed = Robot.oi.gamepad.getRawAxis(1);
-    	Robot.toteElevator.setSpeed(toteElevatorSpeed);
+    	Robot.toteElevator.setSpeed(elevatorSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
