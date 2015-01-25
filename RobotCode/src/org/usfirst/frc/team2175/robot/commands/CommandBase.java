@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public abstract class CommandBase extends Command{
 	
+
 	public static void init(){
 		Robot.oi = new OI(); 
 	}

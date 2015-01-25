@@ -63,6 +63,7 @@ public class RobotMap {
 	
 	//tote pusher
 	public static final Talon totePusherArm = new Talon(0);
-	
+	public static final DigitalInput pusherInSwitch = new DigitalInput(0);
+	public static final DigitalInput pusherOutSwitch = new DigitalInput(0);
 	//TODO Specify actual port numbers later.
 }
