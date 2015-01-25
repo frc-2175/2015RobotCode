@@ -7,11 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunToteIntakeWheels extends Command {
+public class RunToteIntakeWheelsBackwards extends Command {
+	
 
-    public RunToteIntakeWheels() {
+
+    public RunToteIntakeWheelsBackwards() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +24,7 @@ public class RunToteIntakeWheels extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.toteIntake.setWheelSpeed(1);
+    	Robot.toteIntake.setWheelSpeed(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

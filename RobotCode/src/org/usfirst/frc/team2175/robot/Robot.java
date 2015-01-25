@@ -7,6 +7,8 @@ import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.PIDToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
+import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -27,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static final ToteElevator toteElevator = new ToteElevator();
 	public static final ContainerElevator containerElevator = new ContainerElevator(); 
 	public static final ToteIntake toteIntake = new ToteIntake();
+	public static final TotePusher totePusher = new TotePusher();
 	public static OI oi;
 
     Command autonomousCommand;
