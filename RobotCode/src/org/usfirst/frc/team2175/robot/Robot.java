@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team2175.robot;
 
-import org.usfirst.frc.team2175.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2175.robot.commands.Auton1DriveForward;
 //import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.ExampleSubsystem;
@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
+        autonomousCommand = new Auton1DriveForward();
     }
 	
 	public void disabledPeriodic() {
