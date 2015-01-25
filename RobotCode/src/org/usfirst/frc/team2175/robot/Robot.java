@@ -2,7 +2,7 @@
 package org.usfirst.frc.team2175.robot;
 
 import org.usfirst.frc.team2175.robot.commands.Auton1DriveForward;
-//import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
+import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.PIDToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
 	public static final PIDToteElevator pidToteElevator = new PIDToteElevator();
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final ToteElevator toteElevator = new ToteElevator();
-	//public static final ContainerElevator containerElevator = new ContainerElevator(); 
+	public static final ContainerElevator containerElevator = new ContainerElevator(); 
 	public static OI oi;
 
     Command autonomousCommand;
