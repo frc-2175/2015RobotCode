@@ -51,7 +51,7 @@ public class OI {
 	public double getTurnValue() {
 		return handleDeadband(rightStick.getX());
 	}
-	private double handleDeadband(double input){
+	public double handleDeadband(double input){
 		if(input<=deadbandValue){
 			return 0;
 		} else {
