@@ -40,10 +40,8 @@ public class RobotMap {
 	// drivetrain
 	public static final Talon leftTalon = new Talon(0);
 	public static final Talon rightTalon = new Talon(0);
-	public static final Encoder leftEncoder = new Encoder(0, 0, false,
-			EncodingType.k2X);
-	public static final Encoder rightEncoder = new Encoder(0, 0, false,
-			EncodingType.k2X);;
+	public static final Encoder leftEncoder = new Encoder(0, 0, false, EncodingType.k2X);
+	public static final Encoder rightEncoder = new Encoder(0, 0, false, EncodingType.k2X);
 	public static final Gyro gyro = new Gyro(0);
 	public static RobotDrive drivetrain;
 
@@ -51,15 +49,13 @@ public class RobotMap {
 	public static final Talon toteElevatorTalon = new Talon(0);
 	public static final DigitalInput topSwitch = new DigitalInput(0);
 	public static final DigitalInput bottomSwitch = new DigitalInput(0);
-	public static final Encoder elevatorEncoder = new Encoder(0, 0, false,
-			EncodingType.k2X);
+	public static final Encoder elevatorEncoder = new Encoder(0, 0, false, EncodingType.k2X);
 
 	// container elevator
 	public static final DigitalInput containerTopSwitch = new DigitalInput(0);
 	public static final DigitalInput containerBottomSwitch = new DigitalInput(0);
 	public static final Talon containerElevatorMotor = new Talon(0);
-	public static final Encoder containerElevatorEncoder = new Encoder(0, 0,
-			false, EncodingType.k2X); // Specify actual port numbers later.
+	public static final Encoder containerElevatorEncoder = new Encoder(0, 0, false, EncodingType.k2X); 
 
 	// tote intake
 	public static final Talon intakeWheelMotor = new Talon(0);
@@ -67,4 +63,6 @@ public class RobotMap {
 	
 	//tote pusher
 	public static final Talon totePusherArm = new Talon(0);
+	
+	//TODO Specify actual port numbers later.
 }
