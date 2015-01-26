@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2175.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -37,19 +38,29 @@ public class OI {
 	public Joystick leftStick;
 	public Joystick rightStick;
 	public Joystick gamepad;
+	public JoystickButton precisionMode;
 
 	public double deadbandValue = 0.05;
 	public OI() {
 		leftStick = new Joystick(0);
 		rightStick = new Joystick(1);
 		gamepad = new Joystick(2);
+		precisionMode = new JoystickButton(rightStick, 1);
 	}
 
 	public double getMoveValue() {
-		return handleDeadband(leftStick.getY());
+		if(!precisionMode.get()){
+			return handleDeadband(leftStick.getY());
+		}else{
+			return handleDeadband(leftStick.getY()*0.5);
+		}
 	}
 	public double getTurnValue() {
-		return handleDeadband(rightStick.getX());
+		if(!precisionMode.get()){
+			return handleDeadband(rightStick.getX());
+		}else{
+			return handleDeadband(rightStick.getX()*0.5);
+		}
 	}
 	public double handleDeadband(double input){
 		if(input<=deadbandValue){
