@@ -3,12 +3,13 @@ package org.usfirst.frc.team2175.robot;
 
 import org.usfirst.frc.team2175.robot.commands.Auton1DriveForward;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
+import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.PIDToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
-
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
+
 
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -31,7 +32,8 @@ public class Robot extends IterativeRobot {
 	public static final TotePusher totePusher = new TotePusher();
 	public static final ContainerElevator containerElevator = new ContainerElevator(); 
 	public static final ToteIntake toteIntake = new ToteIntake();
-
+	public static final ContainerIntake containerIntake = new ContainerIntake();
+	
 	public static OI oi;
 
     Command autonomousCommand;
