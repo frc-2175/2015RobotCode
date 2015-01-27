@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2175.robot.commands;
 
 import org.usfirst.frc.team2175.robot.Robot;
+import org.usfirst.frc.team2175.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -26,7 +27,7 @@ public class RunToteIntakeWheels extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+       return RobotMap.toteIntakeToteInSwitch.get();
     }
 
     // Called once after isFinished returns true

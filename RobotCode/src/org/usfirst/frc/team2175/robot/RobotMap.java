@@ -60,6 +60,7 @@ public class RobotMap {
 	// tote intake
 	public static final Talon toteIntakeWheelMotor = new Talon(0);
 	public static final Solenoid toteIntakeArms = new Solenoid(0);
+	public static final DigitalInput toteIntakeToteInSwitch = new DigitalInput(0);
 	
 	//tote pusher
 	public static final Talon totePusherArm = new Talon(0);
