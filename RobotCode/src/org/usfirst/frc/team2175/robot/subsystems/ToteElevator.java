@@ -23,7 +23,13 @@ public class ToteElevator extends Subsystem{
 	}
 
 	public void setSpeed(double toteElevatorSpeed) {
-		RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
+		if(isAtTop()&&toteElevatorSpeed>0){
+			RobotMap.toteElevatorTalon.set(0);
+		} if(isAtBottom()&&toteElevatorSpeed<0){
+			RobotMap.toteElevatorTalon.set(0);
+		} else {
+			RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
+		}
 	}
 
 	public void resetEncoder() {
