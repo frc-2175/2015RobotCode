@@ -49,8 +49,10 @@ public class Robot extends IterativeRobot {
         autonomousCommand = new Auton0DoNothing();
         
         autonChooser = new SendableChooser();
+        autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
         autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
-        autonChooser.addDefault("1 - Drive into Auto Zone", new Auton1DriveForward());
+        autonChooser.addDefault("1 - Drive straight into Auto Zone", new Auton1DriveForward());
+        autonChooser.addDefault("2 - Drive left into Auto Zone", new Auton1DriveLeft()); //could change the 2 to 1
         //TODO add all of these
         SmartDashboard.putData("Autonomous Routine",autonChooser);
         
