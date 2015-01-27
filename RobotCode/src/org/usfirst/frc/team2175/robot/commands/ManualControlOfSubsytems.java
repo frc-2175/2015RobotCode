@@ -28,13 +28,15 @@ public class ManualControlOfSubsytems extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-    	
-    	//Drivetrain
-    	double moveValue = Robot.oi.getMoveValue();
-		double turnValue = Robot.oi.getTurnValue();
-		Robot.drivetrain.arcadeDrive(moveValue, turnValue);
+
+		
+		
 		
 	}
+
+	
+	
+	
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
