@@ -6,10 +6,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ToteElevator extends Subsystem{
+public class ToteElevator extends Subsystem {
 
 	public ToteElevator() {
-		RobotMap.elevatorEncoder.setDistancePerPulse(0); // set distance per pulse!
+		//TODO Find actual distance per pulse
+		RobotMap.elevatorEncoder.setDistancePerPulse(0);
 		RobotMap.elevatorEncoder.setReverseDirection(false);
 		// Add other encoder-related initializations here if needed.
 	}
@@ -23,9 +24,9 @@ public class ToteElevator extends Subsystem{
 	}
 
 	public void setSpeed(double toteElevatorSpeed) {
-		if(isAtTop()&&toteElevatorSpeed>0){
+		if (isAtTop() && toteElevatorSpeed > 0) {
 			RobotMap.toteElevatorTalon.set(0);
-		} if(isAtBottom()&&toteElevatorSpeed<0){
+		} else if (isAtBottom() && toteElevatorSpeed < 0) {
 			RobotMap.toteElevatorTalon.set(0);
 		} else {
 			RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
@@ -43,6 +44,6 @@ public class ToteElevator extends Subsystem{
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

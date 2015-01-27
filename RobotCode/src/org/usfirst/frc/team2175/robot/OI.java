@@ -69,39 +69,35 @@ public class OI {
 	public JoystickButton gamepad9 = new JoystickButton(gamepad, 9);
 	public JoystickButton gamepad10 = new JoystickButton(gamepad, 10);
 
-
-
-
-
 	public double deadbandValue = 0.05;
+
 	public OI() {
 		leftStick = new Joystick(0);
 		rightStick = new Joystick(1);
 		gamepad = new Joystick(2);
 		precisionMode = new JoystickButton(rightStick, 1);
 		shifters = new JoystickButton(leftStick, 1);
-		
-
-
 
 	}
 
 	public double getMoveValue() {
-		if(!precisionMode.get()){
+		if (!precisionMode.get()) {
 			return handleDeadband(leftStick.getY());
-		}else{
-			return handleDeadband(leftStick.getY()*0.5);
+		} else {
+			return handleDeadband(leftStick.getY() * 0.5);
 		}
 	}
+
 	public double getTurnValue() {
-		if(!precisionMode.get()){
+		if (!precisionMode.get()) {
 			return handleDeadband(rightStick.getX());
-		}else{
-			return handleDeadband(rightStick.getX()*0.5);
+		} else {
+			return handleDeadband(rightStick.getX() * 0.5);
 		}
 	}
-	public double handleDeadband(double input){
-		if(input<=deadbandValue){
+
+	public double handleDeadband(double input) {
+		if (input <= deadbandValue) {
 			return 0;
 		} else {
 			return input;
