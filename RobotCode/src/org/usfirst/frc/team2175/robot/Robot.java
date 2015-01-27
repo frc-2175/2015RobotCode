@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team2175.robot;
 
-import org.usfirst.frc.team2175.robot.commands.Auton1DriveForward;
+import org.usfirst.frc.team2175.robot.commands.*;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
@@ -10,12 +10,12 @@ import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
 
-
-
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
     Command autonomousCommand;
+    SendableChooser autonChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -45,7 +46,15 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         // instantiate the command used for the autonomous period
-        autonomousCommand = new Auton1DriveForward();
+        autonomousCommand = new Auton0DoNothing();
+        
+        autonChooser = new SendableChooser();
+        autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
+        autonChooser.addDefault("1 - Drive into Auto Zone", new Auton1DriveForward());
+        //TODO add all of these
+        SmartDashboard.putData("Autonomous Routine",autonChooser);
+        
+        
     }
 	
 	public void disabledPeriodic() {
@@ -53,8 +62,10 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+        // schedule the autonomous command according to the chooser on the dashboard
+        autonomousCommand = (Command)autonChooser.getSelected();
+        autonomousCommand.start();
+        
     }
 
     /**
