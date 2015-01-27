@@ -39,6 +39,7 @@ public class OI {
 	public Joystick rightStick;
 	public Joystick gamepad;
 	public JoystickButton precisionMode;
+	public JoystickButton shifters;
 
 	public double deadbandValue = 0.05;
 	public OI() {
@@ -46,6 +47,7 @@ public class OI {
 		rightStick = new Joystick(1);
 		gamepad = new Joystick(2);
 		precisionMode = new JoystickButton(rightStick, 1);
+		shifters = new JoystickButton(leftStick, 1);
 	}
 
 	public double getMoveValue() {
