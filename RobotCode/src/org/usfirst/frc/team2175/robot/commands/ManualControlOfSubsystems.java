@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton2Push1Tote extends CommandGroup {
+public class ManualControlOfSubsystems extends CommandGroup {
     
-    public  Auton2Push1Tote() {
+    public  ManualControlOfSubsystems() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
