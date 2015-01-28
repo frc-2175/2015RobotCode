@@ -27,9 +27,9 @@ public class RobotConfig {
 			throw new IllegalStateException("No properties were loaded");
 		}
 
-		deadbandSize = Double.parseDouble(prop.getProperty("deadbandSize"));
+		deadbandSize = Double.parseDouble(prop.getProperty("deadbandSize")); //TODO set values for constants in the properties file
 		
-		toteElevatorGroundPosition = Double.parseDouble(prop.getProperty("toteIntakeFloorPosition"));
+		toteElevatorGroundPosition = Double.parseDouble(prop.getProperty("toteIntakeFloorPosition")); 
 		toteElevatorStackPosition = Double.parseDouble(prop.getProperty("toteIntakeIntakePosition"));
 	}
 

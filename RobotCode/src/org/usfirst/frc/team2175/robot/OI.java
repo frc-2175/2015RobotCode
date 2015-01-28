@@ -69,7 +69,7 @@ public class OI {
 	public JoystickButton gamepad9 = new JoystickButton(gamepad, 9);
 	public JoystickButton gamepad10 = new JoystickButton(gamepad, 10);
 
-	public double deadbandValue = 0.05;
+	public double deadbandValue;
 
 	public OI() {
 		leftStick = new Joystick(0);
@@ -77,7 +77,7 @@ public class OI {
 		gamepad = new Joystick(2);
 		precisionMode = new JoystickButton(rightStick, 1);
 		shifters = new JoystickButton(leftStick, 1);
-
+		deadbandValue = Robot.properties.getDeadbandSize();
 	}
 
 	public double getMoveValue() {
