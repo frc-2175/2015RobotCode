@@ -1,7 +1,10 @@
 
 package org.usfirst.frc.team2175.robot;
 
-import org.usfirst.frc.team2175.robot.commands.*;
+import org.usfirst.frc.team2175.robot.commands.Auton0DoNothing;
+import org.usfirst.frc.team2175.robot.commands.Auton1DriveForward;
+import org.usfirst.frc.team2175.robot.commands.Auton1DriveLeft;
+import org.usfirst.frc.team2175.robot.commands.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
@@ -39,28 +42,42 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser autonChooser;
 
+    private class SchedulerTask extends java.util.TimerTask {
+		@Override
+		public void run() {
+			Scheduler.getInstance().run();
+		}
+    	
+    }
+    
+    private java.util.Timer controlLoop;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
 		oi = new OI();
-        // instantiate the command used for the autonomous period
+        
+		controlLoop = new java.util.Timer();
+		
+		// instantiate the command used for the autonomous period
         autonomousCommand = new Auton0DoNothing();
         
         autonChooser = new SendableChooser();
         autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
         autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
         autonChooser.addDefault("1 - Drive straight into Auto Zone", new Auton1DriveForward());
-        autonChooser.addDefault("2 - Drive left into Auto Zone", new Auton1DriveLeft()); //could change the 2 to 1
-        //TODO add all of these
+        autonChooser.addDefault("2 - Drive left into Auto Zone", new Auton1DriveLeft()); //TODO re evaluate need for this command
+        //TODO add all of the auto routines as they are made
         SmartDashboard.putData("Autonomous Routine",autonChooser);
         
+        controlLoop.schedule(new SchedulerTask(), 0L, (long)(10));
         
     }
 	
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+
 	}
 
     public void autonomousInit() {
@@ -74,7 +91,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+       
     }
 
     public void teleopInit() {
@@ -97,7 +114,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        
     }
     
     /**
