@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ExamplePIDSubsystem extends Subsystem {
 	
-	private PIDController controller;
+	public PIDController controller;
 	
 	private class ControllerHandler implements PIDSource, PIDOutput {
 
@@ -28,9 +28,12 @@ public class ExamplePIDSubsystem extends Subsystem {
 	}
 	
 	public ExamplePIDSubsystem() {
+		// Create the input/output handler for this controller
 		ControllerHandler controllerHandler = new ControllerHandler();
+		// Create the controller, setting the P, I, and D terms
 		controller = new PIDController(0, 0, 0, controllerHandler, controllerHandler);
-		controller.setOutputRange(-0.5, 0.5);
+		// Set the tolerance (how far off the setpoint is considered "close enough")
+		controller.setAbsoluteTolerance(0.5);
 	}
 
 	@Override
