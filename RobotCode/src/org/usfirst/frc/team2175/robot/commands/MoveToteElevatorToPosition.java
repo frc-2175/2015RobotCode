@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveToteElevatorToPosition extends Command {
 
-	double position;
+	private double position;
     public MoveToteElevatorToPosition(double position) {
 
     	requires(Robot.pidToteElevator);

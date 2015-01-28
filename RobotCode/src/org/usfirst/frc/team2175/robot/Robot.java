@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static final ContainerIntake containerIntake = new ContainerIntake();
 	
 	public static OI oi;
+	public static RobotConfig properties;
 
     Command autonomousCommand;
     SendableChooser autonChooser;
@@ -58,6 +59,11 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		try{
+			properties = new RobotConfig();
+		}
+		catch(Exception e){
+		}
         
 		controlLoop = new java.util.Timer();
 		

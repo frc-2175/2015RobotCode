@@ -9,6 +9,10 @@ public class RobotConfig {
 
 	private double deadbandSize;
 	
+	//tote elevator properties
+	private double toteElevatorGroundPosition;
+	private double toteElevatorStackPosition;
+	
 	//add more properties here
 
 	public RobotConfig() throws IOException {
@@ -24,9 +28,20 @@ public class RobotConfig {
 		}
 
 		deadbandSize = Double.parseDouble(prop.getProperty("deadbandSize"));
+		
+		toteElevatorGroundPosition = Double.parseDouble(prop.getProperty("toteIntakeFloorPosition"));
+		toteElevatorStackPosition = Double.parseDouble(prop.getProperty("toteIntakeIntakePosition"));
 	}
 
 	public double getDeadbandSize() {
 		return deadbandSize;
+	}
+
+	public double getToteElevatorGroundPosition() {
+		return toteElevatorGroundPosition;
+	}
+
+	public double getToteElevatorStackPosition() {
+		return toteElevatorStackPosition;
 	}
 }
