@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ManualControlOfSubsystems extends CommandGroup {
     
     public  ManualControlOfSubsystems() {
+    	addSequential(new ArcadeDriveWithSticks());
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
