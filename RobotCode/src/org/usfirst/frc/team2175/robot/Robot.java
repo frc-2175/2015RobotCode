@@ -7,6 +7,7 @@ import org.usfirst.frc.team2175.robot.commands.Auton1DriveLeft;
 import org.usfirst.frc.team2175.robot.commands.Auton2Push1Tote;
 import org.usfirst.frc.team2175.robot.commands.Auton2Push2Totes;
 import org.usfirst.frc.team2175.robot.commands.Auton2Push3Totes;
+import org.usfirst.frc.team2175.robot.commands.Auton3StackToteInAutoZone;
 import org.usfirst.frc.team2175.robot.commands.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
@@ -81,6 +82,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("3 - Push 1 tote into Auto Zone", new Auton2Push1Tote());
         autonChooser.addDefault("4 - Push 2 totes into Auto Zone", new Auton2Push2Totes());
         autonChooser.addDefault("5 - Push 3 totes into Auto Zone", new Auton2Push3Totes());
+        autonChooser.addDefault("6 - Stack 3 Totes and put them into Auto Zone", new Auton3StackToteInAutoZone());
         //TODO add all of the auto routines as they are made
         SmartDashboard.putData("Autonomous Routine",autonChooser);
         
