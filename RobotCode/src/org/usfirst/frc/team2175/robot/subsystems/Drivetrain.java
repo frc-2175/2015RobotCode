@@ -37,13 +37,13 @@ public class Drivetrain extends Subsystem {
 		@Override
 		public void pidWrite(double output) {
 			// Do something with the output PID value, like update motors
-			arcadeDrive(output,0);
+			arcadeDrive(0,output);
 		}
 
 		@Override
 		public double pidGet() {
 			// Return the sensor value for the PID input
-			return getMeanEncoderDistance();
+			return getGyroHeading();
 		}
 	}
 	
@@ -73,6 +73,10 @@ public class Drivetrain extends Subsystem {
 	public double getMeanEncoderDistance() {
 		return (RobotMap.leftEncoder.getDistance() + RobotMap.rightEncoder
 				.getDistance()) / 2;
+	}
+	
+	public double getGyroHeading(){
+		return RobotMap.gyro.getAngle();
 	}
 
 	public void tankDrive(double leftSpeed, double rightSpeed) {
