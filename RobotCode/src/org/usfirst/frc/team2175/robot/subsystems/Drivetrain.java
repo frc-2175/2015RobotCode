@@ -15,12 +15,13 @@ public class Drivetrain extends Subsystem {
 
 	public PIDController straightDriveController;
 
-	private class StraightDriveControllerHandler implements PIDSource, PIDOutput {
+	private class StraightDriveControllerHandler implements PIDSource,
+			PIDOutput {
 
 		@Override
 		public void pidWrite(double output) {
 			// Do something with the output PID value, like update motors
-			arcadeDrive(output,0);
+			arcadeDrive(output, 0);
 		}
 
 		@Override
@@ -29,15 +30,19 @@ public class Drivetrain extends Subsystem {
 			return getMeanEncoderDistance();
 		}
 	}
-	
+
 	public PIDController turnController;
-	
-	private class turnControllerHandler implements PIDSource, PIDOutput {
+
+	private class TurnControllerHandler implements PIDSource, PIDOutput {
 
 		@Override
 		public void pidWrite(double output) {
 			// Do something with the output PID value, like update motors
+<<<<<<< HEAD
 			arcadeDrive(0,output);
+=======
+			arcadeDrive(output, 0);
+>>>>>>> Polished the tote elevator code. There is still more to be done, but I too care of some small things
 		}
 
 		@Override
@@ -46,19 +51,18 @@ public class Drivetrain extends Subsystem {
 			return getGyroHeading();
 		}
 	}
-	
-	public Drivetrain(){
-		turnControllerHandler turnHandler = new turnControllerHandler();
-		turnController = new PIDController(0, 0, 0, turnHandler, turnHandler);
-		turnController.setAbsoluteTolerance(.5);	
-		
-		
-		StraightDriveControllerHandler straightHandler = new StraightDriveControllerHandler();
-		straightDriveController = new PIDController(0, 0, 0, straightHandler, straightHandler);
-		straightDriveController.setAbsoluteTolerance(.5);
-		//TODO assign PID values
-	}
 
+	public Drivetrain() {
+		TurnControllerHandler turnHandler = new TurnControllerHandler();
+		turnController = new PIDController(0, 0, 0, turnHandler, turnHandler);
+		turnController.setAbsoluteTolerance(.5);
+
+		StraightDriveControllerHandler straightHandler = new StraightDriveControllerHandler();
+		straightDriveController = new PIDController(0, 0, 0, straightHandler,
+				straightHandler);
+		straightDriveController.setAbsoluteTolerance(.5);
+		// TODO assign PID values
+	}
 
 	public void resetEncoders() {
 		RobotMap.leftEncoder.reset();
