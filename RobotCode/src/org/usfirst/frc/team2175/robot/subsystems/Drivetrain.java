@@ -30,12 +30,35 @@ public class Drivetrain extends Subsystem {
 		}
 	}
 	
+	public PIDController turnController;
+	
+	private class turnControllerHandler implements PIDSource, PIDOutput {
+
+		@Override
+		public void pidWrite(double output) {
+			// Do something with the output PID value, like update motors
+			arcadeDrive(output,0);
+		}
+
+		@Override
+		public double pidGet() {
+			// Return the sensor value for the PID input
+			return getMeanEncoderDistance();
+		}
+	}
+	
 	public Drivetrain(){
+		turnControllerHandler turnHandler = new turnControllerHandler();
+		turnController = new PIDController(0, 0, 0, turnHandler, turnHandler);
+		turnController.setAbsoluteTolerance(.5);	
+		
+		
 		StraightDriveControllerHandler straightHandler = new StraightDriveControllerHandler();
 		straightDriveController = new PIDController(0, 0, 0, straightHandler, straightHandler);
 		straightDriveController.setAbsoluteTolerance(.5);
 		//TODO assign PID values
 	}
+
 
 	public void resetEncoders() {
 		RobotMap.leftEncoder.reset();
