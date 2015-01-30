@@ -21,11 +21,7 @@ public class Drivetrain extends Subsystem {
 		@Override
 		public void pidWrite(double output) {
 			// Do something with the output PID value, like update motors
-<<<<<<< HEAD
 			arcadeDrive(0,output);
-=======
-			arcadeDrive(output, 0);
->>>>>>> Polished the tote elevator code. There is still more to be done, but I too care of some small things
 		}
 
 		@Override
