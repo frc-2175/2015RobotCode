@@ -35,7 +35,7 @@ public class ToteElevator extends Subsystem {
 		}
 	}
 
-	public void ToteElevator() {
+	public ToteElevator() {
 		// TODO Find actual distance per pulse
 		RobotMap.elevatorEncoder.setDistancePerPulse(0);
 		RobotMap.elevatorEncoder.setReverseDirection(false);
