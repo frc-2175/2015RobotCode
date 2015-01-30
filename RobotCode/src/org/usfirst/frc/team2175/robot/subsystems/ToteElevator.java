@@ -19,10 +19,6 @@ public class ToteElevator extends Subsystem {
 		RobotMap.toteElevatorTalon.set(output);
 	}
 
-	public void setSetpoint(double setpoint) {
-
-	}
-
 	public PIDController heightController;
 
 	private class HeightControllerHandler implements PIDSource, PIDOutput {
@@ -37,49 +33,48 @@ public class ToteElevator extends Subsystem {
 			// Return the sensor value for the PID input
 			return 0;
 		}
+	}
 
-		public void ToteElevator() {
-			// TODO Find actual distance per pulse
-			RobotMap.elevatorEncoder.setDistancePerPulse(0);
-			RobotMap.elevatorEncoder.setReverseDirection(false);
-			HeightControllerHandler heightHandler = new HeightControllerHandler();
-			heightController = new PIDController(0, 0, 0, heightHandler,
-					heightHandler);
-			heightController.setAbsoluteTolerance(.05);
-			// Add other encoder-related initializations here if needed.
+	public void ToteElevator() {
+		// TODO Find actual distance per pulse
+		RobotMap.elevatorEncoder.setDistancePerPulse(0);
+		RobotMap.elevatorEncoder.setReverseDirection(false);
+		HeightControllerHandler heightHandler = new HeightControllerHandler();
+		heightController = new PIDController(0, 0, 0, heightHandler,
+				heightHandler);
+		heightController.setAbsoluteTolerance(.05);
+		// Add other encoder-related initializations here if needed.
+	}
+
+	public boolean isAtBottom() {
+		return RobotMap.bottomSwitch.get();
+	}
+
+	public boolean isAtTop() {
+		return RobotMap.topSwitch.get();
+	}
+
+	public void setSpeed(double toteElevatorSpeed) {
+		if (isAtTop() && toteElevatorSpeed > 0) {
+			RobotMap.toteElevatorTalon.set(0);
+		} else if (isAtBottom() && toteElevatorSpeed < 0) {
+			RobotMap.toteElevatorTalon.set(0);
+		} else {
+			RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
 		}
+	}
 
-		public boolean isAtBottom() {
-			return RobotMap.bottomSwitch.get();
-		}
+	public void resetEncoder() {
+		RobotMap.elevatorEncoder.reset();
+	}
 
-		public boolean isAtTop() {
-			return RobotMap.topSwitch.get();
-		}
-
-		public void setSpeed(double toteElevatorSpeed) {
-			if (isAtTop() && toteElevatorSpeed > 0) {
-				RobotMap.toteElevatorTalon.set(0);
-			} else if (isAtBottom() && toteElevatorSpeed < 0) {
-				RobotMap.toteElevatorTalon.set(0);
-			} else {
-				RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
-			}
-		}
-
-		public void resetEncoder() {
-			RobotMap.elevatorEncoder.reset();
-		}
-
-		public double getHeight() {
-			return RobotMap.elevatorEncoder.getDistance();
-		}
-
+	public double getHeight() {
+		return RobotMap.elevatorEncoder.getDistance();
 	}
 
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
