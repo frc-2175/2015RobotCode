@@ -12,7 +12,6 @@ import org.usfirst.frc.team2175.robot.commands.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2175.robot.subsystems.PIDToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
@@ -33,7 +32,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final PIDToteElevator pidToteElevator = new PIDToteElevator();
+	
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final ToteElevator toteElevator = new ToteElevator();
 	public static final TotePusher totePusher = new TotePusher();

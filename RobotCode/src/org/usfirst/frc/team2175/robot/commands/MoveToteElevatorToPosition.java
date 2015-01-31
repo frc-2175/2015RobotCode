@@ -14,19 +14,19 @@ public class MoveToteElevatorToPosition extends Command {
 	private double position;
     public MoveToteElevatorToPosition(double position) {
 
-    	requires(Robot.pidToteElevator);
+    	requires(Robot.toteElevator);
     	this.position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.pidToteElevator.setSetpoint(setpoint);
-    	Robot.pidToteElevator.enable();
+    	Robot.toteElevator.heightController.setSetpoint(setpoint);
+    	Robot.toteElevator.heightController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pidToteElevator.setSetpoint(position);
+    	Robot.toteElevator.heightController.setSetpoint(position);
     }
 
     // Make this return true when this Command no longer needs to run execute()
