@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2175.robot.commands;
 
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,18 +10,21 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 
-public class MoveToteElevatorToPosition extends Command {
-	double setpoint;
-
+public class MoveToteElevatorToPosition extends CommandBase {
+		
+	private double setpoint;
 	private double position;
+	
     public MoveToteElevatorToPosition(double position) {
-
     	requires(Robot.toteElevator);
     	this.position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	super.initialize();
+    	log.info("Moving elevator to position " + position);
+    	
     	Robot.toteElevator.heightController.setSetpoint(setpoint);
     	Robot.toteElevator.heightController.enable();
     }
@@ -36,6 +41,8 @@ public class MoveToteElevatorToPosition extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	super.end();
+    	
     	Robot.toteElevator.heightController.onTarget();
     }
 
