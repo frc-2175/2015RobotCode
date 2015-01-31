@@ -33,12 +33,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	
-	public static final Drivetrain drivetrain = new Drivetrain();
-	public static final ToteElevator toteElevator = new ToteElevator();
-	public static final TotePusher totePusher = new TotePusher();
-	public static final ContainerElevator containerElevator = new ContainerElevator(); 
-	public static final ToteIntake toteIntake = new ToteIntake();
-	public static final ContainerIntake containerIntake = new ContainerIntake();
+	public static Drivetrain drivetrain;
+	public static ToteElevator toteElevator;
+	public static TotePusher totePusher;
+	public static ContainerElevator containerElevator;
+	public static ToteIntake toteIntake;
+	public static ContainerIntake containerIntake;
 	
 	public static OI oi;
 	public static RobotConfig properties;
@@ -61,13 +61,24 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
 		try{
 			properties = new RobotConfig();
 		}
 		catch(Exception e){
+			e.printStackTrace();
 		}
+		
+		RobotMap.init();
+		
+		drivetrain = new Drivetrain();
+		toteElevator = new ToteElevator();
+		totePusher = new TotePusher();
+		containerElevator = new ContainerElevator();
+		toteIntake = new ToteIntake();
+		containerIntake = new ContainerIntake();
         
+		oi = new OI();
+		
 		controlLoop = new java.util.Timer();
 		
 		// instantiate the command used for the autonomous period
@@ -127,7 +138,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        System.out.println(RobotMap.elevatorEncoder.getDistance());
     }
     
     /**
