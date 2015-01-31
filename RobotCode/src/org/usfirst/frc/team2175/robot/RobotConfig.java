@@ -10,8 +10,7 @@ public class RobotConfig {
 	private double deadbandSize;
 	
 	//tote elevator properties
-	private double toteElevatorGroundPosition;
-	private double toteElevatorStackPosition;
+	public ToteElevatorConfig toteConfig;
 	
 	//add more properties here
 
@@ -29,19 +28,21 @@ public class RobotConfig {
 
 		deadbandSize = Double.parseDouble(prop.getProperty("deadbandSize")); //TODO set values for constants in the properties file
 		
-		toteElevatorGroundPosition = Double.parseDouble(prop.getProperty("toteIntakeFloorPosition")); 
-		toteElevatorStackPosition = Double.parseDouble(prop.getProperty("toteIntakeIntakePosition"));
+		double pickup, driving, scoring, step, stack;
+		
+		pickup = Double.parseDouble(prop.getProperty("totePickupHeight"));
+		driving = Double.parseDouble(prop.getProperty("toteDrivingHeight"));
+		scoring = Double.parseDouble(prop.getProperty("toteScoringHeight"));
+		step = Double.parseDouble(prop.getProperty("toteStepHeight"));
+		stack = Double.parseDouble(prop.getProperty("toteStackHeight"));
+		
+		toteConfig = new ToteElevatorConfig(pickup, driving, scoring, step, stack);
+		
 	}
 
 	public double getDeadbandSize() {
 		return deadbandSize;
 	}
 
-	public double getToteElevatorGroundPosition() {
-		return toteElevatorGroundPosition;
-	}
-
-	public double getToteElevatorStackPosition() {
-		return toteElevatorStackPosition;
-	}
+	
 }

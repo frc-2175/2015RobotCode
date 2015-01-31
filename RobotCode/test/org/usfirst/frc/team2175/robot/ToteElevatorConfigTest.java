@@ -2,7 +2,7 @@ package org.usfirst.frc.team2175.robot;
 
 import org.junit.Test;
 
-public class ToteElevatorConfigTest {
+public class ToteElevatorConfigTest extends TestBase {
 	
 	@SuppressWarnings("unused")
 	@Test(expected=IllegalStateException.class)

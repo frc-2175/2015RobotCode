@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class ToteElevatorConfig_NextLevelUpTest {
+public class ToteElevatorConfig_NextLevelUpTest extends TestBase {
 	
 	@Parameters(name = "{index}: current = {0} and expected = {1}")
 	public static Collection<Object[]> data() {
@@ -22,17 +22,17 @@ public class ToteElevatorConfig_NextLevelUpTest {
 	}
 	
 	@Parameter
-	public int currentLevel;
+	public double currentLevel;
 	
 	@Parameter(value = 1)
-	public int expected;
+	public double expected;
 	
 	@Test
 	public void testGetNextLevelUp() {
 		ToteElevatorConfig config = new ToteElevatorConfig(10, 20, 30, 40, 50);
 		
-		int actual = config.getNextLevelUp(currentLevel);
-		assertEquals("Wrong nextLevelUp found", expected, actual);
+		double actual = config.getNextLevelUp(currentLevel);
+		assertEquals("Wrong nextLevelUp found", expected, actual, DOUBLE_TOLERANCE);
 	}
 	
 }
