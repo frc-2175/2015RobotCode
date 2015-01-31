@@ -17,7 +17,7 @@ public class ToteElevatorConfig_NextLevelUpTest {
 	@Parameters(name = "{index}: current = {0} and expected = {1}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-				{5, 10}, {15, 20}, {25, 30}, {35, 40}, {45, 40}
+				{5, 10}, {15, 20}, {25, 30}, {35, 40}, {45, 50}, {55, 50}
 		});
 	}
 	
@@ -29,7 +29,7 @@ public class ToteElevatorConfig_NextLevelUpTest {
 	
 	@Test
 	public void testGetNextLevelUp() {
-		ToteElevatorConfig config = new ToteElevatorConfig(10, 20, 30, 40);
+		ToteElevatorConfig config = new ToteElevatorConfig(10, 20, 30, 40, 50);
 		
 		int actual = config.getNextLevelUp(currentLevel);
 		assertEquals("Wrong nextLevelUp found", expected, actual);
