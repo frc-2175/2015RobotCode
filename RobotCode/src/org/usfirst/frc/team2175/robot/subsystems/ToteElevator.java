@@ -40,8 +40,8 @@ public class ToteElevator extends Subsystem {
 		RobotMap.elevatorEncoder.setDistancePerPulse(1);
 		RobotMap.elevatorEncoder.setReverseDirection(false);
 		HeightControllerHandler heightHandler = new HeightControllerHandler();
-		heightController = new PIDController(0, 0, 0, heightHandler,
-				heightHandler);
+		heightController = new PIDController(0.01, 0, 0.005, heightHandler, heightHandler);
+		heightController.setOutputRange(-0.5,0.5);
 		heightController.setAbsoluteTolerance(.05);
 		// Add other encoder-related initializations here if needed.
 	}
