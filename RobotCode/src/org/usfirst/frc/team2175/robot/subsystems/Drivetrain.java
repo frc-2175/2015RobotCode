@@ -21,7 +21,7 @@ public class Drivetrain extends Subsystem {
 		@Override
 		public void pidWrite(double output) {
 			// Do something with the output PID value, like update motors
-			arcadeDrive(0,output);
+			arcadeDrive(output,0);
 		}
 
 		@Override
