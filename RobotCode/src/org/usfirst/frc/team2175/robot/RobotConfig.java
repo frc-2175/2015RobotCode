@@ -8,6 +8,9 @@ import java.util.Properties;
 public class RobotConfig {
 
 	private double deadbandSize;
+	private double toteElevatorP;
+	private double toteElevatorI;
+	private double toteElevatorD;
 	
 	//tote elevator properties
 	public ToteElevatorConfig toteConfig;
@@ -38,6 +41,22 @@ public class RobotConfig {
 		
 		toteConfig = new ToteElevatorConfig(pickup, driving, scoring, step, stack);
 		
+		toteElevatorP = Double.parseDouble(prop.getProperty("toteElevatorP"));
+		toteElevatorI = Double.parseDouble(prop.getProperty("toteElevatorI"));
+		toteElevatorD = Double.parseDouble(prop.getProperty("toteElevatorD"));
+		
+	}
+
+	public double getToteElevatorP() {
+		return toteElevatorP;
+	}
+
+	public double getToteElevatorI() {
+		return toteElevatorI;
+	}
+
+	public double getToteElevatorD() {
+		return toteElevatorD;
 	}
 
 	public double getDeadbandSize() {

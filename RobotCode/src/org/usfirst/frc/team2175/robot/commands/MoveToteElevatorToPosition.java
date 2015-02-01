@@ -13,17 +13,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveToteElevatorToPosition extends CommandBase {
 		
 	private double setpoint;
-	private double position;
 	
-    public MoveToteElevatorToPosition(double position) {
+    public MoveToteElevatorToPosition(double setpoint) {
     	requires(Robot.toteElevator);
-    	this.position = position;
+    	this.setpoint = setpoint;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	super.initialize();
-    	log.info("Moving elevator to position " + position);
+    	log.info("Moving elevator to position " + setpoint);
     	
     	Robot.toteElevator.heightController.setSetpoint(setpoint);
     	Robot.toteElevator.heightController.enable();
@@ -31,7 +30,7 @@ public class MoveToteElevatorToPosition extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.toteElevator.heightController.setSetpoint(position);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

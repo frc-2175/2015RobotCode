@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
+import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -26,12 +27,13 @@ public class ToteElevator extends Subsystem {
 		@Override
 		public void pidWrite(double output) {
 			// Do something with the output PID value, like update motors
+			RobotMap.toteElevatorTalon.set(output);
 		}
 
 		@Override
 		public double pidGet() {
 			// Return the sensor value for the PID input
-			return 0;
+			return RobotMap.elevatorEncoder.getDistance();
 		}
 	}
 
@@ -40,8 +42,12 @@ public class ToteElevator extends Subsystem {
 		RobotMap.elevatorEncoder.setDistancePerPulse(1);
 		RobotMap.elevatorEncoder.setReverseDirection(false);
 		HeightControllerHandler heightHandler = new HeightControllerHandler();
-		heightController = new PIDController(0.01, 0, 0.005, heightHandler, heightHandler);
-		heightController.setOutputRange(-0.5,0.5);
+		heightController = new PIDController(
+				Robot.properties.getToteElevatorP(),
+				Robot.properties.getToteElevatorI(),
+				Robot.properties.getToteElevatorD(), heightHandler,
+				heightHandler);
+		heightController.setOutputRange(-0.5, 0.5);
 		heightController.setAbsoluteTolerance(.05);
 		// Add other encoder-related initializations here if needed.
 	}
