@@ -31,8 +31,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
-	
 	public static Drivetrain drivetrain;
 	public static ToteElevator toteElevator;
 	public static TotePusher totePusher;
@@ -61,6 +59,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        new LoggingConfiguration().initializeLogging();
+
 		try{
 			properties = new RobotConfig();
 		}
