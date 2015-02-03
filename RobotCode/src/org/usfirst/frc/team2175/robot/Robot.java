@@ -142,7 +142,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	
-        System.out.println(RobotMap.elevatorEncoder.getDistance());
+        System.out.println(RobotMap.toteElevatorEncoder.getDistance());
     }
     
     /**

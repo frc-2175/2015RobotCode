@@ -33,14 +33,14 @@ public class ToteElevator extends Subsystem {
 		@Override
 		public double pidGet() {
 			// Return the sensor value for the PID input
-			return RobotMap.elevatorEncoder.getDistance();
+			return RobotMap.toteElevatorEncoder.getDistance();
 		}
 	}
 
 	public ToteElevator() {
 		// TODO Find actual distance per pulse
-		RobotMap.elevatorEncoder.setDistancePerPulse(1/50.8);
-		RobotMap.elevatorEncoder.setReverseDirection(true);
+		RobotMap.toteElevatorEncoder.setDistancePerPulse(1/50.8);
+		RobotMap.toteElevatorEncoder.setReverseDirection(true);
 		HeightControllerHandler heightHandler = new HeightControllerHandler();
 		heightController = new PIDController(
 				Robot.properties.getToteElevatorP(),
@@ -71,11 +71,11 @@ public class ToteElevator extends Subsystem {
 	}
 
 	public void resetEncoder() {
-		RobotMap.elevatorEncoder.reset();
+		RobotMap.toteElevatorEncoder.reset();
 	}
 
 	public double getHeight() {
-		return RobotMap.elevatorEncoder.getDistance();
+		return RobotMap.toteElevatorEncoder.getDistance();
 	}
 
 	@Override

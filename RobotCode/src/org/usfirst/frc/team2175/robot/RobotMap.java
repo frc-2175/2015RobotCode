@@ -49,9 +49,8 @@ public class RobotMap {
 	public static Talon toteElevatorTalon;
 	public static DigitalInput topSwitch;
 	public static DigitalInput bottomSwitch;
-	public static Encoder elevatorEncoder; // TODO change these back from testing platform
-								// values
-
+	public static Encoder toteElevatorEncoder; 
+	
 	// container elevator
 	public static DigitalInput containerTopSwitch;
 	public static DigitalInput containerBottomSwitch;
@@ -85,9 +84,9 @@ public class RobotMap {
 		toteElevatorTalon = new Talon(0);
 		topSwitch = new DigitalInput(14);
 		bottomSwitch = new DigitalInput(15);
-		elevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X); // TODO change these back from testing platform values
+		toteElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X); // TODO change these back from testing platform values
 
-		elevatorEncoder.reset();
+		toteElevatorEncoder.reset();
 		
 		// container elevator
 		containerTopSwitch = new DigitalInput(16);
