@@ -17,7 +17,8 @@ public class ToteElevatorConfig_NextLevelUpTest extends TestBase {
 	@Parameters(name = "{index}: current = {0} and expected = {1}")
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
-				{5, 10}, {15, 20}, {25, 30}, {35, 40}, {45, 50}, {55, 50}
+				{5, 10}, {15, 20}, {25, 30}, {35, 40}, {45, 50}, {55, 50},
+				{9, 20}, {19, 30}, {29, 40}, {39, 50}, {49, 50}
 		});
 	}
 	
