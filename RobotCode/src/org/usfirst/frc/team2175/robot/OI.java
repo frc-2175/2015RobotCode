@@ -60,9 +60,9 @@ public class OI {
 		JoystickButton gamepad4 = new JoystickButton(gamepad, 4);
 		
 		gamepad1.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.pickup));
-		gamepad2.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.stack));
-		gamepad3.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.driving));
-		gamepad4.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.step));
+		gamepad2.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.driving));
+		gamepad3.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.step));
+		gamepad4.whenPressed(new MoveToteElevatorToPosition(Robot.properties.toteConfig.stack));
 	}
 
 	public double getMoveValue() {

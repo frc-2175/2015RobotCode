@@ -3,16 +3,20 @@ package org.usfirst.frc.team2175.robot.commands;
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
 public class ArcadeDriveWithSticks extends Command {
+	
+	MoveToteElevatorToPosition elevatorCommand;
 
 	public ArcadeDriveWithSticks() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.drivetrain);
+		elevatorCommand = new MoveToteElevatorToPosition(Robot.properties.toteConfig.driving);
 	}
 
 	// Called just before this Command runs the first time
@@ -24,6 +28,9 @@ public class ArcadeDriveWithSticks extends Command {
 		double moveValue = Robot.oi.getMoveValue();
 		double turnValue = Robot.oi.getTurnValue();
 		Robot.drivetrain.arcadeDrive(moveValue, turnValue);
+		if(Math.abs(moveValue) >.25 && !elevatorCommand.isRunning()){
+			Scheduler.getInstance().add(elevatorCommand);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
