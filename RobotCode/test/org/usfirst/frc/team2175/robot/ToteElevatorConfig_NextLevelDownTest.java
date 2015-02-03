@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import org.usfirst.frc.team2175.robot.config.ToteElevatorConfig;
 
 @RunWith(Parameterized.class)
 public class ToteElevatorConfig_NextLevelDownTest extends TestBase {

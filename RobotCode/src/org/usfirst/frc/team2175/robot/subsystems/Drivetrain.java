@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
 import org.usfirst.frc.team2175.robot.RobotMap;
-import org.usfirst.frc.team2175.robot.commands.ArcadeDriveWithSticks;
+import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;

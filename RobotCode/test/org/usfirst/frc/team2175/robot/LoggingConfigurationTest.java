@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.Test;
+import org.usfirst.frc.team2175.robot.config.LoggingConfiguration;
 
 public class LoggingConfigurationTest {
     final LoggingConfiguration sut = new LoggingConfiguration();

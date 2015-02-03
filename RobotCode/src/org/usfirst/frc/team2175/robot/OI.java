@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2175.robot;
 
-import org.usfirst.frc.team2175.robot.commands.MoveToteElevatorToPosition;
+import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorToPosition;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
