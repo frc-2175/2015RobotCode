@@ -16,6 +16,7 @@ public class LoggingConfigurationTest {
      */
     @Test
     public void testInitializeLogging() {
+        sut.setLoggingPropertiesFileToUse(LoggingConfiguration.LOGGING_PROPERTIES_FILE_ACTUAL_LOCATION);
         sut.initializeLogging();
 
         log.info("log a test msg");

@@ -5,17 +5,23 @@ import java.io.InputStream;
 import java.util.logging.LogManager;
 
 public class LoggingConfiguration {
-    private static final String LOGGING_PROPERTIES_FILE = "/logging.properties";
+    /** Use ROBOT_LOCATION for deployment running. */
+    public static final String LOGGING_PROPERTIES_FILE_ROBOT_LOCATION = "/home/lvuser/logging.properties";
+
+    /** Use ACTUAL_LOCATION for tests. */
+    public static final String LOGGING_PROPERTIES_FILE_ACTUAL_LOCATION = "/logging.properties";
+
+    private String loggingPropertiesFileToUse = LOGGING_PROPERTIES_FILE_ROBOT_LOCATION;
 
     protected void initializeLogging() {
         final LogManager logManager = LogManager.getLogManager();
 
         final InputStream in = getClass().getResourceAsStream(
-                LOGGING_PROPERTIES_FILE);
+                loggingPropertiesFileToUse);
         if (in == null) {
             throw new IllegalStateException(
                     "Did not find logging properties file="
-                            + LOGGING_PROPERTIES_FILE);
+                            + loggingPropertiesFileToUse);
         }
 
         try {
@@ -24,5 +30,13 @@ public class LoggingConfiguration {
             throw new IllegalStateException(
                     "Unable to read logging properties", e);
         }
+    }
+
+    public String getLoggingPropertiesFileToUse() {
+        return loggingPropertiesFileToUse;
+    }
+
+    public void setLoggingPropertiesFileToUse(String loggingPropertiesFileToUse) {
+        this.loggingPropertiesFileToUse = loggingPropertiesFileToUse;
     }
 }
