@@ -1,6 +1,10 @@
 
 package org.usfirst.frc.team2175.robot;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton1DriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton1DriveLeft;
@@ -18,6 +22,7 @@ import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
 
+import sun.rmi.runtime.Log;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -45,6 +50,8 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser autonChooser;
+    
+    final Logger log = Logger.getLogger(getClass().getName());
 
     private class SchedulerTask extends java.util.TimerTask {
 		@Override
@@ -66,9 +73,10 @@ public class Robot extends IterativeRobot {
 		try{
 			properties = new RobotConfig();
 		}
-		catch(Exception e){
-			e.printStackTrace();
-		}
+		catch(IOException e){
+			log.log(Level.SEVERE, "problem encountered using RobotConfig", e);
+			throw new IllegalStateException("properties config problem, can't continue", e);
+			}
 		
 		RobotMap.init();
 		
