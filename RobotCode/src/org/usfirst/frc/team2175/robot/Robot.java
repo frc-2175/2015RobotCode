@@ -78,41 +78,16 @@ public class Robot extends IterativeRobot {
 
         RobotMap.init();
 
-        drivetrain = new Drivetrain();
-        toteElevator = new ToteElevator();
-        totePusher = new TotePusher();
-        containerElevator = new ContainerElevator();
-        toteIntake = new ToteIntake();
-        containerIntake = new ContainerIntake();
+        makeSubsystems();
 
         oi = new OI();
 
-        controlLoop = new java.util.Timer();
+        makeControlLoop();
+
+        makeAutonChooser();
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new Auton0DoNothing();
-
-        autonChooser = new SendableChooser();
-        autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
-        autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
-        autonChooser.addDefault("1 - Drive straight into Auto Zone",
-                new Auton1DriveForward());
-        autonChooser.addDefault("2 - Drive left into Auto Zone",
-                new Auton1DriveLeft()); // TODO re evaluate need for this
-                                        // command
-        autonChooser.addDefault("3 - Push 1 tote into Auto Zone",
-                new Auton2Push1Tote());
-        autonChooser.addDefault("4 - Push 2 totes into Auto Zone",
-                new Auton2Push2Totes());
-        autonChooser.addDefault("5 - Push 3 totes into Auto Zone",
-                new Auton2Push3Totes());
-        autonChooser.addDefault(
-                "6 - Stack 3 Totes and put them into Auto Zone",
-                new Auton3StackToteInAutoZone());
-        // TODO add all of the auto routines as they are made
-        SmartDashboard.putData("Autonomous Routine", autonChooser);
-
-        controlLoop.schedule(new SchedulerTask(), 0L, (10));
     }
 
     @Override
@@ -168,5 +143,43 @@ public class Robot extends IterativeRobot {
     @Override
     public void testPeriodic() {
         LiveWindow.run();
+    }
+
+    private void makeSubsystems() {
+        drivetrain = new Drivetrain();
+        toteElevator = new ToteElevator();
+        totePusher = new TotePusher();
+        containerElevator = new ContainerElevator();
+        toteIntake = new ToteIntake();
+        containerIntake = new ContainerIntake();
+    }
+
+    private void makeControlLoop() {
+        controlLoop = new java.util.Timer();
+        controlLoop.schedule(new SchedulerTask(), 0L, (10));
+    }
+
+    private void makeAutonChooser() {
+        autonChooser = new SendableChooser();
+
+        // TODO add all of the auto routines as they are made
+        autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
+        autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
+        autonChooser.addDefault("1 - Drive straight into Auto Zone",
+                new Auton1DriveForward());
+        autonChooser.addDefault("2 - Drive left into Auto Zone",
+                new Auton1DriveLeft()); // TODO re evaluate need for this
+                                        // command
+        autonChooser.addDefault("3 - Push 1 tote into Auto Zone",
+                new Auton2Push1Tote());
+        autonChooser.addDefault("4 - Push 2 totes into Auto Zone",
+                new Auton2Push2Totes());
+        autonChooser.addDefault("5 - Push 3 totes into Auto Zone",
+                new Auton2Push3Totes());
+        autonChooser.addDefault(
+                "6 - Stack 3 Totes and put them into Auto Zone",
+                new Auton3StackToteInAutoZone());
+
+        SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
 }
