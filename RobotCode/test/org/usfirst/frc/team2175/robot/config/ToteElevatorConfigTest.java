@@ -1,6 +1,7 @@
-package org.usfirst.frc.team2175.robot;
+package org.usfirst.frc.team2175.robot.config;
 
 import org.junit.Test;
+import org.usfirst.frc.team2175.robot.TestBase;
 import org.usfirst.frc.team2175.robot.config.ToteElevatorConfig;
 
 public class ToteElevatorConfigTest extends TestBase {

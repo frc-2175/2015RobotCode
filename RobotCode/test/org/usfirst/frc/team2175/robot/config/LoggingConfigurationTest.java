@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2175.robot;
+package org.usfirst.frc.team2175.robot.config;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
