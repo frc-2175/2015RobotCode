@@ -11,9 +11,15 @@ public class RobotConfig {
 	private double toteElevatorP;
 	private double toteElevatorI;
 	private double toteElevatorD;
+	private double containerElevatorP;
+	private double containerElevatorI;
+	private double containerElevatorD;
 	
 	//tote elevator properties
 	public ToteElevatorConfig toteConfig;
+	
+	//container elevator properties
+	public ContainerElevatorConfig containerConfig;
 	
 	//add more properties here
 
@@ -45,6 +51,22 @@ public class RobotConfig {
 		toteElevatorI = Double.parseDouble(prop.getProperty("toteElevatorI"));
 		toteElevatorD = Double.parseDouble(prop.getProperty("toteElevatorD"));
 		
+		//container elevator
+
+		double level0, level1, level2, level3, level4;
+		
+		level0 = Double.parseDouble(prop.getProperty("containerPickupHeight"));
+		level1 = Double.parseDouble(prop.getProperty("containerDrivingHeight"));
+		level2 = Double.parseDouble(prop.getProperty("containerScoringHeight"));
+		level3 = Double.parseDouble(prop.getProperty("containerStepHeight"));
+		level4 = Double.parseDouble(prop.getProperty("containerStackHeight"));
+		
+		containerConfig = new ContainerElevatorConfig(level0, level1, level2, level3, level4);
+		
+		containerElevatorP = Double.parseDouble(prop.getProperty("containerElevatorP"));
+		containerElevatorI = Double.parseDouble(prop.getProperty("containerElevatorI"));
+		containerElevatorD = Double.parseDouble(prop.getProperty("containerElevatorD"));
+		
 	}
 
 	public double getToteElevatorP() {
@@ -57,6 +79,18 @@ public class RobotConfig {
 
 	public double getToteElevatorD() {
 		return toteElevatorD;
+	}
+	
+	public double getContainerElevatorP() {
+		return containerElevatorP;
+	}
+
+	public double getContainerElevatorI() {
+		return containerElevatorI;
+	}
+
+	public double getContainerElevatorD() {
+		return containerElevatorD;
 	}
 
 	public double getDeadbandSize() {

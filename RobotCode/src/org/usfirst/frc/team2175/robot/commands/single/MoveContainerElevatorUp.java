@@ -14,7 +14,7 @@ public class MoveContainerElevatorUp extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	double currentLevel = Robot.containerElevator.getContainerHeight();
-    	double newLevel = Robot.properties.toteConfig.getNextLevelUp(currentLevel);
+    	double newLevel = Robot.properties.containerConfig.getNextLevelUp(currentLevel);
     	MoveToteElevatorToPosition command = new MoveToteElevatorToPosition(newLevel);
     	Scheduler.getInstance().add(command);
     }
