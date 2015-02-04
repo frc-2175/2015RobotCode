@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team2175.robot;
 
 import java.io.IOException;
@@ -22,7 +21,6 @@ import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
 
-import sun.rmi.runtime.Log;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -38,130 +36,137 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static Drivetrain drivetrain;
-	public static ToteElevator toteElevator;
-	public static TotePusher totePusher;
-	public static ContainerElevator containerElevator;
-	public static ToteIntake toteIntake;
-	public static ContainerIntake containerIntake;
-	
-	public static OI oi;
-	public static RobotConfig properties;
+    public static Drivetrain drivetrain;
+    public static ToteElevator toteElevator;
+    public static TotePusher totePusher;
+    public static ContainerElevator containerElevator;
+    public static ToteIntake toteIntake;
+    public static ContainerIntake containerIntake;
+
+    public static OI oi;
+    public static RobotConfig properties;
 
     Command autonomousCommand;
     SendableChooser autonChooser;
-    
+
     final Logger log = Logger.getLogger(getClass().getName());
 
     private class SchedulerTask extends java.util.TimerTask {
-		@Override
-		public void run() {
-			Scheduler.getInstance().run();
-		}
-    	
+        @Override
+        public void run() {
+            Scheduler.getInstance().run();
+        }
     }
-    
+
     private java.util.Timer controlLoop;
-    
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    @Override
     public void robotInit() {
         new LoggingConfiguration().initializeLogging();
 
-		try{
-			properties = new RobotConfig();
-		}
-		catch(IOException e){
-			log.log(Level.SEVERE, "problem encountered using RobotConfig", e);
-			throw new IllegalStateException("properties config problem, can't continue", e);
-			}
-		
-		RobotMap.init();
-		
-		
-		
-		drivetrain = new Drivetrain();
-		toteElevator = new ToteElevator();
-		totePusher = new TotePusher();
-		containerElevator = new ContainerElevator();
-		toteIntake = new ToteIntake();
-		containerIntake = new ContainerIntake();
-        
-		oi = new OI();
-		
-		controlLoop = new java.util.Timer();
-		
-		// instantiate the command used for the autonomous period
+        try {
+            properties = new RobotConfig();
+        } catch (IOException e) {
+            log.log(Level.SEVERE, "problem encountered using RobotConfig", e);
+            throw new IllegalStateException(
+                    "properties config problem, can't continue", e);
+        }
+
+        RobotMap.init();
+
+        drivetrain = new Drivetrain();
+        toteElevator = new ToteElevator();
+        totePusher = new TotePusher();
+        containerElevator = new ContainerElevator();
+        toteIntake = new ToteIntake();
+        containerIntake = new ContainerIntake();
+
+        oi = new OI();
+
+        controlLoop = new java.util.Timer();
+
+        // instantiate the command used for the autonomous period
         autonomousCommand = new Auton0DoNothing();
-        
+
         autonChooser = new SendableChooser();
         autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
         autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
-        autonChooser.addDefault("1 - Drive straight into Auto Zone", new Auton1DriveForward());
-        autonChooser.addDefault("2 - Drive left into Auto Zone", new Auton1DriveLeft()); //TODO re evaluate need for this command
-        autonChooser.addDefault("3 - Push 1 tote into Auto Zone", new Auton2Push1Tote());
-        autonChooser.addDefault("4 - Push 2 totes into Auto Zone", new Auton2Push2Totes());
-        autonChooser.addDefault("5 - Push 3 totes into Auto Zone", new Auton2Push3Totes());
-        autonChooser.addDefault("6 - Stack 3 Totes and put them into Auto Zone", new Auton3StackToteInAutoZone());
-        //TODO add all of the auto routines as they are made
-        SmartDashboard.putData("Autonomous Routine",autonChooser);
-        
-        controlLoop.schedule(new SchedulerTask(), 0L, (long)(10));
-        
+        autonChooser.addDefault("1 - Drive straight into Auto Zone",
+                new Auton1DriveForward());
+        autonChooser.addDefault("2 - Drive left into Auto Zone",
+                new Auton1DriveLeft()); // TODO re evaluate need for this
+                                        // command
+        autonChooser.addDefault("3 - Push 1 tote into Auto Zone",
+                new Auton2Push1Tote());
+        autonChooser.addDefault("4 - Push 2 totes into Auto Zone",
+                new Auton2Push2Totes());
+        autonChooser.addDefault("5 - Push 3 totes into Auto Zone",
+                new Auton2Push3Totes());
+        autonChooser.addDefault(
+                "6 - Stack 3 Totes and put them into Auto Zone",
+                new Auton3StackToteInAutoZone());
+        // TODO add all of the auto routines as they are made
+        SmartDashboard.putData("Autonomous Routine", autonChooser);
+
+        controlLoop.schedule(new SchedulerTask(), 0L, (10));
     }
-	
-	public void disabledPeriodic() {
 
-	}
+    @Override
+    public void disabledPeriodic() {
+    }
 
+    @Override
     public void autonomousInit() {
-        // schedule the autonomous command according to the chooser on the dashboard
-        autonomousCommand = (Command)autonChooser.getSelected();
+        // schedule the autonomous command according to the chooser on the
+        // dashboard
+        autonomousCommand = (Command) autonChooser.getSelected();
         autonomousCommand.start();
-        
     }
 
     /**
      * This function is called periodically during autonomous
      */
+    @Override
     public void autonomousPeriodic() {
-       
     }
 
+    @Override
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
+        // This makes sure that the autonomous stops running when
+        // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        if (autonomousCommand != null) {
+            autonomousCommand.cancel();
+        }
     }
 
     /**
-     * This function is called when the disabled button is hit.
-     * You can use it to reset subsystems before shutting down.
+     * This function is called when the disabled button is hit. You can use it
+     * to reset subsystems before shutting down.
      */
-    public void disabledInit(){
-
+    @Override
+    public void disabledInit() {
     }
 
     /**
-     * 
+     *
      * This function is called periodically during operator control
      */
+    @Override
     public void teleopPeriodic() {
-    	
         System.out.println(RobotMap.toteElevatorEncoder.getDistance());
     }
-    
+
     /**
      * This function is called periodically during test mode
      */
+    @Override
     public void testPeriodic() {
-    	
-    	
         LiveWindow.run();
     }
-    
 }
