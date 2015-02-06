@@ -21,7 +21,7 @@ public class RobotConfig {
     private final double containerElevatorP;
     private final double containerElevatorI;
     private final double containerElevatorD;
-    private final double runToteIntakeWheels;
+    private final double toteIntakeWheelsSpeed;
 
     // tote elevator properties
     public final ToteElevatorConfig toteConfig;
@@ -48,7 +48,7 @@ public class RobotConfig {
                 .getProperty("containerElevatorI"));
         containerElevatorD = Double.parseDouble(prop
                 .getProperty("containerElevatorD"));
-        runToteIntakeWheels = Double.parseDouble(prop
+        toteIntakeWheelsSpeed = Double.parseDouble(prop
 				.getProperty("runToteIntakeWheels"));
 
     }
@@ -143,5 +143,9 @@ public class RobotConfig {
 
     public double getDeadbandSize() {
         return deadbandSize;
+    }
+    
+    public double getToteIntakeWheelsSpeed() {
+    	return toteIntakeWheelsSpeed;
     }
 }
