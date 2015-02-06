@@ -1,7 +1,5 @@
 package org.usfirst.frc.team2175.robot;
 
-import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
@@ -68,13 +66,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         new LoggingConfiguration().initializeLogging();
 
-        try {
-            properties = new RobotConfig();
-        } catch (IOException e) {
-            log.log(Level.SEVERE, "problem encountered using RobotConfig", e);
-            throw new IllegalStateException(
-                    "properties config problem, can't continue", e);
-        }
+        properties = new RobotConfig();
 
         RobotMap.init();
 

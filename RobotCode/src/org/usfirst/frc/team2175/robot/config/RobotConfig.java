@@ -1,56 +1,86 @@
 package org.usfirst.frc.team2175.robot.config;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RobotConfig {
-    private double deadbandSize;
-    private double toteElevatorP;
-    private double toteElevatorI;
-    private double toteElevatorD;
-    private double containerElevatorP;
-    private double containerElevatorI;
-    private double containerElevatorD;
+    final Logger log = Logger.getLogger(getClass().getName());
+
+    private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
+    private static final String CAN_T_CONTINUE_MSG = "; can't continue";
+
+    private final double deadbandSize;
+    private final double toteElevatorP;
+    private final double toteElevatorI;
+    private final double toteElevatorD;
+    private final double containerElevatorP;
+    private final double containerElevatorI;
+    private final double containerElevatorD;
 
     // tote elevator properties
-    public ToteElevatorConfig toteConfig;
+    public final ToteElevatorConfig toteConfig;
 
     // container elevator properties
-    public ContainerElevatorConfig containerConfig;
+    public final ContainerElevatorConfig containerConfig;
 
-    public RobotConfig() throws IOException {
-        Properties prop = new Properties();
-        String propFileName = "/home/lvuser/robot.properties";
-
-        InputStream inputStream = new FileInputStream(propFileName);
-
-        prop.load(inputStream);
-
-        if (prop.isEmpty()) {
-            throw new IllegalStateException("No properties were loaded");
-        }
+    public RobotConfig() {
+        Properties prop = loadProperties();
 
         deadbandSize = Double.parseDouble(prop.getProperty("deadbandSize"));
 
-        double pickup, driving, scoring, step, stack;
-
-        pickup = Double.parseDouble(prop.getProperty("totePickupHeight"));
-        driving = Double.parseDouble(prop.getProperty("toteDrivingHeight"));
-        scoring = Double.parseDouble(prop.getProperty("toteScoringHeight"));
-        step = Double.parseDouble(prop.getProperty("toteStepHeight"));
-        stack = Double.parseDouble(prop.getProperty("toteStackHeight"));
-
-        toteConfig = new ToteElevatorConfig(pickup, driving, scoring, step,
-                stack);
+        toteConfig = makeToteElevatorConfig(prop);
 
         toteElevatorP = Double.parseDouble(prop.getProperty("toteElevatorP"));
         toteElevatorI = Double.parseDouble(prop.getProperty("toteElevatorI"));
         toteElevatorD = Double.parseDouble(prop.getProperty("toteElevatorD"));
 
-        // container elevator
+        containerConfig = makeContainerElevatorConfig(prop);
 
+        containerElevatorP = Double.parseDouble(prop
+                .getProperty("containerElevatorP"));
+        containerElevatorI = Double.parseDouble(prop
+                .getProperty("containerElevatorI"));
+        containerElevatorD = Double.parseDouble(prop
+                .getProperty("containerElevatorD"));
+    }
+
+    private Properties loadProperties() {
+        Properties prop = new Properties();
+
+        InputStream inputStream;
+        try {
+            inputStream = new FileInputStream(PROPERTY_FILE_NAME);
+        } catch (FileNotFoundException e) {
+            final String msg = "Error finding properties file="
+                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
+            log.log(Level.SEVERE, msg, e);
+            throw new IllegalStateException(msg, e);
+        }
+
+        try {
+            prop.load(inputStream);
+        } catch (IOException e) {
+            final String msg = "Error reading properties file="
+                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
+            log.log(Level.SEVERE, msg, e);
+            throw new IllegalStateException(msg, e);
+        }
+
+        if (prop.isEmpty()) {
+            final String msg = "No properties were loaded from file="
+                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
+            throw new IllegalStateException(msg);
+        }
+
+        return prop;
+    }
+
+    private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
         double level0, level1, level2, level3, level4;
 
         level0 = Double.parseDouble(prop.getProperty("containerPickupHeight"));
@@ -59,15 +89,20 @@ public class RobotConfig {
         level3 = Double.parseDouble(prop.getProperty("containerStepHeight"));
         level4 = Double.parseDouble(prop.getProperty("containerStackHeight"));
 
-        containerConfig = new ContainerElevatorConfig(level0, level1, level2,
-                level3, level4);
+        return new ContainerElevatorConfig(level0, level1, level2, level3,
+                level4);
+    }
 
-        containerElevatorP = Double.parseDouble(prop
-                .getProperty("containerElevatorP"));
-        containerElevatorI = Double.parseDouble(prop
-                .getProperty("containerElevatorI"));
-        containerElevatorD = Double.parseDouble(prop
-                .getProperty("containerElevatorD"));
+    private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
+        double pickup, driving, scoring, step, stack;
+
+        pickup = Double.parseDouble(prop.getProperty("totePickupHeight"));
+        driving = Double.parseDouble(prop.getProperty("toteDrivingHeight"));
+        scoring = Double.parseDouble(prop.getProperty("toteScoringHeight"));
+        step = Double.parseDouble(prop.getProperty("toteStepHeight"));
+        stack = Double.parseDouble(prop.getProperty("toteStackHeight"));
+
+        return new ToteElevatorConfig(pickup, driving, scoring, step, stack);
     }
 
     public double getToteElevatorP() {
