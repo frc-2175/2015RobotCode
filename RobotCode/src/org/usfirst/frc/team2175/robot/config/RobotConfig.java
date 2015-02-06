@@ -21,6 +21,7 @@ public class RobotConfig {
     private final double containerElevatorP;
     private final double containerElevatorI;
     private final double containerElevatorD;
+    private final double runToteIntakeWheels;
 
     // tote elevator properties
     public final ToteElevatorConfig toteConfig;
@@ -47,6 +48,9 @@ public class RobotConfig {
                 .getProperty("containerElevatorI"));
         containerElevatorD = Double.parseDouble(prop
                 .getProperty("containerElevatorD"));
+        runToteIntakeWheels = Double.parseDouble(prop
+				.getProperty("runToteIntakeWheels"));
+
     }
 
     private Properties loadProperties() {
