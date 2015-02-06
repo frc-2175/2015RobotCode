@@ -18,10 +18,13 @@ public class TotePusher extends Subsystem{
 	}
 	
 	public boolean isPusherExtended(){
-		return RobotMap.pusherOutSwitch.get();
+		return RobotMap.pusherSwitch.get();
 	}
+	
+	//TODO change these two into one sensor boolean
+	
 	public boolean isPusherRetracted(){
-		return RobotMap.pusherInSwitch.get();
+		return RobotMap.pusherSwitch.get();
 	}
 	
 	@Override

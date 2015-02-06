@@ -37,11 +37,13 @@ public class ContainerElevator extends Subsystem {
     }
 
     public boolean containerElevatorIsAtTop(){
-        return RobotMap.containerTopSwitch.get();
+        return RobotMap.containerSwitch.get();
     }
     
+    //TODO change these two to one sensor boolean
+    
     public boolean containerElevatorIsAtBottom(){
-        return RobotMap.containerBottomSwitch.get();
+        return RobotMap.containerSwitch.get();
     }
     
     public void setContainerElevatorSpeed(double containerSpeed){

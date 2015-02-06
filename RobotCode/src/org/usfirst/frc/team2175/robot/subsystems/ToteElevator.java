@@ -53,11 +53,13 @@ public class ToteElevator extends Subsystem {
 	}
 
 	public boolean isAtBottom() {
-		return RobotMap.bottomSwitch.get();
+		return RobotMap.toteSwitch.get();
 	}
+	
+	//TODO change these two sensors to one boolean
 
 	public boolean isAtTop() {
-		return RobotMap.topSwitch.get();
+		return RobotMap.toteSwitch.get();
 	}
 
 	public void setSpeed(double toteElevatorSpeed) {

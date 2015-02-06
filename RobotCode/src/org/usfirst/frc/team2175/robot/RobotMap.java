@@ -47,13 +47,11 @@ public class RobotMap {
 
 	// tote elevator
 	public static Talon toteElevatorTalon;
-	public static DigitalInput topSwitch;
-	public static DigitalInput bottomSwitch;
+	public static DigitalInput toteSwitch;
 	public static Encoder toteElevatorEncoder; 
 	
 	// container elevator
-	public static DigitalInput containerTopSwitch;
-	public static DigitalInput containerBottomSwitch;
+	public static DigitalInput containerSwitch;
 	public static Talon containerElevatorMotor;
 	public static Encoder containerElevatorEncoder;
 
@@ -65,45 +63,40 @@ public class RobotMap {
 	// tote pusher
 	public static Talon totePusherArm;
 
-	public static DigitalInput pusherInSwitch;
-	public static DigitalInput pusherOutSwitch;
-
+	public static DigitalInput pusherSwitch;
 	// container intake
 	public static Solenoid ContainerIntakeArms;
 
 	public static void init() {
 		// drivetrain
-		leftTalon = new Talon(10);
-		rightTalon = new Talon(11);
-//		leftEncoder = new Encoder(10, 11, false, EncodingType.k2X);
-//		rightEncoder = new Encoder(12, 13, false, EncodingType.k2X);
-		gyro = new Gyro(0);
+		leftTalon = new Talon(0);
+		rightTalon = new Talon(1);
+//		leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
+//		rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
+		gyro = new Gyro(4);
 		drivetrain = new RobotDrive(leftTalon, rightTalon);
 		
 		// tote elevator
-		toteElevatorTalon = new Talon(0);
-		topSwitch = new DigitalInput(14);
-		bottomSwitch = new DigitalInput(15);
-		toteElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X); // TODO change these back from testing platform values
+		toteElevatorTalon = new Talon(2);
+		toteSwitch = new DigitalInput(7);
+		toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X); // TODO change these back from testing platform values
 
 		toteElevatorEncoder.reset();
 		
 		// container elevator
-		containerTopSwitch = new DigitalInput(16);
-		containerBottomSwitch = new DigitalInput(17);
-		containerElevatorMotor = new Talon(13);
-		containerElevatorEncoder = new Encoder(18, 19, false, EncodingType.k2X);
+		containerSwitch = new DigitalInput(10);
+		containerElevatorMotor = new Talon(3);
+		containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
 
 		// tote intake
 		toteIntakeWheelMotor = new Talon(4);
 		toteIntakeArms = new Solenoid(0);
-		toteIntakeToteInSwitch = new DigitalInput(20);
+		toteIntakeToteInSwitch = new DigitalInput(11);
 
 		// tote pusher
-		totePusherArm = new Talon(5);
+		totePusherArm = new Talon(6);
 
-		pusherInSwitch = new DigitalInput(21);
-		pusherOutSwitch = new DigitalInput(22);
+		pusherSwitch = new DigitalInput(12);
 
 		// container intake
 		ContainerIntakeArms = new Solenoid(1);
