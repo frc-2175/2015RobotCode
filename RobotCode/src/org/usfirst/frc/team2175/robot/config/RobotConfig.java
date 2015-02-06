@@ -50,8 +50,19 @@ public class RobotConfig {
     }
 
     private Properties loadProperties() {
-        Properties prop = new Properties();
+        InputStream inputStream = openPropertiesFile();
+        Properties prop = loadPropertiesFromFile(inputStream);
 
+        if (prop.isEmpty()) {
+            final String msg = "No properties were loaded from file="
+                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
+            throw new IllegalStateException(msg);
+        }
+
+        return prop;
+    }
+
+    private InputStream openPropertiesFile() {
         InputStream inputStream;
         try {
             inputStream = new FileInputStream(PROPERTY_FILE_NAME);
@@ -61,7 +72,11 @@ public class RobotConfig {
             log.log(Level.SEVERE, msg, e);
             throw new IllegalStateException(msg, e);
         }
+        return inputStream;
+    }
 
+    private Properties loadPropertiesFromFile(InputStream inputStream) {
+        Properties prop = new Properties();
         try {
             prop.load(inputStream);
         } catch (IOException e) {
@@ -70,13 +85,6 @@ public class RobotConfig {
             log.log(Level.SEVERE, msg, e);
             throw new IllegalStateException(msg, e);
         }
-
-        if (prop.isEmpty()) {
-            final String msg = "No properties were loaded from file="
-                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
-            throw new IllegalStateException(msg);
-        }
-
         return prop;
     }
 
