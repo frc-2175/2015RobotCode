@@ -32,24 +32,28 @@ public class RobotConfig {
     public RobotConfig() {
         Properties prop = loadProperties();
 
-        deadbandSize = Double.parseDouble(prop.getProperty("deadbandSize"));
+        deadbandSize = Double
+                .parseDouble(getPropertyValue("deadbandSize", prop));
 
         toteConfig = makeToteElevatorConfig(prop);
 
-        toteElevatorP = Double.parseDouble(prop.getProperty("toteElevatorP"));
-        toteElevatorI = Double.parseDouble(prop.getProperty("toteElevatorI"));
-        toteElevatorD = Double.parseDouble(prop.getProperty("toteElevatorD"));
+        toteElevatorP = Double.parseDouble(getPropertyValue("toteElevatorP",
+                prop));
+        toteElevatorI = Double.parseDouble(getPropertyValue("toteElevatorI",
+                prop));
+        toteElevatorD = Double.parseDouble(getPropertyValue("toteElevatorD",
+                prop));
 
         containerConfig = makeContainerElevatorConfig(prop);
 
-        containerElevatorP = Double.parseDouble(prop
-                .getProperty("containerElevatorP"));
-        containerElevatorI = Double.parseDouble(prop
-                .getProperty("containerElevatorI"));
-        containerElevatorD = Double.parseDouble(prop
-                .getProperty("containerElevatorD"));
-        toteIntakeWheelsSpeed = Double.parseDouble(prop
-				.getProperty("toteIntakeWheelsSpeed"));
+        containerElevatorP = Double.parseDouble(getPropertyValue(
+                "containerElevatorP", prop));
+        containerElevatorI = Double.parseDouble(getPropertyValue(
+                "containerElevatorI", prop));
+        containerElevatorD = Double.parseDouble(getPropertyValue(
+                "containerElevatorD", prop));
+        toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
+                "toteIntakeWheelsSpeed", prop));
 
     }
 
@@ -95,11 +99,16 @@ public class RobotConfig {
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
         double level0, level1, level2, level3, level4;
 
-        level0 = Double.parseDouble(prop.getProperty("containerPickupHeight"));
-        level1 = Double.parseDouble(prop.getProperty("containerDrivingHeight"));
-        level2 = Double.parseDouble(prop.getProperty("containerScoringHeight"));
-        level3 = Double.parseDouble(prop.getProperty("containerStepHeight"));
-        level4 = Double.parseDouble(prop.getProperty("containerStackHeight"));
+        level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
+                prop));
+        level1 = Double.parseDouble(getPropertyValue("containerDrivingHeight",
+                prop));
+        level2 = Double.parseDouble(getPropertyValue("containerScoringHeight",
+                prop));
+        level3 = Double.parseDouble(getPropertyValue("containerStepHeight",
+                prop));
+        level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
+                prop));
 
         return new ContainerElevatorConfig(level0, level1, level2, level3,
                 level4);
@@ -108,13 +117,24 @@ public class RobotConfig {
     private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
         double pickup, driving, scoring, step, stack;
 
-        pickup = Double.parseDouble(prop.getProperty("totePickupHeight"));
-        driving = Double.parseDouble(prop.getProperty("toteDrivingHeight"));
-        scoring = Double.parseDouble(prop.getProperty("toteScoringHeight"));
-        step = Double.parseDouble(prop.getProperty("toteStepHeight"));
-        stack = Double.parseDouble(prop.getProperty("toteStackHeight"));
+        pickup = Double.parseDouble(getPropertyValue("totePickupHeight", prop));
+        driving = Double
+                .parseDouble(getPropertyValue("toteDrivingHeight", prop));
+        scoring = Double
+                .parseDouble(getPropertyValue("toteScoringHeight", prop));
+        step = Double.parseDouble(getPropertyValue("toteStepHeight", prop));
+        stack = Double.parseDouble(getPropertyValue("toteStackHeight", prop));
 
         return new ToteElevatorConfig(pickup, driving, scoring, step, stack);
+    }
+
+    protected String getPropertyValue(String propertyName, Properties props) {
+        String value = props.getProperty(propertyName);
+        if (value == null) {
+            throw new IllegalStateException("Property '" + propertyName
+                    + "' not found in property file");
+        }
+        return value;
     }
 
     public double getToteElevatorP() {
@@ -144,8 +164,8 @@ public class RobotConfig {
     public double getDeadbandSize() {
         return deadbandSize;
     }
-    
+
     public double getToteIntakeWheelsSpeed() {
-    	return toteIntakeWheelsSpeed;
+        return toteIntakeWheelsSpeed;
     }
 }
