@@ -49,7 +49,7 @@ public class RobotConfig {
         containerElevatorD = Double.parseDouble(prop
                 .getProperty("containerElevatorD"));
         toteIntakeWheelsSpeed = Double.parseDouble(prop
-				.getProperty("runToteIntakeWheels"));
+				.getProperty("toteIntakeWheelsSpeed"));
 
     }
 
