@@ -30,31 +30,36 @@ public class RobotConfig {
     public final ContainerElevatorConfig containerConfig;
 
     public RobotConfig() {
-        Properties prop = loadProperties();
+        try {
+            Properties prop = loadProperties();
 
-        deadbandSize = Double
-                .parseDouble(getPropertyValue("deadbandSize", prop));
+            deadbandSize = Double.parseDouble(getPropertyValue("deadbandSize",
+                    prop));
 
-        toteConfig = makeToteElevatorConfig(prop);
+            toteConfig = makeToteElevatorConfig(prop);
 
-        toteElevatorP = Double.parseDouble(getPropertyValue("toteElevatorP",
-                prop));
-        toteElevatorI = Double.parseDouble(getPropertyValue("toteElevatorI",
-                prop));
-        toteElevatorD = Double.parseDouble(getPropertyValue("toteElevatorD",
-                prop));
+            toteElevatorP = Double.parseDouble(getPropertyValue(
+                    "toteElevatorP", prop));
+            toteElevatorI = Double.parseDouble(getPropertyValue(
+                    "toteElevatorI", prop));
+            toteElevatorD = Double.parseDouble(getPropertyValue(
+                    "toteElevatorD", prop));
 
-        containerConfig = makeContainerElevatorConfig(prop);
+            containerConfig = makeContainerElevatorConfig(prop);
 
-        containerElevatorP = Double.parseDouble(getPropertyValue(
-                "containerElevatorP", prop));
-        containerElevatorI = Double.parseDouble(getPropertyValue(
-                "containerElevatorI", prop));
-        containerElevatorD = Double.parseDouble(getPropertyValue(
-                "containerElevatorD", prop));
-        toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
-                "toteIntakeWheelsSpeed", prop));
-
+            containerElevatorP = Double.parseDouble(getPropertyValue(
+                    "containerElevatorP", prop));
+            containerElevatorI = Double.parseDouble(getPropertyValue(
+                    "containerElevatorI", prop));
+            containerElevatorD = Double.parseDouble(getPropertyValue(
+                    "containerElevatorD", prop));
+            toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
+                    "toteIntakeWheelsSpeed", prop));
+        } catch (Exception e) {
+            final String msg = "Problem with processing properties, can't continue:";
+            log.log(Level.SEVERE, msg, e);
+            throw e;
+        }
     }
 
     private Properties loadProperties() {
