@@ -34,6 +34,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+    private final Logger log = Logger.getLogger(getClass().getName());
+
     public static Drivetrain drivetrain;
     public static ToteElevator toteElevator;
     public static TotePusher totePusher;
@@ -46,8 +48,6 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser autonChooser;
-
-    final Logger log = Logger.getLogger(getClass().getName());
 
     private class SchedulerTask extends java.util.TimerTask {
         @Override
@@ -122,11 +122,14 @@ public class Robot extends IterativeRobot {
 
     /**
      *
-     * This function is called periodically during operator control
+     * This function is called periodically during operator control.
      */
     @Override
     public void teleopPeriodic() {
-        System.out.println(RobotMap.toteElevatorEncoder.getDistance());
+        double distance = RobotMap.toteElevatorEncoder.getDistance();
+        final String msg = "Distance robot has driven since last reset="
+                + distance;
+        log.info(msg);
     }
 
     /**
