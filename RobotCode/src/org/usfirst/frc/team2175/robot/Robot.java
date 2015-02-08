@@ -37,6 +37,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
     private final Logger log = Logger.getLogger(getClass().getName());
+
     public static OI oi;
     public static Drivetrain drivetrain;
     public static ToteElevator toteElevator;
@@ -51,6 +52,10 @@ public class Robot extends IterativeRobot {
     Command driveChoice;
     SendableChooser autonChooser;
     SendableChooser driveChooser;
+
+    static {
+        new LoggingConfiguration().initializeLogging();
+    }
 
     private class SchedulerTask extends java.util.TimerTask {
         @Override
@@ -67,7 +72,6 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-        new LoggingConfiguration().initializeLogging();
 
         properties = new RobotConfig();
 
