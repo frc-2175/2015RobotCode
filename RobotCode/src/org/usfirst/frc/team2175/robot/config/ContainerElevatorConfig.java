@@ -1,16 +1,26 @@
 package org.usfirst.frc.team2175.robot.config;
 
+import java.util.logging.Logger;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
 public class ContainerElevatorConfig extends Subsystem {
+    private final Logger log = Logger.getLogger(getClass().getName());
+
     public final double level0;
     public final double level1;
     public final double level2;
     public final double level3;
     public final double level4;
+
+    public static final String LEVEL0_NAME = "level-0";
+    public static final String LEVEL1_NAME = "level-1";
+    public static final String LEVEL2_NAME = "level-2";
+    public static final String LEVEL3_NAME = "level-3";
+    public static final String LEVEL4_NAME = "level-4";
 
     private static final int ACCEPTABLE_RANGE = 2;
 
@@ -28,31 +38,55 @@ public class ContainerElevatorConfig extends Subsystem {
     }
 
     public double getNextLevelUp(double currentLevel) {
+        double newLevelValue;
+        String newLevelName;
         if (currentLevel < level0 - ACCEPTABLE_RANGE) {
-            return level0;
+            newLevelValue = level0;
+            newLevelName = LEVEL0_NAME;
         } else if (currentLevel < level1 - ACCEPTABLE_RANGE) {
-            return level1;
+            newLevelValue = level1;
+            newLevelName = LEVEL1_NAME;
         } else if (currentLevel < level2 - ACCEPTABLE_RANGE) {
-            return level2;
+            newLevelValue = level2;
+            newLevelName = LEVEL2_NAME;
         } else if (currentLevel < level3 - ACCEPTABLE_RANGE) {
-            return level3;
+            newLevelValue = level3;
+            newLevelName = LEVEL3_NAME;
         } else {
-            return level4;
+            newLevelValue = level4;
+            newLevelName = LEVEL4_NAME;
         }
+
+        log.fine("currentLevel=" + currentLevel + ", newLevelValue="
+                + newLevelValue + ", newLevelName=" + newLevelName);
+
+        return newLevelValue;
     }
 
     public double getNextLevelDown(double currentLevel) {
+        double newLevelValue;
+        String newLevelName;
         if (currentLevel > level4 + ACCEPTABLE_RANGE) {
-            return level4;
+            newLevelValue = level4;
+            newLevelName = LEVEL0_NAME;
         } else if (currentLevel > level3 + ACCEPTABLE_RANGE) {
-            return level3;
+            newLevelValue = level3;
+            newLevelName = LEVEL0_NAME;
         } else if (currentLevel > level2 + ACCEPTABLE_RANGE) {
-            return level2;
+            newLevelValue = level2;
+            newLevelName = LEVEL0_NAME;
         } else if (currentLevel > level1 + ACCEPTABLE_RANGE) {
-            return level1;
+            newLevelValue = level1;
+            newLevelName = LEVEL0_NAME;
         } else {
-            return level0;
+            newLevelValue = level0;
+            newLevelName = LEVEL0_NAME;
         }
+
+        log.fine("currentLevel=" + currentLevel + ", newLevelValue="
+                + newLevelValue + ", newLevelName=" + newLevelName);
+
+        return newLevelValue;
     }
 
     // Put methods for controlling this subsystem
