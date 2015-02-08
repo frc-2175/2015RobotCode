@@ -132,10 +132,12 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
-        double distance = RobotMap.toteElevatorEncoder.getDistance();
-        final String msg = "Distance robot has driven since last reset="
-                + distance;
-        log.info(msg);
+        // This method called over 35 times per second.
+        // commented out logging it until determined that we need it
+        // double distance = RobotMap.toteElevatorEncoder.getDistance();
+        // final String msg = "Distance robot has driven since last reset="
+        // + distance;
+        // log.info(msg);
     }
 
     /**
