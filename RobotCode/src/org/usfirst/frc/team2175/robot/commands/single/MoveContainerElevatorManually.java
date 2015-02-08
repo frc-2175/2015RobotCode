@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveContainerElevatorManually extends Command {
-
     public MoveContainerElevatorManually() {
         requires(Robot.containerElevator);
     }
@@ -16,14 +15,14 @@ public class MoveContainerElevatorManually extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.containerElevator.containerElevatorController.disable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         // if (Robot.oi.gamepad.getRawButton(10) == true) {
-    	Robot.containerElevator.containerElevatorController.disable();
-        double elevatorSpeed = Robot.oi.gamepad.getRawAxis(1);
+        double elevatorSpeed = Robot.oi.gamepad.getY();
         Robot.containerElevator.setContainerElevatorSpeed(elevatorSpeed);
         // }
     }
@@ -37,7 +36,7 @@ public class MoveContainerElevatorManually extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	Robot.containerElevator.containerElevatorController.enable();
+        Robot.containerElevator.containerElevatorController.enable();
     }
 
     // Called when another command which requires one or more of the same
