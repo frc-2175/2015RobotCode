@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 
@@ -12,20 +14,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ToteElevator extends Subsystem {
+    private final Logger log = Logger.getLogger(getClass().getName());
+
     public PIDController heightController;
 
-    protected void usePIDOutput(double output) {
-        // Use output to drive your system, like a motor
-        // e.g. yourMotor.set(output);
-
-        RobotMap.toteElevatorTalon.set(output);
+    protected void usePIDOutput(double speed) {
+        log.fine("speed=" + speed);
+        RobotMap.toteElevatorTalon.set(speed);
     }
 
     private class HeightControllerHandler implements PIDSource, PIDOutput {
         @Override
-        public void pidWrite(double output) {
-            // Do something with the output PID value, like update motors
-            RobotMap.toteElevatorTalon.set(output);
+        public void pidWrite(double speed) {
+            log.info("new speed=" + speed);
+            RobotMap.toteElevatorTalon.set(speed);
         }
 
         @Override
@@ -51,23 +53,34 @@ public class ToteElevator extends Subsystem {
     }
 
     public boolean isAtBottom() {
-        return RobotMap.toteSwitch.get();
+        boolean isOff = !RobotMap.toteSwitch.get();
+        log.fine("isAtBottom=" + isOff);
+        return isOff;
     }
 
     // TODO change these two sensors to one boolean
 
+    // FIXME is this correct? Does one switch tell if it is at top or bottom?
+    // what about when it is positioned in the middle?
+
     public boolean isAtTop() {
-        return RobotMap.toteSwitch.get();
+        boolean isOn = RobotMap.toteSwitch.get();
+        log.fine("isAtTop=" + isOn);
+        return isOn;
     }
 
     public void setSpeed(double toteElevatorSpeed) {
+        double newSpeed;
         if (isAtTop() && toteElevatorSpeed > 0) {
-            RobotMap.toteElevatorTalon.set(0);
+            newSpeed = 0;
         } else if (isAtBottom() && toteElevatorSpeed < 0) {
-            RobotMap.toteElevatorTalon.set(0);
+            newSpeed = 0;
         } else {
-            RobotMap.toteElevatorTalon.set(toteElevatorSpeed);
+            newSpeed = toteElevatorSpeed;
         }
+        RobotMap.toteElevatorTalon.set(newSpeed);
+        log.fine("requested toteSpeed=" + toteElevatorSpeed + ", newSpeed="
+                + newSpeed);
     }
 
     public void resetEncoder() {
