@@ -73,7 +73,7 @@ public class RobotMap {
     public static Solenoid ContainerIntakeArms;
 
     public static void init() {
-        
+        pdp = new PowerDistributionPanel();
     	
     	// drivetrain
         leftTalon = new Talon(0);
