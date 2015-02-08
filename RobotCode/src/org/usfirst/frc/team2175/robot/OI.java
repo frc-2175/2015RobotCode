@@ -2,7 +2,9 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorToPosition;
+import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -63,6 +65,8 @@ public class OI {
         JoystickButton gamepad2 = new JoystickButton(gamepad, 2);
         JoystickButton gamepad3 = new JoystickButton(gamepad, 3);
         JoystickButton gamepad4 = new JoystickButton(gamepad, 4);
+        JoystickButton gamepad5 = new JoystickButton(gamepad, 5);
+        JoystickButton gamepad6 = new JoystickButton(gamepad, 6);
 
         gamepad1.whenPressed(new MoveToteElevatorToPosition(
                 Robot.properties.toteConfig.pickup));
@@ -72,6 +76,9 @@ public class OI {
                 Robot.properties.toteConfig.step));
         gamepad4.whenPressed(new MoveToteElevatorToPosition(
                 Robot.properties.toteConfig.stack));
+        gamepad5.whenPressed(new CloseContainerIntake());
+        gamepad6.whenPressed(new OpenContainerIntake());
+
     }
 
     public double getMoveValue() {

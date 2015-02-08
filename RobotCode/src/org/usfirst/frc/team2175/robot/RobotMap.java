@@ -38,9 +38,9 @@ import edu.wpi.first.wpilibj.Talon;
  * </p>
  */
 public class RobotMap {
-	public static PowerDistributionPanel pdp;
-	
-	// drivetrain
+    public static PowerDistributionPanel pdp;
+
+    // drivetrain
     public static Talon leftTalon;
     public static Talon rightTalon;
     public static Encoder leftEncoder;
@@ -74,12 +74,12 @@ public class RobotMap {
 
     public static void init() {
         pdp = new PowerDistributionPanel();
-    	
-    	// drivetrain
+
+        // drivetrain
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
-        // leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
-        // rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
+        leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
+        rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
         // gyro = new Gyro(4);
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
@@ -87,17 +87,9 @@ public class RobotMap {
         toteElevatorTalon = new Talon(2);
         toteSwitch = new DigitalInput(7);
         toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X); // TODO
-                                                                          // change
-                                                                          // these
-                                                                          // back
-                                                                          // from
-                                                                          // testing
-                                                                          // platform
-                                                                          // values
 
         toteElevatorEncoder.reset();
         toteElevatorBrake = new Solenoid(2);
-        
 
         // container elevator
         containerSwitch = new DigitalInput(10);
