@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -37,7 +38,9 @@ import edu.wpi.first.wpilibj.Talon;
  * </p>
  */
 public class RobotMap {
-    // drivetrain
+	public static PowerDistributionPanel pdp;
+	
+	// drivetrain
     public static Talon leftTalon;
     public static Talon rightTalon;
     public static Encoder leftEncoder;
@@ -54,11 +57,13 @@ public class RobotMap {
     public static DigitalInput containerSwitch;
     public static Talon containerElevatorMotor;
     public static Encoder containerElevatorEncoder;
+    public static Solenoid containerElevatorBrake;
 
     // tote intake
     public static Talon toteIntakeWheelMotor;
     public static Solenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
+    public static Solenoid toteElevatorBrake;
 
     // tote pusher
     public static Talon totePusherArm;
@@ -68,7 +73,9 @@ public class RobotMap {
     public static Solenoid ContainerIntakeArms;
 
     public static void init() {
-        // drivetrain
+        
+    	
+    	// drivetrain
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
         // leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
@@ -89,11 +96,14 @@ public class RobotMap {
                                                                           // values
 
         toteElevatorEncoder.reset();
+        toteElevatorBrake = new Solenoid(2);
+        
 
         // container elevator
         containerSwitch = new DigitalInput(10);
         containerElevatorMotor = new Talon(3);
         containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
+        containerElevatorBrake = new Solenoid(3);
 
         // tote intake
         toteIntakeWheelMotor = new Talon(4);
