@@ -11,7 +11,7 @@ public class LoggingConfiguration {
     public static final String LOGGING_PROPERTIES_FILE_ROBOT_LOCATION = "/home/lvuser/logging.properties";
 
     /** Use ACTUAL_LOCATION for tests. */
-    public static final String LOGGING_PROPERTIES_FILE_ACTUAL_LOCATION = "/logging.properties";
+    public static final String LOGGING_PROPERTIES_FILE_ACTUAL_LOCATION = "src/logging.properties";
 
     private String loggingPropertiesFileToUse = LOGGING_PROPERTIES_FILE_ROBOT_LOCATION;
 
@@ -22,11 +22,10 @@ public class LoggingConfiguration {
         try {
             in = new FileInputStream(loggingPropertiesFileToUse);
         } catch (FileNotFoundException e) {
-            return;
-            // throw new IllegalStateException(
-            // "Did not find logging properties file="
-            // + loggingPropertiesFileToUse + ", msg="
-            // + e.getMessage(), e);
+            throw new IllegalStateException(
+                    "Did not find logging properties file="
+                            + loggingPropertiesFileToUse + ", msg="
+                            + e.getMessage(), e);
         }
 
         try {
