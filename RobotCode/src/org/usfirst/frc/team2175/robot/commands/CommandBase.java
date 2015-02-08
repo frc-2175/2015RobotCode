@@ -9,11 +9,11 @@ public abstract class CommandBase extends Command {
 
     @Override
     protected void initialize() {
-        log.info("Starting command");
+        log.info("Starting command=" + getClass().getName());
     }
 
     @Override
     protected void end() {
-        log.info("Ending command");
+        log.info("Ending command=" + getClass().getName());
     }
 }
