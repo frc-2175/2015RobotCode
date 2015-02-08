@@ -26,7 +26,11 @@ public class ToteElevator extends Subsystem {
     private class HeightControllerHandler implements PIDSource, PIDOutput {
         @Override
         public void pidWrite(double speed) {
-            log.info("new speed=" + speed);
+            double currentSpeed = RobotMap.toteElevatorTalon.getSpeed();
+            if (currentSpeed != speed) {
+                log.info("currentSpeed=" + currentSpeed + ", new speed="
+                        + speed);
+            }
             RobotMap.toteElevatorTalon.set(speed);
         }
 

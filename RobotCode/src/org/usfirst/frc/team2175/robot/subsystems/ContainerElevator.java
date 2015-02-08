@@ -22,7 +22,11 @@ public class ContainerElevator extends Subsystem {
             PIDOutput {
         @Override
         public void pidWrite(double speed) {
-            log.info("new speed=" + speed);
+            double currentSpeed = RobotMap.containerElevatorMotor.getSpeed();
+            if (currentSpeed != speed) {
+                log.info("currentSpeed=" + currentSpeed + ", new speed="
+                        + speed);
+            }
             RobotMap.containerElevatorMotor.set(speed);
         }
 
