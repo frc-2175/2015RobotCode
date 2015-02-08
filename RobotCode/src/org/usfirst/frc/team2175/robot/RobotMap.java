@@ -18,88 +18,95 @@ import edu.wpi.first.wpilibj.Talon;
  * <p>
  * For example to map the left and right motors, you could define the following
  * variables to use with your drivetrain subsystem:
- * 
+ *
  * <pre>
  * public static int leftMotor = 1;
  * public static int rightMotor = 2;
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * If you are using multiple modules, make sure to define both the port number
  * and the module. For example with a rangefinder:
- * 
+ *
  * <pre>
  * public static int rangefinderPort = 1;
  * public static int rangefinderModule = 1;
  * </pre>
- * 
+ *
  * </p>
  */
 public class RobotMap {
-	// drivetrain
-	public static Talon leftTalon;
-	public static Talon rightTalon;
-	public static Encoder leftEncoder;
-	public static Encoder rightEncoder;
-	public static Gyro gyro;
-	public static RobotDrive drivetrain;
+    // drivetrain
+    public static Talon leftTalon;
+    public static Talon rightTalon;
+    public static Encoder leftEncoder;
+    public static Encoder rightEncoder;
+    public static Gyro gyro;
+    public static RobotDrive drivetrain;
 
-	// tote elevator
-	public static Talon toteElevatorTalon;
-	public static DigitalInput toteSwitch;
-	public static Encoder toteElevatorEncoder; 
-	
-	// container elevator
-	public static DigitalInput containerSwitch;
-	public static Talon containerElevatorMotor;
-	public static Encoder containerElevatorEncoder;
+    // tote elevator
+    public static Talon toteElevatorTalon;
+    public static DigitalInput toteSwitch;
+    public static Encoder toteElevatorEncoder;
 
-	// tote intake
-	public static Talon toteIntakeWheelMotor;
-	public static Solenoid toteIntakeArms;
-	public static DigitalInput toteIntakeToteInSwitch;
+    // container elevator
+    public static DigitalInput containerSwitch;
+    public static Talon containerElevatorMotor;
+    public static Encoder containerElevatorEncoder;
 
-	// tote pusher
-	public static Talon totePusherArm;
+    // tote intake
+    public static Talon toteIntakeWheelMotor;
+    public static Solenoid toteIntakeArms;
+    public static DigitalInput toteIntakeToteInSwitch;
 
-	public static DigitalInput pusherSwitch;
-	// container intake
-	public static Solenoid ContainerIntakeArms;
+    // tote pusher
+    public static Talon totePusherArm;
 
-	public static void init() {
-		// drivetrain
-		leftTalon = new Talon(0);
-		rightTalon = new Talon(1);
-//		leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
-//		rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
-		gyro = new Gyro(4);
-		drivetrain = new RobotDrive(leftTalon, rightTalon);
-		
-		// tote elevator
-		toteElevatorTalon = new Talon(2);
-		toteSwitch = new DigitalInput(7);
-		toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X); // TODO change these back from testing platform values
+    public static DigitalInput pusherSwitch;
+    // container intake
+    public static Solenoid ContainerIntakeArms;
 
-		toteElevatorEncoder.reset();
-		
-		// container elevator
-		containerSwitch = new DigitalInput(10);
-		containerElevatorMotor = new Talon(3);
-		containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
+    public static void init() {
+        // drivetrain
+        leftTalon = new Talon(0);
+        rightTalon = new Talon(1);
+        // leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
+        // rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
+        // gyro = new Gyro(4);
+        drivetrain = new RobotDrive(leftTalon, rightTalon);
 
-		// tote intake
-		toteIntakeWheelMotor = new Talon(4);
-		toteIntakeArms = new Solenoid(0);
-		toteIntakeToteInSwitch = new DigitalInput(11);
+        // tote elevator
+        toteElevatorTalon = new Talon(2);
+        toteSwitch = new DigitalInput(7);
+        toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X); // TODO
+                                                                          // change
+                                                                          // these
+                                                                          // back
+                                                                          // from
+                                                                          // testing
+                                                                          // platform
+                                                                          // values
 
-		// tote pusher
-		totePusherArm = new Talon(6);
+        toteElevatorEncoder.reset();
 
-		pusherSwitch = new DigitalInput(12);
+        // container elevator
+        containerSwitch = new DigitalInput(10);
+        containerElevatorMotor = new Talon(3);
+        containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
 
-		// container intake
-		ContainerIntakeArms = new Solenoid(1);
-	}
+        // tote intake
+        toteIntakeWheelMotor = new Talon(4);
+        toteIntakeArms = new Solenoid(0);
+        toteIntakeToteInSwitch = new DigitalInput(11);
+
+        // tote pusher
+        totePusherArm = new Talon(6);
+
+        pusherSwitch = new DigitalInput(12);
+
+        // container intake
+        ContainerIntakeArms = new Solenoid(1);
+    }
 
 }

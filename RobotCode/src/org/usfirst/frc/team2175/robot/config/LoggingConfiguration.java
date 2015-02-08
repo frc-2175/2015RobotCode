@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2175.robot.config;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.LogManager;
@@ -16,12 +18,15 @@ public class LoggingConfiguration {
     public void initializeLogging() {
         final LogManager logManager = LogManager.getLogManager();
 
-        final InputStream in = getClass().getResourceAsStream(
-                loggingPropertiesFileToUse);
-        if (in == null) {
-            throw new IllegalStateException(
-                    "Did not find logging properties file="
-                            + loggingPropertiesFileToUse);
+        InputStream in;
+        try {
+            in = new FileInputStream(loggingPropertiesFileToUse);
+        } catch (FileNotFoundException e) {
+            return;
+            // throw new IllegalStateException(
+            // "Did not find logging properties file="
+            // + loggingPropertiesFileToUse + ", msg="
+            // + e.getMessage(), e);
         }
 
         try {
