@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2175.robot;
 
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorToPosition;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -37,6 +39,9 @@ public class OI {
     // Start the command when the button is released and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+
+    private final Logger log = Logger.getLogger(getClass().getName());
+
     public Joystick leftStick;
     public Joystick rightStick;
     public Joystick gamepad;
@@ -70,26 +75,49 @@ public class OI {
     }
 
     public double getMoveValue() {
-        if (!precisionMode.get()) {
-            return handleDeadband(leftStick.getY());
-        } else {
-            return handleDeadband(leftStick.getY() * 0.5);
-        }
+        return getChangeValue("Move via leftstick Y value", leftStick.getY());
     }
 
     public double getTurnValue() {
-        if (!precisionMode.get()) {
-            return handleDeadband(rightStick.getX());
-        } else {
-            return handleDeadband(rightStick.getX() * 0.5);
-        }
+        return getChangeValue("Turn via rightstick X value", rightStick.getX());
     }
 
-    public double handleDeadband(double input) {
-        if (input <= deadbandValue) {
-            return 0;
+    protected double getChangeValue(String name, double position) {
+        double multiplier = determinePrecisionMultipler();
+
+        double moveValue = position * multiplier;
+
+        log.fine("change name=" + name + ", value=" + position
+                + ", multiplier=" + multiplier + ", resulting moveValue="
+                + moveValue);
+
+        return moveValue;
+    }
+
+    protected double determinePrecisionMultipler() {
+        final boolean isPrecisionMode = precisionMode.get();
+        final double multiplier;
+        if (isPrecisionMode) {
+            multiplier = 0.5;
         } else {
-            return input;
+            multiplier = 1;
         }
+
+        log.fine("isPrecisionMode=" + isPrecisionMode + ", multiplier="
+                + multiplier);
+        return multiplier;
+    }
+
+    protected double handleDeadband(double input) {
+        double value;
+        if (input <= deadbandValue) {
+            value = 0;
+        } else {
+            value = input;
+        }
+
+        log.fine("input=" + input + ", deadbandValue=" + deadbandValue
+                + ", resulting value=" + value);
+        return value;
     }
 }
