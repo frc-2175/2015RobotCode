@@ -35,8 +35,10 @@ public class TotePusher extends Subsystem {
 
     // TODO change these two into one sensor boolean
 
+    // FIXME is this correct? Does true represent extended or extracted?
+
     public boolean isPusherRetracted() {
-        boolean isRetracted = RobotMap.pusherSwitch.get();
+        boolean isRetracted = !RobotMap.pusherSwitch.get();
         log.fine("isRetracted=" + isRetracted);
         return isRetracted;
     }
