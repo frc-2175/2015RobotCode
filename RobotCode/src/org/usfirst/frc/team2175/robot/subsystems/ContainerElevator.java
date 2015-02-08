@@ -53,7 +53,7 @@ public class ContainerElevator extends Subsystem {
     // TODO change these two to one sensor boolean
 
     public boolean containerElevatorIsAtBottom() {
-        boolean isAtBottom = RobotMap.containerSwitch.get();
+        boolean isAtBottom = !RobotMap.containerSwitch.get();
         log.fine("isAtBottom=" + isAtBottom);
         return isAtBottom;
     }
