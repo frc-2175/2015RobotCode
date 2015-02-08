@@ -102,7 +102,7 @@ public class OI {
         final boolean isPrecisionMode = precisionMode.get();
         final double multiplier;
         if (isPrecisionMode) {
-            multiplier = 0.5;
+            multiplier = Robot.properties.getPrescisionModeScale();
         } else {
             multiplier = 1;
         }
