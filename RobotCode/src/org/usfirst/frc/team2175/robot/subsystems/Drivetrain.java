@@ -3,12 +3,13 @@ package org.usfirst.frc.team2175.robot.subsystems;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.RobotMap;
-import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 /**
  *
@@ -18,6 +19,8 @@ public class Drivetrain extends Subsystem {
 
     public PIDController straightDriveController;
     public PIDController turnController;
+    SendableChooser driveChooser;
+    Command driveChoice;
 
     private class StraightDriveControllerHandler implements PIDSource,
             PIDOutput {
@@ -48,7 +51,7 @@ public class Drivetrain extends Subsystem {
         }
     }
 
-    public Drivetrain() {
+    public Drivetrain(SendableChooser driveChooser) {
         TurnControllerHandler turnHandler = new TurnControllerHandler();
         turnController = new PIDController(0, 0, 0, turnHandler, turnHandler);
         turnController.setAbsoluteTolerance(.5);
@@ -106,6 +109,7 @@ public class Drivetrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new ArcadeDriveWithSticks());
+        driveChoice = (Command) driveChooser.getSelected();
+        setDefaultCommand(driveChoice);
     }
 }

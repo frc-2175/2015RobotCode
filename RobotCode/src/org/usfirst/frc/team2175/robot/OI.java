@@ -83,7 +83,7 @@ public class OI {
     }
 
     public double getTurnValue() {
-        return getChangeValue("Turn via rightstick X value", rightStick.getX());
+        return getChangeValue("Turn via rightstick X value", -rightStick.getX());
     }
 
     protected double getChangeValue(String name, double position) {

@@ -72,6 +72,8 @@ public class Robot extends IterativeRobot {
         properties = new RobotConfig();
 
         RobotMap.init();
+        // makeDriveChooser() must occur before subsytems
+        makeDriveChooser();
 
         makeSubsystems();
 
@@ -80,8 +82,6 @@ public class Robot extends IterativeRobot {
         makeControlLoop();
 
         makeAutonChooser();
-
-        makeDriveChooser();
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new Auton0DoNothing();
@@ -149,7 +149,7 @@ public class Robot extends IterativeRobot {
     }
 
     private void makeSubsystems() {
-        drivetrain = new Drivetrain();
+        drivetrain = new Drivetrain(driveChooser);
         toteElevator = new ToteElevator();
         totePusher = new TotePusher();
         containerElevator = new ContainerElevator();
@@ -183,7 +183,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
 
-    private void makeDriveChooser() {
+    public void makeDriveChooser() {
         driveChooser = new SendableChooser();
 
         driveChooser.addDefault("Arcade with Sniper Mode",
@@ -192,4 +192,5 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("Drive Style", driveChooser);
     }
+
 }
