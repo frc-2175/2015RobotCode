@@ -2,6 +2,7 @@ package org.usfirst.frc.team2175.robot;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -72,7 +73,7 @@ public class RobotMap {
 
     public static DigitalInput pusherSwitch;
     // container intake
-    public static Solenoid ContainerIntakeArms;
+    public static DoubleSolenoid ContainerIntakeArms;
 
     public static void init() {
         pdp = new PowerDistributionPanel();
@@ -112,7 +113,7 @@ public class RobotMap {
         pusherSwitch = new DigitalInput(12);
 
         // container intake
-        ContainerIntakeArms = new Solenoid(1);
+        ContainerIntakeArms = new DoubleSolenoid(0, 1);
     }
 
 }
