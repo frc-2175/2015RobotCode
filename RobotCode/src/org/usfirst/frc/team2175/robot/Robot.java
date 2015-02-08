@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton1DriveForward;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton1DriveLeft;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push1Tote;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push2Totes;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push3Totes;
@@ -37,7 +36,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
     private final Logger log = Logger.getLogger(getClass().getName());
-
+    public static OI oi;
     public static Drivetrain drivetrain;
     public static ToteElevator toteElevator;
     public static TotePusher totePusher;
@@ -45,10 +44,10 @@ public class Robot extends IterativeRobot {
     public static ToteIntake toteIntake;
     public static ContainerIntake containerIntake;
 
-    public static OI oi;
     public static RobotConfig properties;
 
     Command autonomousCommand;
+    Command driveChoice;
     SendableChooser autonChooser;
     SendableChooser driveChooser;
 
@@ -73,9 +72,9 @@ public class Robot extends IterativeRobot {
 
         RobotMap.init();
         // makeDriveChooser() must occur before subsytems
-        makeDriveChooser();
-
         makeSubsystems();
+
+        makeDriveChooser();
 
         oi = new OI();
 
@@ -115,6 +114,8 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
+        driveChoice = (Command) driveChooser.getSelected();
+        driveChoice.start();
 
     }
 
@@ -170,14 +171,15 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
         autonChooser.addDefault("1 - Drive straight into Auto Zone",
                 new Auton1DriveForward());
-                                        // command
+        // command
         autonChooser.addDefault("2 - Push 1 tote into Auto Zone",
                 new Auton2Push1Tote());
         autonChooser.addDefault("3 - Push 2 totes into Auto Zone",
                 new Auton2Push2Totes());
         autonChooser.addDefault("4 - Push 3 totes into Auto Zone",
                 new Auton2Push3Totes());
-        autonChooser.addDefault("5 - Stack 3 Totes and put them into Auto Zone",
+        autonChooser.addDefault(
+                "5 - Stack 3 Totes and put them into Auto Zone",
                 new Auton3StackToteInAutoZone());
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);

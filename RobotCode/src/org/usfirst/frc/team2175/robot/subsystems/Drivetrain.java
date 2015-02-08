@@ -94,7 +94,7 @@ public class Drivetrain extends Subsystem {
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
         log.fine("leftSpeed=" + leftSpeed + ", rightSpeed" + rightSpeed);
-        RobotMap.drivetrain.tankDrive(leftSpeed, rightSpeed);
+        RobotMap.drivetrain.tankDrive(rightSpeed, leftSpeed);
     }
 
     public void arcadeDrive(double moveSpeed, double rotateSpeed) {
@@ -109,7 +109,7 @@ public class Drivetrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
-        driveChoice = (Command) driveChooser.getSelected();
-        setDefaultCommand(driveChoice);
+        // driveChoice = (Command) driveChooser.getSelected();
+        // setDefaultCommand(driveChoice);
     }
 }
