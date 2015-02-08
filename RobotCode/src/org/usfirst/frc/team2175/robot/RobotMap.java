@@ -50,11 +50,13 @@ public class RobotMap {
 
     // tote elevator
     public static Talon toteElevatorTalon;
-    public static DigitalInput toteSwitch;
+    public static DigitalInput toteSwitchTop;
+    public static DigitalInput toteSwitchBottom;
     public static Encoder toteElevatorEncoder;
 
     // container elevator
-    public static DigitalInput containerSwitch;
+    public static DigitalInput containerSwitchTop;
+    public static DigitalInput containerSwitchBottom;
     public static Talon containerElevatorMotor;
     public static Encoder containerElevatorEncoder;
     public static Solenoid containerElevatorBrake;
@@ -85,14 +87,16 @@ public class RobotMap {
 
         // tote elevator
         toteElevatorTalon = new Talon(2);
-        toteSwitch = new DigitalInput(7);
+        toteSwitchTop = new DigitalInput(7);
+        toteSwitchBottom = new DigitalInput(18);
         toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X); // TODO
 
         toteElevatorEncoder.reset();
         toteElevatorBrake = new Solenoid(2);
 
         // container elevator
-        containerSwitch = new DigitalInput(10);
+        containerSwitchTop = new DigitalInput(10);
+        containerSwitchBottom = new DigitalInput(19);
         containerElevatorMotor = new Talon(3);
         containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
         containerElevatorBrake = new Solenoid(3);

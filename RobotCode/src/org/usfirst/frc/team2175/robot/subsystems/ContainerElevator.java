@@ -50,9 +50,9 @@ public class ContainerElevator extends Subsystem {
     }
 
     public boolean containerElevatorIsAtTop() {
-        boolean isOn = RobotMap.containerSwitch.get();
-        log.fine("isAtTop=" + isOn);
-        return isOn;
+        boolean isAtTop = RobotMap.containerSwitchTop.get();
+        log.fine("isAtTop=" + isAtTop);
+        return isAtTop;
     }
 
     // TODO change these two to one sensor boolean
@@ -61,9 +61,9 @@ public class ContainerElevator extends Subsystem {
     // what about when it is positioned in the middle?
 
     public boolean containerElevatorIsAtBottom() {
-        boolean isOff = !RobotMap.containerSwitch.get();
-        log.fine("isAtBottom=" + isOff);
-        return isOff;
+        boolean isAtBottom = RobotMap.containerSwitchBottom.get();
+        log.fine("isAtBottom=" + isAtBottom);
+        return isAtBottom;
     }
 
     public void setContainerElevatorSpeed(double containerSpeed) {
@@ -77,6 +77,7 @@ public class ContainerElevator extends Subsystem {
         } else {
             newSpeed = containerSpeed;
         }
+        //newSpeed = containerSpeed;
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);

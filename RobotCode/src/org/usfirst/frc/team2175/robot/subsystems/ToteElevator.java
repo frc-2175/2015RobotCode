@@ -57,9 +57,9 @@ public class ToteElevator extends Subsystem {
     }
 
     public boolean isAtBottom() {
-        boolean isOff = !RobotMap.toteSwitch.get();
-        log.fine("isAtBottom=" + isOff);
-        return isOff;
+        boolean isAtBottom = RobotMap.toteSwitchBottom.get();
+        log.fine("isAtBottom=" + isAtBottom);
+        return isAtBottom;
     }
 
     // TODO change these two sensors to one boolean
@@ -68,11 +68,11 @@ public class ToteElevator extends Subsystem {
     // what about when it is positioned in the middle?
 
     public boolean isAtTop() {
-        boolean isOn = RobotMap.toteSwitch.get();
-        log.fine("isAtTop=" + isOn);
-        return isOn;
-    }
-
+        boolean isAtTop = RobotMap.toteSwitchTop.get();
+        log.fine("isAtTop=" + isAtTop);
+        return isAtTop;
+        
+    }
     public void setSpeed(double toteElevatorSpeed) {
         double newSpeed;
         if (isAtTop() && toteElevatorSpeed > 0) {
