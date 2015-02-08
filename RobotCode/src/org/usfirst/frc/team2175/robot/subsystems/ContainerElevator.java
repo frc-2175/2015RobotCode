@@ -55,11 +55,6 @@ public class ContainerElevator extends Subsystem {
         return isAtTop;
     }
 
-    // TODO change these two to one sensor boolean
-
-    // FIXME is this correct? Does one switch tell if it is at top or bottom?
-    // what about when it is positioned in the middle?
-
     public boolean containerElevatorIsAtBottom() {
         boolean isAtBottom = RobotMap.containerSwitchBottom.get();
         log.fine("isAtBottom=" + isAtBottom);
@@ -77,7 +72,6 @@ public class ContainerElevator extends Subsystem {
         } else {
             newSpeed = containerSpeed;
         }
-        //newSpeed = containerSpeed;
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);
@@ -90,9 +84,6 @@ public class ContainerElevator extends Subsystem {
     public void resetElevatorEncoder() {
         RobotMap.containerElevatorEncoder.reset();
     }
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     @Override
     public void initDefaultCommand() {

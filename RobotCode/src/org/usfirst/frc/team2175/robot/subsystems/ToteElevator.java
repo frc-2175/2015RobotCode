@@ -53,7 +53,6 @@ public class ToteElevator extends Subsystem {
                 heightHandler);
         heightController.setOutputRange(-0.2, 1);
         heightController.setAbsoluteTolerance(.05);
-        // Add other encoder-related initializations here if needed.
     }
 
     public boolean isAtBottom() {
@@ -62,17 +61,12 @@ public class ToteElevator extends Subsystem {
         return isAtBottom;
     }
 
-    // TODO change these two sensors to one boolean
-
-    // FIXME is this correct? Does one switch tell if it is at top or bottom?
-    // what about when it is positioned in the middle?
-
     public boolean isAtTop() {
         boolean isAtTop = RobotMap.toteSwitchTop.get();
         log.fine("isAtTop=" + isAtTop);
         return isAtTop;
-        
-    }
+    }
+
     public void setSpeed(double toteElevatorSpeed) {
         double newSpeed;
         if (isAtTop() && toteElevatorSpeed > 0) {
@@ -97,6 +91,5 @@ public class ToteElevator extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        // TODO Auto-generated method stub
     }
 }
