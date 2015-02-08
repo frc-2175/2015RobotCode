@@ -45,17 +45,20 @@ public class ContainerElevator extends Subsystem {
     }
 
     public boolean containerElevatorIsAtTop() {
-        boolean isAtTop = RobotMap.containerSwitch.get();
-        log.fine("isAtTop=" + isAtTop);
-        return isAtTop;
+        boolean isOn = RobotMap.containerSwitch.get();
+        log.fine("isAtTop=" + isOn);
+        return isOn;
     }
 
     // TODO change these two to one sensor boolean
 
+    // FIXME is this correct? Does one switch tell if it is at top or bottom?
+    // what about when it is positioned in the middle?
+
     public boolean containerElevatorIsAtBottom() {
-        boolean isAtBottom = !RobotMap.containerSwitch.get();
-        log.fine("isAtBottom=" + isAtBottom);
-        return isAtBottom;
+        boolean isOff = !RobotMap.containerSwitch.get();
+        log.fine("isAtBottom=" + isOff);
+        return isOff;
     }
 
     public void setContainerElevatorSpeed(double containerSpeed) {
