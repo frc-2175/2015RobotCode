@@ -48,6 +48,7 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser autonChooser;
+    SendableChooser driveChooser;
 
     private class SchedulerTask extends java.util.TimerTask {
         @Override
@@ -110,6 +111,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
+
     }
 
     /**
@@ -176,5 +178,11 @@ public class Robot extends IterativeRobot {
                 new Auton3StackToteInAutoZone());
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
+    }
+
+    private void makeDriveChooser() {
+        driveChooser = new SendableChooser();
+
+        // drivechooser.addDefault()
     }
 }
