@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -19,6 +20,8 @@ public class Drivetrain extends Subsystem {
 
     public PIDController straightDriveController;
     public PIDController turnController;
+    public Encoder encoderLeft;
+    public Encoder encoderRight;
     SendableChooser driveChooser;
     Command driveChoice;
 
@@ -51,7 +54,7 @@ public class Drivetrain extends Subsystem {
         }
     }
 
-    public Drivetrain(SendableChooser driveChooser) {
+    public Drivetrain() {
         TurnControllerHandler turnHandler = new TurnControllerHandler();
         turnController = new PIDController(0, 0, 0, turnHandler, turnHandler);
         turnController.setAbsoluteTolerance(.5);

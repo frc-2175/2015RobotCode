@@ -151,7 +151,7 @@ public class Robot extends IterativeRobot {
     }
 
     private void makeSubsystems() {
-        drivetrain = new Drivetrain(driveChooser);
+        drivetrain = new Drivetrain();
         toteElevator = new ToteElevator();
         totePusher = new TotePusher();
         containerElevator = new ContainerElevator();
