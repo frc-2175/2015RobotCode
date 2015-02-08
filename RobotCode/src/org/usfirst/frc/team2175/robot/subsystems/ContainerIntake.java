@@ -8,16 +8,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ContainerIntake extends Subsystem {
-    
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	
-	public void setIntakeArms(boolean on){
-		RobotMap.ContainerIntakeArms.set(on);
-	}
 
+    public void setIntakeArms(boolean on) {
+        RobotMap.ContainerIntakeArms.set(on);
+    }
+
+    @Override
     public void initDefaultCommand() {
-    
     }
 }
-
