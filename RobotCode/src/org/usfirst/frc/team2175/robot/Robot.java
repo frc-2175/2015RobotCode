@@ -72,11 +72,12 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
+        log.info("Robot configuration starting");
 
         properties = new RobotConfig();
 
         RobotMap.init();
-        // makeDriveChooser() must occur before subsytems
+
         makeSubsystems();
 
         makeDriveChooser();
@@ -89,6 +90,8 @@ public class Robot extends IterativeRobot {
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new Auton0DoNothing();
+
+        log.info("Robot configuration finished");
     }
 
     @Override
