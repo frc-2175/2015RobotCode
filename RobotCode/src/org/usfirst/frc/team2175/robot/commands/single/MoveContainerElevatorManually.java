@@ -22,6 +22,7 @@ public class MoveContainerElevatorManually extends Command {
     @Override
     protected void execute() {
         // if (Robot.oi.gamepad.getRawButton(10) == true) {
+    	Robot.containerElevator.containerElevatorController.disable();
         double elevatorSpeed = Robot.oi.gamepad.getRawAxis(1);
         Robot.containerElevator.setContainerElevatorSpeed(elevatorSpeed);
         // }
@@ -36,6 +37,7 @@ public class MoveContainerElevatorManually extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+    	Robot.containerElevator.containerElevatorController.enable();
     }
 
     // Called when another command which requires one or more of the same
