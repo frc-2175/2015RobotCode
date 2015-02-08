@@ -10,6 +10,8 @@ import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push2Totes;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push3Totes;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton3StackToteInAutoZone;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
+import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
+import org.usfirst.frc.team2175.robot.commands.single.TankDriveWithSticks;
 import org.usfirst.frc.team2175.robot.config.LoggingConfiguration;
 import org.usfirst.frc.team2175.robot.config.RobotConfig;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
@@ -78,6 +80,8 @@ public class Robot extends IterativeRobot {
         makeControlLoop();
 
         makeAutonChooser();
+
+        makeDriveChooser();
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new Auton0DoNothing();
@@ -183,6 +187,10 @@ public class Robot extends IterativeRobot {
     private void makeDriveChooser() {
         driveChooser = new SendableChooser();
 
-        // drivechooser.addDefault()
+        driveChooser.addDefault("Arcade with Sniper Mode",
+                new ArcadeDriveWithSticks());
+        driveChooser.addDefault("Tank Drive", new TankDriveWithSticks());
+
+        SmartDashboard.putData("Drive Style", driveChooser);
     }
 }

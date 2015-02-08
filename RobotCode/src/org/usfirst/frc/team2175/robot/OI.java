@@ -78,6 +78,10 @@ public class OI {
         return getChangeValue("Move via leftstick Y value", leftStick.getY());
     }
 
+    public double getMoveValueRight() {
+        return getChangeValue("Move via rightstick Y value", rightStick.getY());
+    }
+
     public double getTurnValue() {
         return getChangeValue("Turn via rightstick X value", rightStick.getX());
     }
