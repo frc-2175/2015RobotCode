@@ -168,17 +168,14 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
         autonChooser.addDefault("1 - Drive straight into Auto Zone",
                 new Auton1DriveForward());
-        autonChooser.addDefault("2 - Drive left into Auto Zone",
-                new Auton1DriveLeft()); // TODO re evaluate need for this
                                         // command
-        autonChooser.addDefault("3 - Push 1 tote into Auto Zone",
+        autonChooser.addDefault("2 - Push 1 tote into Auto Zone",
                 new Auton2Push1Tote());
-        autonChooser.addDefault("4 - Push 2 totes into Auto Zone",
+        autonChooser.addDefault("3 - Push 2 totes into Auto Zone",
                 new Auton2Push2Totes());
-        autonChooser.addDefault("5 - Push 3 totes into Auto Zone",
+        autonChooser.addDefault("4 - Push 3 totes into Auto Zone",
                 new Auton2Push3Totes());
-        autonChooser.addDefault(
-                "6 - Stack 3 Totes and put them into Auto Zone",
+        autonChooser.addDefault("5 - Stack 3 Totes and put them into Auto Zone",
                 new Auton3StackToteInAutoZone());
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
