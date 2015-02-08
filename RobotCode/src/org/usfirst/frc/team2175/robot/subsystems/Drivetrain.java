@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2175.robot.subsystems;
 
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 
@@ -12,12 +14,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Drivetrain extends Subsystem {
+    private final Logger log = Logger.getLogger(getClass().getName());
 
     public PIDController straightDriveController;
+    public PIDController turnController;
 
     private class StraightDriveControllerHandler implements PIDSource,
             PIDOutput {
-
         @Override
         public void pidWrite(double output) {
             // Do something with the output PID value, like update motors
@@ -31,10 +34,7 @@ public class Drivetrain extends Subsystem {
         }
     }
 
-    public PIDController turnController;
-
     private class TurnControllerHandler implements PIDSource, PIDOutput {
-
         @Override
         public void pidWrite(double output) {
             // Do something with the output PID value, like update motors
@@ -66,13 +66,23 @@ public class Drivetrain extends Subsystem {
     }
 
     public double getMeanEncoderRate() {
-        return (RobotMap.leftEncoder.getRate() + RobotMap.rightEncoder
-                .getRate()) / 2;
+        double leftRate = RobotMap.leftEncoder.getRate();
+        double rightRate = RobotMap.rightEncoder.getRate();
+        double avg = (leftRate + rightRate) / 2;
+
+        log.fine("leftRate=" + leftRate + ", rightRate=" + rightRate
+                + ", avgRate=" + avg);
+        return avg;
     }
 
     public double getMeanEncoderDistance() {
-        return (RobotMap.leftEncoder.getDistance() + RobotMap.rightEncoder
-                .getDistance()) / 2;
+        double leftDistance = RobotMap.leftEncoder.getDistance();
+        double rightDistance = RobotMap.rightEncoder.getDistance();
+        double avg = (leftDistance + rightDistance) / 2;
+
+        log.fine("leftDistance=" + leftDistance + ", rightDistance="
+                + rightDistance + ", avgDistance=" + avg);
+        return avg;
     }
 
     public double getGyroHeading() {
@@ -80,13 +90,13 @@ public class Drivetrain extends Subsystem {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
+        log.fine("leftSpeed=" + leftSpeed + ", rightSpeed" + rightSpeed);
         RobotMap.drivetrain.tankDrive(leftSpeed, rightSpeed);
-
     }
 
     public void arcadeDrive(double moveSpeed, double rotateSpeed) {
+        log.fine("moveSpeed=" + moveSpeed + ", rotateSpeed" + rotateSpeed);
         RobotMap.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
-
     }
 
     // Put methods for controlling this subsystem
