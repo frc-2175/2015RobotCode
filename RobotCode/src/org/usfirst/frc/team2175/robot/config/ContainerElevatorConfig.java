@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ContainerElevatorConfig extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
+    public final double downSpeed;
+    
     public final double level0;
     public final double level1;
     public final double level2;
@@ -24,17 +26,19 @@ public class ContainerElevatorConfig extends Subsystem {
 
     private static final int ACCEPTABLE_RANGE = 2;
 
-    public ContainerElevatorConfig(double level0, double level1, double level2,
+    public ContainerElevatorConfig(double downSpeed, double level0, double level1, double level2,
             double level3, double level4) throws IllegalStateException {
         if (!(level0 <= level1 && level1 <= level2 && level2 <= level3 && level3 <= level4)) {
             throw new IllegalStateException("Elevator levels are not in order.");
         }
-
+        
+        this.downSpeed = downSpeed;
         this.level0 = level0;
         this.level1 = level1;
         this.level2 = level3;
         this.level3 = level3;
         this.level4 = level4;
+        
     }
 
     public double getNextLevelUp(double currentLevel) {
@@ -88,6 +92,8 @@ public class ContainerElevatorConfig extends Subsystem {
 
         return newLevelValue;
     }
+    
+    
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

@@ -65,6 +65,7 @@ public class ContainerElevator extends Subsystem {
 
     public void setContainerElevatorSpeed(double containerSpeed) {
         double newSpeed;
+        double downSpeed = Robot.properties.containerConfig.downSpeed;
         if (containerElevatorIsAtTop()
                 && Robot.oi.getContainerElevatorSpeed() > 0) {
             newSpeed = 0;
@@ -72,8 +73,8 @@ public class ContainerElevator extends Subsystem {
                 && Robot.oi.getContainerElevatorSpeed() < 0) {
             newSpeed = 0;
         } else {
-            if (containerSpeed < -.3) {
-                newSpeed = -.3;
+            if (containerSpeed < downSpeed) {
+                newSpeed = downSpeed;
             } else {
                 newSpeed = containerSpeed;
             }

@@ -63,8 +63,11 @@ public class RobotConfig {
     }
 
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
-        double level0, level1, level2, level3, level4;
+        double downSpeed, level0, level1, level2, level3, level4;
 
+        downSpeed = Double.parseDouble(getPropertyValue("elevatorDownSpeed",
+                prop));
+        
         level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
                 prop));
         level1 = Double.parseDouble(getPropertyValue("containerDrivingHeight",
@@ -76,7 +79,7 @@ public class RobotConfig {
         level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
                 prop));
 
-        return new ContainerElevatorConfig(level0, level1, level2, level3,
+        return new ContainerElevatorConfig(downSpeed, level0, level1, level2, level3,
                 level4);
     }
 
