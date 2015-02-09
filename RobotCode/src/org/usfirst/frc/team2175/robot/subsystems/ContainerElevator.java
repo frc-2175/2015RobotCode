@@ -64,15 +64,16 @@ public class ContainerElevator extends Subsystem {
 
     public void setContainerElevatorSpeed(double containerSpeed) {
         double newSpeed;
-        if (containerElevatorIsAtTop()
-                && RobotMap.containerElevatorMotor.getSpeed() > 0) {
-            newSpeed = 0;
-        } else if (containerElevatorIsAtBottom()
-                && RobotMap.containerElevatorMotor.getSpeed() < 0) {
-            newSpeed = 0;
-        } else {
-            newSpeed = containerSpeed;
-        }
+//        if (containerElevatorIsAtTop()
+//                && RobotMap.containerElevatorMotor.getSpeed() > 0) {
+//            newSpeed = 0;
+//        } else if (containerElevatorIsAtBottom()
+//                && RobotMap.containerElevatorMotor.getSpeed() < 0) {
+//            newSpeed = 0;
+//        } else {
+//            newSpeed = containerSpeed;
+//        }
+        newSpeed = containerSpeed;
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);
