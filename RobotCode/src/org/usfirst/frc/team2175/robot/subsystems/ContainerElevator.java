@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -75,6 +76,14 @@ public class ContainerElevator extends Subsystem {
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);
+    }
+
+    public void setBrake(boolean on) {
+        if (on) {
+            RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);
+        } else {
+            RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kReverse);
+        }
     }
 
     public double getContainerHeight() {
