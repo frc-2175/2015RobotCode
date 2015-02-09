@@ -36,11 +36,11 @@ public class MoveContainerElevatorManually extends Command {
 
         log.fine("motorOutput=" + motorOutput);
 
-        // if (Math.abs(motorOutput) < 0.1) {
-        // Robot.containerElevator.setBrake(true);
-        // } else {
-        // Robot.containerElevator.setBrake(false);
-        // }
+        if (Math.abs(motorOutput) < 0.05) {
+            Robot.containerElevator.setBrake(true);
+        } else {
+            Robot.containerElevator.setBrake(false);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
