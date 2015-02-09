@@ -1,9 +1,5 @@
 package org.usfirst.frc.team2175.robot.config;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +28,8 @@ public class RobotConfig {
 
     public RobotConfig() {
         try {
-            Properties prop = loadProperties();
+            Properties prop = new PropertiesLoader()
+                    .loadProperties(PROPERTY_FILE_NAME);
 
             deadbandSize = Double.parseDouble(getPropertyValue("deadbandSize",
                     prop));
@@ -63,45 +60,6 @@ public class RobotConfig {
             log.log(Level.SEVERE, msg, e);
             throw e;
         }
-    }
-
-    private Properties loadProperties() {
-        InputStream inputStream = openPropertiesFile();
-        Properties prop = loadPropertiesFromFile(inputStream);
-
-        if (prop.isEmpty()) {
-            final String msg = "No properties were loaded from file="
-                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
-            throw new IllegalStateException(msg);
-        }
-
-        return prop;
-    }
-
-    private InputStream openPropertiesFile() {
-        InputStream inputStream;
-        try {
-            inputStream = new FileInputStream(PROPERTY_FILE_NAME);
-        } catch (FileNotFoundException e) {
-            final String msg = "Error finding properties file="
-                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
-            log.log(Level.SEVERE, msg, e);
-            throw new IllegalStateException(msg, e);
-        }
-        return inputStream;
-    }
-
-    private Properties loadPropertiesFromFile(InputStream inputStream) {
-        Properties prop = new Properties();
-        try {
-            prop.load(inputStream);
-        } catch (IOException e) {
-            final String msg = "Error reading properties file="
-                    + PROPERTY_FILE_NAME + CAN_T_CONTINUE_MSG;
-            log.log(Level.SEVERE, msg, e);
-            throw new IllegalStateException(msg, e);
-        }
-        return prop;
     }
 
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
