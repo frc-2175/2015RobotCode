@@ -25,7 +25,7 @@ public class MoveContainerElevatorManually extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double elevatorSpeed = Robot.oi.gamepad.getY();
+        double elevatorSpeed = -Robot.oi.gamepad.getY();
         Robot.containerElevator.setContainerElevatorSpeed(elevatorSpeed);
 
         updateBrakeSetting();
