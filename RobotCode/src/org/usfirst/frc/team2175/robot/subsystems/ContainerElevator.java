@@ -72,15 +72,13 @@ public class ContainerElevator extends Subsystem {
                 && Robot.oi.getContainerElevatorSpeed() < 0) {
             newSpeed = 0;
         } else {
-            newSpeed = containerSpeed;
+            if (containerSpeed < -.3) {
+                newSpeed = -.3;
+            } else {
+                newSpeed = containerSpeed;
+            }
         }
-        
-//        if(containerSpeed<-.3) {
-//        	newSpeed = -.3;
-//        }else{
-//        	newSpeed = containerSpeed;
-//        }
-        
+
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);
