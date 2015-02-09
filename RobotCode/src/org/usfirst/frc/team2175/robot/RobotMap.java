@@ -64,7 +64,7 @@ public class RobotMap {
 
     // tote intake
     public static Talon toteIntakeWheelMotor;
-    public static Solenoid toteIntakeArms;
+    public static DoubleSolenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
     public static Solenoid toteElevatorBrake;
 
@@ -83,9 +83,9 @@ public class RobotMap {
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
         leftEncoder = new Encoder(19, 20, false, EncodingType.k2X);
-        leftEncoder.setDistancePerPulse(17*Math.PI/1728);
+        leftEncoder.setDistancePerPulse(17 * Math.PI / 1728);
         rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
-        rightEncoder.setDistancePerPulse(17*Math.PI/1728);
+        rightEncoder.setDistancePerPulse(17 * Math.PI / 1728);
         // gyro = new Gyro(4);
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
@@ -107,7 +107,7 @@ public class RobotMap {
 
         // tote intake
         toteIntakeWheelMotor = new Talon(4);
-        toteIntakeArms = new Solenoid(0);
+        toteIntakeArms = new DoubleSolenoid(4, 5);
         toteIntakeToteInSwitch = new DigitalInput(11);
 
         // tote pusher
