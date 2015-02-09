@@ -2,6 +2,7 @@ package org.usfirst.frc.team2175.robot.subsystems;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
 
@@ -64,21 +65,21 @@ public class ContainerElevator extends Subsystem {
 
     public void setContainerElevatorSpeed(double containerSpeed) {
         double newSpeed;
-//        if (containerElevatorIsAtTop()
-//                && RobotMap.containerElevatorMotor.getSpeed() > 0) {
-//            newSpeed = 0;
-//        } else if (containerElevatorIsAtBottom()
-//                && RobotMap.containerElevatorMotor.getSpeed() < 0) {
-//            newSpeed = 0;
-//        } else {
-//            newSpeed = containerSpeed;
-//        }
-        
-        if(containerSpeed<-.3) {
-        	newSpeed = -.3;
-        }else{
-        	newSpeed = containerSpeed;
+        if (containerElevatorIsAtTop()
+                && Robot.oi.getContainerElevatorSpeed() > 0) {
+            newSpeed = 0;
+        } else if (containerElevatorIsAtBottom()
+                && Robot.oi.getContainerElevatorSpeed() < 0) {
+            newSpeed = 0;
+        } else {
+            newSpeed = containerSpeed;
         }
+        
+//        if(containerSpeed<-.3) {
+//        	newSpeed = -.3;
+//        }else{
+//        	newSpeed = containerSpeed;
+//        }
         
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="

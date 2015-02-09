@@ -98,6 +98,10 @@ public class OI {
     public double getTurnValue() {
         return getChangeValue("Turn via rightstick X value", -rightStick.getX());
     }
+    
+    public double getContainerElevatorSpeed(){
+    	return -gamepad.getY();
+    }
 
     protected double getChangeValue(String name, double position) {
         double multiplier = determinePrecisionMultipler();
