@@ -1,5 +1,7 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveContainerElevatorManually extends Command {
+    private final Logger log = Logger.getLogger(getClass().getName());
+
     public MoveContainerElevatorManually() {
         requires(Robot.containerElevator);
     }
@@ -21,15 +25,22 @@ public class MoveContainerElevatorManually extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        // if (Robot.oi.gamepad.getRawButton(10) == true) {
         double elevatorSpeed = Robot.oi.gamepad.getY();
         Robot.containerElevator.setContainerElevatorSpeed(elevatorSpeed);
+
+        updateBrakeSetting();
+    }
+
+    private void updateBrakeSetting() {
+        double motorOutput = Robot.containerElevator.getMotorOutput();
+
+        log.fine("motorOutput=" + motorOutput);
+
+        // if (Math.abs(motorOutput) < 0.1) {
+        // Robot.containerElevator.setBrake(true);
+        // } else {
+        // Robot.containerElevator.setBrake(false);
         // }
-        if (Math.abs(Robot.containerElevator.getMotorOutput()) < 0.05) {
-            new EngageContainerLiftBrake();
-        } else {
-            new DisengageContainerLiftBrake();
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
