@@ -72,8 +72,9 @@ public class RobotMap {
     public static Talon totePusherArm;
 
     public static DigitalInput pusherSwitch;
+
     // container intake
-    public static DoubleSolenoid ContainerIntakeArms;
+    public static DoubleSolenoid containerIntakeArms;
 
     public static void init() {
         pdp = new PowerDistributionPanel();
@@ -113,7 +114,7 @@ public class RobotMap {
         pusherSwitch = new DigitalInput(12);
 
         // container intake
-        ContainerIntakeArms = new DoubleSolenoid(0, 1);
+        containerIntakeArms = new DoubleSolenoid(0, 1);
     }
 
 }

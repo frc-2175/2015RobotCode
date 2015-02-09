@@ -13,16 +13,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ContainerIntake extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
     public void setIntakeArms(boolean on) {
-        
-    	log.fine("on=" + on);
+        log.fine("on=" + on);
         if (on) {
-        	RobotMap.ContainerIntakeArms.set(DoubleSolenoid.Value.kForward);
+            RobotMap.containerIntakeArms.set(DoubleSolenoid.Value.kForward);
         } else {
-        	RobotMap.ContainerIntakeArms.set(DoubleSolenoid.Value.kReverse);
+            RobotMap.containerIntakeArms.set(DoubleSolenoid.Value.kReverse);
         }
     }
 
