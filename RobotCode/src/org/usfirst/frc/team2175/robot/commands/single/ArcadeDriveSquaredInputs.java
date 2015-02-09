@@ -17,15 +17,15 @@ public class ArcadeDriveSquaredInputs extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        double moveValue = Robot.oi.getMoveValue();
-        double turnValue = Robot.oi.getTurnValue();
-        Robot.drivetrain.arcadeDrive(moveValue * moveValue, turnValue
-                * turnValue);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        double moveValue = Robot.oi.getMoveValue();
+        double turnValue = Robot.oi.getTurnValue();
+        Robot.drivetrain.arcadeDrive(moveValue * Math.abs(moveValue), turnValue
+                * Math.abs(turnValue));
     }
 
     // Make this return true when this Command no longer needs to run execute()

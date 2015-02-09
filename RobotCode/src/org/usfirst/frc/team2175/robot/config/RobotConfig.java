@@ -18,7 +18,7 @@ public class RobotConfig {
     private final double containerElevatorI;
     private final double containerElevatorD;
     private final double toteIntakeWheelsSpeed;
-    private final double PrescisionModeScale;
+    private final double precisionModeScale;
 
     // tote elevator properties
     public final ToteElevatorConfig toteConfig;
@@ -53,8 +53,8 @@ public class RobotConfig {
                     "containerElevatorD", prop));
             toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
                     "toteIntakeWheelsSpeed", prop));
-            PrescisionModeScale = Double.parseDouble(getPropertyValue(
-                    "PrescisionModeScale", prop));
+            precisionModeScale = Double.parseDouble(getPropertyValue(
+                    "precisionModeScale", prop));
         } catch (Exception e) {
             final String msg = "Problem with processing properties, can't continue:";
             log.log(Level.SEVERE, msg, e);
@@ -138,6 +138,6 @@ public class RobotConfig {
     }
 
     public double getPrescisionModeScale() {
-        return PrescisionModeScale;
+        return precisionModeScale;
     }
 }

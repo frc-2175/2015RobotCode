@@ -147,8 +147,8 @@ public class Robot extends IterativeRobot {
         // final String msg = "Distance robot has driven since last reset="
         // + distance;
         // log.info(msg);
-    	
-    	getPDPData();
+
+        getPDPData();
     }
 
     /**
@@ -206,13 +206,13 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("Drive Style", driveChooser);
     }
-    
+
     public void getPDPData() {
-    	for(int i=0; i<=15; i++){
-    		System.out.print(RobotMap.pdp.getCurrent(i));
-    	}
-    	System.out.print("/n");
-    	
+        for (int i = 0; i <= 15; i++) {
+            System.out.print(RobotMap.pdp.getCurrent(i) + ", ");
+        }
+        System.out.print("\n");
+
     }
 
 }
