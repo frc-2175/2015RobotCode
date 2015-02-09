@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.usfirst.frc.team2175.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -14,12 +15,15 @@ public class ContainerIntake extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
     public void setIntakeArms(boolean on) {
-        log.fine("on=" + on);
+        Value value;
         if (on) {
-            RobotMap.containerIntakeArms.set(DoubleSolenoid.Value.kForward);
+            value = DoubleSolenoid.Value.kForward;
         } else {
-            RobotMap.containerIntakeArms.set(DoubleSolenoid.Value.kReverse);
+            value = DoubleSolenoid.Value.kReverse;
         }
+
+        log.fine("on=" + on + ", value=" + value);
+        RobotMap.containerIntakeArms.set(value);
     }
 
     @Override
