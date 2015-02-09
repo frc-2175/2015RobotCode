@@ -78,6 +78,10 @@ public class ContainerElevator extends Subsystem {
                 + newSpeed);
     }
 
+    public double getMotorOutput() {
+        return RobotMap.containerElevatorMotor.get();
+    }
+
     public void setBrake(boolean on) {
         if (on) {
             RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);

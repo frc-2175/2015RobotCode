@@ -25,6 +25,11 @@ public class MoveContainerElevatorManually extends Command {
         double elevatorSpeed = Robot.oi.gamepad.getY();
         Robot.containerElevator.setContainerElevatorSpeed(elevatorSpeed);
         // }
+        if (Math.abs(Robot.containerElevator.getMotorOutput) < 0.05) {
+            new EngageContainerLiftBrake();
+        } else {
+            new DisengageContainerLiftBrake();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
