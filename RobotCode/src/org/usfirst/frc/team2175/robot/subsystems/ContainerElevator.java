@@ -52,13 +52,13 @@ public class ContainerElevator extends Subsystem {
     }
 
     public boolean containerElevatorIsAtTop() {
-        boolean isAtTop = RobotMap.containerSwitchTop.get();
+        boolean isAtTop = !RobotMap.containerSwitchTop.get();
         log.fine("isAtTop=" + isAtTop);
         return isAtTop;
     }
 
     public boolean containerElevatorIsAtBottom() {
-        boolean isAtBottom = RobotMap.containerSwitchBottom.get();
+        boolean isAtBottom = !RobotMap.containerSwitchBottom.get();
         log.fine("isAtBottom=" + isAtBottom);
         return isAtBottom;
     }
@@ -78,8 +78,9 @@ public class ContainerElevator extends Subsystem {
             } else {
                 newSpeed = containerSpeed;
             }
+        	
         }
-
+//        newSpeed = containerSpeed;
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);

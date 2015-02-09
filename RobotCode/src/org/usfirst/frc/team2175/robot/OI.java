@@ -100,7 +100,7 @@ public class OI {
     }
     
     public double getContainerElevatorSpeed(){
-    	return -gamepad.getY();
+    	return handleDeadband(-gamepad.getY());
     }
 
     protected double getChangeValue(String name, double position) {
@@ -131,7 +131,7 @@ public class OI {
 
     protected double handleDeadband(double input) {
         double value;
-        if (input <= deadbandValue) {
+        if (Math.abs(input) <= deadbandValue) {
             value = 0;
         } else {
             value = input;
