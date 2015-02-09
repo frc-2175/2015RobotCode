@@ -82,7 +82,7 @@ public class RobotMap {
         // drivetrain
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
-        leftEncoder = new Encoder(0, 1, false, EncodingType.k2X);
+        leftEncoder = new Encoder(19, 20, false, EncodingType.k2X);
         rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
         // gyro = new Gyro(4);
         drivetrain = new RobotDrive(leftTalon, rightTalon);
@@ -97,8 +97,8 @@ public class RobotMap {
         toteElevatorBrake = new Solenoid(4);
 
         // container elevator
-        containerSwitchTop = new DigitalInput(10);
-        containerSwitchBottom = new DigitalInput(19);
+        containerSwitchTop = new DigitalInput(1);
+        containerSwitchBottom = new DigitalInput(0);
         containerElevatorMotor = new Talon(3);
         containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
         containerElevatorBrake = new DoubleSolenoid(2, 3);
