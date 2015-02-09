@@ -85,9 +85,9 @@ public class ContainerElevator extends Subsystem {
 
     public void setBrake(boolean on) {
         if (on) {
-            RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);
-        } else {
             RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kReverse);
+        } else {
+            RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);
         }
     }
 
