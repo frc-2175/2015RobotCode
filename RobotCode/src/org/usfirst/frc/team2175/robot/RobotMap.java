@@ -125,4 +125,16 @@ public class RobotMap {
     public static double getLeftTalonSpeed() {
         return leftTalon.get();
     }
+
+    public static double getRightTalonSpeed() {
+        return rightTalon.get();
+    }
+
+    public static double getLeftEncoderSpeed() {
+        return rightEncoder.getRate();
+    }
+
+    public static double getRightEncoderSpeed() {
+        return leftEncoder.getRate();
+    }
 }
