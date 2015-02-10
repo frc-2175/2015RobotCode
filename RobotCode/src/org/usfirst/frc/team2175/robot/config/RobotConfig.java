@@ -19,6 +19,7 @@ public class RobotConfig {
     private final double containerElevatorD;
     private final double toteIntakeWheelsSpeed;
     private final double precisionModeScale;
+    private final double driveTrainRamp;
 
     // tote elevator properties
     public final ToteElevatorConfig toteConfig;
@@ -55,6 +56,8 @@ public class RobotConfig {
                     "toteIntakeWheelsSpeed", prop));
             precisionModeScale = Double.parseDouble(getPropertyValue(
                     "precisionModeScale", prop));
+            driveTrainRamp = Double.parseDouble(getPropertyValue(
+                    "driveTrainRamp", prop));
         } catch (Exception e) {
             final String msg = "Problem with processing properties, can't continue:";
             log.log(Level.SEVERE, msg, e);
@@ -67,7 +70,7 @@ public class RobotConfig {
 
         downSpeed = Double.parseDouble(getPropertyValue("elevatorDownSpeed",
                 prop));
-        
+
         level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
                 prop));
         level1 = Double.parseDouble(getPropertyValue("containerDrivingHeight",
@@ -79,8 +82,8 @@ public class RobotConfig {
         level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
                 prop));
 
-        return new ContainerElevatorConfig(downSpeed, level0, level1, level2, level3,
-                level4);
+        return new ContainerElevatorConfig(downSpeed, level0, level1, level2,
+                level3, level4);
     }
 
     private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
@@ -142,5 +145,9 @@ public class RobotConfig {
 
     public double getPrescisionModeScale() {
         return precisionModeScale;
+    }
+
+    public Double getDriveTrainRamp() {
+        return driveTrainRamp;
     }
 }

@@ -98,19 +98,20 @@ public class OI {
     public double getTurnValue() {
         return getChangeValue("Turn via rightstick X value", -rightStick.getX());
     }
-    
-    public double getContainerElevatorSpeed(){
-    	return handleDeadband(-gamepad.getY());
+
+    public double getContainerElevatorSpeed() {
+        return handleDeadband(-gamepad.getY());
     }
 
     protected double getChangeValue(String name, double position) {
         double multiplier = determinePrecisionMultipler();
+        double ramp = Robot.properties.getDriveTrainRamp();
 
-        double moveValue = position * multiplier;
+        double moveValue = position * multiplier * ramp;
 
         log.fine("change name=" + name + ", value=" + position
-                + ", multiplier=" + multiplier + ", resulting moveValue="
-                + moveValue);
+                + ", multiplier=" + multiplier + ", Drivetrain Ramp=" + ramp
+                + ", resulting moveValue=" + moveValue);
 
         return moveValue;
     }
