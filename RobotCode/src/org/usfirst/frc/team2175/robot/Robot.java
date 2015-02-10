@@ -227,6 +227,8 @@ public class Robot extends IterativeRobot {
     //
     // }
     private void smartDashboardUpdate() {
-        SmartDashboard.putDouble("Left Drive Talon", );
+        SmartDashboard.putNumber("Left Drive Talon",
+                RobotMap.getLeftTalonSpeed());
+        // SmartDashboard.putNumber("Right Drive Talon, value);
     }
 }

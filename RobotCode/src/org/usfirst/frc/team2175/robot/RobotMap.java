@@ -77,7 +77,7 @@ public class RobotMap {
     public static DoubleSolenoid containerIntakeArms;
 
     public static void init() {
-    	
+
         pdp = new PowerDistributionPanel();
 
         // drivetrain
@@ -104,7 +104,7 @@ public class RobotMap {
         containerSwitchBottom = new DigitalInput(0);
         containerElevatorMotor = new Talon(3);
         containerElevatorEncoder = new Encoder(8, 9, true, EncodingType.k2X);
-        containerElevatorEncoder.setDistancePerPulse(1/120*12*5/25.4);
+        containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
         containerElevatorBrake = new DoubleSolenoid(2, 3);
 
@@ -122,4 +122,7 @@ public class RobotMap {
         containerIntakeArms = new DoubleSolenoid(0, 1);
     }
 
+    public static double getLeftTalonSpeed() {
+        return leftTalon.get();
+    }
 }
