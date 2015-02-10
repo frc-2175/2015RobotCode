@@ -29,7 +29,7 @@ public class ContainerElevator extends Subsystem {
                 log.info("currentSpeed=" + currentSpeed + ", new speed="
                         + speed);
             }
-            RobotMap.containerElevatorMotor.set(speed);
+            setContainerElevatorSpeed(speed);
             updateBrakeSetting();
         }
 
@@ -118,6 +118,15 @@ public class ContainerElevator extends Subsystem {
         } else {
             Robot.containerElevator.setBrake(false);
         }
+    }
+    
+    public double rampMotorValues(double originalValues) {
+    	double maxDelta;
+    	double prevTime;
+    	double currentTime;
+    	double deltaTime;
+    	
+    	return originalValues; //TODO actually write the code
     }
 
     @Override
