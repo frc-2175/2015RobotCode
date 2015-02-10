@@ -81,13 +81,11 @@ public class OI {
 //        gamepad1.whenPressed(new MoveToteElevatorToPosition(
 //                Robot.properties.toteConfig.pickup));
         
-        gamepad1.whenPressed(new MoveContainerElevatorToPosition(1000));
-        gamepad2.whenPressed(new MoveToteElevatorToPosition(
-                Robot.properties.toteConfig.driving));
-        gamepad3.whenPressed(new MoveToteElevatorToPosition(
-                Robot.properties.toteConfig.step));
-        gamepad4.whenPressed(new MoveToteElevatorToPosition(
-                Robot.properties.toteConfig.stack));
+        gamepad1.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level1));
+        gamepad2.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level2));
+        gamepad3.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level3));
+        gamepad4.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level4));
+        
         gamepad5.whenPressed(new CloseContainerIntake());
         gamepad6.whenPressed(new OpenContainerIntake());
         gamepad7.whenPressed(new EngageContainerLiftBrake());

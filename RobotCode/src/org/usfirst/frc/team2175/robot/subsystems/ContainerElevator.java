@@ -41,11 +41,12 @@ public class ContainerElevator extends Subsystem {
 
     public ContainerElevator() {
         ContainerElevatorControllerHandler containerElevatorControllerHandler = new ContainerElevatorControllerHandler();
-        containerElevatorController = new PIDController(.001, 0, 0,
+        containerElevatorController = new PIDController(.005, 0, 0.001,
                 containerElevatorControllerHandler,
                 containerElevatorControllerHandler);
+        containerElevatorController.setOutputRange(-.5, 1);
         // TODO determine PID constants
-        containerElevatorController.setAbsoluteTolerance(0.5);
+        containerElevatorController.setAbsoluteTolerance(5);
 
         // TODO determine distance per pulse and direction of encoder
         
