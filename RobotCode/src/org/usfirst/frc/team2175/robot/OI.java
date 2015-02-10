@@ -2,13 +2,11 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
-import org.usfirst.frc.team2175.robot.commands.ZeroContainerElevator;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.DisengageContainerLiftBrake;
 import org.usfirst.frc.team2175.robot.commands.single.EngageContainerLiftBrake;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorToPosition;
-import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorToPosition;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -77,20 +75,23 @@ public class OI {
         JoystickButton gamepad9 = new JoystickButton(gamepad, 7);
         JoystickButton gamepad10 = new JoystickButton(gamepad, 8);
 
-        
-//        gamepad1.whenPressed(new MoveToteElevatorToPosition(
-//                Robot.properties.toteConfig.pickup));
-        
-        gamepad1.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level1));
-        gamepad2.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level2));
-        gamepad3.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level3));
-        gamepad4.whenPressed(new MoveContainerElevatorToPosition(Robot.properties.containerConfig.level4));
-        
+        // gamepad1.whenPressed(new MoveToteElevatorToPosition(
+        // Robot.properties.toteConfig.pickup));
+
+        gamepad1.whenPressed(new MoveContainerElevatorToPosition(
+                Robot.properties.containerConfig.level1));
+        gamepad2.whenPressed(new MoveContainerElevatorToPosition(
+                Robot.properties.containerConfig.level2));
+        gamepad3.whenPressed(new MoveContainerElevatorToPosition(
+                Robot.properties.containerConfig.level3));
+        gamepad4.whenPressed(new MoveContainerElevatorToPosition(
+                Robot.properties.containerConfig.level4));
+
         gamepad5.whenPressed(new CloseContainerIntake());
         gamepad6.whenPressed(new OpenContainerIntake());
         gamepad7.whenPressed(new EngageContainerLiftBrake());
         gamepad8.whenPressed(new DisengageContainerLiftBrake());
-        gamepad9.whenPressed(new ZeroContainerElevator());
+        // gamepad9.whenPressed(new ZeroContainerElevator());
         gamepad10.whileHeld(new MoveContainerElevatorManually());
 
     }
