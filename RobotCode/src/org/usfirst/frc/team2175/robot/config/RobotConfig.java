@@ -5,149 +5,167 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RobotConfig {
-    final Logger log = Logger.getLogger(getClass().getName());
+	final Logger log = Logger.getLogger(getClass().getName());
 
-    private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
-    private static final String CAN_T_CONTINUE_MSG = "; can't continue";
+	private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
+	private static final String CAN_T_CONTINUE_MSG = "; can't continue";
 
-    private final double deadbandSize;
-    private final double toteElevatorP;
-    private final double toteElevatorI;
-    private final double toteElevatorD;
-    private final double containerElevatorP;
-    private final double containerElevatorI;
-    private final double containerElevatorD;
-    private final double toteIntakeWheelsSpeed;
-    private final double precisionModeScale;
-    private final double driveTrainRamp;
+	private final double deadbandSize;
+	private final double driveLeftEncoderDPP;
+	private final double driveRightEncoderDPP;
 
-    // tote elevator properties
-    public final ToteElevatorConfig toteConfig;
+	private final double toteElevatorP;
+	private final double toteElevatorI;
+	private final double toteElevatorD;
 
-    // container elevator properties
-    public final ContainerElevatorConfig containerConfig;
+	private final double containerElevatorP;
+	private final double containerElevatorI;
+	private final double containerElevatorD;
 
-    public RobotConfig() {
-        try {
-            Properties prop = new PropertiesLoader()
-                    .loadProperties(PROPERTY_FILE_NAME);
+	private final double toteIntakeWheelsSpeed;
 
-            deadbandSize = Double.parseDouble(getPropertyValue("deadbandSize",
-                    prop));
+	private final double precisionModeScale;
+	private final double driveTrainRamp;
 
-            toteConfig = makeToteElevatorConfig(prop);
+	// tote elevator properties
+	public final ToteElevatorConfig toteConfig;
 
-            toteElevatorP = Double.parseDouble(getPropertyValue(
-                    "toteElevatorP", prop));
-            toteElevatorI = Double.parseDouble(getPropertyValue(
-                    "toteElevatorI", prop));
-            toteElevatorD = Double.parseDouble(getPropertyValue(
-                    "toteElevatorD", prop));
+	// container elevator properties
+	public final ContainerElevatorConfig containerConfig;
 
-            containerConfig = makeContainerElevatorConfig(prop);
+	public RobotConfig() {
+		try {
+			Properties prop = new PropertiesLoader()
+					.loadProperties(PROPERTY_FILE_NAME);
 
-            containerElevatorP = Double.parseDouble(getPropertyValue(
-                    "containerElevatorP", prop));
-            containerElevatorI = Double.parseDouble(getPropertyValue(
-                    "containerElevatorI", prop));
-            containerElevatorD = Double.parseDouble(getPropertyValue(
-                    "containerElevatorD", prop));
-            toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
-                    "toteIntakeWheelsSpeed", prop));
-            precisionModeScale = Double.parseDouble(getPropertyValue(
-                    "precisionModeScale", prop));
-            driveTrainRamp = Double.parseDouble(getPropertyValue(
-                    "driveTrainRamp", prop));
-        } catch (Exception e) {
-            final String msg = "Problem with processing properties, can't continue:";
-            log.log(Level.SEVERE, msg, e);
-            throw e;
-        }
-    }
+			deadbandSize = Double.parseDouble(getPropertyValue("deadbandSize",
+					prop));
+			driveLeftEncoderDPP = Double.parseDouble(getPropertyValue(
+					"driveLeftEncoderDPP", prop));
+			driveRightEncoderDPP = Double.parseDouble(getPropertyValue(
+					"driveRightEncoderDPP", prop));
 
-    private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
-        double downSpeed, level0, level1, level2, level3, level4;
+			toteConfig = makeToteElevatorConfig(prop);
 
-        downSpeed = Double.parseDouble(getPropertyValue("elevatorDownSpeed",
-                prop));
+			toteElevatorP = Double.parseDouble(getPropertyValue(
+					"toteElevatorP", prop));
+			toteElevatorI = Double.parseDouble(getPropertyValue(
+					"toteElevatorI", prop));
+			toteElevatorD = Double.parseDouble(getPropertyValue(
+					"toteElevatorD", prop));
 
-        level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
-                prop));
-        level1 = Double.parseDouble(getPropertyValue("containerDrivingHeight",
-                prop));
-        level2 = Double.parseDouble(getPropertyValue("containerScoringHeight",
-                prop));
-        level3 = Double.parseDouble(getPropertyValue("containerStepHeight",
-                prop));
-        level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
-                prop));
+			containerConfig = makeContainerElevatorConfig(prop);
 
-        return new ContainerElevatorConfig(downSpeed, level0, level1, level2,
-                level3, level4);
-    }
+			containerElevatorP = Double.parseDouble(getPropertyValue(
+					"containerElevatorP", prop));
+			containerElevatorI = Double.parseDouble(getPropertyValue(
+					"containerElevatorI", prop));
+			containerElevatorD = Double.parseDouble(getPropertyValue(
+					"containerElevatorD", prop));
+			toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
+					"toteIntakeWheelsSpeed", prop));
+			precisionModeScale = Double.parseDouble(getPropertyValue(
+					"precisionModeScale", prop));
+			driveTrainRamp = Double.parseDouble(getPropertyValue(
+					"driveTrainRamp", prop));
+		} catch (Exception e) {
+			final String msg = "Problem with processing properties, can't continue:";
+			log.log(Level.SEVERE, msg, e);
+			throw e;
+		}
+	}
 
-    private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
-        double pickup, driving, scoring, step, stack;
+	private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
+		double downSpeed, level0, level1, level2, level3, level4;
 
-        pickup = Double.parseDouble(getPropertyValue("totePickupHeight", prop));
-        driving = Double
-                .parseDouble(getPropertyValue("toteDrivingHeight", prop));
-        scoring = Double
-                .parseDouble(getPropertyValue("toteScoringHeight", prop));
-        step = Double.parseDouble(getPropertyValue("toteStepHeight", prop));
-        stack = Double.parseDouble(getPropertyValue("toteStackHeight", prop));
+		downSpeed = Double.parseDouble(getPropertyValue("containerElevatorDownSpeed",
+				prop));
 
-        return new ToteElevatorConfig(pickup, driving, scoring, step, stack);
-    }
+		level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
+				prop));
+		level1 = Double.parseDouble(getPropertyValue("containerDrivingHeight",
+				prop));
+		level2 = Double.parseDouble(getPropertyValue("containerScoringHeight",
+				prop));
+		level3 = Double.parseDouble(getPropertyValue("containerStepHeight",
+				prop));
+		level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
+				prop));
 
-    protected String getPropertyValue(String propertyName, Properties props) {
-        String value = props.getProperty(propertyName);
-        if (value == null) {
-            String msg = "Property '" + propertyName
-                    + "' not found in property file";
-            log.severe(msg);
-            throw new IllegalStateException(msg);
-        }
-        return value;
-    }
+		return new ContainerElevatorConfig(downSpeed, level0, level1, level2,
+				level3, level4);
+	}
 
-    public double getToteElevatorP() {
-        return toteElevatorP;
-    }
+	private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
+		double pickup, driving, scoring, step, stack;
 
-    public double getToteElevatorI() {
-        return toteElevatorI;
-    }
+		pickup = Double.parseDouble(getPropertyValue("totePickupHeight", prop));
+		driving = Double
+				.parseDouble(getPropertyValue("toteDrivingHeight", prop));
+		scoring = Double
+				.parseDouble(getPropertyValue("toteScoringHeight", prop));
+		step = Double.parseDouble(getPropertyValue("toteStepHeight", prop));
+		stack = Double.parseDouble(getPropertyValue("toteStackHeight", prop));
 
-    public double getToteElevatorD() {
-        return toteElevatorD;
-    }
+		return new ToteElevatorConfig(pickup, driving, scoring, step, stack);
+	}
 
-    public double getContainerElevatorP() {
-        return containerElevatorP;
-    }
+	protected String getPropertyValue(String propertyName, Properties props) {
+		String value = props.getProperty(propertyName);
+		if (value == null) {
+			String msg = "Property '" + propertyName
+					+ "' not found in property file";
+			log.severe(msg);
+			throw new IllegalStateException(msg);
+		}
+		return value;
+	}
 
-    public double getContainerElevatorI() {
-        return containerElevatorI;
-    }
+	public double getToteElevatorP() {
+		return toteElevatorP;
+	}
 
-    public double getContainerElevatorD() {
-        return containerElevatorD;
-    }
+	public double getToteElevatorI() {
+		return toteElevatorI;
+	}
 
-    public double getDeadbandSize() {
-        return deadbandSize;
-    }
+	public double getToteElevatorD() {
+		return toteElevatorD;
+	}
 
-    public double getToteIntakeWheelsSpeed() {
-        return toteIntakeWheelsSpeed;
-    }
+	public double getContainerElevatorP() {
+		return containerElevatorP;
+	}
 
-    public double getPrescisionModeScale() {
-        return precisionModeScale;
-    }
+	public double getContainerElevatorI() {
+		return containerElevatorI;
+	}
 
-    public Double getDriveTrainRamp() {
-        return driveTrainRamp;
-    }
+	public double getContainerElevatorD() {
+		return containerElevatorD;
+	}
+
+	public double getDeadbandSize() {
+		return deadbandSize;
+	}
+
+	public double getToteIntakeWheelsSpeed() {
+		return toteIntakeWheelsSpeed;
+	}
+
+	public double getPrescisionModeScale() {
+		return precisionModeScale;
+	}
+
+	public Double getDriveTrainRamp() {
+		return driveTrainRamp;
+	}
+
+	public double getDriveLeftEncoderDPP() {
+		return driveLeftEncoderDPP;
+	}
+
+	public double getDriveRightEncoderDPP() {
+		return driveRightEncoderDPP;
+	}
 }
