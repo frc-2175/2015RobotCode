@@ -84,9 +84,9 @@ public class RobotMap {
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
         leftEncoder = new Encoder(19, 20, false, EncodingType.k2X);
-        leftEncoder.setDistancePerPulse(Robot.properties.getDriveLeftEncoderDPP());
+        leftEncoder.setDistancePerPulse(0);
         rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
-        rightEncoder.setDistancePerPulse(Robot.properties.getDriveRightEncoderDPP());
+        rightEncoder.setDistancePerPulse(0);
         // gyro = new Gyro(4);
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
