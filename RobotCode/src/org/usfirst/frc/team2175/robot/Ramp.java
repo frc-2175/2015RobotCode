@@ -1,6 +1,9 @@
 package org.usfirst.frc.team2175.robot;
 
 public class Ramp {
+	// Right now, this only ramps the values given to it, so it may not work for
+	// PID, but we'll try it.
+
 	private double output, prevTime, maxDelta;
 
 	public Ramp(double maxDelta) {
