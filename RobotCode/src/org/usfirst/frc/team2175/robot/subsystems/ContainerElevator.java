@@ -30,6 +30,7 @@ public class ContainerElevator extends Subsystem {
                         + speed);
             }
             RobotMap.containerElevatorMotor.set(speed);
+            updateBrakeSetting();
         }
 
         @Override
@@ -40,15 +41,15 @@ public class ContainerElevator extends Subsystem {
 
     public ContainerElevator() {
         ContainerElevatorControllerHandler containerElevatorControllerHandler = new ContainerElevatorControllerHandler();
-        containerElevatorController = new PIDController(0, 0, 0,
+        containerElevatorController = new PIDController(.001, 0, 0,
                 containerElevatorControllerHandler,
                 containerElevatorControllerHandler);
         // TODO determine PID constants
         containerElevatorController.setAbsoluteTolerance(0.5);
 
         // TODO determine distance per pulse and direction of encoder
-        RobotMap.containerElevatorEncoder.setDistancePerPulse(0);
-        RobotMap.containerElevatorEncoder.setReverseDirection(false);
+        
+        
     }
 
     public boolean containerElevatorIsAtTop() {
@@ -105,9 +106,21 @@ public class ContainerElevator extends Subsystem {
     public void resetElevatorEncoder() {
         RobotMap.containerElevatorEncoder.reset();
     }
+    
+    public void updateBrakeSetting() {
+        double motorOutput = Robot.containerElevator.getMotorOutput();
+
+        log.fine("motorOutput=" + motorOutput);
+
+        if (Math.abs(motorOutput) < 0.05) {
+            Robot.containerElevator.setBrake(true);
+        } else {
+            Robot.containerElevator.setBrake(false);
+        }
+    }
 
     @Override
     public void initDefaultCommand() {
-        setDefaultCommand(new MoveContainerElevatorManually());
+//        setDefaultCommand(new MoveContainerElevatorManually());
     }
 }

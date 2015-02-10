@@ -1,7 +1,5 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
-import java.util.logging.Logger;
-
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,10 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveContainerElevatorManually extends Command {
-    private final Logger log = Logger.getLogger(getClass().getName());
+    
 
+    
     public MoveContainerElevatorManually() {
         requires(Robot.containerElevator);
+        
     }
 
     // Called just before this Command runs the first time
@@ -28,20 +28,10 @@ public class MoveContainerElevatorManually extends Command {
         double elevatorSpeed = Robot.oi.getContainerElevatorSpeed();
         Robot.containerElevator.setContainerElevatorSpeed(elevatorSpeed);
 
-        updateBrakeSetting();
+        Robot.containerElevator.updateBrakeSetting();
     }
 
-    private void updateBrakeSetting() {
-        double motorOutput = Robot.containerElevator.getMotorOutput();
-
-        log.fine("motorOutput=" + motorOutput);
-
-        if (Math.abs(motorOutput) < 0.05) {
-            Robot.containerElevator.setBrake(true);
-        } else {
-            Robot.containerElevator.setBrake(false);
-        }
-    }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     @Override

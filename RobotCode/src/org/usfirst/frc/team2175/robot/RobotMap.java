@@ -77,6 +77,7 @@ public class RobotMap {
     public static DoubleSolenoid containerIntakeArms;
 
     public static void init() {
+    	
         pdp = new PowerDistributionPanel();
 
         // drivetrain
@@ -93,7 +94,7 @@ public class RobotMap {
         toteElevatorTalon = new Talon(2);
         toteSwitchTop = new DigitalInput(7);
         toteSwitchBottom = new DigitalInput(18);
-        toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X); // TODO
+        toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X);
 
         toteElevatorEncoder.reset();
         toteElevatorBrake = new Solenoid(4);
@@ -102,7 +103,9 @@ public class RobotMap {
         containerSwitchTop = new DigitalInput(1);
         containerSwitchBottom = new DigitalInput(0);
         containerElevatorMotor = new Talon(3);
-        containerElevatorEncoder = new Encoder(8, 9, false, EncodingType.k2X);
+        containerElevatorEncoder = new Encoder(8, 9, true, EncodingType.k2X);
+        containerElevatorEncoder.setDistancePerPulse(120/12/5);
+        containerElevatorEncoder.reset();
         containerElevatorBrake = new DoubleSolenoid(2, 3);
 
         // tote intake

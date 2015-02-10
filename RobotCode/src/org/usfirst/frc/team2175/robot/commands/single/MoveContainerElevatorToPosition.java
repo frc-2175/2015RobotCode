@@ -22,7 +22,7 @@ public class MoveContainerElevatorToPosition extends CommandBase {
     	Robot.containerElevator.containerElevatorController.enable();
     }
 
-    protected void execute() { //Does this have to start the motor?
+    protected void execute() { 
     }
 
     protected boolean isFinished() {

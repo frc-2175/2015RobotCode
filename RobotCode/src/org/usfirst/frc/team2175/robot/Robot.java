@@ -96,6 +96,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledPeriodic() {
+    	
     }
 
     @Override
@@ -124,6 +125,7 @@ public class Robot extends IterativeRobot {
         }
         driveChoice = (Command) driveChooser.getSelected();
         driveChoice.start();
+        System.out.println("iaminteleop");
 
     }
 
@@ -133,8 +135,10 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void disabledInit() {
+    	containerElevator.containerElevatorController.disable();
     }
 
+    
     /**
      *
      * This function is called periodically during operator control.
@@ -148,8 +152,11 @@ public class Robot extends IterativeRobot {
         // + distance;
         // log.info(msg);
 
-        getPDPData();
+//        getPDPData();
+    	
+    	System.out.println(RobotMap.containerElevatorEncoder.get() + " " + RobotMap.containerElevatorEncoder.getDistance());
     }
+    
 
     /**
      * This function is called periodically during test mode
@@ -207,12 +214,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Drive Style", driveChooser);
     }
 
-    public void getPDPData() {
-        for (int i = 0; i <= 15; i++) {
-            System.out.print(RobotMap.pdp.getCurrent(i) + ", ");
-        }
-        System.out.print("\n");
-
-    }
+//    public void getPDPData() {
+//        for (int i = 0; i <= 15; i++) {
+//            System.out.print(RobotMap.pdp.getCurrent(i) + ", ");
+//        }
+//        System.out.print("\n");
+//
+//    }
 
 }
