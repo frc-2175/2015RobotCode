@@ -91,6 +91,8 @@ public class RobotMap {
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
         // tote elevator
+        toteSwitchTop = new DigitalInput(2);
+        toteSwitchBottom = new DigitalInput(3);
         toteElevatorTalon = new Talon(2);
         toteSwitchTop = new DigitalInput(7);
         toteSwitchBottom = new DigitalInput(18);
@@ -136,5 +138,21 @@ public class RobotMap {
 
     public static double getRightEncoderSpeed() {
         return leftEncoder.getRate();
+    }
+
+    public static boolean getTopContainerLiftSwitch() {
+        return containerSwitchTop.get();
+    }
+
+    public static boolean getBottomContainerLiftSwitch() {
+        return containerSwitchBottom.get();
+    }
+
+    public static boolean getTopToteLiftSwitch() {
+        return toteSwitchTop.get();
+    }
+
+    public static boolean getBottomToteLiftSwitch() {
+        return toteSwitchBottom.get();
     }
 }

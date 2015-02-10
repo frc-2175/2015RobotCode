@@ -235,5 +235,13 @@ public class Robot extends IterativeRobot {
                 RobotMap.getLeftEncoderSpeed());
         SmartDashboard.putNumber("Right Drive Encoder",
                 RobotMap.getRightEncoderSpeed());
+        SmartDashboard.putBoolean("Container Lift at Top",
+                RobotMap.getTopContainerLiftSwitch());
+        SmartDashboard.putBoolean("Container Lift at Bottom",
+                RobotMap.getBottomContainerLiftSwitch());
+        SmartDashboard.putBoolean("Tote Lift at Top",
+                RobotMap.getTopToteLiftSwitch());
+        SmartDashboard.putBoolean("Tote Lift at Bottom",
+                RobotMap.getBottomToteLiftSwitch());
     }
 }
