@@ -120,15 +120,7 @@ public class ContainerElevator extends Subsystem {
         }
     }
     
-    public double rampMotorValues(double originalValues) {
-    	double maxDelta;
-    	double prevTime;
-    	double currentTime;
-    	double deltaTime;
-    	
-    	return originalValues; //TODO actually write the code
-    }
-
+    
     @Override
     public void initDefaultCommand() {
 //        setDefaultCommand(new MoveContainerElevatorManually());

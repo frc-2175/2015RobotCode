@@ -16,9 +16,7 @@ public class TotePusher extends Subsystem {
         double newSpeed;
         if (isPusherExtended() && armSpeed >= 0) {
             newSpeed = 0;
-        }
-        // FIXME is this an else if?
-        if (isPusherRetracted() && armSpeed <= 0) {
+        } else if (isPusherRetracted() && armSpeed <= 0) {
             newSpeed = 0;
         } else {
             newSpeed = armSpeed;

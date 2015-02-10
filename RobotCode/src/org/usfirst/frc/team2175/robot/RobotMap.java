@@ -104,7 +104,7 @@ public class RobotMap {
         containerSwitchBottom = new DigitalInput(0);
         containerElevatorMotor = new Talon(3);
         containerElevatorEncoder = new Encoder(8, 9, true, EncodingType.k2X);
-        containerElevatorEncoder.setDistancePerPulse(120/12/5);
+        containerElevatorEncoder.setDistancePerPulse(1/120*12*5/25.4);
         containerElevatorEncoder.reset();
         containerElevatorBrake = new DoubleSolenoid(2, 3);
 

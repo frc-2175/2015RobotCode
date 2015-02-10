@@ -32,7 +32,7 @@ public class ToteElevatorConfig_NextLevelDownTest extends TestBase {
 	
 	@Test
 	public void testGetNextLevelDown() {
-		ToteElevatorConfig config = new ToteElevatorConfig(10, 20, 30, 40, 50);
+		ToteElevatorConfig config = new ToteElevatorConfig(0,10, 20, 30, 40, 50);
 		
 		double actual = config.getNextLevelDown(currentLevel);
 		assertEquals("Wrong nextLevelDown found", expected, actual, DOUBLE_TOLERANCE);

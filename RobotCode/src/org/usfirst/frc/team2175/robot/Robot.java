@@ -45,6 +45,8 @@ public class Robot extends IterativeRobot {
     public static ContainerElevator containerElevator;
     public static ToteIntake toteIntake;
     public static ContainerIntake containerIntake;
+    public static Ramp toteRamp;
+    public static Ramp containerRamp;
 
     public static RobotConfig properties;
 
@@ -64,7 +66,7 @@ public class Robot extends IterativeRobot {
         }
     }
 
-    private java.util.Timer controlLoop;
+    public java.util.Timer controlLoop;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -173,6 +175,8 @@ public class Robot extends IterativeRobot {
         containerElevator = new ContainerElevator();
         toteIntake = new ToteIntake();
         containerIntake = new ContainerIntake();
+        toteRamp = new Ramp(Robot.properties.toteConfig.maxDelta);
+        containerRamp = new Ramp(Robot.properties.containerConfig.maxDelta);
     }
 
     private void makeControlLoop() {

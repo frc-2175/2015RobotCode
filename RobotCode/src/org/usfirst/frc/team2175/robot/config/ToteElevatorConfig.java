@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 public class ToteElevatorConfig {
     private final Logger log = Logger.getLogger(getClass().getName());
 
+    public final double maxDelta;
+    
     public final double pickup;
     public final double driving;
     public final double scoring;
@@ -19,12 +21,14 @@ public class ToteElevatorConfig {
 
     private static final int ACCEPTABLE_RANGE = 2;
 
-    public ToteElevatorConfig(double pickup, double driving, double scoring,
+    public ToteElevatorConfig(double maxDelta, double pickup, double driving, double scoring,
             double step, double stack) throws IllegalStateException {
         if (!(pickup <= driving && driving <= scoring && scoring <= step && step <= stack)) {
             throw new IllegalStateException("Elevator levels are not in order.");
         }
 
+        this.maxDelta=maxDelta;
+        
         this.pickup = pickup;
         this.driving = driving;
         this.scoring = scoring;
