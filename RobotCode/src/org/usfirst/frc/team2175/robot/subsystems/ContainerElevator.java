@@ -45,10 +45,8 @@ public class ContainerElevator extends Subsystem {
                 containerElevatorControllerHandler,
                 containerElevatorControllerHandler);
         containerElevatorController.setOutputRange(-.5, 1);
-        // TODO determine PID constants
+        // TODO parameterize PID constants
         containerElevatorController.setAbsoluteTolerance(5);
-
-        // TODO determine distance per pulse and direction of encoder
         
         
     }
