@@ -25,7 +25,7 @@ public class PDPCurrentLogger {
 		}
 
 		out.write("Starting new log... \n");
-		out.write("Time, Port 0, Port 1, Port 2, Port 3, Port 4, Port 5, Port 6, Port 7, Port 8, Port 9, Port 10, Port 11, Port 12, Port 13, Port 14, Port 15 \n");
+		out.write("Time, Port 0 current, Port 1 current, Port 2 current, Port 3 current, Port 4 current, Port 5 current, Port 6 current, Port 7 current, Port 8 current, Port 9 current, Port 10 current, Port 11 current, Port 12 current, Port 13 current, Port 14 current, Port 15 current \n");
 
 	}
 
@@ -40,18 +40,18 @@ public class PDPCurrentLogger {
 		out.write("\n");
 
 	}
-	
+
 	public void endPDPLogging() throws IOException {
 		out.write("Ending log. \n");
 		out.close();
 	}
-	
+
 	public void setLogOutFileToUse(String filepath) {
 		logOutFileToUse = filepath;
 	}
-	
+
 	public String getLogOutFileToUse() {
 		return logOutFileToUse;
 	}
-	
+
 }
