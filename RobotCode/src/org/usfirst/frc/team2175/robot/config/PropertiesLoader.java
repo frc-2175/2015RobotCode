@@ -10,13 +10,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Common load properties.
+ * Utility class to handle loading properties from a file into a Properties
+ * instance.
  */
 public class PropertiesLoader {
     private final Logger log = Logger.getLogger(getClass().getName());
 
     private static final String CAN_T_CONTINUE_MSG = "; can't continue";
 
+    /**
+     * Load the properties from the specified file name.
+     *
+     * @param fileName
+     *            The file name, including any desired path (absolute or
+     *            relative).
+     * @return Properties instance loaded with the properties in the file.
+     */
     public Properties loadProperties(String fileName) {
         File file = new File(fileName);
         return loadProperties(file);
