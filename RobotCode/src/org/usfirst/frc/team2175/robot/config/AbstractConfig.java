@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 public abstract class AbstractConfig {
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    protected String getPropertyValue(String propertyName, Properties props) {
+    protected String getStringPropertyValue(String propertyName,
+            Properties props) {
         String value = props.getProperty(propertyName);
         if (value == null) {
             String msg = "Property '" + propertyName
@@ -20,5 +21,11 @@ public abstract class AbstractConfig {
             throw new IllegalStateException(msg);
         }
         return value;
+    }
+
+    protected double getDoublePropertyValue(String propertyName,
+            Properties props) {
+        String propertyValue = getStringPropertyValue(propertyName, props);
+        return Double.parseDouble(propertyValue);
     }
 }

@@ -32,36 +32,31 @@ public class RobotConfig extends AbstractConfig {
             Properties prop = new PropertiesLoader()
                     .loadProperties(PROPERTY_FILE_NAME);
 
-            deadbandSize = Double.parseDouble(getPropertyValue("deadbandSize",
-                    prop));
-            driveLeftEncoderDPP = Double.parseDouble(getPropertyValue(
-                    "driveLeftEncoderDPP", prop));
-            driveRightEncoderDPP = Double.parseDouble(getPropertyValue(
-                    "driveRightEncoderDPP", prop));
+            deadbandSize = getDoublePropertyValue("deadbandSize", prop);
+            driveLeftEncoderDPP = getDoublePropertyValue("driveLeftEncoderDPP",
+                    prop);
+            driveRightEncoderDPP = getDoublePropertyValue(
+                    "driveRightEncoderDPP", prop);
 
             toteConfig = makeToteElevatorConfig(prop);
 
-            toteElevatorP = Double.parseDouble(getPropertyValue(
-                    "toteElevatorP", prop));
-            toteElevatorI = Double.parseDouble(getPropertyValue(
-                    "toteElevatorI", prop));
-            toteElevatorD = Double.parseDouble(getPropertyValue(
-                    "toteElevatorD", prop));
+            toteElevatorP = getDoublePropertyValue("toteElevatorP", prop);
+            toteElevatorI = getDoublePropertyValue("toteElevatorI", prop);
+            toteElevatorD = getDoublePropertyValue("toteElevatorD", prop);
 
             containerConfig = makeContainerElevatorConfig(prop);
 
-            containerElevatorP = Double.parseDouble(getPropertyValue(
-                    "containerElevatorP", prop));
-            containerElevatorI = Double.parseDouble(getPropertyValue(
-                    "containerElevatorI", prop));
-            containerElevatorD = Double.parseDouble(getPropertyValue(
-                    "containerElevatorD", prop));
-            toteIntakeWheelsSpeed = Double.parseDouble(getPropertyValue(
-                    "toteIntakeWheelsSpeed", prop));
-            precisionModeScale = Double.parseDouble(getPropertyValue(
-                    "precisionModeScale", prop));
-            driveTrainRamp = Double.parseDouble(getPropertyValue(
-                    "driveTrainRamp", prop));
+            containerElevatorP = getDoublePropertyValue("containerElevatorP",
+                    prop);
+            containerElevatorI = getDoublePropertyValue("containerElevatorI",
+                    prop);
+            containerElevatorD = getDoublePropertyValue("containerElevatorD",
+                    prop);
+            toteIntakeWheelsSpeed = getDoublePropertyValue(
+                    "toteIntakeWheelsSpeed", prop);
+            precisionModeScale = getDoublePropertyValue("precisionModeScale",
+                    prop);
+            driveTrainRamp = getDoublePropertyValue("driveTrainRamp", prop);
         } catch (Exception e) {
             final String msg = "Problem with processing properties, can't continue:";
             log.log(Level.SEVERE, msg, e);
@@ -72,22 +67,15 @@ public class RobotConfig extends AbstractConfig {
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
         double downSpeed, maxDelta, level0, level1, level2, level3, level4;
 
-        downSpeed = Double.parseDouble(getPropertyValue(
-                "containerElevatorDownSpeed", prop));
+        downSpeed = getDoublePropertyValue("containerElevatorDownSpeed", prop);
 
-        maxDelta = Double.parseDouble(getPropertyValue(
-                "containerElevatorMaxDelta", prop));
+        maxDelta = getDoublePropertyValue("containerElevatorMaxDelta", prop);
 
-        level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
-                prop));
-        level1 = Double.parseDouble(getPropertyValue("containerDrivingHeight",
-                prop));
-        level2 = Double.parseDouble(getPropertyValue("containerScoringHeight",
-                prop));
-        level3 = Double.parseDouble(getPropertyValue("containerStepHeight",
-                prop));
-        level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
-                prop));
+        level0 = getDoublePropertyValue("containerPickupHeight", prop);
+        level1 = getDoublePropertyValue("containerDrivingHeight", prop);
+        level2 = getDoublePropertyValue("containerScoringHeight", prop);
+        level3 = getDoublePropertyValue("containerStepHeight", prop);
+        level4 = getDoublePropertyValue("containerStackHeight", prop);
 
         return new ContainerElevatorConfig(downSpeed, maxDelta, level0, level1,
                 level2, level3, level4);
@@ -96,16 +84,13 @@ public class RobotConfig extends AbstractConfig {
     private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
         double maxDelta, pickup, driving, scoring, step, stack;
 
-        maxDelta = Double.parseDouble(getPropertyValue("toteElevatorMaxDelta",
-                prop));
+        maxDelta = getDoublePropertyValue("toteElevatorMaxDelta", prop);
 
-        pickup = Double.parseDouble(getPropertyValue("totePickupHeight", prop));
-        driving = Double
-                .parseDouble(getPropertyValue("toteDrivingHeight", prop));
-        scoring = Double
-                .parseDouble(getPropertyValue("toteScoringHeight", prop));
-        step = Double.parseDouble(getPropertyValue("toteStepHeight", prop));
-        stack = Double.parseDouble(getPropertyValue("toteStackHeight", prop));
+        pickup = getDoublePropertyValue("totePickupHeight", prop);
+        driving = getDoublePropertyValue("toteDrivingHeight", prop);
+        scoring = getDoublePropertyValue("toteScoringHeight", prop);
+        step = getDoublePropertyValue("toteStepHeight", prop);
+        stack = getDoublePropertyValue("toteStackHeight", prop);
 
         return new ToteElevatorConfig(maxDelta, pickup, driving, scoring, step,
                 stack);
