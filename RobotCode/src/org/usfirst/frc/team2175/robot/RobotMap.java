@@ -142,8 +142,6 @@ public class RobotMap extends AbstractConfig {
                 props);
         int brakeForwardValue = getIntPropertyValue(
                 "tote.elevator.brake.forward", props);
-        int brakeReverseValue = getIntPropertyValue(
-                "tote.elevator.brake.reverse", props);
 
         toteElevatorMotor = new Talon(motorValue);
 
@@ -154,7 +152,7 @@ public class RobotMap extends AbstractConfig {
                 EncodingType.k2X);
         toteElevatorEncoder.reset();
 
-        toteElevatorBrake = new Solenoid(brakeForwardValue, brakeReverseValue);
+        toteElevatorBrake = new Solenoid(brakeForwardValue);
     }
 
     private void configureToteIntake(Properties props) {
@@ -190,8 +188,6 @@ public class RobotMap extends AbstractConfig {
                 props);
         int brakeForwardValue = getIntPropertyValue(
                 "container.elevator.brake.a", props);
-        int brakeReverseValue = getIntPropertyValue(
-                "container.elevator.brake.b", props);
 
         containerSwitchTop = new DigitalInput(switchTopValue);
         containerSwitchBottom = new DigitalInput(switchBottomValue);
@@ -201,8 +197,7 @@ public class RobotMap extends AbstractConfig {
         // TODO externalize any of these formula values?
         containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
-        containerElevatorBrake = new Solenoid(brakeForwardValue,
-                brakeReverseValue);
+        containerElevatorBrake = new Solenoid(brakeForwardValue);
     }
 
     private void configureContainerIntake(Properties props) {
