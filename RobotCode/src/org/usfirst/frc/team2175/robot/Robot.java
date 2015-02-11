@@ -5,9 +5,7 @@ import java.util.logging.Logger;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton1DriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push1Tote;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push2Totes;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push3Totes;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton3StackToteInAutoZone;
+import org.usfirst.frc.team2175.robot.commands.auto.Auton3Stack1Tote;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
@@ -197,13 +195,9 @@ public class Robot extends IterativeRobot {
         // command
         autonChooser.addDefault("2 - Push 1 tote into Auto Zone",
                 new Auton2Push1Tote());
-        autonChooser.addDefault("3 - Push 2 totes into Auto Zone",
-                new Auton2Push2Totes());
-        autonChooser.addDefault("4 - Push 3 totes into Auto Zone",
-                new Auton2Push3Totes());
         autonChooser.addDefault(
                 "5 - Stack 3 Totes and put them into Auto Zone",
-                new Auton3StackToteInAutoZone());
+                new Auton3Stack1Tote());
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
