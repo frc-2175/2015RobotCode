@@ -53,6 +53,8 @@ public class ContainerElevator extends Subsystem {
 
 	}
 
+	private boolean brakeOn;
+
 	public boolean containerElevatorIsAtTop() {
 		boolean isAtTop = !RobotMap.containerSwitchTop.get();
 		log.fine("isAtTop=" + isAtTop);
@@ -95,8 +97,10 @@ public class ContainerElevator extends Subsystem {
 	public void setBrake(boolean on) {
 		if (on) {
 			RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kReverse);
+			brakeOn = true;
 		} else {
 			RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);
+			brakeOn = false;
 		}
 	}
 
@@ -123,6 +127,10 @@ public class ContainerElevator extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// setDefaultCommand(new MoveContainerElevatorManually());
+	}
+
+	public boolean getBrake() {
+		return brakeOn;
 	}
 
 }
