@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -17,6 +18,7 @@ public class ToteElevator extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
     public PIDController heightController;
+    private boolean brakeOn;
 
     protected void usePIDOutput(double speed) {
         log.fine("speed=" + speed);
@@ -42,7 +44,8 @@ public class ToteElevator extends Subsystem {
     }
 
     public ToteElevator() {
-        // TODO Find actual distance per pulse (I think this is right, but not sure)
+        // TODO Find actual distance per pulse (I think this is right, but not
+        // sure)
         RobotMap.toteElevatorEncoder.setDistancePerPulse(1 / 50.8);
         RobotMap.toteElevatorEncoder.setReverseDirection(true);
         HeightControllerHandler heightHandler = new HeightControllerHandler();
@@ -79,6 +82,36 @@ public class ToteElevator extends Subsystem {
         RobotMap.toteElevatorTalon.set(newSpeed);
         log.fine("requested toteSpeed=" + toteElevatorSpeed + ", newSpeed="
                 + newSpeed);
+    }
+
+    public void setBrake(boolean on) {
+        if (on) {
+            RobotMap.toteElevatorBrake.set(DoubleSolenoid.Value.kForward);
+        } else {
+            RobotMap.toteElevatorBrake.set(DoubleSolenoid.Value.kReverse);
+        }
+    }
+
+    public double getMotorOutput() {
+        return RobotMap.toteElevatorTalon.get();
+    }
+
+    public void updateBrakeSetting() {
+        double motorOutput = getMotorOutput();
+
+        log.fine("motorOutput=" + motorOutput);
+
+        if (Math.abs(motorOutput) < 0.05) {
+            setBrake(true);
+            brakeOn = true;
+        } else {
+            setBrake(false);
+            brakeOn = false;
+        }
+    }
+
+    public boolean getBrake() {
+        return brakeOn;
     }
 
     public void resetEncoder() {

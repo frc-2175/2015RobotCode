@@ -239,9 +239,13 @@ public class Robot extends IterativeRobot {
                 RobotMap.getTopContainerLiftSwitch());
         SmartDashboard.putBoolean("Container Lift at Bottom",
                 RobotMap.getBottomContainerLiftSwitch());
-        SmartDashboard.putBoolean("Tote Lift at Top",
-                RobotMap.getTopToteLiftSwitch());
-        SmartDashboard.putBoolean("Tote Lift at Bottom",
-                RobotMap.getBottomToteLiftSwitch());
+        SmartDashboard.putBoolean("Container Lift Brake",
+                Robot.containerElevator.getBrake());
+        SmartDashboard.putBoolean("Tote Lift Brake",
+                Robot.toteElevator.getBrake());
+        // SmartDashboard.putBoolean("Tote Lift at Top",
+        // RobotMap.getTopToteLiftSwitch());
+        // SmartDashboard.putBoolean("Tote Lift at Bottom",
+        // RobotMap.getBottomToteLiftSwitch());
     }
 }

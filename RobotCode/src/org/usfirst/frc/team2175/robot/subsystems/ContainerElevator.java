@@ -15,109 +15,116 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class ContainerElevator extends Subsystem {
-	private final Logger log = Logger.getLogger(getClass().getName());
+    private final Logger log = Logger.getLogger(getClass().getName());
 
-	public PIDController containerElevatorController;
+    public PIDController containerElevatorController;
+    private boolean brakeOn;
 
-	private class ContainerElevatorControllerHandler implements PIDSource,
-			PIDOutput {
-		@Override
-		public void pidWrite(double speed) {
-			double currentSpeed = RobotMap.containerElevatorMotor.getSpeed();
-			if (currentSpeed != speed) {
-				log.info("currentSpeed=" + currentSpeed + ", new speed="
-						+ speed);
-			}
-			setContainerElevatorSpeed(speed);
-			updateBrakeSetting();
-		}
+    private class ContainerElevatorControllerHandler implements PIDSource,
+            PIDOutput {
+        @Override
+        public void pidWrite(double speed) {
+            double currentSpeed = RobotMap.containerElevatorMotor.getSpeed();
+            if (currentSpeed != speed) {
+                log.info("currentSpeed=" + currentSpeed + ", new speed="
+                        + speed);
+            }
+            setContainerElevatorSpeed(speed);
+            updateBrakeSetting();
+        }
 
-		@Override
-		public double pidGet() {
-			return getContainerHeight();
-		}
-	}
+        @Override
+        public double pidGet() {
+            return getContainerHeight();
+        }
+    }
 
-	public ContainerElevator() {
-		ContainerElevatorControllerHandler containerElevatorControllerHandler = new ContainerElevatorControllerHandler();
-		containerElevatorController = new PIDController(.005, 0, 0.001,
-				containerElevatorControllerHandler,
-				containerElevatorControllerHandler);
-		containerElevatorController.setOutputRange(-.5, 1);
-		// TODO parameterize PID constants
-		containerElevatorController.setAbsoluteTolerance(5);
+    public ContainerElevator() {
+        ContainerElevatorControllerHandler containerElevatorControllerHandler = new ContainerElevatorControllerHandler();
+        containerElevatorController = new PIDController(.005, 0, 0.001,
+                containerElevatorControllerHandler,
+                containerElevatorControllerHandler);
+        containerElevatorController.setOutputRange(-.5, 1);
+        // TODO parameterize PID constants
+        containerElevatorController.setAbsoluteTolerance(5);
 
-	}
+    }
 
-	public boolean containerElevatorIsAtTop() {
-		boolean isAtTop = !RobotMap.containerSwitchTop.get();
-		log.fine("isAtTop=" + isAtTop);
-		return isAtTop;
-	}
+    public boolean containerElevatorIsAtTop() {
+        boolean isAtTop = !RobotMap.containerSwitchTop.get();
+        log.fine("isAtTop=" + isAtTop);
+        return isAtTop;
+    }
 
-	public boolean containerElevatorIsAtBottom() {
-		boolean isAtBottom = !RobotMap.containerSwitchBottom.get();
-		log.fine("isAtBottom=" + isAtBottom);
-		return isAtBottom;
-	}
+    public boolean containerElevatorIsAtBottom() {
+        boolean isAtBottom = !RobotMap.containerSwitchBottom.get();
+        log.fine("isAtBottom=" + isAtBottom);
+        return isAtBottom;
+    }
 
-	public void setContainerElevatorSpeed(double containerSpeed) {
-		double newSpeed;
-		double downSpeed = Robot.properties.containerConfig.downSpeed;
-		if (containerElevatorIsAtTop()
-				&& Robot.oi.getContainerElevatorSpeed() > 0) {
-			newSpeed = 0;
-		} else if (containerElevatorIsAtBottom()
-				&& Robot.oi.getContainerElevatorSpeed() < 0) {
-			newSpeed = 0;
-		} else {
-			if (containerSpeed < downSpeed) {
-				newSpeed = Robot.containerRamp.RampInput(downSpeed);
-			} else {
-				newSpeed = Robot.containerRamp.RampInput(containerSpeed);
-			} // TODO test this to see if it actually ramps; also tune maxDelta
+    public void setContainerElevatorSpeed(double containerSpeed) {
+        double newSpeed;
+        double downSpeed = Robot.properties.containerConfig.downSpeed;
+        if (containerElevatorIsAtTop()
+                && Robot.oi.getContainerElevatorSpeed() > 0) {
+            newSpeed = 0;
+        } else if (containerElevatorIsAtBottom()
+                && Robot.oi.getContainerElevatorSpeed() < 0) {
+            newSpeed = 0;
+        } else {
+            if (containerSpeed < downSpeed) {
+                newSpeed = Robot.containerRamp.RampInput(downSpeed);
+            } else {
+                newSpeed = Robot.containerRamp.RampInput(containerSpeed);
+            } // TODO test this to see if it actually ramps; also tune maxDelta
 
-		}
-		// newSpeed = containerSpeed;
-		RobotMap.containerElevatorMotor.set(newSpeed);
-		log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
-				+ newSpeed);
-	}
+        }
+        // newSpeed = containerSpeed;
+        RobotMap.containerElevatorMotor.set(newSpeed);
+        log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
+                + newSpeed);
+    }
 
-	public double getMotorOutput() {
-		return RobotMap.containerElevatorMotor.get();
-	}
+    public double getMotorOutput() {
+        return RobotMap.containerElevatorMotor.get();
+    }
 
-	public void setBrake(boolean on) {
-		if (on) {
-			RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kReverse);
-		} else {
-			RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);
-		}
-	}
+    public void setBrake(boolean on) {
+        if (on) {
+            RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kReverse);
+        } else {
+            RobotMap.containerElevatorBrake.set(DoubleSolenoid.Value.kForward);
+        }
+    }
 
-	public double getContainerHeight() {
-		return RobotMap.containerElevatorEncoder.getDistance();
-	}
+    public double getContainerHeight() {
+        return RobotMap.containerElevatorEncoder.getDistance();
+    }
 
-	public void resetElevatorEncoder() {
-		RobotMap.containerElevatorEncoder.reset();
-	}
+    public void resetElevatorEncoder() {
+        RobotMap.containerElevatorEncoder.reset();
+    }
 
-	public void updateBrakeSetting() {
-		double motorOutput = Robot.containerElevator.getMotorOutput();
+    public void updateBrakeSetting() {
+        double motorOutput = Robot.containerElevator.getMotorOutput();
 
-		log.fine("motorOutput=" + motorOutput);
+        log.fine("motorOutput=" + motorOutput);
 
-		if (Math.abs(motorOutput) < 0.05) {
-			Robot.containerElevator.setBrake(true);
-		} else {
-			Robot.containerElevator.setBrake(false);
-		}
-	}
+        if (Math.abs(motorOutput) < 0.05) {
+            Robot.containerElevator.setBrake(true);
+            brakeOn = true;
+        } else {
+            Robot.containerElevator.setBrake(false);
+            brakeOn = false;
+        }
+    }
 
-	@Override
-	public void initDefaultCommand() {
-		// setDefaultCommand(new MoveContainerElevatorManually());
-	}
+    public boolean getBrake() {
+        return brakeOn;
+    }
+
+    @Override
+    public void initDefaultCommand() {
+        // setDefaultCommand(new MoveContainerElevatorManually());
+    }
 }

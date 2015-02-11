@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -66,7 +65,7 @@ public class RobotMap {
     public static Talon toteIntakeWheelMotor;
     public static DoubleSolenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
-    public static Solenoid toteElevatorBrake;
+    public static DoubleSolenoid toteElevatorBrake;
 
     // tote pusher
     public static Talon totePusherArm;
@@ -99,7 +98,7 @@ public class RobotMap {
         toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X);
 
         toteElevatorEncoder.reset();
-        toteElevatorBrake = new Solenoid(4);
+        toteElevatorBrake = new DoubleSolenoid(6, 7);
 
         // container elevator
         containerSwitchTop = new DigitalInput(1);
