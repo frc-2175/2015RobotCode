@@ -1,5 +1,9 @@
 package org.usfirst.frc.team2175.robot;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
@@ -37,215 +41,262 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-    private final Logger log = Logger.getLogger(getClass().getName());
 
-    public static OI oi;
-    public static Drivetrain drivetrain;
-    public static ToteElevator toteElevator;
-    public static TotePusher totePusher;
-    public static ContainerElevator containerElevator;
-    public static ToteIntake toteIntake;
-    public static ContainerIntake containerIntake;
-    public static Ramp toteRamp;
-    public static Ramp containerRamp;
 
-    public static RobotConfig properties;
-    public static KeymapConfig keymap;
+	private final Logger log = Logger.getLogger(getClass().getName());
 
-    Command autonomousCommand;
-    Command driveChoice;
-    SendableChooser autonChooser;
-    SendableChooser driveChooser;
+	public static OI oi;
+	public static Drivetrain drivetrain;
+	public static ToteElevator toteElevator;
+	public static TotePusher totePusher;
+	public static ContainerElevator containerElevator;
+	public static ToteIntake toteIntake;
+	public static ContainerIntake containerIntake;
+	public static Ramp toteRamp;
+	public static Ramp containerRamp;
 
-    static {
-        new LoggingConfiguration().initializeLogging();
-    }
+	public static RobotConfig properties;
 
-    private class SchedulerTask extends java.util.TimerTask {
-        @Override
-        public void run() {
-            Scheduler.getInstance().run();
-        }
-    }
+	Command autonomousCommand;
+	Command driveChoice;
+	SendableChooser autonChooser;
+	SendableChooser driveChooser;
 
-    public java.util.Timer controlLoop;
+	static {
+		new LoggingConfiguration().initializeLogging();
+	}
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
-    @Override
-    public void robotInit() {
-        log.info("Robot configuration starting");
+	private class SchedulerTask extends java.util.TimerTask {
+		@Override
+		public void run() {
+			Scheduler.getInstance().run();
+		}
+	}
 
-        properties = new RobotConfig();
+	public java.util.Timer controlLoop;
 
-        RobotMap.init();
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	@Override
+	public void robotInit() {
+		log.info("Robot configuration starting");
 
-        makeSubsystems();
+		properties = new RobotConfig();
 
-        makeDriveChooser();
+		RobotMap.init();
 
-        oi = new OI();
+		makeSubsystems();
 
-        makeControlLoop();
+		makeDriveChooser();
 
-        makeAutonChooser();
+		oi = new OI();
 
-        // instantiate the command used for the autonomous period
-        autonomousCommand = new Auton0DoNothing();
+		makeControlLoop();
 
-        log.info("Robot configuration finished");
-    }
+		makeAutonChooser();
 
-    @Override
-    public void disabledPeriodic() {
+		// instantiate the command used for the autonomous period
+		autonomousCommand = new Auton0DoNothing();
 
-    }
+		log.info("Robot configuration finished");
+	}
 
-    @Override
-    public void autonomousInit() {
-        // schedule the autonomous command according to the chooser on the
-        // dashboard
-        autonomousCommand = (Command) autonChooser.getSelected();
-        autonomousCommand.start();
-    }
+	@Override
+	public void disabledPeriodic() {
 
-    /**
-     * This function is called periodically during autonomous
-     */
-    @Override
-    public void autonomousPeriodic() {
-    }
+	}
 
-    @Override
-    public void teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) {
-            autonomousCommand.cancel();
-        }
-        driveChoice = (Command) driveChooser.getSelected();
-        driveChoice.start();
-        System.out.println("iaminteleop");
+	@Override
+	public void autonomousInit() {
+		// schedule the autonomous command according to the chooser on the
+		// dashboard
+		autonomousCommand = (Command) autonChooser.getSelected();
+		autonomousCommand.start();
+		try {
+			initPDPLogging();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-        smartDashboardUpdate();
+	/**
+	 * This function is called periodically during autonomous
+	 */
+	@Override
+	public void autonomousPeriodic() {
+		try {
+			logPDPData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    }
+	@Override
+	public void teleopInit() {
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (autonomousCommand != null) {
+			autonomousCommand.cancel();
+		}
+		driveChoice = (Command) driveChooser.getSelected();
+		driveChoice.start();
+		System.out.println("iaminteleop");
 
-    /**
-     * This function is called when the disabled button is hit. You can use it
-     * to reset subsystems before shutting down.
-     */
-    @Override
-    public void disabledInit() {
-        containerElevator.containerElevatorController.disable();
-    }
+		smartDashboardUpdate();
+		try {
+			initPDPLogging();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-    /**
-     *
-     * This function is called periodically during operator control.
-     */
-    @Override
-    public void teleopPeriodic() {
-        // This method called over 35 times per second.
-        // commented out logging it until determined that we need it
-        // double distance = RobotMap.toteElevatorEncoder.getDistance();
-        // final String msg = "Distance robot has driven since last reset="
-        // + distance;
-        // log.info(msg);
+	}
 
-        // getPDPData();
+	/**
+	 * This function is called when the disabled button is hit. You can use it
+	 * to reset subsystems before shutting down.
+	 */
+	@Override
+	public void disabledInit() {
+		containerElevator.containerElevatorController.disable();
+		try {
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-        System.out.println(RobotMap.containerElevatorEncoder.get() + " "
-                + RobotMap.containerElevatorEncoder.getDistance());
-    }
+	/**
+	 *
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
+		// This method called over 35 times per second.
+		// commented out logging it until determined that we need it
+		// double distance = RobotMap.toteElevatorEncoder.getDistance();
+		// final String msg = "Distance robot has driven since last reset="
+		// + distance;
+		// log.info(msg);
 
-    /**
-     * This function is called periodically during test mode
-     */
-    @Override
-    public void testPeriodic() {
-        LiveWindow.run();
-    }
+		System.out.println(RobotMap.containerElevatorEncoder.get() + " "
+				+ RobotMap.containerElevatorEncoder.getDistance());
+		try {
+			logPDPData();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-    private void makeSubsystems() {
-        drivetrain = new Drivetrain();
-        toteElevator = new ToteElevator();
-        totePusher = new TotePusher();
-        containerElevator = new ContainerElevator();
-        toteIntake = new ToteIntake();
-        containerIntake = new ContainerIntake();
-        toteRamp = new Ramp(Robot.properties.toteConfig.maxDelta);
-        containerRamp = new Ramp(Robot.properties.containerConfig.maxDelta);
-    }
+	/**
+	 * This function is called periodically during test mode
+	 */
+	@Override
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
 
-    private void makeControlLoop() {
-        controlLoop = new java.util.Timer();
-        controlLoop.schedule(new SchedulerTask(), 0L, (10));
-    }
+	private void makeSubsystems() {
+		drivetrain = new Drivetrain();
+		toteElevator = new ToteElevator();
+		totePusher = new TotePusher();
+		containerElevator = new ContainerElevator();
+		toteIntake = new ToteIntake();
+		containerIntake = new ContainerIntake();
+		toteRamp = new Ramp(Robot.properties.toteConfig.maxDelta);
+		containerRamp = new Ramp(Robot.properties.containerConfig.maxDelta);
+	}
 
-    private void makeAutonChooser() {
-        autonChooser = new SendableChooser();
+	private void makeControlLoop() {
+		controlLoop = new java.util.Timer();
+		controlLoop.schedule(new SchedulerTask(), 0L, (10));
+	}
 
-        // TODO add all of the auto routines as they are made
-        autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
-        autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
-        autonChooser.addDefault("1 - Drive straight into Auto Zone",
-                new Auton1DriveForward());
-        // command
-        autonChooser.addDefault("2 - Stack 1 tote into Auto Zone",
-                new Auton2Push1Tote());
-        autonChooser.addDefault(
-                "3 - Stack 2 Totes and push them into auto zone",
-                new Auton3Stack2Totes());
+	private void makeAutonChooser() {
+		autonChooser = new SendableChooser();
 
-        SmartDashboard.putData("Autonomous Routine", autonChooser);
-    }
+		// TODO add all of the auto routines as they are made
+		autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
+		autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
+		autonChooser.addDefault("1 - Drive straight into Auto Zone",
+				new Auton1DriveForward());
+		// command
+		autonChooser.addDefault("2 - Push 1 tote into Auto Zone",
+				new Auton2Push1Tote());
+		autonChooser.addDefault(
+				"5 - Stack 3 Totes and put them into Auto Zone",
+				new Auton3Stack1Tote());
 
-    public void makeDriveChooser() {
-        driveChooser = new SendableChooser();
+		SmartDashboard.putData("Autonomous Routine", autonChooser);
+	}
 
-        driveChooser.addDefault("Arcade with Sniper Mode",
-                new ArcadeDriveWithSticks());
-        driveChooser.addDefault("Tank Drive", new TankDriveWithSticks());
-        driveChooser.addDefault("Arcade with Squared Inputs",
-                new ArcadeDriveSquaredInputs());
-        driveChooser.addDefault("Tank Drive for Testing",
-                new TankDriveForTesting());
+	public void makeDriveChooser() {
+		driveChooser = new SendableChooser();
 
-        SmartDashboard.putData("Drive Style", driveChooser);
-    }
+		driveChooser.addDefault("Arcade with Sniper Mode",
+				new ArcadeDriveWithSticks());
+		driveChooser.addDefault("Tank Drive", new TankDriveWithSticks());
+		driveChooser.addDefault("Arcade with Squared Inputs",
+				new ArcadeDriveSquaredInputs());
+		driveChooser.addDefault("Tank Drive for Testing",
+				new TankDriveForTesting());
 
-    // public void getPDPData() {
-    // for (int i = 0; i <= 15; i++) {
-    // System.out.print(RobotMap.pdp.getCurrent(i) + ", ");
-    // }
-    // System.out.print("\n");
-    //
-    // }
-    private void smartDashboardUpdate() {
-        SmartDashboard.putNumber("Left Drive Talon",
-                RobotMap.getLeftTalonSpeed());
-        SmartDashboard.putNumber("Right Drive Talon",
-                RobotMap.getRightTalonSpeed());
-        SmartDashboard.putNumber("Right Drive Encoder",
-                RobotMap.getLeftEncoderSpeed());
-        SmartDashboard.putNumber("Right Drive Encoder",
-                RobotMap.getRightEncoderSpeed());
-        SmartDashboard.putBoolean("Container Lift at Top",
-                RobotMap.getTopContainerLiftSwitch());
-        SmartDashboard.putBoolean("Container Lift at Bottom",
-                RobotMap.getBottomContainerLiftSwitch());
-        SmartDashboard.putBoolean("Container Lift Brake",
-                Robot.containerElevator.getBrake());
-        SmartDashboard.putBoolean("Tote Lift Brake",
-                Robot.toteElevator.getBrake());
-        // SmartDashboard.putBoolean("Tote Lift at Top",
-        // RobotMap.getTopToteLiftSwitch());
-        // SmartDashboard.putBoolean("Tote Lift at Bottom",
-        // RobotMap.getBottomToteLiftSwitch());
-    }
+		SmartDashboard.putData("Drive Style", driveChooser);
+	}
+
+	OutputStreamWriter out;
+
+	public void initPDPLogging() throws IOException {
+		final String CSV_OUT_FILE_LOCATION = "/home/lvuser/pdpData.csv";
+
+		try {
+			out = new FileWriter(CSV_OUT_FILE_LOCATION);
+		} catch (FileNotFoundException e) {
+			throw new IllegalStateException("pdp out file not found, msg = "
+					+ e.getMessage(), e);
+		}
+
+		out.write("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,\n");
+	}
+
+	public void logPDPData() throws IOException {
+		for (int i = 0; i <= 15; i++) {
+			out.write(RobotMap.pdp.getCurrent(i) + ", ");
+		}
+		out.write("\n");
+
+	}
+
+	private void smartDashboardUpdate() {
+		SmartDashboard.putNumber("Left Drive Talon",
+				RobotMap.getLeftTalonSpeed());
+		SmartDashboard.putNumber("Right Drive Talon",
+				RobotMap.getRightTalonSpeed());
+		SmartDashboard.putNumber("Right Drive Encoder",
+				RobotMap.getLeftEncoderSpeed());
+		SmartDashboard.putNumber("Right Drive Encoder",
+				RobotMap.getRightEncoderSpeed());
+		SmartDashboard.putBoolean("Container Lift at Top",
+				RobotMap.getTopContainerLiftSwitch());
+		SmartDashboard.putBoolean("Container Lift at Bottom",
+				RobotMap.getBottomContainerLiftSwitch());
+		SmartDashboard.putBoolean("Container Lift Brake",
+				Robot.containerElevator.getBrake());
+		SmartDashboard.putBoolean("Tote Lift Brake",
+				Robot.toteElevator.getBrake());
+		// SmartDashboard.putBoolean("Tote Lift at Top",
+		// RobotMap.getTopToteLiftSwitch());
+		// SmartDashboard.putBoolean("Tote Lift at Bottom",
+		// RobotMap.getBottomToteLiftSwitch());
+	}
+
+
 }
