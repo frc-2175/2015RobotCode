@@ -13,6 +13,8 @@ public class KeymapConfig extends AbstractConfig {
     private final int closeContainerIntake;
     private final int openToteIntake;
     private final int closeToteIntake;
+    private final int runToteIntakeWheels;
+    private final int runToteIntakeWheelsBackwards;
 
     public KeymapConfig() {
         try {
@@ -25,11 +27,39 @@ public class KeymapConfig extends AbstractConfig {
                     prop);
             openToteIntake = getIntPropertyValue("openToteIntake", prop);
             closeToteIntake = getIntPropertyValue("closeToteIntake", prop);
+            runToteIntakeWheels = getIntPropertyValue("runToteIntakeWheels",
+                    prop);
+            runToteIntakeWheelsBackwards = getIntPropertyValue(
+                    "runToteIntakeWheelsBackwards", prop);
 
         } catch (Exception e) {
             final String msg = "Problem with processing Keymap, can't continue:";
             log.log(Level.SEVERE, msg, e);
             throw e;
         }
+    }
+
+    public int getOpenContainerIntake() {
+        return openContainerIntake;
+    }
+
+    public int getCloseContainerIntake() {
+        return closeContainerIntake;
+    }
+
+    public int getOpenToteIntake() {
+        return openToteIntake;
+    }
+
+    public int getCloseToteIntake() {
+        return closeToteIntake;
+    }
+
+    public int getRunToteIntakeWheels() {
+        return runToteIntakeWheels;
+    }
+
+    public int getRunToteIntakeWheelsBackwards() {
+        return runToteIntakeWheelsBackwards;
     }
 }

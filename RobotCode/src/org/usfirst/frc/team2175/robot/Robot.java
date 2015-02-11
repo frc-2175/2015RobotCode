@@ -11,6 +11,7 @@ import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 import org.usfirst.frc.team2175.robot.commands.single.TankDriveForTesting;
 import org.usfirst.frc.team2175.robot.commands.single.TankDriveWithSticks;
+import org.usfirst.frc.team2175.robot.config.KeymapConfig;
 import org.usfirst.frc.team2175.robot.config.LoggingConfiguration;
 import org.usfirst.frc.team2175.robot.config.RobotConfig;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
     public static Ramp containerRamp;
 
     public static RobotConfig properties;
+    public static KeymapConfig keymap;
 
     Command autonomousCommand;
     Command driveChoice;
