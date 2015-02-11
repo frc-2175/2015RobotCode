@@ -6,9 +6,10 @@ import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.DisengageContainerLiftBrake;
 import org.usfirst.frc.team2175.robot.commands.single.EngageContainerLiftBrake;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
-import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorToPosition;
 import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
+import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheels;
+import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheelsBackwards;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -79,15 +80,8 @@ public class OI {
         // gamepad1.whenPressed(new MoveToteElevatorToPosition(
         // Robot.properties.toteConfig.pickup));
 
-        gamepad1.whenPressed(new MoveContainerElevatorToPosition(
-                Robot.properties.containerConfig.level1));
-        gamepad2.whenPressed(new MoveContainerElevatorToPosition(
-                Robot.properties.containerConfig.level2));
-        gamepad3.whenPressed(new MoveContainerElevatorToPosition(
-                Robot.properties.containerConfig.level3));
-        gamepad4.whenPressed(new MoveContainerElevatorToPosition(
-                Robot.properties.containerConfig.level4));
-
+        gamepad1.whileHeld(new RunToteIntakeWheels());
+        gamepad2.whileHeld(new RunToteIntakeWheelsBackwards());
         gamepad5.whenPressed(new CloseContainerIntake());
         gamepad6.whenPressed(new OpenContainerIntake());
         gamepad7.whenPressed(new EngageContainerLiftBrake());
