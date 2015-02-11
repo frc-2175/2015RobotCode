@@ -20,7 +20,8 @@ public class RobotConfig {
     private final double toteIntakeWheelsSpeed;
     private final double precisionModeScale;
     private final double driveTrainRamp;
-
+    private final double driveLeftEncoderDPP;
+    private final double driveRightEncoderDPP;
     // tote elevator properties
     public final ToteElevatorConfig toteConfig;
 
@@ -34,6 +35,10 @@ public class RobotConfig {
 
             deadbandSize = Double.parseDouble(getPropertyValue("deadbandSize",
                     prop));
+            driveLeftEncoderDPP = Double.parseDouble(getPropertyValue(
+                    "driveLeftEncoderDPP", prop));
+            driveRightEncoderDPP = Double.parseDouble(getPropertyValue(
+                    "driveRightEncoderDPP", prop));
 
             toteConfig = makeToteElevatorConfig(prop);
 
@@ -156,6 +161,14 @@ public class RobotConfig {
 
     public Double getDriveTrainRamp() {
         return driveTrainRamp;
+    }
+
+    public double getDriveLeftEncoderDPP() {
+        return driveLeftEncoderDPP;
+    }
+
+    public double getDriveRightEncoderDPP() {
+        return driveRightEncoderDPP;
     }
 
 }

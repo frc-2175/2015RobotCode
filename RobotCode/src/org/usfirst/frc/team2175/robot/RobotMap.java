@@ -83,15 +83,17 @@ public class RobotMap {
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
         leftEncoder = new Encoder(19, 20, false, EncodingType.k2X);
-        leftEncoder.setDistancePerPulse(0);
+        leftEncoder.setDistancePerPulse(Robot.properties
+                .getDriveLeftEncoderDPP());
         rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
-        rightEncoder.setDistancePerPulse(0);
+        rightEncoder.setDistancePerPulse(Robot.properties
+                .getDriveRightEncoderDPP());
         // gyro = new Gyro(4);
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
         // tote elevator
-        toteSwitchTop = new DigitalInput(4);
-        toteSwitchBottom = new DigitalInput(5);
+        // toteSwitchTop = new DigitalInput(4);
+        // toteSwitchBottom = new DigitalInput(5);
         toteElevatorTalon = new Talon(2);
         toteSwitchTop = new DigitalInput(7);
         toteSwitchBottom = new DigitalInput(18);
