@@ -24,8 +24,8 @@ public class PDPCurrentLogger {
 					+ e.getMessage(), e);
 		}
 
-		out.write("Starting new log \n");
-		out.write("Time, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 \n");
+		out.write("Starting new log... \n");
+		out.write("Time, Port 0, Port 1, Port 2, Port 3, Port 4, Port 5, Port 6, Port 7, Port 8, Port 9, Port 10, Port 11, Port 12, Port 13, Port 14, Port 15 \n");
 
 	}
 
@@ -42,6 +42,7 @@ public class PDPCurrentLogger {
 	}
 	
 	public void endPDPLogging() throws IOException {
+		out.write("Ending log. \n");
 		out.close();
 	}
 	

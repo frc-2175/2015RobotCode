@@ -13,6 +13,8 @@ public class PDPLoggerTest extends TestBase {
 		PDPCurrentLogger testPDPLogger = new PDPCurrentLogger();
 		testPDPLogger.setLogOutFileToUse(PDPCurrentLogger.CSV_OUT_TEST_LOCATION);
 		testPDPLogger.initPDPLogging();
+		System.out.println("Logging initialized...");
 		testPDPLogger.endPDPLogging();
+		System.out.println("Logging ended.");
 	}
 }
