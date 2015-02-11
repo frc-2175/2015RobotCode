@@ -76,22 +76,38 @@ public class RobotMap {
     public static DoubleSolenoid containerIntakeArms;
 
     public static void init() {
+        configurePowerDistributionPanel();
+        configureDrivetrain();
+        configureToteElevator();
+        configureContainerElevator();
+        configureToteIntake();
+        configureTotePusher();
+        configureContainerIntake();
+    }
 
+    private static void configurePowerDistributionPanel() {
         pdp = new PowerDistributionPanel();
+    }
 
-        // drivetrain
+    private static void configureDrivetrain() {
         leftTalon = new Talon(0);
         rightTalon = new Talon(1);
+
         leftEncoder = new Encoder(19, 20, false, EncodingType.k2X);
         leftEncoder.setDistancePerPulse(Robot.properties
                 .getDriveLeftEncoderDPP());
+
         rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
         rightEncoder.setDistancePerPulse(Robot.properties
                 .getDriveRightEncoderDPP());
-        // gyro = new Gyro(4);
-        drivetrain = new RobotDrive(leftTalon, rightTalon);
 
-        // tote elevator
+        // FIXME temp excluded so app can run
+        // gyro = new Gyro(4);
+
+        drivetrain = new RobotDrive(leftTalon, rightTalon);
+    }
+
+    private static void configureToteElevator() {
         // toteSwitchTop = new DigitalInput(4);
         // toteSwitchBottom = new DigitalInput(5);
         toteElevatorTalon = new Talon(2);
@@ -101,8 +117,9 @@ public class RobotMap {
 
         toteElevatorEncoder.reset();
         toteElevatorBrake = new DoubleSolenoid(6, 7);
+    }
 
-        // container elevator
+    private static void configureContainerElevator() {
         containerSwitchTop = new DigitalInput(1);
         containerSwitchBottom = new DigitalInput(0);
         containerElevatorMotor = new Talon(3);
@@ -110,18 +127,20 @@ public class RobotMap {
         containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
         containerElevatorBrake = new DoubleSolenoid(2, 3);
+    }
 
-        // tote intake
+    private static void configureToteIntake() {
         toteIntakeWheelMotor = new Talon(4);
         toteIntakeArms = new DoubleSolenoid(4, 5);
         toteIntakeToteInSwitch = new DigitalInput(11);
+    }
 
-        // tote pusher
+    private static void configureTotePusher() {
         totePusherArm = new Talon(6);
-
         pusherSwitch = new DigitalInput(12);
+    }
 
-        // container intake
+    private static void configureContainerIntake() {
         containerIntakeArms = new DoubleSolenoid(0, 1);
     }
 
