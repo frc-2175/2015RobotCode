@@ -44,4 +44,13 @@ public class PDPCurrentLogger {
 	public void endPDPLogging() throws IOException {
 		out.close();
 	}
+	
+	public void setLogOutFileToUse(String filepath) {
+		logOutFileToUse = filepath;
+	}
+	
+	public String getLogOutFileToUse() {
+		return logOutFileToUse;
+	}
+	
 }
