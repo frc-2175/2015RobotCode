@@ -11,6 +11,7 @@ import org.usfirst.frc.team2175.robot.commands.auto.Auton3StackToteInAutoZone;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
+import org.usfirst.frc.team2175.robot.commands.single.TankDriveForTesting;
 import org.usfirst.frc.team2175.robot.commands.single.TankDriveWithSticks;
 import org.usfirst.frc.team2175.robot.config.LoggingConfiguration;
 import org.usfirst.frc.team2175.robot.config.RobotConfig;
@@ -215,6 +216,8 @@ public class Robot extends IterativeRobot {
         driveChooser.addDefault("Tank Drive", new TankDriveWithSticks());
         driveChooser.addDefault("Arcade with Squared Inputs",
                 new ArcadeDriveSquaredInputs());
+        driveChooser.addDefault("Tank Drive for Testing",
+                new TankDriveForTesting());
 
         SmartDashboard.putData("Drive Style", driveChooser);
     }

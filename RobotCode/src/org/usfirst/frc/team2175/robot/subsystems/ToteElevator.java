@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ToteElevator extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    public PIDController heightController;
+    public PIDController toteElevatorController;
     private boolean brakeOn;
 
     protected void usePIDOutput(double speed) {
@@ -49,13 +49,13 @@ public class ToteElevator extends Subsystem {
         RobotMap.toteElevatorEncoder.setDistancePerPulse(1 / 50.8);
         RobotMap.toteElevatorEncoder.setReverseDirection(true);
         HeightControllerHandler heightHandler = new HeightControllerHandler();
-        heightController = new PIDController(
+        toteElevatorController = new PIDController(
                 Robot.properties.getToteElevatorP(),
                 Robot.properties.getToteElevatorI(),
                 Robot.properties.getToteElevatorD(), heightHandler,
                 heightHandler);
-        heightController.setOutputRange(-0.2, 1);
-        heightController.setAbsoluteTolerance(.05);
+        toteElevatorController.setOutputRange(-0.2, 1);
+        toteElevatorController.setAbsoluteTolerance(.05);
     }
 
     public boolean isAtBottom() {
@@ -70,7 +70,7 @@ public class ToteElevator extends Subsystem {
         return isAtTop;
     }
 
-    public void setSpeed(double toteElevatorSpeed) {
+    public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
         if (isAtTop() && toteElevatorSpeed > 0) {
             newSpeed = 0;

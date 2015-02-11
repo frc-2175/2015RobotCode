@@ -106,15 +106,15 @@ public class ContainerElevator extends Subsystem {
     }
 
     public void updateBrakeSetting() {
-        double motorOutput = Robot.containerElevator.getMotorOutput();
+        double motorOutput = getMotorOutput();
 
         log.fine("motorOutput=" + motorOutput);
 
         if (Math.abs(motorOutput) < 0.05) {
-            Robot.containerElevator.setBrake(true);
+            setBrake(true);
             brakeOn = true;
         } else {
-            Robot.containerElevator.setBrake(false);
+            setBrake(false);
             brakeOn = false;
         }
     }

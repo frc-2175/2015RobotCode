@@ -7,6 +7,7 @@ import org.usfirst.frc.team2175.robot.commands.single.DisengageContainerLiftBrak
 import org.usfirst.frc.team2175.robot.commands.single.EngageContainerLiftBrake;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorToPosition;
+import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -91,7 +92,7 @@ public class OI {
         gamepad6.whenPressed(new OpenContainerIntake());
         gamepad7.whenPressed(new EngageContainerLiftBrake());
         gamepad8.whenPressed(new DisengageContainerLiftBrake());
-        // gamepad9.whenPressed(new ZeroContainerElevator());
+        gamepad9.whileHeld(new MoveToteElevatorManually());
         gamepad10.whileHeld(new MoveContainerElevatorManually());
 
     }
@@ -110,6 +111,10 @@ public class OI {
 
     public double getContainerElevatorSpeed() {
         return handleDeadband(-gamepad.getY());
+    }
+
+    public double getToteElevatorSpeed() {
+        return handleDeadband(gamepad.getRawAxis(3));
     }
 
     protected double getChangeValue(String name, double position) {

@@ -25,8 +25,8 @@ public class MoveToteElevatorToPosition extends CommandBase {
     	super.initialize();
     	log.info("Moving elevator to position " + setpoint);
     	
-    	Robot.toteElevator.heightController.setSetpoint(setpoint);
-    	Robot.toteElevator.heightController.enable();
+    	Robot.toteElevator.toteElevatorController.setSetpoint(setpoint);
+    	Robot.toteElevator.toteElevatorController.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,14 +36,14 @@ public class MoveToteElevatorToPosition extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.toteElevator.heightController.onTarget();
+        return Robot.toteElevator.toteElevatorController.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	super.end();
     	
-    	Robot.toteElevator.heightController.onTarget();
+    	Robot.toteElevator.toteElevatorController.onTarget();
     }
 
     // Called when another command which requires one or more of the same
