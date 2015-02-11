@@ -68,11 +68,11 @@ public class RobotConfig {
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
         double downSpeed, maxDelta, level0, level1, level2, level3, level4;
 
-        downSpeed = Double.parseDouble(getPropertyValue("elevatorDownSpeed",
-                prop));
-        
-        maxDelta = Double.parseDouble(getPropertyValue("containerElevatorMaxDelta",
-                prop));
+        downSpeed = Double.parseDouble(getPropertyValue(
+                "containerElevatorDownSpeed", prop));
+
+        maxDelta = Double.parseDouble(getPropertyValue(
+                "containerElevatorMaxDelta", prop));
 
         level0 = Double.parseDouble(getPropertyValue("containerPickupHeight",
                 prop));
@@ -85,15 +85,16 @@ public class RobotConfig {
         level4 = Double.parseDouble(getPropertyValue("containerStackHeight",
                 prop));
 
-        return new ContainerElevatorConfig(downSpeed, maxDelta, level0, level1, level2,
-                level3, level4);
+        return new ContainerElevatorConfig(downSpeed, maxDelta, level0, level1,
+                level2, level3, level4);
     }
 
     private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {
         double maxDelta, pickup, driving, scoring, step, stack;
 
-        maxDelta = Double.parseDouble(getPropertyValue("toteElevatorMaxDelta", prop));
-        
+        maxDelta = Double.parseDouble(getPropertyValue("toteElevatorMaxDelta",
+                prop));
+
         pickup = Double.parseDouble(getPropertyValue("totePickupHeight", prop));
         driving = Double
                 .parseDouble(getPropertyValue("toteDrivingHeight", prop));
@@ -102,7 +103,8 @@ public class RobotConfig {
         step = Double.parseDouble(getPropertyValue("toteStepHeight", prop));
         stack = Double.parseDouble(getPropertyValue("toteStackHeight", prop));
 
-        return new ToteElevatorConfig(maxDelta, pickup, driving, scoring, step, stack);
+        return new ToteElevatorConfig(maxDelta, pickup, driving, scoring, step,
+                stack);
     }
 
     protected String getPropertyValue(String propertyName, Properties props) {

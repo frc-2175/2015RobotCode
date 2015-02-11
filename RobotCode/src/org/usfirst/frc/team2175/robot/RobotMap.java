@@ -90,8 +90,8 @@ public class RobotMap {
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
         // tote elevator
-        toteSwitchTop = new DigitalInput(2);
-        toteSwitchBottom = new DigitalInput(3);
+        toteSwitchTop = new DigitalInput(4);
+        toteSwitchBottom = new DigitalInput(5);
         toteElevatorTalon = new Talon(2);
         toteSwitchTop = new DigitalInput(7);
         toteSwitchBottom = new DigitalInput(18);
