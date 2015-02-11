@@ -19,13 +19,13 @@ public class KeymapConfig extends AbstractConfig {
             Properties prop = new PropertiesLoader()
                     .loadProperties(PROPERTY_FILE_NAME);
 
-            openContainerIntake = Integer.parseInt(getPropertyValue(
+            openContainerIntake = Integer.parseInt(getIntPropertyValue(
                     "openContainerIntake", prop));
-            closeContainerIntake = Integer.parseInt(
-                    getPropertyValue("closeContainerIntake"), prop);
+            closeContainerIntake = Integer.parseInt(getIntPropertyValue(
+                    "closeContainerIntake", prop));
             openToteIntake = Integer.parseInt(getPropertyValue(
                     "openToteIntake", prop));
-            closeContainerIntake = Integer.parseInt(getPropertyValue(
+            closeContainerIntake = Integer.parseInt(getIntPropertyValue(
                     "closeToteIntake", prop));
 
         } catch (Exception e) {
