@@ -1,5 +1,10 @@
 package org.usfirst.frc.team2175.robot;
 
+import java.util.Properties;
+
+import org.usfirst.frc.team2175.robot.config.AbstractConfig;
+import org.usfirst.frc.team2175.robot.config.PropertiesLoader;
+
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -37,7 +42,7 @@ import edu.wpi.first.wpilibj.Talon;
  *
  * </p>
  */
-public class RobotMap {
+public class RobotMap extends AbstractConfig {
     public static PowerDistributionPanel pdp;
 
     // drivetrain
@@ -75,73 +80,139 @@ public class RobotMap {
     // container intake
     public static DoubleSolenoid containerIntakeArms;
 
-    public static void init() {
-        configurePowerDistributionPanel();
-        configureDrivetrain();
-        configureToteElevator();
-        configureContainerElevator();
-        configureToteIntake();
-        configureTotePusher();
-        configureContainerIntake();
+    private static final String PROPERTY_FILE_NAME = "/home/lvuser/robotMap.properties";
+
+    public void init() {
+        Properties props = new PropertiesLoader()
+                .loadProperties(PROPERTY_FILE_NAME);
+
+        configurePowerDistributionPanel(props);
+        configureDrivetrain(props);
+        configureToteElevator(props);
+        configureContainerElevator(props);
+        configureToteIntake(props);
+        configureTotePusher(props);
+        configureContainerIntake(props);
     }
 
-    private static void configurePowerDistributionPanel() {
+    private void configurePowerDistributionPanel(Properties props) {
         pdp = new PowerDistributionPanel();
     }
 
-    private static void configureDrivetrain() {
-        leftTalon = new Talon(0);
-        rightTalon = new Talon(1);
+    private void configureDrivetrain(Properties props) {
+        int leftTalonValue = getIntPropertyValue("drivetrain.talon.left", props);
+        int rightTalonValue = getIntPropertyValue("drivetrain.talon.right",
+                props);
 
-        leftEncoder = new Encoder(19, 20, false, EncodingType.k2X);
+        int leftEncoderAValue = getIntPropertyValue("encoder.left.a", props);
+        int leftEncoderBValue = getIntPropertyValue("encoder.left.b", props);
+        int rightEncoderAValue = getIntPropertyValue("encoder.right.a", props);
+        int rightEncoderBValue = getIntPropertyValue("encoder.right.b", props);
+        int gyroValue = getIntPropertyValue("drivetrain.gyro", props);
+
+        leftTalon = new Talon(leftTalonValue);
+        rightTalon = new Talon(rightTalonValue);
+
+        leftEncoder = new Encoder(leftEncoderAValue, leftEncoderBValue, false,
+                EncodingType.k2X);
         leftEncoder.setDistancePerPulse(Robot.properties
                 .getDriveLeftEncoderDPP());
 
-        rightEncoder = new Encoder(2, 3, false, EncodingType.k2X);
+        rightEncoder = new Encoder(rightEncoderAValue, rightEncoderBValue,
+                false, EncodingType.k2X);
         rightEncoder.setDistancePerPulse(Robot.properties
                 .getDriveRightEncoderDPP());
 
         // FIXME temp excluded so app can run
-        // gyro = new Gyro(4);
+        // gyro = new Gyro(gyroValue);
 
         drivetrain = new RobotDrive(leftTalon, rightTalon);
     }
 
-    private static void configureToteElevator() {
-        // toteSwitchTop = new DigitalInput(4);
-        // toteSwitchBottom = new DigitalInput(5);
-        toteElevatorTalon = new Talon(2);
-        toteSwitchTop = new DigitalInput(7);
-        toteSwitchBottom = new DigitalInput(18);
-        toteElevatorEncoder = new Encoder(5, 6, false, EncodingType.k2X);
+    private void configureToteElevator(Properties props) {
+        int motorValue = getIntPropertyValue("tote.elevator.motor", props);
+        int switchTopValue = getIntPropertyValue("tote.elevator.switch.top",
+                props);
+        int switchBottomValue = getIntPropertyValue(
+                "tote.elevator.switch.bottom", props);
+        int encoderAValue = getIntPropertyValue("tote.elevator.encoder.a",
+                props);
+        int encoderBValue = getIntPropertyValue("tote.elevator.encoder.b",
+                props);
+        int brakeForwardValue = getIntPropertyValue(
+                "tote.elevator.brake.forward", props);
+        int brakeReverseValue = getIntPropertyValue(
+                "tote.elevator.brake.reverse", props);
 
+        toteElevatorTalon = new Talon(motorValue);
+
+        toteSwitchTop = new DigitalInput(switchTopValue);
+        toteSwitchBottom = new DigitalInput(switchBottomValue);
+
+        toteElevatorEncoder = new Encoder(encoderAValue, encoderBValue, false,
+                EncodingType.k2X);
         toteElevatorEncoder.reset();
-        toteElevatorBrake = new DoubleSolenoid(6, 7);
+
+        toteElevatorBrake = new DoubleSolenoid(brakeForwardValue,
+                brakeReverseValue);
     }
 
-    private static void configureContainerElevator() {
-        containerSwitchTop = new DigitalInput(1);
-        containerSwitchBottom = new DigitalInput(0);
-        containerElevatorMotor = new Talon(3);
-        containerElevatorEncoder = new Encoder(8, 9, true, EncodingType.k2X);
+    private void configureToteIntake(Properties props) {
+        int motorValue = getIntPropertyValue("tote.intake.motor", props);
+        int armsForwardValue = getIntPropertyValue("tote.intake.arms.forward",
+                props);
+        int armsReverseValue = getIntPropertyValue("tote.intake.arms.reverse",
+                props);
+        int switchValue = getIntPropertyValue("tote.intake.in.switch", props);
+
+        toteIntakeWheelMotor = new Talon(motorValue);
+        toteIntakeArms = new DoubleSolenoid(armsForwardValue, armsReverseValue);
+        toteIntakeToteInSwitch = new DigitalInput(switchValue);
+    }
+
+    private void configureTotePusher(Properties props) {
+        int pusherArmValue = getIntPropertyValue("tote.pusher.arm", props);
+        int pusherSwitchValue = getIntPropertyValue("tote.pusher.switch", props);
+
+        totePusherArm = new Talon(pusherArmValue);
+        pusherSwitch = new DigitalInput(pusherSwitchValue);
+    }
+
+    private void configureContainerElevator(Properties props) {
+        int switchTopValue = getIntPropertyValue(
+                "container.elevator.switch.top", props);
+        int switchBottomValue = getIntPropertyValue(
+                "container.elevator.switch.bottom", props);
+        int motorValue = getIntPropertyValue("container.elevator.motor", props);
+        int encoderAValue = getIntPropertyValue("container.elevator.encoder.a",
+                props);
+        int encoderBValue = getIntPropertyValue("container.elevator.encoder.b",
+                props);
+        int brakeForwardValue = getIntPropertyValue(
+                "container.elevator.brake.a", props);
+        int brakeReverseValue = getIntPropertyValue(
+                "container.elevator.brake.b", props);
+
+        containerSwitchTop = new DigitalInput(switchTopValue);
+        containerSwitchBottom = new DigitalInput(switchBottomValue);
+        containerElevatorMotor = new Talon(motorValue);
+        containerElevatorEncoder = new Encoder(encoderAValue, encoderBValue,
+                true, EncodingType.k2X);
+        // TODO externalize any of these formula values?
         containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
-        containerElevatorBrake = new DoubleSolenoid(2, 3);
+        containerElevatorBrake = new DoubleSolenoid(brakeForwardValue,
+                brakeReverseValue);
     }
 
-    private static void configureToteIntake() {
-        toteIntakeWheelMotor = new Talon(4);
-        toteIntakeArms = new DoubleSolenoid(4, 5);
-        toteIntakeToteInSwitch = new DigitalInput(11);
-    }
+    private void configureContainerIntake(Properties props) {
+        int armsForwardValue = getIntPropertyValue(
+                "container.intake.arms.forward", props);
+        int armsReverseValue = getIntPropertyValue(
+                "container.intake.arms.reverse", props);
 
-    private static void configureTotePusher() {
-        totePusherArm = new Talon(6);
-        pusherSwitch = new DigitalInput(12);
-    }
-
-    private static void configureContainerIntake() {
-        containerIntakeArms = new DoubleSolenoid(0, 1);
+        containerIntakeArms = new DoubleSolenoid(armsForwardValue,
+                armsReverseValue);
     }
 
     public static double getLeftTalonSpeed() {

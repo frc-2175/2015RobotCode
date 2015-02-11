@@ -84,7 +84,7 @@ public class Robot extends IterativeRobot {
 
         properties = new RobotConfig();
 
-        RobotMap.init();
+        new RobotMap().init();
 
         makeSubsystems();
 
