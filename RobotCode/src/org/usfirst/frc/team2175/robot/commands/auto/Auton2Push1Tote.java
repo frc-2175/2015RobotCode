@@ -14,8 +14,6 @@ public class Auton2Push1Tote extends CommandGroup {
     	//TODO refine numbers
     	addSequential(new ArcadeDriveWithInputs(1,0),2);
     	addSequential(new ArcadeDriveWithInputs(0,1),1);
-    	addSequential(new ArcadeDriveWithInputs(1,0),3);
-    	addSequential(new ArcadeDriveWithInputs(0,1),2);
     	addSequential(new ArcadeDriveWithInputs(1,0),10);
     	
     	
