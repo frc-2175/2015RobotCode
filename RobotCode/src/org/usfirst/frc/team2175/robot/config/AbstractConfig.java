@@ -13,7 +13,7 @@ public abstract class AbstractConfig {
 
     protected String getStringPropertyValue(String propertyName,
             Properties props) {
-        String value = props.getProperty(propertyName);
+        final String value = props.getProperty(propertyName);
         if (value == null) {
             String msg = "Property '" + propertyName
                     + "' not found in property file";
@@ -25,7 +25,12 @@ public abstract class AbstractConfig {
 
     protected double getDoublePropertyValue(String propertyName,
             Properties props) {
-        String propertyValue = getStringPropertyValue(propertyName, props);
+        final String propertyValue = getStringPropertyValue(propertyName, props);
         return Double.parseDouble(propertyValue);
+    }
+
+    protected int getIntPropertyValue(String propertyName, Properties props) {
+        final String propertyValue = getStringPropertyValue(propertyName, props);
+        return Integer.parseInt(propertyValue);
     }
 }
