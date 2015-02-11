@@ -4,11 +4,10 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RobotConfig {
+public class RobotConfig extends AbstractConfig {
     final Logger log = Logger.getLogger(getClass().getName());
 
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
-    private static final String CAN_T_CONTINUE_MSG = "; can't continue";
 
     private final double deadbandSize;
     private final double toteElevatorP;
@@ -112,17 +111,6 @@ public class RobotConfig {
                 stack);
     }
 
-    protected String getPropertyValue(String propertyName, Properties props) {
-        String value = props.getProperty(propertyName);
-        if (value == null) {
-            String msg = "Property '" + propertyName
-                    + "' not found in property file";
-            log.severe(msg);
-            throw new IllegalStateException(msg);
-        }
-        return value;
-    }
-
     public double getToteElevatorP() {
         return toteElevatorP;
     }
@@ -170,5 +158,4 @@ public class RobotConfig {
     public double getDriveRightEncoderDPP() {
         return driveRightEncoderDPP;
     }
-
 }
