@@ -10,7 +10,7 @@ public class KeymapConfig extends AbstractConfig {
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/keymap.properties";
 
     private final int openContainerIntake;
-    private final int closeConatinerIntake;
+    private final int closeContainerIntake;
     private final int openToteIntake;
     private final int closeToteIntake;
 
@@ -19,14 +19,12 @@ public class KeymapConfig extends AbstractConfig {
             Properties prop = new PropertiesLoader()
                     .loadProperties(PROPERTY_FILE_NAME);
 
-            openContainerIntake = Integer.parseInt(getIntPropertyValue(
-                    "openContainerIntake", prop));
-            closeContainerIntake = Integer.parseInt(getIntPropertyValue(
-                    "closeContainerIntake", prop));
-            openToteIntake = Integer.parseInt(getPropertyValue(
-                    "openToteIntake", prop));
-            closeContainerIntake = Integer.parseInt(getIntPropertyValue(
-                    "closeToteIntake", prop));
+            openContainerIntake = getIntPropertyValue("openContainerIntake",
+                    prop);
+            closeContainerIntake = getIntPropertyValue("closeContainerIntake",
+                    prop);
+            openToteIntake = getIntPropertyValue("openToteIntake", prop);
+            closeToteIntake = getIntPropertyValue("closeToteIntake", prop);
 
         } catch (Exception e) {
             final String msg = "Problem with processing Keymap, can't continue:";
