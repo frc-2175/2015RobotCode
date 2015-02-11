@@ -20,7 +20,7 @@ public class Auton3Stack1Tote extends CommandGroup {
         // forward
         addParallel(new IntakeTote());
         addSequential(new DriveInches(36));
-        addSequential(new StackTote());
+        addParallel(new StackTote());
         addSequential(new TurnDegrees(90));
         addSequential(new DriveInches(108)); // TODO find good number
 
