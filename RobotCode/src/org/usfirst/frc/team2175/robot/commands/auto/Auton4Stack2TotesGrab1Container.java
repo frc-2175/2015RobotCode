@@ -1,5 +1,10 @@
 package org.usfirst.frc.team2175.robot.commands.auto;
 
+import org.usfirst.frc.team2175.robot.commands.groups.IntakeTote;
+import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
+import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
+import org.usfirst.frc.team2175.robot.commands.single.TurnDegrees;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -24,5 +29,17 @@ public class Auton4Stack2TotesGrab1Container extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	addParallel(new IntakeTote());
+    	addSequential(new DriveInches(36)); //TODO refine number
+    	addSequential(new DriveInches(-60)); //TODO refine number
+    	addSequential(new CloseContainerIntake());
+    	addSequential(new TurnDegrees(180));
+    	addParallel(new IntakeTote());
+    	addSequential(new DriveInches(36)); //TODO refine number
+    	addSequential(new DriveInches(-60)); //TODO refine number
+    	addSequential(new TurnDegrees(90)); //TODO check to see if this needs to be negative
+    	addSequential(new DriveInches(108)); //TODO refine number
+    	
     }
 }

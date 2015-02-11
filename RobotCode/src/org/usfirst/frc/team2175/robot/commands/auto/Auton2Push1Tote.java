@@ -14,10 +14,10 @@ public class Auton2Push1Tote extends CommandGroup {
     public  Auton2Push1Tote() {
     	
     	//TODO refine numbers
-    	addParallel(new RunToteIntakeWheels(), 5);
+    	addParallel(new RunToteIntakeWheels());
     	addSequential(new DriveInches(36));
     	addSequential(new ArcadeDriveWithInputs(0,1),3);
-    	addSequential(new DriveInches(108));
+    	addSequential(new DriveInches(108)); //TODO refine number
     	
     	
       
