@@ -77,9 +77,6 @@ public class OI {
         JoystickButton gamepad9 = new JoystickButton(gamepad, 7);
         JoystickButton gamepad10 = new JoystickButton(gamepad, 8);
 
-        // gamepad1.whenPressed(new MoveToteElevatorToPosition(
-        // Robot.properties.toteConfig.pickup));
-
         gamepad1.whileHeld(new RunToteIntakeWheels());
         gamepad2.whileHeld(new RunToteIntakeWheelsBackwards());
         gamepad5.whenPressed(new CloseContainerIntake());
