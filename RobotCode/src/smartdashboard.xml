@@ -1,0 +1,53 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1561" y="41"/>
+		<property name="Text" value="Teleop Stick Control"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="1199" y="29"/>
+		<width>172</width>
+		<height>38</height>
+		<property name="Text" value="Autonomous"/>
+	</static-widget>
+	<widget field="Tote Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="469" y="109"/>
+		<width>165</width>
+		<height>34</height>
+	</widget>
+	<widget field="Container Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="26" y="109"/>
+		<width>191</width>
+		<height>37</height>
+	</widget>
+	<widget field="Container Lift at Top" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="26" y="17"/>
+		<width>196</width>
+		<height>72</height>
+	</widget>
+	<widget field="Container Lift at Bottom" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="28" y="169"/>
+		<width>213</width>
+		<height>67</height>
+	</widget>
+	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="470" y="251"/>
+		<width>347</width>
+	</widget>
+	<widget field="Right Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="31" y="253"/>
+		<width>395</width>
+	</widget>
+	<widget field="Right Drive Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="28" y="290"/>
+	</widget>
+	<widget field="Drive Style" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1512" y="55"/>
+	</widget>
+	<widget field="Autonomous Routine" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1155" y="51"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
