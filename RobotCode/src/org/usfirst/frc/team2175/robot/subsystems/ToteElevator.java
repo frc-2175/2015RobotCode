@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -86,9 +85,9 @@ public class ToteElevator extends Subsystem {
 
     public void setBrake(boolean on) {
         if (on) {
-            RobotMap.toteElevatorBrake.set(DoubleSolenoid.Value.kForward);
+            RobotMap.toteElevatorBrake.set(true);
         } else {
-            RobotMap.toteElevatorBrake.set(DoubleSolenoid.Value.kReverse);
+            RobotMap.toteElevatorBrake.set(false);
         }
     }
 

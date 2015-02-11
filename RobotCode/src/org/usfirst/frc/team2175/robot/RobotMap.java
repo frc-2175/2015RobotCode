@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -64,13 +65,13 @@ public class RobotMap extends AbstractConfig {
     public static DigitalInput containerSwitchBottom;
     public static Talon containerElevatorMotor;
     public static Encoder containerElevatorEncoder;
-    public static DoubleSolenoid containerElevatorBrake;
+    public static Solenoid containerElevatorBrake;
 
     // tote intake
     public static Talon toteIntakeWheelMotor;
     public static DoubleSolenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
-    public static DoubleSolenoid toteElevatorBrake;
+    public static Solenoid toteElevatorBrake;
 
     // tote pusher
     public static Talon totePusherArm;
@@ -153,8 +154,7 @@ public class RobotMap extends AbstractConfig {
                 EncodingType.k2X);
         toteElevatorEncoder.reset();
 
-        toteElevatorBrake = new DoubleSolenoid(brakeForwardValue,
-                brakeReverseValue);
+        toteElevatorBrake = new Solenoid(brakeForwardValue, brakeReverseValue);
     }
 
     private void configureToteIntake(Properties props) {
@@ -201,7 +201,7 @@ public class RobotMap extends AbstractConfig {
         // TODO externalize any of these formula values?
         containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
-        containerElevatorBrake = new DoubleSolenoid(brakeForwardValue,
+        containerElevatorBrake = new Solenoid(brakeForwardValue,
                 brakeReverseValue);
     }
 
