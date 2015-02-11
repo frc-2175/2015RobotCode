@@ -4,8 +4,6 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
-import org.usfirst.frc.team2175.robot.commands.single.DisengageContainerLiftBrake;
-import org.usfirst.frc.team2175.robot.commands.single.EngageContainerLiftBrake;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
@@ -72,28 +70,27 @@ public class OI {
                 Robot.keymap.getRunToteIntakeWheels());
         JoystickButton runToteIntakeWheelsBackwards = new JoystickButton(
                 gamepad, Robot.keymap.getRunToteIntakeWheelsBackwards());
-        JoystickButton gamepad3 = new JoystickButton(gamepad, 3);
-        JoystickButton gamepad4 = new JoystickButton(gamepad, 4);
-        JoystickButton gamepad5 = new JoystickButton(gamepad, 5);
-        JoystickButton gamepad6 = new JoystickButton(gamepad, 6);
-        JoystickButton gamepad7 = new JoystickButton(gamepad, 9);
-        JoystickButton gamepad8 = new JoystickButton(gamepad, 10);
-        JoystickButton gamepad9 = new JoystickButton(gamepad, 7);
-        JoystickButton gamepad10 = new JoystickButton(gamepad, 8);
+        JoystickButton closeContainerIntake = new JoystickButton(gamepad,
+                Robot.keymap.getCloseContainerIntake());
+        JoystickButton openContainerIntake = new JoystickButton(gamepad,
+                Robot.keymap.getOpenContainerIntake());
         JoystickButton openToteIntake = new JoystickButton(gamepad,
                 Robot.keymap.getOpenToteIntake());
         JoystickButton closeToteIntake = new JoystickButton(gamepad,
                 Robot.keymap.getCloseToteIntake());
+        JoystickButton moveToteElevatorManually = new JoystickButton(gamepad,
+                Robot.keymap.getMoveToteElevatorManually());
+        JoystickButton moveContainerElevatorManually = new JoystickButton(
+                gamepad, Robot.keymap.getMoveContainerElevatorManually());
 
         runToteIntakeWheels.whileHeld(new RunToteIntakeWheels());
         runToteIntakeWheelsBackwards
                 .whileHeld(new RunToteIntakeWheelsBackwards());
-        gamepad5.whenPressed(new CloseContainerIntake());
-        gamepad6.whenPressed(new OpenContainerIntake());
-        gamepad7.whenPressed(new EngageContainerLiftBrake());
-        gamepad8.whenPressed(new DisengageContainerLiftBrake());
-        gamepad9.whileHeld(new MoveToteElevatorManually());
-        gamepad10.whileHeld(new MoveContainerElevatorManually());
+        closeContainerIntake.whenPressed(new CloseContainerIntake());
+        openContainerIntake.whenPressed(new OpenContainerIntake());
+        moveToteElevatorManually.whileHeld(new MoveToteElevatorManually());
+        moveContainerElevatorManually
+                .whileHeld(new MoveContainerElevatorManually());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
 
