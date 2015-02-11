@@ -55,7 +55,7 @@ public class RobotMap extends AbstractConfig {
     public static RobotDrive drivetrain;
 
     // tote elevator
-    public static Talon toteElevatorTalon;
+    public static Talon toteElevatorMotor;
     public static DigitalInput toteSwitchTop;
     public static DigitalInput toteSwitchBottom;
     public static Encoder toteElevatorEncoder;
@@ -145,7 +145,7 @@ public class RobotMap extends AbstractConfig {
         int brakeReverseValue = getIntPropertyValue(
                 "tote.elevator.brake.reverse", props);
 
-        toteElevatorTalon = new Talon(motorValue);
+        toteElevatorMotor = new Talon(motorValue);
 
         toteSwitchTop = new DigitalInput(switchTopValue);
         toteSwitchBottom = new DigitalInput(switchBottomValue);

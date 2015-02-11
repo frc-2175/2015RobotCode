@@ -21,18 +21,18 @@ public class ToteElevator extends Subsystem {
 
     protected void usePIDOutput(double speed) {
         log.fine("speed=" + speed);
-        RobotMap.toteElevatorTalon.set(speed);
+        RobotMap.toteElevatorMotor.set(speed);
     }
 
     private class HeightControllerHandler implements PIDSource, PIDOutput {
         @Override
         public void pidWrite(double speed) {
-            double currentSpeed = RobotMap.toteElevatorTalon.getSpeed();
+            double currentSpeed = RobotMap.toteElevatorMotor.getSpeed();
             if (currentSpeed != speed) {
                 log.info("currentSpeed=" + currentSpeed + ", new speed="
                         + speed);
             }
-            RobotMap.toteElevatorTalon.set(speed);
+            RobotMap.toteElevatorMotor.set(speed);
         }
 
         @Override
@@ -78,7 +78,7 @@ public class ToteElevator extends Subsystem {
         } else {
             newSpeed = toteElevatorSpeed;
         }
-        RobotMap.toteElevatorTalon.set(newSpeed);
+        RobotMap.toteElevatorMotor.set(newSpeed);
         log.fine("requested toteSpeed=" + toteElevatorSpeed + ", newSpeed="
                 + newSpeed);
     }
@@ -92,7 +92,7 @@ public class ToteElevator extends Subsystem {
     }
 
     public double getMotorOutput() {
-        return RobotMap.toteElevatorTalon.get();
+        return RobotMap.toteElevatorMotor.get();
     }
 
     public void updateBrakeSetting() {
