@@ -105,10 +105,14 @@ public class RobotMap extends AbstractConfig {
         int rightTalonValue = getIntPropertyValue("drivetrain.talon.right",
                 props);
 
-        int leftEncoderAValue = getIntPropertyValue("drivetrain.encoder.left.a", props);
-        int leftEncoderBValue = getIntPropertyValue("drivetrain.encoder.left.b", props);
-        int rightEncoderAValue = getIntPropertyValue("drivetrain.encoder.right.a", props);
-        int rightEncoderBValue = getIntPropertyValue("drivetrain.encoder.right.b", props);
+        int leftEncoderAValue = getIntPropertyValue(
+                "drivetrain.encoder.left.a", props);
+        int leftEncoderBValue = getIntPropertyValue(
+                "drivetrain.encoder.left.b", props);
+        int rightEncoderAValue = getIntPropertyValue(
+                "drivetrain.encoder.right.a", props);
+        int rightEncoderBValue = getIntPropertyValue(
+                "drivetrain.encoder.right.b", props);
         int gyroValue = getIntPropertyValue("drivetrain.gyro", props);
 
         leftTalon = new Talon(leftTalonValue);
@@ -140,8 +144,8 @@ public class RobotMap extends AbstractConfig {
                 props);
         int encoderBValue = getIntPropertyValue("tote.elevator.encoder.b",
                 props);
-        int brakeForwardValue = getIntPropertyValue(
-                "tote.elevator.brake.forward", props);
+        int brakeForwardValue = getIntPropertyValue("tote.elevator.brake",
+                props);
 
         toteElevatorMotor = new Talon(motorValue);
 
@@ -186,8 +190,8 @@ public class RobotMap extends AbstractConfig {
                 props);
         int encoderBValue = getIntPropertyValue("container.elevator.encoder.b",
                 props);
-        int brakeForwardValue = getIntPropertyValue(
-                "container.elevator.brake.a", props);
+        int brakeForwardValue = getIntPropertyValue("container.elevator.brake",
+                props);
 
         containerSwitchTop = new DigitalInput(switchTopValue);
         containerSwitchBottom = new DigitalInput(switchBottomValue);
