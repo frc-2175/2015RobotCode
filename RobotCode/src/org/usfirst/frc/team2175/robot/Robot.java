@@ -68,7 +68,15 @@ public class Robot extends IterativeRobot {
         }
     }
 
+    private class PDPLoggerTask extends java.util.TimerTask {
+        @Override
+        public void run() {
+            pdpLogger.logPDPValues();
+        }
+    }
+
     public java.util.Timer controlLoop;
+    public java.util.Timer pdpLoggingLoop;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -92,8 +100,7 @@ public class Robot extends IterativeRobot {
 
         pdpLogger = new PDPCurrentLogger();
 
-        pdpLogger.initPDPLogging();
-        pdpLogger.endPDPLogging();
+        makePDPLoggingLoop();
 
         makeControlLoop();
 
@@ -140,11 +147,10 @@ public class Robot extends IterativeRobot {
         driveChoice.start();
 
         smartDashboardUpdate();
+        makePDPLoggingLoop();
 
         // This might run way too fast, requires testing on roboRIO with actual
         // PDP setup
-
-        pdpLogger.initPDPLogging();
 
     }
 
@@ -155,9 +161,8 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledInit() {
         containerElevator.containerElevatorController.disable();
-
+        pdpLoggingLoop.cancel();
         pdpLogger.endPDPLogging();
-
     }
 
     /**
@@ -174,6 +179,9 @@ public class Robot extends IterativeRobot {
         // log.info(msg);
 
         pdpLogger.logPDPValues();
+
+        System.out.println(RobotMap.containerElevatorEncoder.get() + " "
+                + RobotMap.containerElevatorEncoder.getDistance());
 
     }
 
@@ -199,6 +207,13 @@ public class Robot extends IterativeRobot {
     private void makeControlLoop() {
         controlLoop = new java.util.Timer();
         controlLoop.schedule(new SchedulerTask(), 0L, (10));
+    }
+
+    private void makePDPLoggingLoop() {
+        pdpLogger.initPDPLogging();
+
+        pdpLoggingLoop = new java.util.Timer();
+        pdpLoggingLoop.schedule(new PDPLoggerTask(), 0L, (1000));
     }
 
     private void makeAutonChooser() {

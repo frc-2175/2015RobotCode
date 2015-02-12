@@ -26,15 +26,17 @@ public class PDPCurrentLogger {
         } catch (FileNotFoundException e) {
             log.log(Level.SEVERE, "Failed to open PDP log file at "
                     + logOutFileToUse + "!", e);
+
         } catch (IOException e) {
             log.log(Level.SEVERE, "Failed to open PDP log file at "
                     + logOutFileToUse + "!", e);
+
         }
         try {
-            out.write("Starting new log... \n");
             out.write("Time, Port 0 current, Port 1 current, Port 2 current, Port 3 current, Port 4 current, Port 5 current, Port 6 current, Port 7 current, Port 8 current, Port 9 current, Port 10 current, Port 11 current, Port 12 current, Port 13 current, Port 14 current, Port 15 current \n");
         } catch (IOException e) {
-            log.log(Level.SEVERE, "could not write to file", e);
+            log.log(Level.SEVERE, "could not write to file!", e);
+
         }
     }
 
@@ -67,14 +69,10 @@ public class PDPCurrentLogger {
     public void endPDPLogging() {
         if (out != null) {
             try {
-                out.write("Ending log. \n");
-            } catch (IOException e) {
-                log.log(Level.SEVERE, "Could not write to file!", e);
-            }
-            try {
                 out.close();
             } catch (IOException e) {
                 log.log(Level.SEVERE, "No writer to close!", e);
+
             }
         }
     }
