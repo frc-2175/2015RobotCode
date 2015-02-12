@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2175.robot;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
@@ -95,18 +94,8 @@ public class Robot extends IterativeRobot {
 
         pdpLogger = new PDPCurrentLogger();
 
-        try {
-            pdpLogger.initPDPLogging();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            pdpLogger.endPDPLogging();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        pdpLogger.initPDPLogging();
+        pdpLogger.endPDPLogging();
 
         makeControlLoop();
 
@@ -157,12 +146,8 @@ public class Robot extends IterativeRobot {
 
         // This might run way too fast, requires testing on roboRIO with actual
         // PDP setup
-        try {
-            pdpLogger.initPDPLogging();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
+        pdpLogger.initPDPLogging();
 
     }
 
@@ -174,12 +159,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit() {
         containerElevator.containerElevatorController.disable();
 
-        try {
-            pdpLogger.endPDPLogging();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        pdpLogger.endPDPLogging();
 
     }
 
@@ -199,12 +179,8 @@ public class Robot extends IterativeRobot {
         System.out.println(RobotMap.containerElevatorEncoder.get() + " "
                 + RobotMap.containerElevatorEncoder.getDistance());
 
-        try {
-            pdpLogger.logPDPValues();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        pdpLogger.logPDPValues();
+
     }
 
     /**

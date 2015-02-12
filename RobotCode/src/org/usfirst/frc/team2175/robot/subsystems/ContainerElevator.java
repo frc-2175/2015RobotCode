@@ -80,7 +80,7 @@ public class ContainerElevator extends Subsystem {
                 newSpeed = downSpeed;
             } else {
                 newSpeed = containerSpeed;
-            } // TODO test this to see if it actually ramps; also tune maxDelta
+            }
 
         }
         // newSpeed = containerSpeed;
