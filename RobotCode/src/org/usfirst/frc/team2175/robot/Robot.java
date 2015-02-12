@@ -36,7 +36,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
     private final Logger log = Logger.getLogger(getClass().getName());
 
     public static OI oi;
@@ -117,7 +116,6 @@ public class Robot extends IterativeRobot {
         // dashboard
         autonomousCommand = (Command) autonChooser.getSelected();
         autonomousCommand.start();
-
     }
 
     /**
@@ -125,7 +123,6 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void autonomousPeriodic() {
-
     }
 
     @Override
@@ -139,7 +136,6 @@ public class Robot extends IterativeRobot {
         }
         driveChoice = (Command) driveChooser.getSelected();
         driveChoice.start();
-        System.out.println("iaminteleop");
 
         smartDashboardUpdate();
 
@@ -168,15 +164,12 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
-        // This method called over 35 times per second.
+        // This method called ****over 35 times per second****.
         // commented out logging it until determined that we need it
         // double distance = RobotMap.toteElevatorEncoder.getDistance();
         // final String msg = "Distance robot has driven since last reset="
         // + distance;
         // log.info(msg);
-
-        System.out.println(RobotMap.containerElevatorEncoder.get() + " "
-                + RobotMap.containerElevatorEncoder.getDistance());
 
         pdpLogger.logPDPValues();
 
@@ -259,5 +252,4 @@ public class Robot extends IterativeRobot {
         // SmartDashboard.putBoolean("Tote Lift at Bottom",
         // RobotMap.getBottomToteLiftSwitch());
     }
-
 }

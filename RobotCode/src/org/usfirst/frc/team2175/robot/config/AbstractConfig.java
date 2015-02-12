@@ -31,9 +31,6 @@ public abstract class AbstractConfig {
 
     protected int getIntPropertyValue(String propertyName, Properties props) {
         final String propertyValue = getStringPropertyValue(propertyName, props);
-        int propertyinteger = Integer.parseInt(propertyValue);
-        System.out.println(propertyName + "=" + propertyinteger);
-        return propertyinteger;
-
+        return Integer.parseInt(propertyValue);
     }
 }
