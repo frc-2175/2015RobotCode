@@ -18,9 +18,8 @@ public class Auton3Stack1Tote extends CommandGroup {
         // testing on getting to the required location
         // This is currently only just moving it the same spot from Auton Drive
         // forward
-        addParallel(new IntakeTote());
-        addSequential(new DriveInches(36));
-        addParallel(new StackTote());
+    	addParallel(new StackTote());
+        addSequential(new DriveInches(8));
         addSequential(new TurnDegrees(90));
         addSequential(new DriveInches(108)); // TODO find good number
 
