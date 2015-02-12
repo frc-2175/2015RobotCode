@@ -105,10 +105,10 @@ public class RobotMap extends AbstractConfig {
         int rightTalonValue = getIntPropertyValue("drivetrain.talon.right",
                 props);
 
-        int leftEncoderAValue = getIntPropertyValue("encoder.left.a", props);
-        int leftEncoderBValue = getIntPropertyValue("encoder.left.b", props);
-        int rightEncoderAValue = getIntPropertyValue("encoder.right.a", props);
-        int rightEncoderBValue = getIntPropertyValue("encoder.right.b", props);
+        int leftEncoderAValue = getIntPropertyValue("drivetrain.encoder.left.a", props);
+        int leftEncoderBValue = getIntPropertyValue("drivetrain.encoder.left.b", props);
+        int rightEncoderAValue = getIntPropertyValue("drivetrain.encoder.right.a", props);
+        int rightEncoderBValue = getIntPropertyValue("drivetrain.encoder.right.b", props);
         int gyroValue = getIntPropertyValue("drivetrain.gyro", props);
 
         leftTalon = new Talon(leftTalonValue);
