@@ -245,4 +245,8 @@ public class RobotMap extends AbstractConfig {
     public static boolean getBottomToteLiftSwitch() {
         return toteSwitchBottom.get();
     }
+
+    public static double getToteElevatorEncoder() {
+        return toteElevatorEncoder.getDistance();
+    }
 }

@@ -2,10 +2,10 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
-import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1Tote;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1Tote;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 import org.usfirst.frc.team2175.robot.commands.single.TankDriveForTesting;
@@ -98,6 +98,8 @@ public class Robot extends IterativeRobot {
         makeControlLoop();
 
         makeAutonChooser();
+
+        smartDashboardUpdate();
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonDoNothing();
@@ -247,6 +249,8 @@ public class Robot extends IterativeRobot {
                 Robot.containerElevator.getBrake());
         SmartDashboard.putBoolean("Tote Lift Brake",
                 Robot.toteElevator.getBrake());
+        SmartDashboard.putNumber("Tote Lift Encoder Distance",
+                RobotMap.getToteElevatorEncoder());
         // SmartDashboard.putBoolean("Tote Lift at Top",
         // RobotMap.getTopToteLiftSwitch());
         // SmartDashboard.putBoolean("Tote Lift at Bottom",
