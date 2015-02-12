@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton4Stack1ToteGrab1Container extends CommandGroup {
+public class AutonStack1ToteGrab1Container extends CommandGroup {
     
-    public  Auton4Stack1ToteGrab1Container() {
+    public  AutonStack1ToteGrab1Container() {
     	addParallel(new StackTote());
     	addSequential(new DriveInches(8));
     	addSequential(new OpenContainerIntake());

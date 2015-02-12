@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton1DriveLeft extends CommandGroup {
+public class AutonDriveForward extends CommandGroup {
     
-    public  Auton1DriveLeft() {
-    	addSequential(new ArcadeDriveWithInputs(0.5, 0), 3);
+    public AutonDriveForward() {
+        addSequential(new ArcadeDriveWithInputs(0.5, 0), 3);
     }
+    
 }

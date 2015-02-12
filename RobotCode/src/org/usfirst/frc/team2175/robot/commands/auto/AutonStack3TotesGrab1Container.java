@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton4Stack3TotesGrab1Container extends CommandGroup {
+public class AutonStack3TotesGrab1Container extends CommandGroup {
     
-    public  Auton4Stack3TotesGrab1Container() {
+    public  AutonStack3TotesGrab1Container() {
         
     	addParallel(new IntakeTote());
     	addSequential(new DriveInches(36)); //TODO refine number

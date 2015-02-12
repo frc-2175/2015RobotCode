@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton4Stack2TotesGrab1Container extends CommandGroup {
+public class AutonStack2TotesGrab1Container extends CommandGroup {
     
-    public  Auton4Stack2TotesGrab1Container() {
+    public  AutonStack2TotesGrab1Container() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

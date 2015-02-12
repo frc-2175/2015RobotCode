@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton3Stack2Totes extends CommandGroup {
-    public  Auton3Stack2Totes() {
+public class AutonStack2Totes extends CommandGroup {
+    public  AutonStack2Totes() {
     	addParallel(new StackTote());
     	addSequential(new DriveInches(36));//TODO Refine Numbers
     	addSequential(new TurnDegrees(30));

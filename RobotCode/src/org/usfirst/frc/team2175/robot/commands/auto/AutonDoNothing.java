@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Auton0DoNothing extends CommandGroup {
+public class AutonDoNothing extends CommandGroup {
     
-    public  Auton0DoNothing() {
+    public  AutonDoNothing() {
         
     }
 }

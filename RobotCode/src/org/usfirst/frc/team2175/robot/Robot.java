@@ -2,10 +2,9 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
-import org.usfirst.frc.team2175.robot.commands.auto.Auton0DoNothing;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton1DriveForward;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton2Push1Tote;
-import org.usfirst.frc.team2175.robot.commands.auto.Auton3Stack1Tote;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1Tote;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNothing;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonDriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
@@ -102,7 +101,7 @@ public class Robot extends IterativeRobot {
         makeAutonChooser();
 
         // instantiate the command used for the autonomous period
-        autonomousCommand = new Auton0DoNothing();
+        autonomousCommand = new AutonDoNothing();
 
         log.info("Robot configuration finished");
     }
@@ -212,15 +211,14 @@ public class Robot extends IterativeRobot {
 
         // TODO add all of the auto routines as they are made
         autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
-        autonChooser.addDefault("0 - No Action", new Auton0DoNothing());
+        autonChooser.addDefault("0 - No Action", new AutonDoNothing());
         autonChooser.addDefault("1 - Drive straight into Auto Zone",
-                new Auton1DriveForward());
+                new AutonDriveForward());
         // command
-        autonChooser.addDefault("2 - Push 1 tote into Auto Zone",
-                new Auton2Push1Tote());
+
         autonChooser.addDefault(
                 "5 - Stack 3 Totes and put them into Auto Zone",
-                new Auton3Stack1Tote());
+                new AutonStack1Tote());
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
