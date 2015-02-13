@@ -1,6 +1,5 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
-import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -21,7 +20,7 @@ public class ReleaseToteIntakeArms extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.containerIntake.setSpatula(false);
+        // Robot.containerIntake.setSpatula(false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
