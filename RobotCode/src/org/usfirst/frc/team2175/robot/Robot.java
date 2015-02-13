@@ -267,7 +267,7 @@ public class Robot extends IterativeRobot {
                 RobotMap.getLeftTalonSpeed());
         SmartDashboard.putNumber("Right Drive Talon",
                 RobotMap.getRightTalonSpeed());
-        SmartDashboard.putNumber("Right Drive Encoder",
+        SmartDashboard.putNumber("Left Drive Encoder",
                 RobotMap.getLeftEncoderSpeed());
         SmartDashboard.putNumber("Right Drive Encoder",
                 RobotMap.getRightEncoderSpeed());

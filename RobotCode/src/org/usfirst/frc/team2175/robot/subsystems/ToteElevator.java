@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
-import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorManually;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -124,6 +123,6 @@ public class ToteElevator extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new MoveToteElevatorManually());
+        // setDefaultCommand(new MoveToteElevatorManually());
     }
 }

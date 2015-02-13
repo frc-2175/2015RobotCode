@@ -1,62 +1,68 @@
 <xml version="1.0">
 <dashboard>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="1155" y="38"/>
-		<property name="Text" value="Teleop Stick Control"/>
+		<location x="1233" y="23"/>
+		<property name="Text" value="Control Scheme"/>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="930" y="28"/>
-		<width>172</width>
-		<height>38</height>
-		<property name="Text" value="Autonomous"/>
+		<location x="944" y="23"/>
+		<width>146</width>
+		<property name="Text" value="Auto Routine"/>
 	</static-widget>
+	<widget field="Tote Lift at Bottom" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="230" y="118"/>
+		<width>169</width>
+		<height>33</height>
+	</widget>
 	<widget field="Tote Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="469" y="109"/>
-		<width>200</width>
-		<height>50</height>
+		<location x="229" y="94"/>
+		<width>150</width>
 	</widget>
-	<widget field="Container Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="27" y="104"/>
-		<width>200</width>
-		<height>50</height>
-	</widget>
-	<widget field="Container Lift at Top" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="26" y="17"/>
-		<width>200</width>
-		<height>55</height>
+	<widget field="Tote Lift at Top" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="229" y="41"/>
+		<width>155</width>
+		<height>41</height>
 	</widget>
 	<widget field="Container Lift at Bottom" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="28" y="169"/>
-		<width>200</width>
-		<height>78</height>
+		<location x="9" y="120"/>
+		<width>195</width>
+		<height>32</height>
+	</widget>
+	<widget field="Container Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="9" y="94"/>
+		<width>177</width>
+	</widget>
+	<widget field="Container Lift at Top" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="10" y="41"/>
+		<width>179</width>
+		<height>41</height>
 	</widget>
 	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
-		<location x="470" y="251"/>
-		<width>347</width>
+		<location x="9" y="278"/>
+		<width>396</width>
 	</widget>
 	<widget field="Right Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
-		<location x="31" y="253"/>
-		<width>395</width>
+		<location x="424" y="280"/>
+		<width>397</width>
 	</widget>
 	<widget field="Right Drive Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="28" y="290"/>
+		<location x="422" y="313"/>
+	</widget>
+	<widget field="Left Drive Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="6" y="312"/>
 	</widget>
 	<widget field="Drive Style" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="1512" y="55"/>
+		<location x="1192" y="40"/>
 	</widget>
 	<widget field="Autonomous Routine" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="1155" y="51"/>
+		<location x="929" y="37"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="1561" y="41"/>
-		<property name="Text" value="Teleop Stick Control"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="930" y="28"/>
-		<width>172</width>
-		<height>38</height>
-		<property name="Text" value="Autonomous"/>
-	</static-widget>
+	<widget field="toteElevatorSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="608" y="50"/>
+	</widget>
+	<widget field="Tote Lift Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="586" y="91"/>
+	</widget>
 </dashboard>
 <live-window>
 </live-window>
