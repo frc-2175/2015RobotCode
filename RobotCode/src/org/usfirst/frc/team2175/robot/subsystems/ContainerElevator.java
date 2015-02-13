@@ -68,22 +68,22 @@ public class ContainerElevator extends Subsystem {
 
     public void setContainerElevatorSpeed(double containerSpeed) {
         double newSpeed;
-        double downSpeed = Robot.properties.containerConfig.downSpeed;
-        if (containerElevatorIsAtTop()
-                && Robot.oi.getContainerElevatorSpeed() > 0) {
-            newSpeed = 0;
-        } else if (containerElevatorIsAtBottom()
-                && Robot.oi.getContainerElevatorSpeed() < 0) {
-            newSpeed = 0;
-        } else {
-            if (containerSpeed < downSpeed) {
-                newSpeed = downSpeed;
-            } else {
-                newSpeed = containerSpeed;
-            }
-
-        }
+        // double downSpeed = Robot.properties.containerConfig.downSpeed;
+        // if (containerElevatorIsAtTop()
+        // && Robot.oi.getContainerElevatorSpeed() > 0) {
+        // newSpeed = 0;
+        // } else if (containerElevatorIsAtBottom()
+        // && Robot.oi.getContainerElevatorSpeed() < 0) {
+        // newSpeed = 0;
+        // } else {
+        // if (containerSpeed < downSpeed) {
+        // newSpeed = downSpeed;
+        // } else {
         // newSpeed = containerSpeed;
+        // }
+
+        // }
+        newSpeed = containerSpeed;
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);

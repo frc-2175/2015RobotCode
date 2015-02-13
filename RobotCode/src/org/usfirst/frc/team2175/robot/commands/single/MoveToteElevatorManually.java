@@ -23,7 +23,7 @@ public class MoveToteElevatorManually extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double elevatorSpeed = Robot.oi.gamepad.getRawAxis(1);
+        double elevatorSpeed = Robot.oi.getToteElevatorSpeed();
         Robot.toteElevator.setToteElevatorSpeed(elevatorSpeed);
         Robot.toteElevator.updateBrakeSetting();
     }
