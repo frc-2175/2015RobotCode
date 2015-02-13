@@ -266,6 +266,7 @@ public class Robot extends IterativeRobot {
                 Robot.toteElevator.getBrake());
         SmartDashboard.putNumber("Tote Lift Encoder Distance",
                 RobotMap.getToteElevatorEncoder());
+        SmartDashboard.putNumber("toteElevatorSpeed", oi.gamepad.getRawAxis(1));
         // SmartDashboard.putBoolean("Tote Lift at Top",
         // RobotMap.getTopToteLiftSwitch());
         // SmartDashboard.putBoolean("Tote Lift at Bottom",

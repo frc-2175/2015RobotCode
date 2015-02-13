@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
+import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorManually;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -71,13 +72,13 @@ public class ToteElevator extends Subsystem {
 
     public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
-        if (isAtTop() && toteElevatorSpeed > 0) {
-            newSpeed = 0;
-        } else if (isAtBottom() && toteElevatorSpeed < 0) {
-            newSpeed = 0;
-        } else {
-            newSpeed = toteElevatorSpeed;
-        }
+        // if (isAtTop() && toteElevatorSpeed > 0) {
+        // newSpeed = 0;
+        // } else if (isAtBottom() && toteElevatorSpeed < 0) {
+        // newSpeed = 0;
+        // } else {
+        newSpeed = toteElevatorSpeed;
+        // }
         RobotMap.toteElevatorMotor.set(newSpeed);
         log.fine("requested toteSpeed=" + toteElevatorSpeed + ", newSpeed="
                 + newSpeed);
@@ -123,5 +124,6 @@ public class ToteElevator extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
+        setDefaultCommand(new MoveToteElevatorManually());
     }
 }
