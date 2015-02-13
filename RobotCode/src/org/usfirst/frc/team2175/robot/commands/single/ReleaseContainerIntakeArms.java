@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
+import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -9,19 +10,19 @@ public class ReleaseContainerIntakeArms extends CommandBase {
     public ReleaseContainerIntakeArms() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(Robot.containerIntake);
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         super.initialize();
-        throw new IllegalStateException("This shouldn't happen");
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        // Robot.containerIntake.setSpatula(false);
+        Robot.containerIntake.setSpatula(false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
