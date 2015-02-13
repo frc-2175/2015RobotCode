@@ -21,6 +21,7 @@ import org.usfirst.frc.team2175.robot.config.RobotConfig;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team2175.robot.subsystems.SammyGate;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
     public static ContainerElevator containerElevator;
     public static ToteIntake toteIntake;
     public static ContainerIntake containerIntake;
+    public static SammyGate sammyGate;
     public static Ramp toteRamp;
     public static Ramp containerRamp;
 

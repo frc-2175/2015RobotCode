@@ -81,6 +81,9 @@ public class RobotMap extends AbstractConfig {
     // container intake
     public static DoubleSolenoid containerIntakeArms;
 
+    // Sammy Gate
+    public static DoubleSolenoid SammyGatePiston;
+
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robotMap.properties";
 
     public void init() {
@@ -94,6 +97,7 @@ public class RobotMap extends AbstractConfig {
         configureToteIntake(props);
         configureTotePusher(props);
         configureContainerIntake(props);
+        configureSammyGate(props);
     }
 
     private void configurePowerDistributionPanel(Properties props) {
@@ -212,6 +216,16 @@ public class RobotMap extends AbstractConfig {
 
         containerIntakeArms = new DoubleSolenoid(armsForwardValue,
                 armsReverseValue);
+    }
+
+    private void configureSammyGate(Properties props) {
+        int sammyGateForwardValue = getIntPropertyValue(
+                "container.sammygate.forward", props);
+        int sammyGateReverseValue = getIntPropertyValue(
+                "container.sammygate.backward", props);
+
+        SammyGatePiston = new DoubleSolenoid(sammyGateForwardValue,
+                sammyGateReverseValue);
     }
 
     public static double getLeftTalonSpeed() {
