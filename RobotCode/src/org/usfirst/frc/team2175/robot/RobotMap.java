@@ -80,6 +80,7 @@ public class RobotMap extends AbstractConfig {
 
     // container intake
     public static DoubleSolenoid containerIntakeArms;
+    public static DoubleSolenoid containerSpatula;
 
     // Sammy Gate
     public static DoubleSolenoid SammyGatePiston;
@@ -213,9 +214,15 @@ public class RobotMap extends AbstractConfig {
                 "container.intake.arms.forward", props);
         int armsReverseValue = getIntPropertyValue(
                 "container.intake.arms.reverse", props);
+        int spatulatForwardValue = getIntPropertyValue(
+                "container.intake.spatula.forward", props);
+        int spatulatReverseValue = getIntPropertyValue(
+                "container.intake.spatula.reverse", props);
 
         containerIntakeArms = new DoubleSolenoid(armsForwardValue,
                 armsReverseValue);
+        containerSpatula = new DoubleSolenoid(spatulatForwardValue,
+                spatulatReverseValue);
     }
 
     private void configureSammyGate(Properties props) {

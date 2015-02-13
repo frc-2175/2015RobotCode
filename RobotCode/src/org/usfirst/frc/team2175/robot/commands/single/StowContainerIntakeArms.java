@@ -7,21 +7,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseContainerIntake extends Command {
+public class StowContainerIntakeArms extends Command {
 
-    public CloseContainerIntake() {
+    public StowContainerIntakeArms() {
+        // Use requires() here to declare subsystem dependencies
         requires(Robot.containerIntake);
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.containerIntake.setIntakeArms(true);
+        Robot.containerIntake.setSpatula(true);
     }
 
     // Make this return true when this Command no longer needs to run execute()
