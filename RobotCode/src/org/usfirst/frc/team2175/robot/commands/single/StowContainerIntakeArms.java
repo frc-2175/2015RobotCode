@@ -1,14 +1,12 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class StowContainerIntakeArms extends Command {
-
+public class StowContainerIntakeArms extends CommandBase {
     public StowContainerIntakeArms() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.containerIntake);
@@ -17,7 +15,7 @@ public class StowContainerIntakeArms extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-
+        super.initialize();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,6 +33,7 @@ public class StowContainerIntakeArms extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
     }
 
     // Called when another command which requires one or more of the same

@@ -6,9 +6,7 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
 /**
  *
  */
-
 public class MoveToteElevatorToPosition extends CommandBase {
-
     private double setpoint;
 
     public MoveToteElevatorToPosition(double setpoint) {
@@ -29,7 +27,6 @@ public class MoveToteElevatorToPosition extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-
     }
 
     // Make this return true when this Command no longer needs to run execute()

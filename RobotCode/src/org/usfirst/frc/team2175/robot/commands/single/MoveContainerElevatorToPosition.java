@@ -10,7 +10,6 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
  *
  */
 public class MoveContainerElevatorToPosition extends CommandBase {
-
     double setpoint;
     private final Logger log = Logger.getLogger(getClass().getName());
 
@@ -21,6 +20,7 @@ public class MoveContainerElevatorToPosition extends CommandBase {
 
     @Override
     protected void initialize() {
+        super.initialize();
         Robot.containerElevator.containerElevatorController
                 .setSetpoint(setpoint);
         Robot.containerElevator.containerElevatorController.enable();
@@ -38,6 +38,7 @@ public class MoveContainerElevatorToPosition extends CommandBase {
 
     @Override
     protected void end() {
+        super.end();
         Robot.containerElevator.containerElevatorController.disable();
     }
 

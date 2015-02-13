@@ -4,14 +4,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class MoveToteElevatorUp extends Command {
+public class MoveToteElevatorUp extends CommandBase {
     private final Logger log = Logger.getLogger(getClass().getName());
 
     public MoveToteElevatorUp() {
@@ -23,6 +23,7 @@ public class MoveToteElevatorUp extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
         double currentLevel = Robot.toteElevator.getHeight();
         double newLevel = Robot.properties.toteConfig
                 .getNextLevelUp(currentLevel);
@@ -46,6 +47,7 @@ public class MoveToteElevatorUp extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
     }
 
     // Called when another command which requires one or more of the same

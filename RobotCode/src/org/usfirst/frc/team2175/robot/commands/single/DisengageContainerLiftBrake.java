@@ -1,13 +1,12 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class DisengageContainerLiftBrake extends Command {
+public class DisengageContainerLiftBrake extends CommandBase {
     public DisengageContainerLiftBrake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -16,6 +15,7 @@ public class DisengageContainerLiftBrake extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
         Boolean on = false;
         Robot.containerElevator.setBrake(on);
     }
@@ -34,12 +34,13 @@ public class DisengageContainerLiftBrake extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-    	end();
+        end();
     }
 }

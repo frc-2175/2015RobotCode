@@ -7,7 +7,6 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
  *
  */
 public class OpenContainerIntake extends CommandBase {
-
     public OpenContainerIntake() {
         requires(Robot.containerIntake);
     }
@@ -15,6 +14,7 @@ public class OpenContainerIntake extends CommandBase {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -32,6 +32,7 @@ public class OpenContainerIntake extends CommandBase {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
     }
 
     // Called when another command which requires one or more of the same

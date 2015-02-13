@@ -1,24 +1,20 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class MoveContainerElevatorManually extends Command {
-    
-
-    
+public class MoveContainerElevatorManually extends CommandBase {
     public MoveContainerElevatorManually() {
         requires(Robot.containerElevator);
-        
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
         Robot.containerElevator.containerElevatorController.disable();
     }
 
@@ -31,8 +27,6 @@ public class MoveContainerElevatorManually extends Command {
         Robot.containerElevator.updateBrakeSetting();
     }
 
-    
-
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
@@ -42,6 +36,7 @@ public class MoveContainerElevatorManually extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
         Robot.containerElevator.setContainerElevatorSpeed(0);
     }
 

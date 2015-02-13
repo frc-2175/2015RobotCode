@@ -1,22 +1,20 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class MoveToteElevatorManually extends Command {
-
+public class MoveToteElevatorManually extends CommandBase {
     public MoveToteElevatorManually() {
         requires(Robot.toteElevator);
-
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
         Robot.toteElevator.toteElevatorController.disable();
     }
 
@@ -37,6 +35,7 @@ public class MoveToteElevatorManually extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
     }
 
     // Called when another command which requires one or more of the same

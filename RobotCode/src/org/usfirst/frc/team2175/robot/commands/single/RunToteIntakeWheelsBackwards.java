@@ -1,25 +1,22 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class RunToteIntakeWheelsBackwards extends Command {
-
+public class RunToteIntakeWheelsBackwards extends CommandBase {
     public RunToteIntakeWheelsBackwards() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.toteIntake);
-
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-
+        super.initialize();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,6 +35,7 @@ public class RunToteIntakeWheelsBackwards extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
         Robot.toteIntake.setWheelSpeed(0);
     }
 

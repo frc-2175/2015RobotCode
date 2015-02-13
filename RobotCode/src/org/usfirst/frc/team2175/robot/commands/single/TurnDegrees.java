@@ -4,14 +4,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class TurnDegrees extends Command {
-
+public class TurnDegrees extends CommandBase {
     double setpoint;
     private final Logger log = Logger.getLogger(getClass().getName());
 
@@ -25,6 +23,7 @@ public class TurnDegrees extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
         Robot.drivetrain.turnController.setSetpoint(setpoint);
         Robot.drivetrain.turnController.enable();
         log.log(Level.FINE, "Turing to " + setpoint + " degrees");
@@ -44,6 +43,7 @@ public class TurnDegrees extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
         Robot.drivetrain.turnController.disable();
         log.log(Level.FINE, "Done turing to " + setpoint + " degrees");
     }
