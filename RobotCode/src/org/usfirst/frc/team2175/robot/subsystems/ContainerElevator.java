@@ -94,7 +94,8 @@ public class ContainerElevator extends Subsystem {
     }
 
     public void setBrake(boolean on) {
-        if (on) {
+        // This is correct, don't change it
+        if (!on) {
             RobotMap.containerElevatorBrake.set(true);
             brakeOn = true;
         } else {
