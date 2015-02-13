@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,19 +12,22 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  *
  */
 public class MoveContainerElevatorDown extends Command {
+    private final Logger log = Logger.getLogger(getClass().getName());
 
     public MoveContainerElevatorDown() {
+
+    }
+
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
         double currentLevel = Robot.containerElevator.getContainerHeight();
         double newLevel = Robot.properties.containerConfig
                 .getNextLevelDown(currentLevel);
         MoveContainerElevatorToPosition command = new MoveContainerElevatorToPosition(
                 newLevel);
         Scheduler.getInstance().add(command);
-    }
-
-    // Called just before this Command runs the first time
-    @Override
-    protected void initialize() {
+        log.log(Level.FINE, "Moving container elevator down to " + newLevel);
 
     }
 

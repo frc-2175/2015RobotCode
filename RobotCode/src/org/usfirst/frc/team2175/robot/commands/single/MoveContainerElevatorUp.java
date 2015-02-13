@@ -1,5 +1,8 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,22 +12,25 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  *
  */
 public class MoveContainerElevatorUp extends Command {
+    private final Logger log = Logger.getLogger(getClass().getName());
 
     public MoveContainerElevatorUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.containerElevator);
+
+    }
+
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+
         double currentLevel = Robot.containerElevator.getContainerHeight();
         double newLevel = Robot.properties.containerConfig
                 .getNextLevelUp(currentLevel);
         MoveContainerElevatorToPosition command = new MoveContainerElevatorToPosition(
                 newLevel);
         Scheduler.getInstance().add(command);
-    }
-
-    // Called just before this Command runs the first time
-    @Override
-    protected void initialize() {
+        log.log(Level.FINE, "Moving elevator up to " + newLevel);
     }
 
     // Called repeatedly when this Command is scheduled to run
