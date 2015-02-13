@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
+import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -126,7 +127,7 @@ public class ContainerElevator extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-        // setDefaultCommand(new MoveContainerElevatorManually());
+        setDefaultCommand(new MoveContainerElevatorManually());
     }
 
     public boolean getBrake() {

@@ -4,8 +4,6 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
-import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
-import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorManually;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheels;
@@ -88,9 +86,6 @@ public class OI {
                 .whileHeld(new RunToteIntakeWheelsBackwards());
         closeContainerIntake.whenPressed(new CloseContainerIntake());
         openContainerIntake.whenPressed(new OpenContainerIntake());
-        moveToteElevatorManually.whileHeld(new MoveToteElevatorManually());
-        moveContainerElevatorManually
-                .whileHeld(new MoveContainerElevatorManually());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
 

@@ -7,6 +7,7 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
  *
  */
 public class StowContainerIntakeArms extends CommandBase {
+
     public StowContainerIntakeArms() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.containerIntake);
