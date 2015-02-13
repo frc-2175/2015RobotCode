@@ -23,10 +23,13 @@ public class MoveTotePusher extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        // TODO propertize this
         if (commandingMoveOut) {
-            Robot.totePusher.setMotorSpeed(.5);
+            Robot.totePusher.setMotorSpeed(Robot.properties
+                    .getTotePusherSpeed());
         } else {
-            Robot.totePusher.setMotorSpeed(-.5);
+            Robot.totePusher.setMotorSpeed(-Robot.properties
+                    .getTotePusherSpeed());
         }
     }
 
