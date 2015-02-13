@@ -163,7 +163,6 @@ public class Robot extends IterativeRobot {
     public void disabledInit() {
         containerElevator.containerElevatorController.disable();
         pdpLoggingLoop.cancel();
-        pdpLogger.endPDPLogging();
     }
 
     /**
@@ -179,10 +178,13 @@ public class Robot extends IterativeRobot {
         // + distance;
         // log.info(msg);
 
-        pdpLogger.logPDPValues();
-
         System.out.println(RobotMap.containerElevatorEncoder.get() + " "
-                + RobotMap.containerElevatorEncoder.getDistance());
+                + RobotMap.containerElevatorEncoder.getDistance()); // FIXME
+                                                                    // temporary
+                                                                    // testing
+                                                                    // code;
+                                                                    // delete me
+                                                                    // later
 
     }
 
@@ -214,7 +216,7 @@ public class Robot extends IterativeRobot {
         pdpLogger.initPDPLogging();
 
         pdpLoggingLoop = new java.util.Timer();
-        pdpLoggingLoop.schedule(new PDPLoggerTask(), 0L, (1000));
+        pdpLoggingLoop.schedule(new PDPLoggerTask(), 0L, (40));
     }
 
     private void makeAutonChooser() {
