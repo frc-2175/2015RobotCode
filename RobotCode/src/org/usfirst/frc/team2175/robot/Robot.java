@@ -38,6 +38,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
     private final Logger log = Logger.getLogger(getClass().getName());
 
+    // TODO convert these to instances
     public static OI oi;
     public static Drivetrain drivetrain;
     public static ToteElevator toteElevator;
