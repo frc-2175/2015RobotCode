@@ -21,7 +21,6 @@ import org.usfirst.frc.team2175.robot.config.RobotConfig;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team2175.robot.subsystems.SammyGate;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
@@ -51,7 +50,6 @@ public class Robot extends IterativeRobot {
     public static ContainerElevator containerElevator;
     public static ToteIntake toteIntake;
     public static ContainerIntake containerIntake;
-    public static SammyGate sammyGate;
     public static Ramp toteRamp;
     public static Ramp containerRamp;
 
@@ -233,17 +231,19 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("0 - No Action", new AutonDoNothing());
         autonChooser.addDefault("1 - Drive straight into Auto Zone",
                 new AutonDriveForward());
-        autonChooser.addDefault("2 - Stack 1 tote and end in Auto Zone", new AutonStack1Tote());
-        autonChooser.addDefault("3 - Stack 2 totes and end in Auto Zone", new AutonStack2Totes());
-        autonChooser.addDefault("4 - Stack 3 Totes and end in Auto Zone",new AutonStack1Tote());
-        autonChooser.addDefault("5 - Stack 1 tote and grab 1 container", 
-        		new AutonStack1ToteGrab1Container());
+        autonChooser.addDefault("2 - Stack 1 tote and end in Auto Zone",
+                new AutonStack1Tote());
+        autonChooser.addDefault("3 - Stack 2 totes and end in Auto Zone",
+                new AutonStack2Totes());
+        autonChooser.addDefault("4 - Stack 3 Totes and end in Auto Zone",
+                new AutonStack1Tote());
+        autonChooser.addDefault("5 - Stack 1 tote and grab 1 container",
+                new AutonStack1ToteGrab1Container());
         autonChooser.addDefault("6 - Stack 2 totes and grab 1 container",
-        		new AutonStack2TotesGrab1Container());
+                new AutonStack2TotesGrab1Container());
         autonChooser.addDefault("7 - Stack 3 totes and grab 1 container",
-        		new AutonStack3TotesGrab1Container());
+                new AutonStack3TotesGrab1Container());
         // command
-
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
