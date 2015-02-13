@@ -182,13 +182,11 @@ public class Robot extends IterativeRobot {
         // + distance;
         // log.info(msg);
 
+        /**
+         * FIXME temporary testing code; delete me later
+         */
         System.out.println(RobotMap.containerElevatorEncoder.get() + " "
-                + RobotMap.containerElevatorEncoder.getDistance()); // FIXME
-                                                                    // temporary
-                                                                    // testing
-                                                                    // code;
-                                                                    // delete me
-                                                                    // later
+                + RobotMap.containerElevatorEncoder.getDistance());
 
     }
 
