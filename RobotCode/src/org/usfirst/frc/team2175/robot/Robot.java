@@ -6,6 +6,10 @@ import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1Tote;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1ToteGrab1Container;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonStack2Totes;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonStack2TotesGrab1Container;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonStack3TotesGrab1Container;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
 import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 import org.usfirst.frc.team2175.robot.commands.single.TankDriveForTesting;
@@ -227,11 +231,17 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("0 - No Action", new AutonDoNothing());
         autonChooser.addDefault("1 - Drive straight into Auto Zone",
                 new AutonDriveForward());
+        autonChooser.addDefault("2 - Stack 1 tote and end in Auto Zone", new AutonStack1Tote());
+        autonChooser.addDefault("3 - Stack 2 totes and end in Auto Zone", new AutonStack2Totes());
+        autonChooser.addDefault("4 - Stack 3 Totes and end in Auto Zone",new AutonStack1Tote());
+        autonChooser.addDefault("5 - Stack 1 tote and grab 1 container", 
+        		new AutonStack1ToteGrab1Container());
+        autonChooser.addDefault("6 - Stack 2 totes and grab 1 container",
+        		new AutonStack2TotesGrab1Container());
+        autonChooser.addDefault("7 - Stack 3 totes and grab 1 container",
+        		new AutonStack3TotesGrab1Container());
         // command
 
-        autonChooser.addDefault(
-                "5 - Stack 3 Totes and put them into Auto Zone",
-                new AutonStack1Tote());
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
