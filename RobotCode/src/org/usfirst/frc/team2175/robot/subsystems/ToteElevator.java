@@ -84,7 +84,8 @@ public class ToteElevator extends Subsystem {
     }
 
     public void setBrake(boolean on) {
-        if (on) {
+        // This is supposed to be negated, don't change it
+        if (!on) {
             RobotMap.toteElevatorBrake.set(true);
         } else {
             RobotMap.toteElevatorBrake.set(false);
