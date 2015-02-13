@@ -1,0 +1,10 @@
+# @title FindBugs settings
+# @description FindBugs settings
+# @task_type LASTMOD
+#
+# Created by the Workspace Mechanic Preference Recorder
+#Thu Feb 12 19:00:21 CST 2015
+file_export_version=3.0
+/instance/edu.umd.cs.findbugs.plugin.eclipse/effort=max
+/instance/edu.umd.cs.findbugs.plugin.eclipse/filter_settings=Medium|BAD_PRACTICE,CORRECTNESS,EXPERIMENTAL,MT_CORRECTNESS,PERFORMANCE,STYLE|false|15
+/instance/edu.umd.cs.findbugs.plugin.eclipse/filter_settings_neg=MALICIOUS_CODE,NOISE,I18N,SECURITY|
