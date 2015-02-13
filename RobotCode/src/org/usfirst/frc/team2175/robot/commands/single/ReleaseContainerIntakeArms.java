@@ -5,8 +5,8 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
 /**
  *
  */
-public class ReleaseToteIntakeArms extends CommandBase {
-    public ReleaseToteIntakeArms() {
+public class ReleaseContainerIntakeArms extends CommandBase {
+    public ReleaseContainerIntakeArms() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -15,6 +15,7 @@ public class ReleaseToteIntakeArms extends CommandBase {
     @Override
     protected void initialize() {
         super.initialize();
+        throw new IllegalStateException("This shouldn't happen");
     }
 
     // Called repeatedly when this Command is scheduled to run

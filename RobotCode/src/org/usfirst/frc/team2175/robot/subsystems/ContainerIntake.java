@@ -32,6 +32,7 @@ public class ContainerIntake extends Subsystem {
     }
 
     public void setSpatula(boolean spatulaOn) {
+
         this.spatulaOn = spatulaOn;
         Value value;
         if (spatulaOn) {
