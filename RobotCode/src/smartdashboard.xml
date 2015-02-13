@@ -1,5 +1,11 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="10" y="279"/>
+	</widget>
+	<widget field="Right Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="424" y="280"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="1233" y="23"/>
 		<property name="Text" value="Control Scheme"/>
@@ -36,14 +42,6 @@
 		<location x="10" y="41"/>
 		<width>179</width>
 		<height>41</height>
-	</widget>
-	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
-		<location x="9" y="278"/>
-		<width>396</width>
-	</widget>
-	<widget field="Right Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
-		<location x="424" y="280"/>
-		<width>397</width>
 	</widget>
 	<widget field="Right Drive Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
 		<location x="422" y="313"/>
