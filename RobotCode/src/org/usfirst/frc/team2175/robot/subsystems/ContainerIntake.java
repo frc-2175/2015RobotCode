@@ -19,14 +19,16 @@ public class ContainerIntake extends Subsystem {
         Value value;
 
         // TODO test on robot to make sure this makes sense
-        if (on && !spatulaOn) {
-            value = DoubleSolenoid.Value.kForward;
-        } else {
-            value = DoubleSolenoid.Value.kReverse;
+        if (!spatulaOn) {
+            if (on) {
+                value = DoubleSolenoid.Value.kForward;
+            } else {
+                value = DoubleSolenoid.Value.kReverse;
+            }
+            log.fine("Intake arms set to " + on + ", value=" + value);
+            RobotMap.containerIntakeArms.set(value);
         }
 
-        log.fine("Intake arms set to " + on + ", value=" + value);
-        RobotMap.containerIntakeArms.set(value);
     }
 
     public void setSpatula(boolean spatulaOn) {
