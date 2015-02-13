@@ -44,5 +44,6 @@ public class TankDriveWithSticks extends Command {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+    	end();
     }
 }
