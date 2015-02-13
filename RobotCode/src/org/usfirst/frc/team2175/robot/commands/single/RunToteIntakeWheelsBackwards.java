@@ -10,7 +10,7 @@ public class RunToteIntakeWheelsBackwards extends CommandBase {
     public RunToteIntakeWheelsBackwards() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.toteIntake);
+        requires(Robot.toteIntake);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +22,8 @@ public class RunToteIntakeWheelsBackwards extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.toteIntake.setWheelSpeed(-Robot.properties
+        // After testing, the wheels must be set to forward to run outwards
+        Robot.toteIntake.setWheelSpeed(Robot.properties
                 .getToteIntakeWheelsSpeed());
     }
 
