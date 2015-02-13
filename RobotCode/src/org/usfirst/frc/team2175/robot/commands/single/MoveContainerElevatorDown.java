@@ -14,7 +14,8 @@ public class MoveContainerElevatorDown extends Command {
         double currentLevel = Robot.containerElevator.getContainerHeight();
         double newLevel = Robot.properties.containerConfig
                 .getNextLevelDown(currentLevel);
-        MoveContainerElevatorDown command = new MoveContainerElevatorDown();
+        MoveContainerElevatorToPosition command = new MoveContainerElevatorToPosition(
+                newLevel);
         Scheduler.getInstance().add(command);
     }
 
