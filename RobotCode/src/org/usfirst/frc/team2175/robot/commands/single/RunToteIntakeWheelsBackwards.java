@@ -12,6 +12,7 @@ public class RunToteIntakeWheelsBackwards extends Command {
     public RunToteIntakeWheelsBackwards() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.toteIntake);
 
     }
 

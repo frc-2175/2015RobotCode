@@ -13,6 +13,7 @@ public class MoveContainerElevatorUp extends Command {
     public MoveContainerElevatorUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.containerElevator);
         double currentLevel = Robot.containerElevator.getContainerHeight();
         double newLevel = Robot.properties.containerConfig
                 .getNextLevelUp(currentLevel);
