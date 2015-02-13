@@ -23,7 +23,6 @@ import org.usfirst.frc.team2175.robot.subsystems.ContainerIntake;
 import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
-import org.usfirst.frc.team2175.robot.subsystems.TotePusher;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -46,7 +45,6 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static Drivetrain drivetrain;
     public static ToteElevator toteElevator;
-    public static TotePusher totePusher;
     public static ContainerElevator containerElevator;
     public static ToteIntake toteIntake;
     public static ContainerIntake containerIntake;
@@ -201,7 +199,6 @@ public class Robot extends IterativeRobot {
     private void makeSubsystems() {
         drivetrain = new Drivetrain();
         toteElevator = new ToteElevator();
-        totePusher = new TotePusher();
         containerElevator = new ContainerElevator();
         toteIntake = new ToteIntake();
         containerIntake = new ContainerIntake();
