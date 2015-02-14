@@ -10,7 +10,7 @@ public class MoveTotePusherIn extends CommandBase {
 
     public MoveTotePusherIn() {
         requires(Robot.toteIntake);
-        setTimeout(Robot.properties.getToteRetractionTimeout());
+        // setTimeout(Robot.properties.getToteRetractionTimeout());
     }
 
     @Override
@@ -24,12 +24,13 @@ public class MoveTotePusherIn extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return isTimedOut() || Robot.toteIntake.isPusherRetracted();
+        return false;
 
     }
 
     @Override
     protected void end() {
+        Robot.toteIntake.setPusherSpeed(0);
     }
 
     @Override

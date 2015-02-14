@@ -4,12 +4,14 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
+import org.usfirst.frc.team2175.robot.commands.single.MoveTotePusherIn;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
 import org.usfirst.frc.team2175.robot.commands.single.ReleaseContainerIntakeArms;
 import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheels;
 import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheelsBackwards;
+import org.usfirst.frc.team2175.robot.commands.single.StopPusher;
 import org.usfirst.frc.team2175.robot.commands.single.StowContainerIntakeArms;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -81,7 +83,7 @@ public class OI {
                 Robot.keymap.getCloseToteIntake());
         JoystickButton pushToteOut = new JoystickButton(gamepad,
                 Robot.keymap.getPushToteOut());
-        JoystickButton moveToteElevatorManually = new JoystickButton(gamepad,
+        JoystickButton pushToteIn = new JoystickButton(gamepad,
                 Robot.keymap.getMoveToteElevatorManually());
         JoystickButton moveContainerElevatorManually = new JoystickButton(
                 gamepad, Robot.keymap.getMoveContainerElevatorManually());
@@ -97,9 +99,15 @@ public class OI {
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
-        pushToteOut.whileHeld(new PushToteOut());
+
+        pushToteIn.whenPressed(new MoveTotePusherIn());
+        pushToteIn.whenReleased(new StopPusher());
+
         stowContainerIntake.whenPressed(new StowContainerIntakeArms());
         releaseContainerIntake.whenPressed(new ReleaseContainerIntakeArms());
+
+        pushToteOut.whenPressed(new PushToteOut());
+        pushToteOut.whenReleased(new StopPusher());
     }
 
     public double getMoveValue() {

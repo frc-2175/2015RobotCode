@@ -3,6 +3,7 @@ package org.usfirst.frc.team2175.robot.subsystems;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.RobotMap;
+import org.usfirst.frc.team2175.robot.commands.single.StopPusher;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -31,36 +32,36 @@ public class ToteIntake extends Subsystem {
     }
 
     public void setPusherSpeed(double speed) {
-        if (speed > 0 && !isPusherExtended()) {
-            RobotMap.totePusher.set(speed);
-        } else if (speed < 0 && !isPusherRetracted()) {
-            RobotMap.totePusher.set(speed);
-        } else {
+        if (speed > 0 && isPusherExtended()) {
             RobotMap.totePusher.set(0);
+        } else if (speed < 0 && isPusherRetracted()) {
+            RobotMap.totePusher.set(0);
+        } else {
+            RobotMap.totePusher.set(speed);
         }
     }
 
     public void setMotorSpeed(double armSpeed) {
         double newSpeed;
-        if (isPusherExtended() && armSpeed >= 0) {
-            newSpeed = 0;
-        } else if (isPusherRetracted() && armSpeed <= 0) {
-            newSpeed = 0;
-        } else {
-            newSpeed = armSpeed;
-        }
+        // if (isPusherExtended() && armSpeed > 0) {
+        // newSpeed = 0;
+        // } else if (isPusherRetracted() && armSpeed < 0) {
+        // newSpeed = 0;
+        // } else {
+        newSpeed = armSpeed;
+        // }
         RobotMap.totePusher.set(newSpeed);
         log.fine("requested armSpeed=" + armSpeed + ", newSpeed=" + newSpeed);
     }
 
     public boolean isPusherExtended() {
-        boolean isExtended = RobotMap.pusherOutSwitch.get();
+        boolean isExtended = !RobotMap.pusherOutSwitch.get();
         log.fine("isExtended=" + isExtended);
         return isExtended;
     }
 
     public boolean isPusherRetracted() {
-        boolean isRetracted = RobotMap.pusherInSwitch.get();
+        boolean isRetracted = !RobotMap.pusherInSwitch.get();
         log.fine("isRetracted=" + isRetracted);
         return isRetracted;
     }
@@ -71,5 +72,6 @@ public class ToteIntake extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
+        setDefaultCommand(new StopPusher());
     }
 }

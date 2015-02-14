@@ -121,6 +121,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledPeriodic() {
+        smartDashboardUpdate();
 
     }
 
@@ -185,8 +186,7 @@ public class Robot extends IterativeRobot {
         /**
          * FIXME temporary testing code; delete me later
          */
-        System.out.println(RobotMap.leftEncoder.get()
-                + RobotMap.rightEncoder.get());
+
         smartDashboardUpdate();
 
     }

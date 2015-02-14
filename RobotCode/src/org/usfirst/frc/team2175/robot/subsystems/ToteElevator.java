@@ -59,22 +59,22 @@ public class ToteElevator extends Subsystem {
     }
 
     public boolean isAtBottom() {
-        boolean isAtBottom = RobotMap.toteSwitchBottom.get();
+        boolean isAtBottom = !RobotMap.toteSwitchBottom.get();
         log.fine("isAtBottom=" + isAtBottom);
         return isAtBottom;
     }
 
     public boolean isAtTop() {
-        boolean isAtTop = RobotMap.toteSwitchTop.get();
+        boolean isAtTop = !RobotMap.toteSwitchTop.get();
         log.fine("isAtTop=" + isAtTop);
         return isAtTop;
     }
 
     public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
-        if (isAtTop() && toteElevatorSpeed > 0) {
+        if (isAtTop() && Robot.oi.getToteElevatorSpeed() < 0) {
             newSpeed = 0;
-        } else if (isAtBottom() && toteElevatorSpeed < 0) {
+        } else if (isAtBottom() && Robot.oi.getToteElevatorSpeed() > 0) {
             newSpeed = 0;
         } else {
             newSpeed = toteElevatorSpeed;
