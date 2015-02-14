@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ContainerIntake extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
-    private boolean spatulaOn;
 
     public void setIntakeArms(boolean on) {
         Value value;
@@ -25,12 +24,9 @@ public class ContainerIntake extends Subsystem {
         }
         log.fine("Intake arms set to " + on + ", value=" + value);
         RobotMap.containerIntakeArms.set(value);
-
     }
 
     public void setSpatula(boolean spatulaOn) {
-
-        this.spatulaOn = spatulaOn;
         Value value;
         if (spatulaOn) {
             value = DoubleSolenoid.Value.kForward;

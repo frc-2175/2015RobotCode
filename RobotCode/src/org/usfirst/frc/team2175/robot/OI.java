@@ -85,8 +85,6 @@ public class OI {
                 Robot.keymap.getPushToteOut());
         JoystickButton pushToteIn = new JoystickButton(gamepad,
                 Robot.keymap.getMoveToteElevatorManually());
-        JoystickButton moveContainerElevatorManually = new JoystickButton(
-                gamepad, Robot.keymap.getMoveContainerElevatorManually());
         JoystickButton stowContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getStowContainerIntake());
         JoystickButton releaseContainerIntake = new JoystickButton(gamepad,
