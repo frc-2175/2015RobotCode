@@ -3,15 +3,15 @@ package org.usfirst.frc.team2175.robot.commands.single;
 import org.usfirst.frc.team2175.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class PushToteOut extends Command {
+public class MoveTotePusherIn extends Command {
 
-    public PushToteOut() {
+    public MoveTotePusherIn() {
         requires(Robot.toteIntake);
+        setTimeout(1.5); // TODO add this to the properties file
     }
 
     @Override
@@ -20,21 +20,17 @@ public class PushToteOut extends Command {
 
     @Override
     protected void execute() {
-        if (!Robot.toteIntake.isIntakeArmsOut()) {
-            Robot.toteIntake.setIntakeArms(true);
-        }
-        Robot.toteIntake.setPusherSpeed(1);
+        Robot.toteIntake.setPusherSpeed(-1); // TODO set this speed
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return isTimedOut() || Robot.toteIntake.isPusherRetracted();
+
     }
 
     @Override
     protected void end() {
-        MoveTotePusherIn command = new MoveTotePusherIn();
-        Scheduler.getInstance().add(command);
     }
 
     @Override
