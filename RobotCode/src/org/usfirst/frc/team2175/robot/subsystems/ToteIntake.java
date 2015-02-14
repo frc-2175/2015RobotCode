@@ -72,6 +72,10 @@ public class ToteIntake extends Subsystem {
         return isRetracted;
     }
 
+    public void setPusherMotorSpeed(double speed) {
+        RobotMap.totePusher.set(speed);
+    }
+
     @Override
     protected void initDefaultCommand() {
     }
