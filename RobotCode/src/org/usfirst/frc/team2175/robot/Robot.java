@@ -183,10 +183,6 @@ public class Robot extends IterativeRobot {
         // + distance;
         // log.info(msg);
 
-        /**
-         * FIXME temporary testing code; delete me later
-         */
-
         smartDashboardUpdate();
 
     }
