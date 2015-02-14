@@ -23,7 +23,7 @@ public class PushToteOut extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.toteIntake.isPusherExtended();
     }
 
     @Override
@@ -32,6 +32,7 @@ public class PushToteOut extends CommandBase {
         // MoveTotePusherIn command = new MoveTotePusherIn();
         // Scheduler.getInstance().add(command);
         Robot.toteIntake.setPusherSpeed(0);
+
     }
 
     @Override

@@ -266,9 +266,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Right Drive Encoder",
                 RobotMap.getRightEncoderSpeed());
         SmartDashboard.putBoolean("Container Lift at Top",
-                RobotMap.getTopContainerLiftSwitch());
+                Robot.containerElevator.containerElevatorIsAtTop());
         SmartDashboard.putBoolean("Container Lift at Bottom",
-                RobotMap.getBottomContainerLiftSwitch());
+                Robot.containerElevator.containerElevatorIsAtBottom());
         SmartDashboard.putBoolean("Container Lift Brake",
                 Robot.containerElevator.getBrake());
         SmartDashboard.putBoolean("Tote Lift Brake",
@@ -276,8 +276,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Tote Lift Encoder Distance",
                 RobotMap.getToteElevatorEncoder());
         SmartDashboard.putBoolean("Tote Lift at Top",
-                RobotMap.getTopToteLiftSwitch());
+                Robot.toteElevator.isAtTop());
         SmartDashboard.putBoolean("Tote Lift at Bottom",
-                RobotMap.getBottomToteLiftSwitch());
+                Robot.toteElevator.isAtBottom());
+        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
     }
 }

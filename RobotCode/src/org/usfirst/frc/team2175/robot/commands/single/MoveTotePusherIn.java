@@ -24,7 +24,7 @@ public class MoveTotePusherIn extends CommandBase {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.toteIntake.isPusherRetracted();
 
     }
 

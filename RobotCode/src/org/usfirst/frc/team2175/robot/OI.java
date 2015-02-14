@@ -101,11 +101,12 @@ public class OI {
         pushToteIn.whenPressed(new MoveTotePusherIn());
         pushToteIn.whenReleased(new StopPusher());
 
+        pushToteOut.whenPressed(new PushToteOut());
+        pushToteOut.whenReleased(new StopPusher());
+
         stowContainerIntake.whenPressed(new StowContainerIntakeArms());
         releaseContainerIntake.whenPressed(new ReleaseContainerIntakeArms());
 
-        pushToteOut.whenPressed(new PushToteOut());
-        pushToteOut.whenReleased(new StopPusher());
     }
 
     public double getMoveValue() {
