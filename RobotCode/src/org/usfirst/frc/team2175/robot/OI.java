@@ -6,6 +6,7 @@ import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
+import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
 import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheels;
 import org.usfirst.frc.team2175.robot.commands.single.RunToteIntakeWheelsBackwards;
 
@@ -76,6 +77,8 @@ public class OI {
                 Robot.keymap.getOpenToteIntake());
         JoystickButton closeToteIntake = new JoystickButton(gamepad,
                 Robot.keymap.getCloseToteIntake());
+        JoystickButton pushToteOut = new JoystickButton(gamepad,
+                Robot.keymap.getPushToteOut());
         JoystickButton moveToteElevatorManually = new JoystickButton(gamepad,
                 Robot.keymap.getMoveToteElevatorManually());
         JoystickButton moveContainerElevatorManually = new JoystickButton(
@@ -88,6 +91,7 @@ public class OI {
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
+        pushToteOut.whenPressed(new PushToteOut());
 
     }
 

@@ -17,6 +17,7 @@ public class KeymapConfig extends AbstractConfig {
     private final int runToteIntakeWheelsBackwards;
     private final int moveToteElevatorManually;
     private final int moveContainerElevatorManually;
+    private final int pushToteOut;
 
     public KeymapConfig() {
         try {
@@ -37,6 +38,7 @@ public class KeymapConfig extends AbstractConfig {
                     "moveToteElevatorManually", prop);
             moveContainerElevatorManually = getIntPropertyValue(
                     "moveContainerElevatorManually", prop);
+            pushToteOut = getIntPropertyValue("pushOutTote", prop);
 
         } catch (Exception e) {
             final String msg = "Problem with processing Keymap, can't continue:";
@@ -75,6 +77,10 @@ public class KeymapConfig extends AbstractConfig {
 
     public int getMoveContainerElevatorManually() {
         return moveContainerElevatorManually;
+    }
+
+    public int getPushToteOut() {
+        return pushToteOut;
     }
 
 }
