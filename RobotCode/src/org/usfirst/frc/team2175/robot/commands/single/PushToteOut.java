@@ -1,14 +1,14 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
-public class PushToteOut extends Command {
+public class PushToteOut extends CommandBase {
 
     public PushToteOut() {
         requires(Robot.toteIntake);

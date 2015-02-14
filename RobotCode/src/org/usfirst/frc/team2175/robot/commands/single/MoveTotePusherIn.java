@@ -1,13 +1,12 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
  *
  */
-public class MoveTotePusherIn extends Command {
+public class MoveTotePusherIn extends CommandBase {
 
     public MoveTotePusherIn() {
         requires(Robot.toteIntake);
