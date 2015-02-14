@@ -39,5 +39,6 @@ public class OpenContainerIntake extends CommandBase {
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        end();
     }
 }
