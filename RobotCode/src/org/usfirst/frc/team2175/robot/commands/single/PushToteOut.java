@@ -7,13 +7,13 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
  *
  */
 public class PushToteOut extends CommandBase {
-
     public PushToteOut() {
         requires(Robot.toteIntake);
     }
 
     @Override
     protected void initialize() {
+        super.initialize();
     }
 
     @Override
@@ -28,6 +28,7 @@ public class PushToteOut extends CommandBase {
 
     @Override
     protected void end() {
+        super.end();
         // MoveTotePusherIn command = new MoveTotePusherIn();
         // Scheduler.getInstance().add(command);
         Robot.toteIntake.setPusherSpeed(0);

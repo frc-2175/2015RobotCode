@@ -7,7 +7,6 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
  *
  */
 public class MoveTotePusherIn extends CommandBase {
-
     public MoveTotePusherIn() {
         requires(Robot.toteIntake);
         // setTimeout(Robot.properties.getToteRetractionTimeout());
@@ -15,6 +14,7 @@ public class MoveTotePusherIn extends CommandBase {
 
     @Override
     protected void initialize() {
+        super.initialize();
     }
 
     @Override
@@ -30,6 +30,7 @@ public class MoveTotePusherIn extends CommandBase {
 
     @Override
     protected void end() {
+        super.end();
         Robot.toteIntake.setPusherSpeed(0);
     }
 
