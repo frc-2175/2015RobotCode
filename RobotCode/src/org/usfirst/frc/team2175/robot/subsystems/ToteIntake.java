@@ -17,7 +17,7 @@ public class ToteIntake extends Subsystem {
 
     public void setWheelSpeed(double wheelSpeed) {
         log.fine("wheelSpeed=" + wheelSpeed);
-        RobotMap.toteIntakeWheelMotor.set(wheelSpeed);
+        RobotMap.toteIntakeWheelMotorRight.set(wheelSpeed);
     }
 
     public void setIntakeArms(boolean on) {

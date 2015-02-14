@@ -69,7 +69,7 @@ public class RobotMap extends AbstractConfig {
     public static Solenoid containerElevatorBrake;
 
     // tote intake
-    public static Talon toteIntakeWheelMotor;
+    public static Talon toteIntakeWheelMotorRight;
     public static DoubleSolenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
     public static Talon totePusher;
@@ -166,7 +166,7 @@ public class RobotMap extends AbstractConfig {
                 props);
         int switchValue = getIntPropertyValue("tote.intake.in.switch", props);
 
-        toteIntakeWheelMotor = new Talon(motorValue);
+        toteIntakeWheelMotorRight = new Talon(motorValue);
         toteIntakeArms = new DoubleSolenoid(armsForwardValue, armsReverseValue);
         toteIntakeToteInSwitch = new DigitalInput(switchValue);
     }

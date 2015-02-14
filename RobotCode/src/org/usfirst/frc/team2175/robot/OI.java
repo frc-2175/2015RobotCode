@@ -69,17 +69,17 @@ public class OI {
         shifters = new JoystickButton(leftStick, 1);
         deadbandValue = Robot.properties.getDeadbandSize();
 
-        JoystickButton runToteIntakeWheels = new JoystickButton(gamepad,
+        JoystickButton runToteIntakeWheels = new JoystickButton(rightStick,
                 Robot.keymap.getRunToteIntakeWheels());
         JoystickButton runToteIntakeWheelsBackwards = new JoystickButton(
-                gamepad, Robot.keymap.getRunToteIntakeWheelsBackwards());
+                rightStick, Robot.keymap.getRunToteIntakeWheelsBackwards());
         JoystickButton closeContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getCloseContainerIntake());
         JoystickButton openContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getOpenContainerIntake());
-        JoystickButton openToteIntake = new JoystickButton(gamepad,
+        JoystickButton openToteIntake = new JoystickButton(rightStick,
                 Robot.keymap.getOpenToteIntake());
-        JoystickButton closeToteIntake = new JoystickButton(gamepad,
+        JoystickButton closeToteIntake = new JoystickButton(rightStick,
                 Robot.keymap.getCloseToteIntake());
         JoystickButton pushToteOut = new JoystickButton(gamepad,
                 Robot.keymap.getPushToteOut());
