@@ -2,7 +2,6 @@ package org.usfirst.frc.team2175.robot.subsystems;
 
 import java.util.logging.Logger;
 
-import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -31,20 +30,14 @@ public class ToteIntake extends Subsystem {
         RobotMap.toteIntakeArms.set(value);
     }
 
-    public void pushOut() {
-        double pusherSpeed = Robot.properties.getTotePusherSpeed();
-        log.fine("Pushing Out");
-        while (!isPusherExtended()) {
-            RobotMap.totePusher.set(pusherSpeed);
+    public void setPusherSpeed(double speed) {
+        if (speed > 0 && !isPusherExtended()) {
+            RobotMap.totePusher.set(speed);
+        } else if (speed < 0 && !isPusherRetracted()) {
+            RobotMap.totePusher.set(speed);
+        } else {
+            RobotMap.totePusher.set(0);
         }
-        RobotMap.totePusher.set(0);
-        log.fine("Done Pushing Out");
-        log.fine("Retracting ");
-        while (!isPusherRetracted()) {
-            RobotMap.totePusher.set(pusherSpeed);
-        }
-        RobotMap.totePusher.set(0);
-        log.fine("Done Retracting");
     }
 
     public void setMotorSpeed(double armSpeed) {
@@ -61,19 +54,19 @@ public class ToteIntake extends Subsystem {
     }
 
     public boolean isPusherExtended() {
-        boolean isExtended = RobotMap.pusherSwitch.get();
+        boolean isExtended = RobotMap.pusherOutSwitch.get();
         log.fine("isExtended=" + isExtended);
         return isExtended;
     }
 
     public boolean isPusherRetracted() {
-        boolean isRetracted = !RobotMap.pusherSwitch.get();
+        boolean isRetracted = RobotMap.pusherInSwitch.get();
         log.fine("isRetracted=" + isRetracted);
         return isRetracted;
     }
 
-    public void setPusherMotorSpeed(double speed) {
-        RobotMap.totePusher.set(speed);
+    public boolean isIntakeArmsOut() {
+        return RobotMap.toteIntakeArms.get() == DoubleSolenoid.Value.kReverse;
     }
 
     @Override

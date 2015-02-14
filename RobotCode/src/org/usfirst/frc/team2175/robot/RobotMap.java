@@ -59,12 +59,11 @@ public class RobotMap extends AbstractConfig {
     public static DigitalInput toteSwitchTop;
     public static DigitalInput toteSwitchBottom;
     public static Encoder toteElevatorEncoder;
+    public static Solenoid toteElevatorBrake;
 
     // container elevator
     public static DigitalInput containerSwitchTop;
     public static DigitalInput containerSwitchBottom;
-    public static DigitalInput pusherSwitch;
-    public static Talon totePusher;
     public static Talon containerElevatorMotor;
     public static Encoder containerElevatorEncoder;
     public static Solenoid containerElevatorBrake;
@@ -73,7 +72,9 @@ public class RobotMap extends AbstractConfig {
     public static Talon toteIntakeWheelMotor;
     public static DoubleSolenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
-    public static Solenoid toteElevatorBrake;
+    public static Talon totePusher;
+    public static DigitalInput pusherInSwitch;
+    public static DigitalInput pusherOutSwitch; // FIXME add this to properties
 
     // container intake
     public static DoubleSolenoid containerIntakeArms;
@@ -172,10 +173,14 @@ public class RobotMap extends AbstractConfig {
 
     private void configureTotePusher(Properties props) {
         int pusherArmValue = getIntPropertyValue("tote.pusher.arm", props);
-        int pusherSwitchValue = getIntPropertyValue("tote.pusher.switch", props);
+        int pusherInSwitchValue = getIntPropertyValue("tote.pusher.in.switch",
+                props);
+        int pusherOutSwitchValue = getIntPropertyValue(
+                "tote.pusher.out.switch", props);
 
         totePusher = new Talon(pusherArmValue);
-        pusherSwitch = new DigitalInput(pusherSwitchValue);
+        pusherInSwitch = new DigitalInput(pusherInSwitchValue);
+        pusherOutSwitch = new DigitalInput(pusherOutSwitchValue);
     }
 
     private void configureContainerElevator(Properties props) {
