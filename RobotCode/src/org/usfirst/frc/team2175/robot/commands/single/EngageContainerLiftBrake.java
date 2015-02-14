@@ -16,8 +16,7 @@ public class EngageContainerLiftBrake extends CommandBase {
     @Override
     protected void initialize() {
         super.initialize();
-        boolean on = true;
-        Robot.containerElevator.setBrake(on);
+        Robot.containerElevator.setBrake(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
