@@ -41,7 +41,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    public boolean doNoodle;
+    public boolean doNoodle = true;
 
     // TODO convert these to instances
     public static OI oi;

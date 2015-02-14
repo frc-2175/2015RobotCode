@@ -111,7 +111,13 @@ public class OI {
     }
 
     public double getMoveValue() {
-        return getChangeValue("Move via leftstick Y value", leftStick.getY());
+        if (Robot.keymap.getIsContainerElevatorForward()) {
+            return getChangeValue("Move via leftstick Y value",
+                    leftStick.getY());
+        } else {
+            return getChangeValue("Move via leftstick Y value",
+                    -leftStick.getY());
+        }
     }
 
     public double getMoveValueRight() {
