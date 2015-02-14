@@ -3,8 +3,6 @@ package org.usfirst.frc.team2175.robot.commands.single;
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.command.Scheduler;
-
 /**
  *
  */
@@ -31,9 +29,9 @@ public class ArcadeDriveWithSticks extends CommandBase {
         double moveValue = Robot.oi.getMoveValue();
         double turnValue = Robot.oi.getTurnValue();
         Robot.drivetrain.arcadeDrive(moveValue, turnValue);
-        if (Math.abs(moveValue) > .25 && !elevatorCommand.isRunning()) {
-            Scheduler.getInstance().add(elevatorCommand);
-        }
+        // if (Math.abs(moveValue) > .25 && !elevatorCommand.isRunning()) {
+        // Scheduler.getInstance().add(elevatorCommand);
+        // }
     }
 
     // Make this return true when this Command no longer needs to run execute()

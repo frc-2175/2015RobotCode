@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
-import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -36,7 +35,8 @@ public class RunToteIntakeWheels extends CommandBase {
          * FIXME I think there's a major bug here when the switch doesn't exist
          * causing stutter in the wheels
          */
-        return RobotMap.toteIntakeToteInSwitch.get();
+        // return RobotMap.toteIntakeToteInSwitch.get();
+        return false;
 
     }
 

@@ -76,8 +76,6 @@ public class ContainerElevator extends Subsystem {
         } else if (containerElevatorIsAtBottom()
                 && Robot.oi.getContainerElevatorSpeed() < 0) {
             newSpeed = 0;
-        } else if (Robot.containerIntake.isSpatulaRetracted()) {
-            newSpeed = 0;
         } else {
             if (containerSpeed < downSpeed) {
                 newSpeed = downSpeed;
@@ -85,6 +83,7 @@ public class ContainerElevator extends Subsystem {
                 newSpeed = containerSpeed;
             }
         }
+
         RobotMap.containerElevatorMotor.set(newSpeed);
         log.fine("requested containerSpeed=" + containerSpeed + ", newSpeed="
                 + newSpeed);

@@ -185,8 +185,9 @@ public class Robot extends IterativeRobot {
         /**
          * FIXME temporary testing code; delete me later
          */
-        System.out.println(RobotMap.containerElevatorEncoder.get() + " "
-                + RobotMap.containerElevatorEncoder.getDistance());
+        System.out.println(RobotMap.leftEncoder.get()
+                + RobotMap.rightEncoder.get());
+        smartDashboardUpdate();
 
     }
 

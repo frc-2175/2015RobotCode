@@ -97,7 +97,7 @@ public class OI {
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
-        pushToteOut.whenPressed(new PushToteOut());
+        pushToteOut.whileHeld(new PushToteOut());
         stowContainerIntake.whenPressed(new StowContainerIntakeArms());
         releaseContainerIntake.whenPressed(new ReleaseContainerIntakeArms());
     }
@@ -126,7 +126,7 @@ public class OI {
         double multiplier = determinePrecisionMultipler();
         double ramp = Robot.properties.getDriveTrainRamp();
 
-        double moveValue = position * multiplier * ramp;
+        double moveValue = position * multiplier;
 
         log.fine("change name=" + name + ", value=" + position
                 + ", multiplier=" + multiplier + ", Drivetrain Ramp=" + ramp

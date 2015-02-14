@@ -33,7 +33,7 @@ public class ToteElevator extends Subsystem {
                 log.info("currentSpeed=" + currentSpeed + ", new speed="
                         + speed);
             }
-            RobotMap.toteElevatorMotor.set(speed);
+            setToteElevatorSpeed(speed);
         }
 
         @Override
@@ -72,16 +72,17 @@ public class ToteElevator extends Subsystem {
 
     public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
-        // if (isAtTop() && toteElevatorSpeed > 0) {
-        // newSpeed = 0;
-        // } else if (isAtBottom() && toteElevatorSpeed < 0) {
-        // newSpeed = 0;
-        // } else {
-        newSpeed = toteElevatorSpeed;
-        // }
+        if (isAtTop() && toteElevatorSpeed > 0) {
+            newSpeed = 0;
+        } else if (isAtBottom() && toteElevatorSpeed < 0) {
+            newSpeed = 0;
+        } else {
+            newSpeed = toteElevatorSpeed;
+        }
         RobotMap.toteElevatorMotor.set(newSpeed);
         log.fine("requested toteSpeed=" + toteElevatorSpeed + ", newSpeed="
                 + newSpeed);
+        updateBrakeSetting();
     }
 
     public void setBrake(boolean on) {
