@@ -45,6 +45,10 @@ public class ContainerIntake extends Subsystem {
         RobotMap.containerSpatula.set(value);
     }
 
+    public boolean isSpatulaRetracted() {
+        return RobotMap.containerSpatula.get() == DoubleSolenoid.Value.kReverse;
+    }
+
     @Override
     public void initDefaultCommand() {
     }
