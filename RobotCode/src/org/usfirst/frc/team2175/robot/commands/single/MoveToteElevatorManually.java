@@ -23,7 +23,7 @@ public class MoveToteElevatorManually extends CommandBase {
     protected void execute() {
         double elevatorSpeed = Robot.oi.getToteElevatorSpeed();
         Robot.toteElevator.setToteElevatorSpeed(elevatorSpeed);
-        Robot.toteIntake.setPusherSpeed(Robot.oi.gamepad.getRawAxis(0));
+        Robot.toteIntake.setPusherSpeed(Robot.oi.gamepad.getRawAxis(2));
         Robot.toteElevator.updateBrakeSetting();
     }
 
