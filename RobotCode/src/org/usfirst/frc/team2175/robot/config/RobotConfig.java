@@ -10,12 +10,15 @@ public class RobotConfig extends AbstractConfig {
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
 
     private final double deadbandSize;
-    private final double toteIntakeWheelsSpeed;
     private final double precisionModeScale;
     private final double driveTrainRamp;
     private final double driveLeftEncoderDPP;
     private final double driveRightEncoderDPP;
+
+    // tote intake properties
     private final double totePusherSpeed;
+    private final double toteIntakeWheelsSpeed;
+    private final double toteRetractionTimeout;
 
     // tote elevator properties
     public final ToteElevatorConfig toteConfig;
@@ -47,6 +50,9 @@ public class RobotConfig extends AbstractConfig {
             toteElevatorD = getDoublePropertyValue("toteElevatorD", prop);
 
             totePusherSpeed = getDoublePropertyValue("totePusherSpeed", prop);
+
+            toteRetractionTimeout = getDoublePropertyValue(
+                    "toteRetractionTimeout", prop);
 
             containerConfig = makeContainerElevatorConfig(prop);
 
@@ -150,5 +156,9 @@ public class RobotConfig extends AbstractConfig {
 
     public double getTotePusherSpeed() {
         return totePusherSpeed;
+    }
+
+    public double getToteRetractionTimeout() {
+        return toteRetractionTimeout;
     }
 }

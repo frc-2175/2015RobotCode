@@ -23,7 +23,7 @@ public class PushToteOut extends Command {
         if (!Robot.toteIntake.isIntakeArmsOut()) {
             Robot.toteIntake.setIntakeArms(true);
         }
-        Robot.toteIntake.setPusherSpeed(1);
+        Robot.toteIntake.setPusherSpeed(Robot.properties.getTotePusherSpeed());
     }
 
     @Override

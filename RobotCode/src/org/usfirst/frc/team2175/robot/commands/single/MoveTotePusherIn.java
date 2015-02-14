@@ -11,7 +11,7 @@ public class MoveTotePusherIn extends Command {
 
     public MoveTotePusherIn() {
         requires(Robot.toteIntake);
-        setTimeout(1.5); // TODO add this to the properties file
+        setTimeout(Robot.properties.getToteRetractionTimeout());
     }
 
     @Override
@@ -20,7 +20,7 @@ public class MoveTotePusherIn extends Command {
 
     @Override
     protected void execute() {
-        Robot.toteIntake.setPusherSpeed(-1); // TODO set this speed
+        Robot.toteIntake.setPusherSpeed(-Robot.properties.getTotePusherSpeed());
     }
 
     @Override
