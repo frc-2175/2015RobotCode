@@ -69,10 +69,14 @@ public class OI {
         shifters = new JoystickButton(leftStick, 1);
         deadbandValue = Robot.properties.getDeadbandSize();
 
-        JoystickButton runToteIntakeWheels = new JoystickButton(rightStick,
-                Robot.keymap.getRunToteIntakeWheels());
-        JoystickButton runToteIntakeWheelsBackwards = new JoystickButton(
-                rightStick, Robot.keymap.getRunToteIntakeWheelsBackwards());
+        JoystickButton runRightToteIntakeWheels = new JoystickButton(
+                rightStick, Robot.keymap.getRunRightToteIntakeWheels());
+        JoystickButton runRightToteIntakeWheelsBackwards = new JoystickButton(
+                rightStick, Robot.keymap.getRunRightToteIntakeWheelsBackwards());
+        JoystickButton runLeftToteIntakeWheels = new JoystickButton(rightStick,
+                Robot.keymap.getRunLeftToteIntakeWheels());
+        JoystickButton runLeftToteIntakeWheelsBackwards = new JoystickButton(
+                leftStick, Robot.keymap.getRunLeftToteIntakeWheelsBackwards());
         JoystickButton closeContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getCloseContainerIntake());
         JoystickButton openContainerIntake = new JoystickButton(gamepad,
@@ -90,9 +94,12 @@ public class OI {
         JoystickButton releaseContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getReleaseContainerIntake());
 
-        runToteIntakeWheels.whileHeld(new RunToteIntakeWheels());
-        runToteIntakeWheelsBackwards
-                .whileHeld(new RunToteIntakeWheelsBackwards());
+        runRightToteIntakeWheels.whileHeld(new RunToteIntakeWheels(1));
+        runRightToteIntakeWheelsBackwards
+                .whileHeld(new RunToteIntakeWheelsBackwards(1));
+        runLeftToteIntakeWheels.whileHeld(new RunToteIntakeWheels(0));
+        runLeftToteIntakeWheelsBackwards
+                .whileHeld(new RunToteIntakeWheelsBackwards(0));
         closeContainerIntake.whenPressed(new CloseContainerIntake());
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());

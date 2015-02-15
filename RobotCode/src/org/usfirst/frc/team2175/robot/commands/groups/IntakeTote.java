@@ -11,16 +11,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class IntakeTote extends CommandGroup {
 
-	public IntakeTote() {
-		addSequential(new CloseToteIntake());
+    public IntakeTote() {
+        addSequential(new CloseToteIntake());
 
-		// this command assumes that the tote is lined up in front of the
-		// intake,
-		// so that closing the intake grabs it
+        // this command assumes that the tote is lined up in front of the
+        // intake,
+        // so that closing the intake grabs it
 
-		// TODO determine if it is better to start the wheels before or after
-		// closing the intake arms.
-		addSequential(new RunToteIntakeWheels());
-		addSequential(new OpenToteIntake());
-	}
+        // TODO determine if it is better to start the wheels before or after
+        // closing the intake arms.
+        addSequential(new RunToteIntakeWheels(0));
+        addSequential(new RunToteIntakeWheels(1));
+        addSequential(new OpenToteIntake());
+    }
 }

@@ -13,8 +13,10 @@ public class KeymapConfig extends AbstractConfig {
     private final int closeContainerIntake;
     private final int openToteIntake;
     private final int closeToteIntake;
-    private final int runToteIntakeWheels;
-    private final int runToteIntakeWheelsBackwards;
+    private final int runRightToteIntakeWheels;
+    private final int runRightToteIntakeWheelsBackwards;
+    private final int runLeftToteIntakeWheels;
+    private final int runLeftToteIntakeWheelsBackwards;
     private final int moveToteElevatorManually;
     private final int moveContainerElevatorManually;
     private final int pushToteOut;
@@ -33,10 +35,14 @@ public class KeymapConfig extends AbstractConfig {
                     prop);
             openToteIntake = getIntPropertyValue("openToteIntake", prop);
             closeToteIntake = getIntPropertyValue("closeToteIntake", prop);
-            runToteIntakeWheels = getIntPropertyValue("runToteIntakeWheels",
-                    prop);
-            runToteIntakeWheelsBackwards = getIntPropertyValue(
-                    "runToteIntakeWheelsBackwards", prop);
+            runRightToteIntakeWheels = getIntPropertyValue(
+                    "runRightToteIntakeWheels", prop);
+            runRightToteIntakeWheelsBackwards = getIntPropertyValue(
+                    "runRightToteIntakeWheelsBackwards", prop);
+            runLeftToteIntakeWheels = getIntPropertyValue(
+                    "runLeftToteIntakeWheels", prop);
+            runLeftToteIntakeWheelsBackwards = getIntPropertyValue(
+                    "runLeftToteIntakeWheelsBackwards", prop);
             moveToteElevatorManually = getIntPropertyValue(
                     "moveToteElevatorManually", prop);
             moveContainerElevatorManually = getIntPropertyValue(
@@ -72,12 +78,20 @@ public class KeymapConfig extends AbstractConfig {
         return closeToteIntake;
     }
 
-    public int getRunToteIntakeWheels() {
-        return runToteIntakeWheels;
+    public int getRunRightToteIntakeWheels() {
+        return runRightToteIntakeWheels;
     }
 
-    public int getRunToteIntakeWheelsBackwards() {
-        return runToteIntakeWheelsBackwards;
+    public int getRunRightToteIntakeWheelsBackwards() {
+        return runRightToteIntakeWheelsBackwards;
+    }
+
+    public int getRunLeftToteIntakeWheels() {
+        return runLeftToteIntakeWheels;
+    }
+
+    public int getRunLeftToteIntakeWheelsBackwards() {
+        return runLeftToteIntakeWheelsBackwards;
     }
 
     public int getMoveToteElevatorManually() {

@@ -15,9 +15,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ToteIntake extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
-    public void setWheelSpeed(double wheelSpeed) {
+    public void setWheelSpeed(int wheel, double wheelSpeed) {
         log.fine("wheelSpeed=" + wheelSpeed);
-        RobotMap.toteIntakeWheelMotorRight.set(wheelSpeed);
+        if (wheel == 0) {
+            RobotMap.toteIntakeWheelMotorLeft.set(wheelSpeed);
+        } else {
+            RobotMap.toteIntakeWheelMotorRight.set(wheelSpeed);
+        }
     }
 
     public void setIntakeArms(boolean on) {
