@@ -10,17 +10,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutonStack2Totes extends CommandGroup {
-    public  AutonStack2Totes() {
-    	addParallel(new StackTote());
-    	addSequential(new DriveInches(36));//TODO Refine Numbers
-    	addSequential(new TurnDegrees(30));
-    	addSequential(new DriveInches(70));//TODO Refine Numbers
-    	addSequential(new TurnDegrees(-30));
-    	addParallel(new StackTote());
-    	addSequential(new DriveInches(30));//TODO Refine Numbers
-    	addSequential(new TurnDegrees(90));
-    	addSequential(new DriveInches(120));//TODO Refine Numbers
-    	
+    public AutonStack2Totes() {
+
+        // TODO refine numbers
+        addParallel(new StackTote());
+        addSequential(new DriveInches(36));
+        addSequential(new TurnDegrees(30));
+        addSequential(new DriveInches(70));
+        addSequential(new TurnDegrees(-30));
+        addParallel(new StackTote());
+        addSequential(new DriveInches(30));
+        addSequential(new TurnDegrees(90));
+        addSequential(new DriveInches(120));
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         // addSequential(new Command2());

@@ -74,7 +74,7 @@ public class RobotMap extends AbstractConfig {
     public static DigitalInput toteIntakeToteInSwitch;
     public static Talon totePusher;
     public static DigitalInput pusherInSwitch;
-    public static DigitalInput pusherOutSwitch; // FIXME add this to properties
+    public static DigitalInput pusherOutSwitch;
 
     // container intake
     public static DoubleSolenoid containerIntakeArms;
@@ -164,11 +164,11 @@ public class RobotMap extends AbstractConfig {
                 props);
         int armsReverseValue = getIntPropertyValue("tote.intake.arms.reverse",
                 props);
-        int switchValue = getIntPropertyValue("tote.intake.in.switch", props);
+        int inSwitchValue = getIntPropertyValue("tote.intake.in.switch", props);
 
         toteIntakeWheelMotorRight = new Talon(motorValue);
         toteIntakeArms = new DoubleSolenoid(armsForwardValue, armsReverseValue);
-        toteIntakeToteInSwitch = new DigitalInput(switchValue);
+        toteIntakeToteInSwitch = new DigitalInput(inSwitchValue);
     }
 
     private void configureTotePusher(Properties props) {
@@ -201,7 +201,6 @@ public class RobotMap extends AbstractConfig {
         containerElevatorMotor = new Talon(motorValue);
         containerElevatorEncoder = new Encoder(encoderAValue, encoderBValue,
                 true, EncodingType.k2X);
-        // TODO externalize any of these formula values?
         containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
         containerElevatorBrake = new Solenoid(brakeForwardValue);

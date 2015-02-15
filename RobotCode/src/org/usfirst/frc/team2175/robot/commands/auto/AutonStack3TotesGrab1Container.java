@@ -12,26 +12,26 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutonStack3TotesGrab1Container extends CommandGroup {
-    
-    public  AutonStack3TotesGrab1Container() {
-        
-    	addParallel(new IntakeTote());
-    	addSequential(new DriveInches(36)); //TODO refine number
-    	addSequential(new DriveInches(-60)); //TODO refine number
-    	addSequential(new CloseContainerIntake());
-    	addSequential(new TurnDegrees(180));
-    	addParallel(new StackTote());
-    	addSequential(new DriveInches(36)); //TODO refine number
-    	addSequential(new TurnDegrees(150)); //TODO check positive or negative
-    	addSequential(new DriveInches(60)); //TODO refine number
-    	addSequential(new TurnDegrees(60)); //TODO check positive or negative
-    	addSequential(new DriveInches(60)); //TODO refine numbers
-    	addSequential(new TurnDegrees(-30)); //TODO check positive or negative
-    	addParallel(new StackTote());
-    	addSequential(new DriveInches(36)); //TODO refine number
-    	addSequential(new TurnDegrees(-90)); //TODO TODO check positive or negative
-    	addSequential(new DriveInches(108));
-    	addSequential(new DriveInches(-48)); //TODO refine numbers
-    	
+
+    public AutonStack3TotesGrab1Container() {
+        /** TODO check all numbers and if they need to be negated */
+        addParallel(new IntakeTote());
+        addSequential(new DriveInches(36));
+        addSequential(new DriveInches(-60));
+        addSequential(new CloseContainerIntake());
+        addSequential(new TurnDegrees(180));
+        addParallel(new StackTote());
+        addSequential(new DriveInches(36));
+        addSequential(new TurnDegrees(150));
+        addSequential(new DriveInches(60));
+        addSequential(new TurnDegrees(60));
+        addSequential(new DriveInches(60));
+        addSequential(new TurnDegrees(-30));
+        addParallel(new StackTote());
+        addSequential(new DriveInches(36));
+        addSequential(new TurnDegrees(-90));
+        addSequential(new DriveInches(108));
+        addSequential(new DriveInches(-48));
+
     }
 }

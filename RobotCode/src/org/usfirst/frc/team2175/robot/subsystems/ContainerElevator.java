@@ -48,7 +48,6 @@ public class ContainerElevator extends Subsystem {
                 containerElevatorControllerHandler,
                 containerElevatorControllerHandler);
         containerElevatorController.setOutputRange(-.5, 1);
-        // TODO parameterize PID constants
         containerElevatorController.setAbsoluteTolerance(5);
 
     }

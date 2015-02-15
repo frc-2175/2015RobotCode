@@ -22,7 +22,6 @@ public class PDPCurrentLogger {
     public void initPDPLogging() {
 
         try {
-            // TODO Make sure this actually works for file writing
             out = new BufferedWriter(new FileWriter(logOutFileToUse));
         } catch (FileNotFoundException e) {
             log.log(Level.SEVERE, "Failed to open PDP log file at "

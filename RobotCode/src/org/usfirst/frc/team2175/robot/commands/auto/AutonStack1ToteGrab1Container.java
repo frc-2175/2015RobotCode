@@ -11,13 +11,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutonStack1ToteGrab1Container extends CommandGroup {
-    
-    public  AutonStack1ToteGrab1Container() {
-    	addParallel(new StackTote());
-    	addSequential(new DriveInches(8));
-    	addSequential(new OpenContainerIntake());
-    	addSequential(new DriveInches(-16));
-    	addSequential(new TurnDegrees(90));
-    	addSequential(new DriveInches(108)); //TODO find good number for this
+
+    public AutonStack1ToteGrab1Container() {
+
+        // TODO refine values
+        addParallel(new StackTote());
+        addSequential(new DriveInches(8));
+        addSequential(new OpenContainerIntake());
+        addSequential(new DriveInches(-16));
+        addSequential(new TurnDegrees(90));
+        addSequential(new DriveInches(108));
     }
 }
