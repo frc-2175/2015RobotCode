@@ -59,6 +59,7 @@ public class OI {
     public JoystickButton shifters;
 
     public double deadbandValue;
+    public double gamepadDeadbandValue;
 
     public OI() {
         leftStick = new Joystick(0);
@@ -68,6 +69,7 @@ public class OI {
         precisionMode = new JoystickButton(rightStick, 1);
         shifters = new JoystickButton(leftStick, 1);
         deadbandValue = Robot.properties.getDeadbandSize();
+        gamepadDeadbandValue = Robot.properties.getGamepadDeadbandSize();
 
         JoystickButton runRightToteIntakeWheels = new JoystickButton(
                 rightStick, Robot.keymap.getRunRightToteIntakeWheels());
@@ -180,5 +182,16 @@ public class OI {
         log.fine("input=" + input + ", deadbandValue=" + deadbandValue
                 + ", resulting value=" + value);
         return value;
+    }
+
+    protected double handleGamepadDeadband(double input) {
+        double outputValue;
+        if (Math.abs(input) <= gamepadDeadbandValue) {
+            outputValue = 0;
+        } else {
+            outputValue = input;
+        }
+
+        return outputValue;
     }
 }

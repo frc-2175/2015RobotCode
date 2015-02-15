@@ -10,6 +10,7 @@ public class RobotConfig extends AbstractConfig {
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
 
     private final double deadbandSize;
+    private final double gamepadDeadbandSize;
     private final double precisionModeScale;
     private final double driveTrainRamp;
     private final double driveLeftEncoderDPP;
@@ -38,6 +39,8 @@ public class RobotConfig extends AbstractConfig {
                     .loadProperties(PROPERTY_FILE_NAME);
 
             deadbandSize = getDoublePropertyValue("deadbandSize", prop);
+            gamepadDeadbandSize = getDoublePropertyValue("gamepadDeadbandSize",
+                    prop);
             driveLeftEncoderDPP = getDoublePropertyValue("driveLeftEncoderDPP",
                     prop);
             driveRightEncoderDPP = getDoublePropertyValue(
@@ -132,6 +135,10 @@ public class RobotConfig extends AbstractConfig {
 
     public double getDeadbandSize() {
         return deadbandSize;
+    }
+
+    public double getGamepadDeadbandSize() {
+        return gamepadDeadbandSize;
     }
 
     public double getToteIntakeWheelsSpeed() {
