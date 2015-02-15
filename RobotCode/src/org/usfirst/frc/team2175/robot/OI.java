@@ -75,7 +75,7 @@ public class OI {
                 rightStick, Robot.keymap.getRunRightToteIntakeWheels());
         JoystickButton runRightToteIntakeWheelsBackwards = new JoystickButton(
                 rightStick, Robot.keymap.getRunRightToteIntakeWheelsBackwards());
-        JoystickButton runLeftToteIntakeWheels = new JoystickButton(rightStick,
+        JoystickButton runLeftToteIntakeWheels = new JoystickButton(leftStick,
                 Robot.keymap.getRunLeftToteIntakeWheels());
         JoystickButton runLeftToteIntakeWheelsBackwards = new JoystickButton(
                 leftStick, Robot.keymap.getRunLeftToteIntakeWheelsBackwards());

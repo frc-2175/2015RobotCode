@@ -28,6 +28,8 @@ public class RunToteIntakeWheelsBackwards extends CommandBase {
         // After testing, the wheels must be set to forward to run outwards
         Robot.toteIntake.setWheelSpeed(wheel,
                 Robot.properties.getToteIntakeWheelsSpeed());
+        log.fine("Running tote wheel " + wheel + " backwards at speed "
+                + Robot.properties.getToteIntakeWheelsSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

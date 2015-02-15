@@ -29,6 +29,7 @@ public class RunToteIntakeWheels extends CommandBase {
         // intake
         Robot.toteIntake.setWheelSpeed(wheel,
                 -Robot.properties.getToteIntakeWheelsSpeed());
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

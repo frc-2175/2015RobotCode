@@ -2,6 +2,7 @@ package org.usfirst.frc.team2175.robot.subsystems;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.single.StopPusher;
 
@@ -16,11 +17,14 @@ public class ToteIntake extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
     public void setWheelSpeed(int wheel, double wheelSpeed) {
-        log.fine("wheelSpeed=" + wheelSpeed);
         if (wheel == 0) {
             RobotMap.toteIntakeWheelMotorLeft.set(wheelSpeed);
+            log.fine("Running tote wheel " + wheel + " at speed "
+                    + Robot.properties.getToteIntakeWheelsSpeed());
         } else {
             RobotMap.toteIntakeWheelMotorRight.set(wheelSpeed);
+            log.fine("Running tote wheel " + wheel + " at speed "
+                    + Robot.properties.getToteIntakeWheelsSpeed());
         }
     }
 
