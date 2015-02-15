@@ -275,10 +275,16 @@ public class Robot extends IterativeRobot {
                 Robot.toteElevator.getBrake());
         SmartDashboard.putNumber("Tote Lift Encoder Distance",
                 RobotMap.getToteElevatorEncoder());
+        SmartDashboard.putNumber("Tote Elevator Speed",
+                RobotMap.getToteElevatorSpeed());
         SmartDashboard.putBoolean("Tote Lift at Top",
                 Robot.toteElevator.isAtTop());
         SmartDashboard.putBoolean("Tote Lift at Bottom",
                 Robot.toteElevator.isAtBottom());
+        SmartDashboard.putBoolean("Pusher In Switch",
+                toteIntake.isPusherRetracted());
+        SmartDashboard.putBoolean("Pusher Out", toteIntake.isPusherExtended());
         SmartDashboard.putData("Scheduler", Scheduler.getInstance());
+
     }
 }

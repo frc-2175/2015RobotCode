@@ -20,8 +20,8 @@ public class IntakeTote extends CommandGroup {
 
         // TODO determine if it is better to start the wheels before or after
         // closing the intake arms.
-        addSequential(new RunRightToteIntakeWheels(0));
-        addSequential(new RunRightToteIntakeWheels(1));
+        addSequential(new RunRightToteIntakeWheels());
+        addSequential(new RunRightToteIntakeWheels());
         addSequential(new OpenToteIntake());
     }
 }

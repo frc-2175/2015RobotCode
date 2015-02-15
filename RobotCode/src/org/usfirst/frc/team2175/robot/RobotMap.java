@@ -262,4 +262,8 @@ public class RobotMap extends AbstractConfig {
     public static double getToteElevatorEncoder() {
         return toteElevatorEncoder.getDistance();
     }
+
+    public static double getToteElevatorSpeed() {
+        return toteElevatorEncoder.getRate();
+    }
 }

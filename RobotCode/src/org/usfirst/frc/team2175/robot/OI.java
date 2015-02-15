@@ -9,6 +9,8 @@ import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
 import org.usfirst.frc.team2175.robot.commands.single.ReleaseContainerIntakeArms;
+import org.usfirst.frc.team2175.robot.commands.single.RunLeftToteIntakeWheels;
+import org.usfirst.frc.team2175.robot.commands.single.RunLeftToteIntakeWheelsBackwards;
 import org.usfirst.frc.team2175.robot.commands.single.RunRightToteIntakeWheels;
 import org.usfirst.frc.team2175.robot.commands.single.RunRightToteIntakeWheelsBackwards;
 import org.usfirst.frc.team2175.robot.commands.single.StopPusher;
@@ -96,12 +98,12 @@ public class OI {
         JoystickButton releaseContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getReleaseContainerIntake());
 
-        runRightToteIntakeWheels.whileHeld(new RunRightToteIntakeWheels(1));
+        runRightToteIntakeWheels.whileHeld(new RunRightToteIntakeWheels());
         runRightToteIntakeWheelsBackwards
-                .whileHeld(new RunRightToteIntakeWheelsBackwards(1));
-        runLeftToteIntakeWheels.whileHeld(new RunRightToteIntakeWheels(0));
+                .whileHeld(new RunRightToteIntakeWheelsBackwards());
+        runLeftToteIntakeWheels.whileHeld(new RunLeftToteIntakeWheels());
         runLeftToteIntakeWheelsBackwards
-                .whileHeld(new RunRightToteIntakeWheelsBackwards(0));
+                .whileHeld(new RunLeftToteIntakeWheelsBackwards());
         closeContainerIntake.whenPressed(new CloseContainerIntake());
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());
@@ -141,7 +143,7 @@ public class OI {
     }
 
     public double getToteElevatorSpeed() {
-        return gamepad.getRawAxis(3);
+        return -gamepad.getRawAxis(3);
     }
 
     protected double getChangeValue(String name, double position) {

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2175.robot.commands.single;
 
 import org.usfirst.frc.team2175.robot.Robot;
+import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -8,10 +9,10 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
  */
 public class RunRightToteIntakeWheelsBackwards extends CommandBase {
 
-    public RunRightToteIntakeWheelsBackwards(int wheel) {
+    public RunRightToteIntakeWheelsBackwards() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.toteIntake);
+        // requires(Robot.toteIntake);
     }
 
     // Called just before this Command runs the first time
@@ -20,12 +21,17 @@ public class RunRightToteIntakeWheelsBackwards extends CommandBase {
         super.initialize();
     }
 
+    public void setWheelSpeed(double wheelSpeed) {
+        RobotMap.toteIntakeWheelMotorRight.set(wheelSpeed);
+        log.fine("Running tote wheel right at speed "
+                + Robot.properties.getToteIntakeWheelsSpeed());
+    }
+
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         // After testing, the wheels must be set to forward to run outwards
-        Robot.toteIntake.setRightWheelSpeed(Robot.properties
-                .getToteIntakeWheelsSpeed());
+        setWheelSpeed(Robot.properties.getToteIntakeWheelsSpeed());
         log.fine("Running tote wheel right backwards at speed "
                 + Robot.properties.getToteIntakeWheelsSpeed());
     }
