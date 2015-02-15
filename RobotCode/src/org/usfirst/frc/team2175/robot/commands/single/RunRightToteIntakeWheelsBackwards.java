@@ -6,14 +6,12 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
 /**
  *
  */
-public class RunToteIntakeWheels extends CommandBase {
-    private int wheel;
+public class RunRightToteIntakeWheelsBackwards extends CommandBase {
 
-    public RunToteIntakeWheels(int wheel) {
+    public RunRightToteIntakeWheelsBackwards(int wheel) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.toteIntake);
-        this.wheel = wheel;
     }
 
     // Called just before this Command runs the first time
@@ -25,11 +23,11 @@ public class RunToteIntakeWheels extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        // After testing, we leanred that the wheels must run in reverse to
-        // intake
-        Robot.toteIntake.setWheelSpeed(wheel,
-                -Robot.properties.getToteIntakeWheelsSpeed());
-
+        // After testing, the wheels must be set to forward to run outwards
+        Robot.toteIntake.setRightWheelSpeed(Robot.properties
+                .getToteIntakeWheelsSpeed());
+        log.fine("Running tote wheel right backwards at speed "
+                + Robot.properties.getToteIntakeWheelsSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +40,7 @@ public class RunToteIntakeWheels extends CommandBase {
     @Override
     protected void end() {
         super.end();
-        Robot.toteIntake.setWheelSpeed(wheel, 0);
+        Robot.toteIntake.setRightWheelSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
