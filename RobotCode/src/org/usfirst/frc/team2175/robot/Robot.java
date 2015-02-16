@@ -287,6 +287,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Pusher In Switch",
                 toteIntake.isPusherRetracted());
         SmartDashboard.putBoolean("Pusher Out", toteIntake.isPusherExtended());
+        SmartDashboard.putNumber("Gyro Value", RobotMap.gyro.getAngle());
         SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 
     }

@@ -128,8 +128,7 @@ public class RobotMap extends AbstractConfig {
         rightEncoder.setDistancePerPulse(Robot.properties
                 .getDriveRightEncoderDPP());
 
-        // FIXME temp excluded so app can run
-        // gyro = new Gyro(gyroValue);
+        gyro = new Gyro(gyroValue);
 
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 
