@@ -1,7 +1,18 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Pusher In Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="960" y="310"/>
+		<width>178</width>
+	</widget>
+	<widget field="Pusher Out" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="959" y="287"/>
+		<width>153</width>
+	</widget>
+	<widget field="Tote Elevator Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="614" y="59"/>
+	</widget>
 	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
-		<location x="958" y="322"/>
+		<location x="959" y="375"/>
 	</widget>
 	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="10" y="279"/>
@@ -70,13 +81,11 @@
 	<widget field="Autonomous Routine" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="929" y="37"/>
 	</widget>
-	<widget field="toteElevatorSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="608" y="50"/>
-	</widget>
 	<widget field="Tote Lift Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="586" y="91"/>
 	</widget>
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="toteElevatorSpeed"/>
 </xml>
