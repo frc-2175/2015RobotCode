@@ -50,16 +50,8 @@ public class ToteIntake extends Subsystem {
     }
 
     public void setMotorSpeed(double armSpeed) {
-        double newSpeed;
-        // if (isPusherExtended() && armSpeed > 0) {
-        // newSpeed = 0;
-        // } else if (isPusherRetracted() && armSpeed < 0) {
-        // newSpeed = 0;
-        // } else {
-        newSpeed = armSpeed;
-        // }
-        RobotMap.totePusher.set(newSpeed);
-        log.fine("requested armSpeed=" + armSpeed + ", newSpeed=" + newSpeed);
+        RobotMap.totePusher.set(armSpeed);
+        log.fine("requested armSpeed=" + armSpeed + ", newSpeed=" + armSpeed);
     }
 
     public boolean isPusherExtended() {

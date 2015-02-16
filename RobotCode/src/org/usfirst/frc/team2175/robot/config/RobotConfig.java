@@ -33,6 +33,7 @@ public class RobotConfig extends AbstractConfig {
     private final double toteElevatorP;
     private final double toteElevatorI;
     private final double toteElevatorD;
+    private final double toteElevatorEncoderDistancePerPulse;
 
     // container elevator properties
     public final ContainerElevatorConfig containerConfig;
@@ -71,6 +72,7 @@ public class RobotConfig extends AbstractConfig {
             toteElevatorP = getDoublePropertyValue("toteElevatorP", prop);
             toteElevatorI = getDoublePropertyValue("toteElevatorI", prop);
             toteElevatorD = getDoublePropertyValue("toteElevatorD", prop);
+            toteElevatorEncoderDistancePerPulse= getDoublePropertyValue("toteElevatorEncoderDistancePerPulse", prop);
 
             totePusherSpeed = getDoublePropertyValue("totePusherSpeed", prop);
 
@@ -202,6 +204,7 @@ public class RobotConfig extends AbstractConfig {
     public double getToteRetractionTimeout() {
         return toteRetractionTimeout;
     }
+<<<<<<< HEAD
 
     public double getDrivetrainTurnDriveP() {
         return drivetrainTurnDriveP;
@@ -217,5 +220,10 @@ public class RobotConfig extends AbstractConfig {
 
     public double getContainerElevatorBrakeThreshold() {
         return containerElevatorBrakeThreshold;
+=======
+    
+    public double getToteElevatorEncoderDistancePerPulse() {
+    	return toteElevatorEncoderDistancePerPulse;
+>>>>>>> put distance per pulse for tote elevator encoder as a property
     }
 }
