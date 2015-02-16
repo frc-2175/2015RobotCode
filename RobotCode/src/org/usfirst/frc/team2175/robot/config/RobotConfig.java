@@ -176,7 +176,7 @@ public class RobotConfig extends AbstractConfig {
         return toteIntakeWheelsSpeed;
     }
 
-    public double getPrescisionModeScale() {
+    public double getPrecisionModeScale() {
         return precisionModeScale;
     }
 

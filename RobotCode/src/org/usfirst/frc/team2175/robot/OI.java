@@ -121,50 +121,99 @@ public class OI {
 
     }
 
+    /**
+     * Gets the move value for arcade drive. The direction considered "forward"
+     * is defined in robot.properties.
+     *
+     * @return The arcade drive move value.
+     */
     public double getMoveValue() {
         if (Robot.keymap.getIsContainerElevatorForward()) {
-            return getChangeValue("Move via leftstick Y value",
+            return getModifiedDriveValue("Move via leftstick Y value",
                     leftStick.getY());
         } else {
-            return getChangeValue("Move via leftstick Y value",
+            return getModifiedDriveValue("Move via leftstick Y value",
                     -leftStick.getY());
         }
     }
 
+    /**
+     * Gets the move value from the right stick, for tank drive.
+     *
+     * @return The move value for the right stick.
+     */
     public double getMoveValueRight() {
-        return getChangeValue("Move via rightstick Y value", rightStick.getY());
+        return getModifiedDriveValue("Move via rightstick Y value",
+                rightStick.getY());
     }
 
+    /**
+     * Gets the turn value for arcade drive.
+     *
+     * @return The turn value for arcade drive.
+     */
     public double getTurnValue() {
-        return getChangeValue("Turn via rightstick X value", -rightStick.getX());
+        return getModifiedDriveValue("Turn via rightstick X value",
+                -rightStick.getX());
     }
 
+    /**
+     * Gets the container elevator speed from the gamepad. Only used for manual
+     * control.
+     *
+     * @return The manual container elevator speed.
+     */
     public double getContainerElevatorSpeed() {
         return handleGamepadDeadband(-gamepad.getY());
     }
 
+    /**
+     * Gets the tote elevator speed from the gamepad. Only used for manual
+     * control.
+     * 
+     * @return The manual tote elevator speed.
+     */
     public double getToteElevatorSpeed() {
         return handleGamepadDeadband(-gamepad.getRawAxis(3));
     }
 
-    protected double getChangeValue(String name, double position) {
+    /**
+     * Modifies the drive values according to deadband, precision mode and
+     * (someday) drivetrain ramping.
+     *
+     * @param name
+     *            A descriptive name for this change, used in logging.
+     * @param value
+     *            The input value to modify (usually from a joystick.)
+     * @return The new drivetrain output value, modified to account for
+     *         deadband, precision mode and (someday) ramping.
+     */
+    protected double getModifiedDriveValue(String name, double value) {
+        value = handleJoystickDeadband(value);
+
         double multiplier = determinePrecisionMultipler();
         double ramp = Robot.properties.getDriveTrainRamp();
 
-        double moveValue = position * multiplier;
+        double moveValue = value * multiplier;
 
-        log.fine("change name=" + name + ", value=" + position
-                + ", multiplier=" + multiplier + ", Drivetrain Ramp=" + ramp
+        log.fine("change name=" + name + ", value=" + value + ", multiplier="
+                + multiplier + ", Drivetrain Ramp=" + ramp
                 + ", resulting moveValue=" + moveValue);
 
         return moveValue;
     }
 
+    /**
+     * Gets the current precision mode multiplier value, based on the button
+     * called precisionMode.
+     *
+     * @return The multiplier for precision mode, from 0 to 1.
+     */
     protected double determinePrecisionMultipler() {
         final boolean isPrecisionMode = precisionMode.get();
         final double multiplier;
         if (isPrecisionMode) {
-            multiplier = Robot.properties.getPrescisionModeScale();
+            multiplier = Robot.properties.getPrecisionModeScale();
         } else {
             multiplier = 1;
         }
@@ -174,25 +223,42 @@ public class OI {
         return multiplier;
     }
 
-    protected double handleDeadband(double input) {
+    /**
+     * Gets a deadbanded version of the input value, assumed to come from a
+     * joystick axis. The deadband threshold is defined in robot.properties.
+     *
+     * @param joystickInput
+     *            The input value to which to apply deadband.
+     * @return The deadbanded version of the input value.
+     */
+    protected double handleJoystickDeadband(double joystickInput) {
         double value;
-        if (Math.abs(input) <= deadbandValue) {
+        if (Math.abs(joystickInput) <= deadbandValue) {
             value = 0;
         } else {
-            value = input;
+            value = joystickInput;
         }
 
-        log.fine("input=" + input + ", deadbandValue=" + deadbandValue
+        log.fine("input=" + joystickInput + ", deadbandValue=" + deadbandValue
                 + ", resulting value=" + value);
         return value;
     }
 
-    protected double handleGamepadDeadband(double input) {
+    /**
+     * Gets a deadbanded version of the input value, assumed to come from a
+     * gamepad thumbstick. The deadband threshold is defined in
+     * robot.properties.
+     *
+     * @param gamepadInput
+     *            The input value to which to apply deadband.
+     * @return The deadbanded version of the input value.
+     */
+    protected double handleGamepadDeadband(double gamepadInput) {
         double outputValue;
-        if (Math.abs(input) <= gamepadDeadbandValue) {
+        if (Math.abs(gamepadInput) <= gamepadDeadbandValue) {
             outputValue = 0;
         } else {
-            outputValue = input;
+            outputValue = gamepadInput;
         }
 
         return outputValue;
