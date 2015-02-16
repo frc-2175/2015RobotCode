@@ -9,15 +9,19 @@ public class RobotConfig extends AbstractConfig {
 
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robot.properties";
 
+    // drivetrain properties
     private final double deadbandSize;
     private final double gamepadDeadbandSize;
     private final double precisionModeScale;
     private final double driveTrainRamp;
     private final double driveLeftEncoderDPP;
     private final double driveRightEncoderDPP;
-    private final double drivetrainP;
-    private final double drivetrainI;
-    private final double drivetrainD;
+    private final double drivetrainStraightDriveP;
+    private final double drivetrainStraightDriveI;
+    private final double drivetrainStraightDriveD;
+    private final double drivetrainTurnDriveP;
+    private final double drivetrainTurnDriveI;
+    private final double drivetrainTurnDriveD;
 
     // tote intake properties
     private final double totePusherSpeed;
@@ -48,9 +52,18 @@ public class RobotConfig extends AbstractConfig {
                     prop);
             driveRightEncoderDPP = getDoublePropertyValue(
                     "driveRightEncoderDPP", prop);
-            drivetrainP = getDoublePropertyValue("drivetrainP", prop);
-            drivetrainI = getDoublePropertyValue("drivetrainI", prop);
-            drivetrainD = getDoublePropertyValue("drivetrainD", prop);
+            drivetrainStraightDriveP = getDoublePropertyValue(
+                    "drivetrainStraightDriveP", prop);
+            drivetrainStraightDriveI = getDoublePropertyValue(
+                    "drivetrainStraightDriveI", prop);
+            drivetrainStraightDriveD = getDoublePropertyValue(
+                    "drivetrainStraightDriveD", prop);
+            drivetrainTurnDriveP = getDoublePropertyValue(
+                    "drivetrainTurnDriveP", prop);
+            drivetrainTurnDriveI = getDoublePropertyValue(
+                    "drivetrainTurnDriveP", prop);
+            drivetrainTurnDriveD = getDoublePropertyValue(
+                    "drivetrainTurnDriveP", prop);
 
             toteConfig = makeToteElevatorConfig(prop);
 
@@ -83,16 +96,16 @@ public class RobotConfig extends AbstractConfig {
         }
     }
 
-    public double getDrivetrainP() {
-        return drivetrainP;
+    public double getDrivetrainStraightDriveP() {
+        return drivetrainStraightDriveP;
     }
 
-    public double getDrivetrainI() {
-        return drivetrainI;
+    public double getDrivetrainStraightDriveI() {
+        return drivetrainStraightDriveI;
     }
 
-    public double getDrivetrainD() {
-        return drivetrainD;
+    public double getDrivetrainStraightDriveD() {
+        return drivetrainStraightDriveD;
     }
 
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
@@ -185,5 +198,17 @@ public class RobotConfig extends AbstractConfig {
 
     public double getToteRetractionTimeout() {
         return toteRetractionTimeout;
+    }
+
+    public double getDrivetrainTurnDriveP() {
+        return drivetrainTurnDriveP;
+    }
+
+    public double getDrivetrainTurnDriveI() {
+        return drivetrainTurnDriveI;
+    }
+
+    public double getDrivetrainTurnDriveD() {
+        return drivetrainTurnDriveD;
     }
 }
