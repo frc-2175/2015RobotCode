@@ -2,7 +2,9 @@ package org.usfirst.frc.team2175.robot.subsystems;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
+import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -33,7 +35,7 @@ public class Drivetrain extends Subsystem {
         @Override
         public double pidGet() {
             // Return the sensor value for the PID input
-            return getMeanEncoderDistance();
+            return getMeanEncoderDistance() * -1;
         }
     }
 
@@ -57,7 +59,10 @@ public class Drivetrain extends Subsystem {
         turnController.setAbsoluteTolerance(.5);
 
         StraightDriveControllerHandler straightHandler = new StraightDriveControllerHandler();
-        straightDriveController = new PIDController(0, 0, 0, straightHandler,
+        straightDriveController = new PIDController(
+                Robot.properties.getDrivetrainP(),
+                Robot.properties.getDrivetrainI(),
+                Robot.properties.getDrivetrainD(), straightHandler,
                 straightHandler);
         straightDriveController.setAbsoluteTolerance(.5);
         // TODO assign PID values
@@ -102,6 +107,10 @@ public class Drivetrain extends Subsystem {
         RobotMap.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
     }
 
+    public void setSafetyEnabled(boolean enabled) {
+        RobotMap.drivetrain.setSafetyEnabled(enabled);
+    }
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -111,5 +120,7 @@ public class Drivetrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
         // driveChoice = (Command) driveChooser.getSelected();
         // setDefaultCommand(driveChoice);
+
+        setDefaultCommand(new ArcadeDriveWithSticks());
     }
 }

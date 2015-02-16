@@ -118,7 +118,7 @@ public class RobotMap extends AbstractConfig {
         leftTalon = new Talon(leftTalonValue);
         rightTalon = new Talon(rightTalonValue);
 
-        leftEncoder = new Encoder(leftEncoderAValue, leftEncoderBValue, false,
+        leftEncoder = new Encoder(leftEncoderAValue, leftEncoderBValue, true,
                 EncodingType.k2X);
         leftEncoder.setDistancePerPulse(Robot.properties
                 .getDriveLeftEncoderDPP());
@@ -132,6 +132,10 @@ public class RobotMap extends AbstractConfig {
         // gyro = new Gyro(gyroValue);
 
         drivetrain = new RobotDrive(leftTalon, rightTalon);
+
+        drivetrain.setSafetyEnabled(false); // FIXME Remove this line!!!!
+        // FIXME SERIOUSLY! REMOVE IT!
+        // FIXME DON'T ASK QUESTIONS! DO IT NOW!
     }
 
     private void configureToteElevator(Properties props) {

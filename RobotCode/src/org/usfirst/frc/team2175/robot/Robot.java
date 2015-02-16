@@ -184,6 +184,9 @@ public class Robot extends IterativeRobot {
         // log.info(msg);
 
         smartDashboardUpdate();
+        System.out.println("Left encoder: "
+                + RobotMap.leftEncoder.getDistance() + ", Right encoder: "
+                + RobotMap.rightEncoder.getDistance());
 
     }
 
@@ -262,9 +265,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Right Drive Talon",
                 RobotMap.getRightTalonSpeed());
         SmartDashboard.putNumber("Left Drive Encoder",
-                RobotMap.getLeftEncoderSpeed());
+                RobotMap.leftEncoder.getDistance());
         SmartDashboard.putNumber("Right Drive Encoder",
-                RobotMap.getRightEncoderSpeed());
+                RobotMap.rightEncoder.getDistance());
         SmartDashboard.putBoolean("Container Lift at Top",
                 Robot.containerElevator.containerElevatorIsAtTop());
         SmartDashboard.putBoolean("Container Lift at Bottom",

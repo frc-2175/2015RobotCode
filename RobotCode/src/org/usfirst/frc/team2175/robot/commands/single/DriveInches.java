@@ -18,13 +18,17 @@ public class DriveInches extends CommandBase {
         // eg. requires(chassis);
         requires(Robot.drivetrain);
         setpoint = inches;
+        log.log(Level.FINER, "Constructed DriveForInches(" + inches + ")");
+
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         super.initialize();
+        Robot.drivetrain.resetEncoders();
         Robot.drivetrain.straightDriveController.setSetpoint(setpoint);
+        Robot.drivetrain.setSafetyEnabled(false);
         Robot.drivetrain.straightDriveController.enable();
         log.log(Level.FINE, "Driving for " + setpoint + " inches");
     }
@@ -45,6 +49,7 @@ public class DriveInches extends CommandBase {
     protected void end() {
         super.end();
         Robot.drivetrain.straightDriveController.disable();
+        Robot.drivetrain.setSafetyEnabled(true);
 
         log.log(Level.FINE, "Done driving for " + setpoint + " inches");
     }

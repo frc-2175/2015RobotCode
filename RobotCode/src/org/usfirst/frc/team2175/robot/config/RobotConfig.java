@@ -15,6 +15,9 @@ public class RobotConfig extends AbstractConfig {
     private final double driveTrainRamp;
     private final double driveLeftEncoderDPP;
     private final double driveRightEncoderDPP;
+    private final double drivetrainP;
+    private final double drivetrainI;
+    private final double drivetrainD;
 
     // tote intake properties
     private final double totePusherSpeed;
@@ -45,6 +48,9 @@ public class RobotConfig extends AbstractConfig {
                     prop);
             driveRightEncoderDPP = getDoublePropertyValue(
                     "driveRightEncoderDPP", prop);
+            drivetrainP = getDoublePropertyValue("drivetrainP", prop);
+            drivetrainI = getDoublePropertyValue("drivetrainI", prop);
+            drivetrainD = getDoublePropertyValue("drivetrainD", prop);
 
             toteConfig = makeToteElevatorConfig(prop);
 
@@ -75,6 +81,18 @@ public class RobotConfig extends AbstractConfig {
             log.log(Level.SEVERE, msg, e);
             throw e;
         }
+    }
+
+    public double getDrivetrainP() {
+        return drivetrainP;
+    }
+
+    public double getDrivetrainI() {
+        return drivetrainI;
+    }
+
+    public double getDrivetrainD() {
+        return drivetrainD;
     }
 
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
