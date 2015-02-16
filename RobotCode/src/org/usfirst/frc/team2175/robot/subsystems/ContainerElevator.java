@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * The control class for the tote elevator, with a PID wrapper class contained
+ * within
+ * 
+ * @author FRC 2175
  */
 public class ContainerElevator extends Subsystem {
 
