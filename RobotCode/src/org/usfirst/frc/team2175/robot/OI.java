@@ -144,7 +144,7 @@ public class OI {
     }
 
     public double getToteElevatorSpeed() {
-        return -handleGamepadDeadband(gamepad.getRawAxis(3));
+        return handleGamepadDeadband(-gamepad.getRawAxis(3));
     }
 
     protected double getChangeValue(String name, double position) {
