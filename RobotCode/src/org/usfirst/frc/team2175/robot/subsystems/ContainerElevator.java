@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * The control class for the tote elevator, with a PID wrapper class contained
  * within
- * 
+ *
  * @author FRC 2175
  */
 public class ContainerElevator extends Subsystem {
@@ -23,6 +23,13 @@ public class ContainerElevator extends Subsystem {
 
     public PIDController containerElevatorController;
 
+    /**
+     * The PID wrapper class for the container elevator. It uses
+     * setContainerElevatorSpeed as pidWrite and getContainerHeight as pidGet
+     *
+     * @author FRC 2175
+     *
+     */
     private class ContainerElevatorControllerHandler implements PIDSource,
             PIDOutput {
         @Override
