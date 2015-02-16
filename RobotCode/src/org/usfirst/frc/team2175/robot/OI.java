@@ -140,11 +140,11 @@ public class OI {
     }
 
     public double getContainerElevatorSpeed() {
-        return handleDeadband(-gamepad.getY());
+        return handleGamepadDeadband(-gamepad.getY());
     }
 
     public double getToteElevatorSpeed() {
-        return -gamepad.getRawAxis(3);
+        return -handleGamepadDeadband(gamepad.getRawAxis(3));
     }
 
     protected double getChangeValue(String name, double position) {
