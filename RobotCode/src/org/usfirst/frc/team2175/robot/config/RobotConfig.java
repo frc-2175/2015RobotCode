@@ -39,6 +39,7 @@ public class RobotConfig extends AbstractConfig {
     private final double containerElevatorP;
     private final double containerElevatorI;
     private final double containerElevatorD;
+    private final double containerElevatorBrakeThreshold;
 
     public RobotConfig() {
         try {
@@ -84,6 +85,8 @@ public class RobotConfig extends AbstractConfig {
                     prop);
             containerElevatorD = getDoublePropertyValue("containerElevatorD",
                     prop);
+            containerElevatorBrakeThreshold = getDoublePropertyValue(
+                    "containerElevatorBrakeThreshold", prop);
             toteIntakeWheelsSpeed = getDoublePropertyValue(
                     "toteIntakeWheelsSpeed", prop);
             precisionModeScale = getDoublePropertyValue("precisionModeScale",
@@ -210,5 +213,9 @@ public class RobotConfig extends AbstractConfig {
 
     public double getDrivetrainTurnDriveD() {
         return drivetrainTurnDriveD;
+    }
+
+    public double getContainerElevatorBrakeThreshold() {
+        return containerElevatorBrakeThreshold;
     }
 }

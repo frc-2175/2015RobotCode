@@ -119,7 +119,8 @@ public class ContainerElevator extends Subsystem {
 
         log.fine("motorOutput=" + motorOutput);
 
-        if (Math.abs(motorOutput) < 0.05) {
+        if (Math.abs(motorOutput) < Robot.properties
+                .getContainerElevatorBrakeThreshold()) {
             Robot.containerElevator.setBrake(true);
         } else {
             Robot.containerElevator.setBrake(false);
