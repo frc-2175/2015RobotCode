@@ -1,45 +1,38 @@
 package org.usfirst.frc.team2175.robot.commands.auto;
 
+import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.commands.groups.IntakeTote;
 import org.usfirst.frc.team2175.robot.commands.groups.StackTote;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
+import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorToPosition;
 import org.usfirst.frc.team2175.robot.commands.single.TurnDegrees;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Grabs one container and two totes and drives into the auto zone. Start in P2
+ * or P3 with the container intake around a container and the tote elevator
+ * down.
  */
 public class AutonStack2TotesGrab1Container extends CommandGroup {
 
     public AutonStack2TotesGrab1Container() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        // addSequential(new Command2());
-        // these will run in order.
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        // addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+        // Pick up a tote and a container
+        addParallel(new CloseContainerIntake());
+        addSequential(new IntakeTote());
+        addSequential(new MoveToteElevatorToPosition(
+                Robot.properties.toteConfig.stack));
 
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-        /** TODO refine numbers and check for negation */
+        // Turn and pick up another tote
+        addSequential(new TurnDegrees(180));
         addParallel(new IntakeTote());
         addSequential(new DriveInches(36));
-        addSequential(new DriveInches(-60));
-        addSequential(new CloseContainerIntake());
-        addSequential(new TurnDegrees(180));
         addParallel(new StackTote());
-        addSequential(new DriveInches(36));
-        addSequential(new DriveInches(-60));
-        addSequential(new TurnDegrees(90));
+
+        // Turn and drive to auto zone
+        addSequential(new TurnDegrees(-90));
         addSequential(new DriveInches(108));
 
     }

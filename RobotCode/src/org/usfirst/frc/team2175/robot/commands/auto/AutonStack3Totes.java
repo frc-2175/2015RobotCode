@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonStack3Totes extends CommandGroup {
 
+    // TODO This is really all wrong - write a new one that doesn't need us to
+    // drive around containers
+
     public AutonStack3Totes() {
         // TODO refine numbers
 

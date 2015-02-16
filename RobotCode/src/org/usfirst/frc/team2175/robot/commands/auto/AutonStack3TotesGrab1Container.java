@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonStack3TotesGrab1Container extends CommandGroup {
 
+    // TODO This is really all wrong - write a new one that doesn't need us to
+    // drive around containers. (Also, is this even necessary?)
+
     public AutonStack3TotesGrab1Container() {
         /** TODO check all numbers and if they need to be negated */
         addParallel(new IntakeTote());

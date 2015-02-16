@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class StackTote extends CommandGroup {
-    
+
     public StackTote() {
-    	
-    	addSequential(new IntakeTote());
-    	addSequential(new MoveToteElevatorToPosition(Robot.properties.toteConfig.pickup)); 
-    	addSequential(new MoveToteElevatorToPosition(Robot.properties.toteConfig.stack));
+
+        addSequential(new MoveToteElevatorToPosition(
+                Robot.properties.toteConfig.pickup));
+        addSequential(new MoveToteElevatorToPosition(
+                Robot.properties.toteConfig.stack));
+
     }
 }
