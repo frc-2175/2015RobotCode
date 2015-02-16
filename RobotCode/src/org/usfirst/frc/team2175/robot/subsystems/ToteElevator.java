@@ -12,8 +12,9 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * @author FRC 2175
  */
+
 public class ToteElevator extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
 
@@ -24,6 +25,14 @@ public class ToteElevator extends Subsystem {
         log.fine("speed=" + speed);
         RobotMap.toteElevatorMotor.set(speed);
     }
+
+    /**
+     * The PID handler for the tote elevator. Wraps the motor control and
+     * encoder with PIDSource and PIDOutput
+     *
+     * @author FRC 2175
+     *
+     */
 
     private class HeightControllerHandler implements PIDSource, PIDOutput {
         @Override
@@ -58,18 +67,38 @@ public class ToteElevator extends Subsystem {
         toteElevatorController.setAbsoluteTolerance(.05);
     }
 
+    /**
+     * Determines whether the tote elevator is at the bottom according to the
+     * value of a hall effect sensor
+     *
+     * @return Returns the inverse of the value of the bottom tote switch
+     */
     public boolean isAtBottom() {
         boolean isAtBottom = !RobotMap.toteSwitchBottom.get();
         log.fine("isAtBottom=" + isAtBottom);
         return isAtBottom;
     }
 
+    /**
+     * Determines whether the tote elevator is at the top according to the value
+     * of a hall effect sensor
+     *
+     * @return Returns the inverse of the value of the top tote switch
+     */
     public boolean isAtTop() {
         boolean isAtTop = !RobotMap.toteSwitchTop.get();
         log.fine("isAtTop=" + isAtTop);
         return isAtTop;
     }
 
+    /**
+     * This sets the tote elevator speed after checking to make sure it is not
+     * passing the top or bottom by using ToteElevator.isAtTop() and
+     * ToteElevator.isAtBottom()
+     *
+     * @param toteElevatorSpeed
+     *            : The commanded elevator speed
+     */
     public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
         if (isAtTop() && Robot.oi.getToteElevatorSpeed() > 0) {
@@ -85,6 +114,12 @@ public class ToteElevator extends Subsystem {
         updateBrakeSetting();
     }
 
+    /**
+     * Applies the brake setting obtained from ToteElevator.updateBrakeSetting()
+     *
+     * @param on
+     *            : Value the solenoid is set to
+     */
     public void setBrake(boolean on) {
         // This is supposed to be negated, don't change it
         if (!on) {
@@ -94,10 +129,19 @@ public class ToteElevator extends Subsystem {
         }
     }
 
+    /**
+     * Gets the output of the tote elevator motor
+     *
+     * @return The output of the tote elevator motor
+     */
     public double getMotorOutput() {
         return RobotMap.toteElevatorMotor.get();
     }
 
+    /**
+     * Determines if the brake should be on or off based on the commanded value,
+     * then sets it using ToteElevator.setBrake()
+     */
     public void updateBrakeSetting() {
         double motorOutput = getMotorOutput();
 
@@ -112,14 +156,23 @@ public class ToteElevator extends Subsystem {
         }
     }
 
+    /**
+     * @return The value of the tote elevator brake
+     */
     public boolean getBrake() {
         return brakeOn;
     }
 
+    /**
+     * Resets the tote elevator encoder
+     */
     public void resetEncoder() {
         RobotMap.toteElevatorEncoder.reset();
     }
 
+    /**
+     * @return The height of the tote elevator motor
+     */
     public double getHeight() {
         return RobotMap.toteElevatorEncoder.getDistance();
     }
