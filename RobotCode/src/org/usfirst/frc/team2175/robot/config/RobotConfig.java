@@ -73,8 +73,10 @@ public class RobotConfig extends AbstractConfig {
             toteElevatorP = getDoublePropertyValue("toteElevatorP", prop);
             toteElevatorI = getDoublePropertyValue("toteElevatorI", prop);
             toteElevatorD = getDoublePropertyValue("toteElevatorD", prop);
-            toteElevatorEncoderDistancePerPulse= getDoublePropertyValue("toteElevatorEncoderDistancePerPulse", prop);
-            toteElevatorBrakeThreshold = getDoublePropertyValue("toteElevatorBrakeThreshold", prop);
+            toteElevatorEncoderDistancePerPulse = getDoublePropertyValue(
+                    "toteElevatorEncoderDistancePerPulse", prop);
+            toteElevatorBrakeThreshold = getDoublePropertyValue(
+                    "toteElevatorBrakeThreshold", prop);
 
             totePusherSpeed = getDoublePropertyValue("totePusherSpeed", prop);
 
@@ -221,9 +223,14 @@ public class RobotConfig extends AbstractConfig {
 
     public double getContainerElevatorBrakeThreshold() {
         return containerElevatorBrakeThreshold;
+    }
 
     public double getToteElevatorEncoderDistancePerPulse() {
-    	return toteElevatorEncoderDistancePerPulse;
+        return toteElevatorEncoderDistancePerPulse;
 
+    }
+
+    public double getToteElevatorBrakeThreshold() {
+        return toteElevatorBrakeThreshold;
     }
 }
