@@ -19,22 +19,21 @@ public class AutonStack3TotesGrab1Container extends CommandGroup {
     public AutonStack3TotesGrab1Container() {
         /** TODO check all numbers and if they need to be negated */
         addParallel(new IntakeTote());
-        addSequential(new DriveInches(36));
-        addSequential(new DriveInches(-60));
         addSequential(new CloseContainerIntake());
+        addParallel(new StackTote());
         addSequential(new TurnDegrees(180));
+        addParallel(new IntakeTote());
+        addSequential(new DriveInches(10));
         addParallel(new StackTote());
-        addSequential(new DriveInches(36));
-        addSequential(new TurnDegrees(150));
+        addSequential(new TurnDegrees(-150));
         addSequential(new DriveInches(60));
-        addSequential(new TurnDegrees(60));
+        addSequential(new TurnDegrees(-60));
         addSequential(new DriveInches(60));
-        addSequential(new TurnDegrees(-30));
-        addParallel(new StackTote());
-        addSequential(new DriveInches(36));
-        addSequential(new TurnDegrees(-90));
+        addSequential(new TurnDegrees(30));
+        addParallel(new IntakeTote());
+        addSequential(new DriveInches(10));
+        addSequential(new TurnDegrees(90));
         addSequential(new DriveInches(108));
-        addSequential(new DriveInches(-48));
 
     }
 }
