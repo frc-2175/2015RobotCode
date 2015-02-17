@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -51,7 +50,7 @@ public class RobotMap extends AbstractConfig {
     public static Talon rightTalon;
     public static Encoder leftEncoder;
     public static Encoder rightEncoder;
-    public static Gyro gyro;
+    public static GyroHandler gyro;
     public static RobotDrive drivetrain;
 
     // tote elevator
@@ -128,7 +127,7 @@ public class RobotMap extends AbstractConfig {
         rightEncoder.setDistancePerPulse(Robot.properties
                 .getDriveRightEncoderDPP());
 
-        gyro = new Gyro(gyroValue);
+        gyro = new GyroHandler(gyroValue);
 
         drivetrain = new RobotDrive(leftTalon, rightTalon);
 

@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
+import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -13,6 +14,12 @@ public class TurnDegrees extends CommandBase {
     double setpoint;
     private final Logger log = Logger.getLogger(getClass().getName());
 
+    /**
+     * Sets the PID setpoint equal to the parameter "degrees"
+     *
+     * @param degrees
+     *            : The angle to turn to
+     */
     public TurnDegrees(double degrees) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -24,6 +31,7 @@ public class TurnDegrees extends CommandBase {
     @Override
     protected void initialize() {
         super.initialize();
+        RobotMap.gyro.reset();
         Robot.drivetrain.turnController.setSetpoint(setpoint);
         Robot.drivetrain.turnController.enable();
         log.log(Level.FINE, "Turing to " + setpoint + " degrees");
