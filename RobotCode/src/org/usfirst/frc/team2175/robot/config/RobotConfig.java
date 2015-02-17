@@ -21,9 +21,11 @@ public class RobotConfig extends AbstractConfig {
     private final double drivetrainStraightDriveP;
     private final double drivetrainStraightDriveI;
     private final double drivetrainStraightDriveD;
+    private final double drivetrainStraightDriveAbsTolerance;
     private final double drivetrainTurnDriveP;
     private final double drivetrainTurnDriveI;
     private final double drivetrainTurnDriveD;
+    private final double drivetrainTurnDriveAbsTolerance;
 
     // tote intake properties
     private final double totePusherSpeed;
@@ -65,12 +67,16 @@ public class RobotConfig extends AbstractConfig {
                     "drivetrainStraightDriveI", prop);
             drivetrainStraightDriveD = getDoublePropertyValue(
                     "drivetrainStraightDriveD", prop);
+            drivetrainStraightDriveAbsTolerance = getDoublePropertyValue(
+                    "drivetrainStraightDrive", prop);
             drivetrainTurnDriveP = getDoublePropertyValue(
                     "drivetrainTurnDriveP", prop);
             drivetrainTurnDriveI = getDoublePropertyValue(
                     "drivetrainTurnDriveP", prop);
             drivetrainTurnDriveD = getDoublePropertyValue(
                     "drivetrainTurnDriveP", prop);
+            drivetrainTurnDriveAbsTolerance = getDoublePropertyValue(
+                    "drivetrainStraightDriveAbsTolerance", prop);
 
             toteConfig = makeToteElevatorConfig(prop);
 
@@ -248,5 +254,13 @@ public class RobotConfig extends AbstractConfig {
 
     public double getToteElevatorBrakeThreshold() {
         return toteElevatorBrakeThreshold;
+    }
+
+    public double getDrivetrainStraightDriveAbsTolerance() {
+        return drivetrainStraightDriveAbsTolerance;
+    }
+
+    public double getDrivetrainTurnDriveAbsTolerance() {
+        return drivetrainTurnDriveAbsTolerance;
     }
 }
