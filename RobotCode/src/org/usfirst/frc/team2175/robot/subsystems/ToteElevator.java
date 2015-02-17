@@ -55,7 +55,8 @@ public class ToteElevator extends Subsystem {
     public ToteElevator() {
         // TODO check distance per pulse (I think this is right, but not
         // sure)
-        RobotMap.toteElevatorEncoder.setDistancePerPulse(Robot.properties.getToteElevatorEncoderDistancePerPulse());
+        RobotMap.toteElevatorEncoder.setDistancePerPulse(Robot.properties
+                .getToteElevatorEncoderDistancePerPulse());
         RobotMap.toteElevatorEncoder.setReverseDirection(true);
         HeightControllerHandler heightHandler = new HeightControllerHandler();
         toteElevatorController = new PIDController(
@@ -101,9 +102,9 @@ public class ToteElevator extends Subsystem {
      */
     public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
-        if (isAtTop() && Robot.oi.getToteElevatorSpeed() > 0) {
+        if (isAtTop() && Robot.oi.getToteElevatorSpeed() < 0) {
             newSpeed = 0;
-        } else if (isAtBottom() && Robot.oi.getToteElevatorSpeed() < 0) {
+        } else if (isAtBottom() && Robot.oi.getToteElevatorSpeed() > 0) {
             newSpeed = 0;
         } else {
             newSpeed = toteElevatorSpeed;
