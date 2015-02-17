@@ -16,6 +16,8 @@ public class RobotConfig extends AbstractConfig {
     private final double driveTrainRamp;
     private final double driveLeftEncoderDPP;
     private final double driveRightEncoderDPP;
+    private final double gyroConfigTime;
+    private final double gyroDeadband;
     private final double drivetrainStraightDriveP;
     private final double drivetrainStraightDriveI;
     private final double drivetrainStraightDriveD;
@@ -55,6 +57,8 @@ public class RobotConfig extends AbstractConfig {
                     prop);
             driveRightEncoderDPP = getDoublePropertyValue(
                     "driveRightEncoderDPP", prop);
+            gyroConfigTime = getDoublePropertyValue("gyroConfigTime", prop);
+            gyroDeadband = getDoublePropertyValue("gyroDeadband", prop);
             drivetrainStraightDriveP = getDoublePropertyValue(
                     "drivetrainStraightDriveP", prop);
             drivetrainStraightDriveI = getDoublePropertyValue(
@@ -103,6 +107,18 @@ public class RobotConfig extends AbstractConfig {
             log.log(Level.SEVERE, msg, e);
             throw e;
         }
+    }
+
+    public double getGyroConfigTime() {
+        return gyroConfigTime;
+    }
+
+    public double getGyroDeadband() {
+        return gyroDeadband;
+    }
+
+    public double getGyroOffset() {
+        return gyroConfigTime;
     }
 
     public double getDrivetrainStraightDriveP() {

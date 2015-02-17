@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * the code, but it is triggered by moving a joystick axis to an extreme in
  * either direction.
  *
- * @author Ben Visness
+ * @author FRC 2175
  *
  */
 public class AxisButton extends Button {
