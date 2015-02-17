@@ -16,6 +16,10 @@ public class LoggingConfiguration {
     private String loggingPropertiesFileToUse = LOGGING_PROPERTIES_FILE_ROBOT_LOCATION;
 
     public void initializeLogging() {
+        initializeFileLog();
+    }
+
+    protected void initializeFileLog() {
         final LogManager logManager = LogManager.getLogManager();
 
         InputStream in;
