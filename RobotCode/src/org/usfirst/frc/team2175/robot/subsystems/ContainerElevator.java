@@ -2,6 +2,7 @@ package org.usfirst.frc.team2175.robot.subsystems;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.Ramp;
 import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.single.MoveContainerElevatorManually;
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ContainerElevator extends Subsystem {
 
     private final Logger log = Logger.getLogger(getClass().getName());
+    private Ramp containerRamp;
 
     public PIDController containerElevatorController;
 
@@ -59,6 +61,7 @@ public class ContainerElevator extends Subsystem {
                 containerElevatorControllerHandler);
         containerElevatorController.setOutputRange(-.5, 1);
         containerElevatorController.setAbsoluteTolerance(5);
+        containerRamp = new Ramp(Robot.properties.containerConfig.maxDelta);
 
     }
 
@@ -87,9 +90,9 @@ public class ContainerElevator extends Subsystem {
             newSpeed = 0;
         } else {
             if (containerSpeed < downSpeed) {
-                newSpeed = downSpeed;
+                newSpeed = containerRamp.rampInput(downSpeed);
             } else {
-                newSpeed = containerSpeed;
+                newSpeed = containerRamp.rampInput(containerSpeed);
             }
         }
 

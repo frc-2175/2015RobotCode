@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
-import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
+import org.usfirst.frc.team2175.robot.commands.single.MoveTotePusherIn;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
@@ -59,6 +59,7 @@ public class OI {
     public Joystick gamepad;
     public JoystickButton precisionMode;
     public JoystickButton shifters;
+    POVButton povUp;
 
     public double deadbandValue;
     public double gamepadDeadbandValue;
@@ -70,9 +71,11 @@ public class OI {
 
         precisionMode = new JoystickButton(rightStick, 1);
         shifters = new JoystickButton(leftStick, 1);
+
         deadbandValue = Robot.properties.getDeadbandSize();
         gamepadDeadbandValue = Robot.properties.getGamepadDeadbandSize();
 
+        POVButton povUp = new POVButton(gamepad, POVButton.POVDirection.UP);
         JoystickButton runRightToteIntakeWheels = new JoystickButton(
                 rightStick, Robot.keymap.getRunRightToteIntakeWheels());
         JoystickButton runRightToteIntakeWheelsBackwards = new JoystickButton(
@@ -109,8 +112,7 @@ public class OI {
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
 
-        pushToteIn.whenPressed(new DriveInches(24)); // FIXME change this back
-                                                     // to push tote in
+        pushToteIn.whenPressed(new MoveTotePusherIn());
         pushToteIn.whenReleased(new StopPusher());
 
         pushToteOut.whenPressed(new PushToteOut());
@@ -129,11 +131,11 @@ public class OI {
      */
     public double getMoveValue() {
         if (Robot.keymap.getIsContainerElevatorForward()) {
-            return getModifiedDriveValue("Move via leftstick Y value",
-                    leftStick.getY());
+            return Robot.drivetrainRamp.rampInput(getModifiedDriveValue(
+                    "Move via leftstick Y value", leftStick.getY()));
         } else {
-            return getModifiedDriveValue("Move via leftstick Y value",
-                    -leftStick.getY());
+            return Robot.drivetrainRamp.rampInput(getModifiedDriveValue(
+                    "Move via leftstick Y value", -leftStick.getY()));
         }
     }
 
@@ -143,8 +145,8 @@ public class OI {
      * @return The move value for the right stick.
      */
     public double getMoveValueRight() {
-        return getModifiedDriveValue("Move via rightstick Y value",
-                rightStick.getY());
+        return Robot.drivetrainRamp.rampInput(getModifiedDriveValue(
+                "Move via rightstick Y value", rightStick.getY()));
     }
 
     /**
@@ -170,7 +172,7 @@ public class OI {
     /**
      * Gets the tote elevator speed from the gamepad. Only used for manual
      * control.
-     * 
+     *
      * @return The manual tote elevator speed.
      */
     public double getToteElevatorSpeed() {
@@ -192,15 +194,13 @@ public class OI {
         value = handleJoystickDeadband(value);
 
         double multiplier = determinePrecisionMultipler();
-        double ramp = Robot.properties.getDriveTrainRamp();
 
         double moveValue = value * multiplier;
 
         log.fine("change name=" + name + ", value=" + value + ", multiplier="
-                + multiplier + ", Drivetrain Ramp=" + ramp
-                + ", resulting moveValue=" + moveValue);
+                + multiplier + ", resulting moveValue=" + moveValue);
 
-        return moveValue;
+        return (moveValue);
     }
 
     /**

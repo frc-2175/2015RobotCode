@@ -60,8 +60,9 @@ public class Drivetrain extends Subsystem {
                 Robot.properties.getDrivetrainTurnDriveI(),
                 Robot.properties.getDrivetrainTurnDriveD(), turnHandler,
                 turnHandler);
-        turnController.setAbsoluteTolerance(.5);
-        turnController.setOutputRange(-.5, .5);
+
+        turnController.setAbsoluteTolerance(.5); // TODO parameterize these
+        turnController.setOutputRange(-1, 1);
 
         StraightDriveControllerHandler straightHandler = new StraightDriveControllerHandler();
         straightDriveController = new PIDController(
@@ -69,7 +70,9 @@ public class Drivetrain extends Subsystem {
                 Robot.properties.getDrivetrainStraightDriveI(),
                 Robot.properties.getDrivetrainStraightDriveD(),
                 straightHandler, straightHandler);
-        straightDriveController.setAbsoluteTolerance(.5);
+        straightDriveController.setAbsoluteTolerance(.5); // TODO parameterize
+                                                          // these
+        straightDriveController.setOutputRange(-0.5, 0.5);
         // TODO assign PID values
     }
 

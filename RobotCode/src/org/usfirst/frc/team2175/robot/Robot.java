@@ -50,6 +50,7 @@ public class Robot extends IterativeRobot {
     public static ContainerElevator containerElevator;
     public static ToteIntake toteIntake;
     public static ContainerIntake containerIntake;
+    public static Ramp drivetrainRamp;
     public static Ramp toteRamp;
     public static Ramp containerRamp;
 
@@ -152,6 +153,8 @@ public class Robot extends IterativeRobot {
         driveChoice = (Command) driveChooser.getSelected();
         driveChoice.start();
 
+        RobotMap.gyro.reset();
+
         smartDashboardUpdate();
         makePDPLoggingLoop();
 
@@ -200,6 +203,9 @@ public class Robot extends IterativeRobot {
 
     private void makeSubsystems() {
         drivetrain = new Drivetrain();
+        drivetrainRamp = new Ramp(properties.getDriveTrainRamp());
+        RobotMap.gyro.initGyro();
+
         toteElevator = new ToteElevator();
         containerElevator = new ContainerElevator();
         toteIntake = new ToteIntake();
@@ -287,7 +293,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Pusher In Switch",
                 toteIntake.isPusherRetracted());
         SmartDashboard.putBoolean("Pusher Out", toteIntake.isPusherExtended());
-        SmartDashboard.putNumber("Gyro Value", RobotMap.gyro.getAngle());
+        SmartDashboard.putNumber("Gyro Angle", RobotMap.gyro.getAngle());
+        SmartDashboard.putNumber("Gyro Rate", RobotMap.gyro.getRate());
         SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 
     }
