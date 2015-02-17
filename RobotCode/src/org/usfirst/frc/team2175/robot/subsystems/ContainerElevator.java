@@ -90,9 +90,9 @@ public class ContainerElevator extends Subsystem {
             newSpeed = 0;
         } else {
             if (containerSpeed < downSpeed) {
-                newSpeed = containerRamp.rampInput(downSpeed);
+                newSpeed = (downSpeed);
             } else {
-                newSpeed = containerRamp.rampInput(containerSpeed);
+                newSpeed = (containerSpeed);
             }
         }
 

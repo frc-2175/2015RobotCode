@@ -131,11 +131,11 @@ public class OI {
      */
     public double getMoveValue() {
         if (Robot.keymap.getIsContainerElevatorForward()) {
-            return Robot.drivetrainRamp.rampInput(getModifiedDriveValue(
-                    "Move via leftstick Y value", leftStick.getY()));
+            return (getModifiedDriveValue("Move via leftstick Y value",
+                    leftStick.getY()));
         } else {
-            return Robot.drivetrainRamp.rampInput(getModifiedDriveValue(
-                    "Move via leftstick Y value", -leftStick.getY()));
+            return (getModifiedDriveValue("Move via leftstick Y value",
+                    -leftStick.getY()));
         }
     }
 
@@ -145,8 +145,8 @@ public class OI {
      * @return The move value for the right stick.
      */
     public double getMoveValueRight() {
-        return Robot.drivetrainRamp.rampInput(getModifiedDriveValue(
-                "Move via rightstick Y value", rightStick.getY()));
+        return (getModifiedDriveValue("Move via rightstick Y value",
+                rightStick.getY()));
     }
 
     /**
