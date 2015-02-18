@@ -2,13 +2,10 @@ package org.usfirst.frc.team2175.robot.commands;
 
 import org.usfirst.frc.team2175.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
-public class ZeroGyro extends Command {
-
+public class ZeroGyro extends CommandBase {
     public ZeroGyro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -17,6 +14,7 @@ public class ZeroGyro extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        super.initialize();
         RobotMap.gyro.initGyro();
     }
 
@@ -34,6 +32,7 @@ public class ZeroGyro extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        super.end();
     }
 
     // Called when another command which requires one or more of the same
