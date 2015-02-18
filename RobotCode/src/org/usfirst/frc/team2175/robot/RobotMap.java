@@ -123,7 +123,7 @@ public class RobotMap extends AbstractConfig {
                 .getDriveLeftEncoderDPP());
 
         rightEncoder = new Encoder(rightEncoderAValue, rightEncoderBValue,
-                false, EncodingType.k2X);
+                true, EncodingType.k2X);
         rightEncoder.setDistancePerPulse(Robot.properties
                 .getDriveRightEncoderDPP());
 
@@ -131,6 +131,7 @@ public class RobotMap extends AbstractConfig {
 
         drivetrain = new RobotDrive(leftTalon, rightTalon);
         drivetrain.setSafetyEnabled(false);
+
     }
 
     private void configureToteElevator(Properties props) {
@@ -151,7 +152,7 @@ public class RobotMap extends AbstractConfig {
         toteSwitchTop = new DigitalInput(switchTopValue);
         toteSwitchBottom = new DigitalInput(switchBottomValue);
 
-        toteElevatorEncoder = new Encoder(encoderAValue, encoderBValue, false,
+        toteElevatorEncoder = new Encoder(encoderAValue, encoderBValue, true,
                 EncodingType.k2X);
         toteElevatorEncoder.reset();
 

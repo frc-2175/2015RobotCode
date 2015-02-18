@@ -35,7 +35,7 @@ public class Drivetrain extends Subsystem {
         @Override
         public double pidGet() {
             // Return the sensor value for the PID input
-            return getMeanEncoderDistance() * -1;
+            return getMeanEncoderDistance();
         }
     }
 
