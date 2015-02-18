@@ -75,7 +75,7 @@ public class OI {
         deadbandValue = Robot.properties.getDeadbandSize();
         gamepadDeadbandValue = Robot.properties.getGamepadDeadbandSize();
 
-        POVButton povUp = new POVButton(gamepad, POVButton.POVDirection.UP);
+        povUp = new POVButton(gamepad, POVButton.POVDirection.UP);
         JoystickButton runRightToteIntakeWheels = new JoystickButton(
                 rightStick, Robot.keymap.getRunRightToteIntakeWheels());
         JoystickButton runRightToteIntakeWheelsBackwards = new JoystickButton(
