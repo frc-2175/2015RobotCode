@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SocketHandler;
@@ -46,6 +47,14 @@ public class LoggingConfiguration extends AbstractConfig {
             throw new IllegalStateException(
                     "Unable to read logging properties", e);
         }
+
+        final String levelProperty = logManager
+                .getProperty("java.util.logging.FileHandler.level");
+
+        final Logger log = Logger.getLogger(getClass().getName());
+        final Level level = log.getLevel();
+        log.info("File logging initialized, actual logging level=" + level
+                + ", configured level=" + levelProperty);
     }
 
     protected void initializeSocketLog() {
