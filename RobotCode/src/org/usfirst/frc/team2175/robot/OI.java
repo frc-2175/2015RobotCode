@@ -58,7 +58,7 @@ public class OI {
     public Joystick rightStick;
     public Joystick gamepad;
     public JoystickButton precisionMode;
-    public JoystickButton turbo;
+    public JoystickButton toteMode;
     POVButton povUp;
 
     public double deadbandValue;
@@ -70,7 +70,7 @@ public class OI {
         gamepad = new Joystick(2);
 
         precisionMode = new JoystickButton(rightStick, 1);
-        turbo = new JoystickButton(leftStick, 1);
+        toteMode = new JoystickButton(leftStick, 1);
 
         deadbandValue = Robot.properties.getDeadbandSize();
         gamepadDeadbandValue = Robot.properties.getGamepadDeadbandSize();
@@ -199,10 +199,10 @@ public class OI {
         log.fine("change name=" + name + ", value=" + value + ", multiplier="
                 + multiplier + ", resulting moveValue=" + moveValue);
 
-        if (!turbo.get()) {
-            return (moveValue);
-        } else {
+        if (toteMode.get()) {
             return Robot.drivetrainRamp.rampInput(moveValue);
+        } else {
+            return (moveValue);
         }
     }
 
