@@ -95,7 +95,7 @@ public class OI {
         JoystickButton pushToteOut = new JoystickButton(gamepad,
                 Robot.keymap.getPushToteOut());
         JoystickButton pushToteIn = new JoystickButton(gamepad,
-                Robot.keymap.getMoveToteElevatorManually());
+                Robot.keymap.getBringPusherIn());
         JoystickButton stowContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getStowContainerIntake());
         JoystickButton releaseContainerIntake = new JoystickButton(gamepad,
@@ -178,7 +178,7 @@ public class OI {
      * @return The manual tote elevator speed.
      */
     public double getToteElevatorSpeed() {
-        return handleGamepadDeadband(-gamepad.getRawAxis(3));
+        return handleGamepadDeadband(gamepad.getRawAxis(3));
     }
 
     /**

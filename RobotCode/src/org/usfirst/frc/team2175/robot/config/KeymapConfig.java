@@ -23,6 +23,7 @@ public class KeymapConfig extends AbstractConfig {
     private final int stowContainerIntake;
     private final int releaseContainerIntake;
     private final int isContainerElevatorForward;
+    private final int bringPusherIn;
 
     public KeymapConfig() {
         try {
@@ -54,6 +55,7 @@ public class KeymapConfig extends AbstractConfig {
                     "releaseContainerIntake", prop);
             isContainerElevatorForward = getIntPropertyValue(
                     "isContainerElevatorForward", prop);
+            bringPusherIn = getIntPropertyValue("bringPusherIn", prop);
 
         } catch (Exception e) {
             final String msg = "Problem with processing Keymap, can't continue:";
@@ -112,6 +114,10 @@ public class KeymapConfig extends AbstractConfig {
 
     public int getStowContainerIntake() {
         return stowContainerIntake;
+    }
+
+    public int getBringPusherIn() {
+        return bringPusherIn;
     }
 
     public boolean getIsContainerElevatorForward() {

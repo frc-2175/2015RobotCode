@@ -24,9 +24,7 @@ public class TankDriveForTesting extends CommandBase {
     protected void execute() {
         double leftMoveValue = Robot.oi.getMoveValue();
         double rightMoveValue = Robot.oi.getMoveValueRight();
-        Robot.drivetrain.tankDrive(
-                leftMoveValue / Robot.properties.getDriveTrainRamp(),
-                rightMoveValue / Robot.properties.getDriveTrainRamp());
+        Robot.drivetrain.tankDrive(leftMoveValue, rightMoveValue);
     }
 
     // Make this return true when this Command no longer needs to run execute()
