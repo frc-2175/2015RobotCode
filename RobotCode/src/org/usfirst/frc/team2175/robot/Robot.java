@@ -2,6 +2,7 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.commands.ZeroToteElevator;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonGrab1Container;
@@ -188,9 +189,11 @@ public class Robot extends IterativeRobot {
         // log.info(msg);
 
         smartDashboardUpdate();
-        System.out.println("Left encoder: "
-                + RobotMap.leftEncoder.getDistance() + ", Right encoder: "
-                + RobotMap.rightEncoder.getDistance());
+        // System.out.println("Left encoder: "
+        // + RobotMap.leftEncoder.getDistance() + ", Right encoder: "
+        // + RobotMap.rightEncoder.getDistance());
+        System.out.println("Tote elevator encoder: "
+                + RobotMap.toteElevatorEncoder.getDistance());
 
     }
 
@@ -236,7 +239,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addDefault("2 - Stack 1 tote and end in Auto Zone",
                 new AutonStack1Tote());
         autonChooser.addDefault("3 - Grab 1 Container and end in Auto Zone",
-        		new AutonGrab1Container());
+                new AutonGrab1Container());
         autonChooser.addDefault("4 - Stack 2 totes and end in Auto Zone",
                 new AutonStack2Totes());
         autonChooser.addDefault("5 - Stack 3 Totes and end in Auto Zone",
@@ -297,6 +300,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Gyro Angle", RobotMap.gyro.getAngle());
         SmartDashboard.putNumber("Gyro Rate", RobotMap.gyro.getRate());
         SmartDashboard.putData("Scheduler", Scheduler.getInstance());
+
+        SmartDashboard.putData("Zero Tote Elevator", new ZeroToteElevator());
 
     }
 }
