@@ -2,9 +2,9 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team2175.robot.commands.ZeroToteElevator;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
-import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
@@ -112,10 +112,10 @@ public class OI {
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
 
-        pushToteIn.whenPressed(new DriveInches(36)); // FIXME change
-                                                     // back
-                                                     // to
-                                                     // MoveTotePusherIn()
+        pushToteIn.whenPressed(new ZeroToteElevator()); // FIXME change
+                                                        // back
+                                                        // to
+                                                        // MoveTotePusherIn()
         pushToteIn.whenReleased(new StopPusher());
 
         pushToteOut.whenPressed(new PushToteOut());
