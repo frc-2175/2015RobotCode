@@ -18,10 +18,15 @@ public class LoggingConfigurationTest {
         sut.initializeFileLog();
 
         Logger log = Logger.getLogger(getClass().getName());
-        log.info("log a test msg");
 
         Exception e = new IllegalArgumentException("the exception msg");
         log.log(Level.SEVERE, "Exception msg", e);
+
+        log.info("log an info msg");
+        log.config("log a config msg");
+        log.fine("log a fine msg");
+        log.finer("log a finer msg");
+        log.finest("log a finest msg");
     }
 
     @Test
