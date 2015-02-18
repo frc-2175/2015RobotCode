@@ -7,12 +7,16 @@ import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
 public class TurnDegrees extends CommandBase {
     double setpoint;
     private final Logger log = Logger.getLogger(getClass().getName());
+    double degrees;
+    boolean isRelative;
 
     /**
      * Sets the PID setpoint equal to the parameter "degrees"
@@ -24,7 +28,8 @@ public class TurnDegrees extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.drivetrain);
-        setpoint = degrees;
+        this.degrees = degrees;
+        isRelative = false;
     }
 
     /**
@@ -38,18 +43,24 @@ public class TurnDegrees extends CommandBase {
      */
     public TurnDegrees(double degrees, boolean isRelative) {
         requires(Robot.drivetrain);
-        if (isRelative) {
-            setpoint = RobotMap.gyro.getAngle() + degrees;
-        } else {
-            setpoint = degrees;
-        }
+        this.degrees = degrees;
+        this.isRelative = isRelative;
+
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         super.initialize();
+
+        if (isRelative) {
+            setpoint = RobotMap.gyro.getAngle() + degrees;
+        } else {
+            setpoint = degrees;
+        }
+
         Robot.drivetrain.turnController.setSetpoint(setpoint);
+        SmartDashboard.putNumber("Gyro setpoint", setpoint);
         Robot.drivetrain.turnController.enable();
         log.log(Level.FINE, "Turing to " + setpoint + " degrees");
     }
@@ -62,7 +73,9 @@ public class TurnDegrees extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
+
         return Robot.drivetrain.turnController.onTarget();
+
     }
 
     // Called once after isFinished returns true

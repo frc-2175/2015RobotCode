@@ -215,14 +215,14 @@ public class Robot extends IterativeRobot {
 
     private void makeControlLoop() {
         controlLoop = new java.util.Timer();
-        controlLoop.schedule(new SchedulerTask(), 0L, (10));
+        controlLoop.schedule(new SchedulerTask(), 0L, (20));
     }
 
     private void makePDPLoggingLoop() {
         pdpLogger.initPDPLogging();
 
         pdpLoggingLoop = new java.util.Timer();
-        pdpLoggingLoop.schedule(new PDPLoggerTask(), 0L, (40));
+        pdpLoggingLoop.schedule(new PDPLoggerTask(), 0L, (100));
     }
 
     private void makeAutonChooser() {

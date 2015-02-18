@@ -72,9 +72,9 @@ public class RobotConfig extends AbstractConfig {
             drivetrainTurnDriveP = getDoublePropertyValue(
                     "drivetrainTurnDriveP", prop);
             drivetrainTurnDriveI = getDoublePropertyValue(
-                    "drivetrainTurnDriveP", prop);
+                    "drivetrainTurnDriveI", prop);
             drivetrainTurnDriveD = getDoublePropertyValue(
-                    "drivetrainTurnDriveP", prop);
+                    "drivetrainTurnDriveD", prop);
             drivetrainTurnDriveAbsTolerance = getDoublePropertyValue(
                     "drivetrainStraightDriveAbsTolerance", prop);
 
