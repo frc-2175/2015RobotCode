@@ -4,7 +4,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
-import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -31,7 +30,6 @@ public class TurnDegrees extends CommandBase {
     @Override
     protected void initialize() {
         super.initialize();
-        RobotMap.gyro.reset();
         Robot.drivetrain.turnController.setSetpoint(setpoint);
         Robot.drivetrain.turnController.enable();
         log.log(Level.FINE, "Turing to " + setpoint + " degrees");
