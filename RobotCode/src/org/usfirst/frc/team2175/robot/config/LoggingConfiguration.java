@@ -57,6 +57,8 @@ public class LoggingConfiguration extends AbstractConfig {
     }
 
     protected Handler makeSocketHandler() {
+        final Logger log = Logger.getLogger(getClass().getName());
+
         final Properties props = new PropertiesLoader()
                 .loadProperties(loggingPropertiesFileToUse);
 
@@ -65,17 +67,18 @@ public class LoggingConfiguration extends AbstractConfig {
         final int socketHandlerPort = getIntPropertyValue(
                 "socket.handler.port", props);
 
+        log.config("host=" + socketHandlerHostname + ", port="
+                + socketHandlerPort);
+
         Handler handler = null;
         try {
             handler = new SocketHandler(socketHandlerHostname,
                     socketHandlerPort);
         } catch (IOException e) {
-            final Logger log = Logger.getLogger(getClass().getName());
             final String msg = "Lilith log viewer not running?"
                     + " Error instantiating SocketHandler with host="
-                    + socketHandlerHostname + ", socketHandlerPort="
-                    + socketHandlerPort + ", msg=" + e.getClass().getName()
-                    + ": " + e.getMessage();
+                    + socketHandlerHostname + ", port=" + socketHandlerPort
+                    + ", msg=" + e.getClass().getName() + ": " + e.getMessage();
             log.info(msg);
         }
         return handler;
