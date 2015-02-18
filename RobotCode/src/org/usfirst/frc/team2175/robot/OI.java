@@ -199,7 +199,7 @@ public class OI {
         log.fine("change name=" + name + ", value=" + value + ", multiplier="
                 + multiplier + ", resulting moveValue=" + moveValue);
 
-        if (turbo.get()) {
+        if (!turbo.get()) {
             return (moveValue);
         } else {
             return Robot.drivetrainRamp.rampInput(moveValue);
