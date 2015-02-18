@@ -73,7 +73,7 @@ public class LoggingConfiguration extends AbstractConfig {
             final Logger log = Logger.getLogger(getClass().getName());
             final String msg = "Lilith log viewer not running?"
                     + " Error instantiating SocketHandler with host="
-                    + socketHandlerHostname + ", socketHandlerPort"
+                    + socketHandlerHostname + ", socketHandlerPort="
                     + socketHandlerPort + ", msg=" + e.getClass().getName()
                     + ": " + e.getMessage();
             log.info(msg);
