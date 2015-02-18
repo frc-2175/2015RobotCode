@@ -19,9 +19,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author FRC 2175
  */
 public class ContainerElevator extends Subsystem {
-
     private final Logger log = Logger.getLogger(getClass().getName());
-    private Ramp containerRamp;
+    private final Ramp containerRamp;
 
     public PIDController containerElevatorController;
 
@@ -146,4 +145,7 @@ public class ContainerElevator extends Subsystem {
         return brakeOn;
     }
 
+    public Ramp getContainerRamp() {
+        return containerRamp;
+    }
 }
