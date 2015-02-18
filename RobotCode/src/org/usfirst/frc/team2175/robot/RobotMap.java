@@ -130,10 +130,6 @@ public class RobotMap extends AbstractConfig {
         gyro = new GyroHandler(gyroValue);
 
         drivetrain = new RobotDrive(leftTalon, rightTalon);
-
-        drivetrain.setSafetyEnabled(false); // FIXME Remove this line!!!!
-        // FIXME SERIOUSLY! REMOVE IT!
-        // FIXME DON'T ASK QUESTIONS! DO IT NOW!
     }
 
     private void configureToteElevator(Properties props) {
