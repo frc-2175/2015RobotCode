@@ -204,8 +204,6 @@ public class Robot extends IterativeRobot {
     private void makeSubsystems() {
         drivetrain = new Drivetrain();
         drivetrainRamp = new Ramp(properties.getDriveTrainRamp());
-        RobotMap.gyro.initGyro();
-
         toteElevator = new ToteElevator();
         containerElevator = new ContainerElevator();
         toteIntake = new ToteIntake();
