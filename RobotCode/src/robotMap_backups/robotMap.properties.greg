@@ -1,0 +1,42 @@
+# properties for the RobotMap class - the wire map
+# This allows different port mapping on different robots
+
+#PWM Channels
+drivetrain.talon.left=0
+drivetrain.talon.right=1
+tote.elevator.motor=2
+tote.intake.motor.left=17
+tote.intake.motor.right=7
+tote.pusher.arm=9
+container.elevator.motor=8
+
+#PCM Channels
+tote.elevator.brake=4
+tote.intake.arms.forward=0
+tote.intake.arms.reverse=1
+container.elevator.brake=5
+container.intake.arms.forward=2
+container.intake.arms.reverse=7
+container.intake.spatula.forward=3
+container.intake.spatula.reverse=6
+
+#DIO Channels
+drivetrain.encoder.left.a=1
+drivetrain.encoder.left.b=0
+drivetrain.encoder.right.a=4
+drivetrain.encoder.right.b=3
+drivetrain.gyro=0
+tote.elevator.switch.top=17
+tote.elevator.switch.bottom=18
+tote.elevator.encoder.a=8
+tote.elevator.encoder.b=9
+tote.intake.in.switch=22
+tote.pusher.in.switch=10
+tote.pusher.out.switch=11
+container.elevator.switch.top=13
+container.elevator.switch.bottom=2
+container.elevator.encoder.a=6
+container.elevator.encoder.b=5
+
+
+
