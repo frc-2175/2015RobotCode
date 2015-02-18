@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.Robot;
+import org.usfirst.frc.team2175.robot.RobotMap;
 import org.usfirst.frc.team2175.robot.commands.CommandBase;
 
 /**
@@ -17,13 +18,31 @@ public class TurnDegrees extends CommandBase {
      * Sets the PID setpoint equal to the parameter "degrees"
      *
      * @param degrees
-     *            : The angle to turn to
+     *            : The absolute angle to turn to
      */
     public TurnDegrees(double degrees) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.drivetrain);
         setpoint = degrees;
+    }
+
+    /**
+     * Sets the PID setpoint equal to the parameter "degrees"
+     *
+     * @param degrees
+     *            : The angle to turn to
+     * @param isRelative
+     *            : Determines whether to calculate the angle as absolute or
+     *            relative to the starting position
+     */
+    public TurnDegrees(double degrees, boolean isRelative) {
+        requires(Robot.drivetrain);
+        if (isRelative) {
+            setpoint = RobotMap.gyro.getAngle() + degrees;
+        } else {
+            setpoint = degrees;
+        }
     }
 
     // Called just before this Command runs the first time
