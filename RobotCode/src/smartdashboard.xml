@@ -1,5 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Zero Tote Elevator" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="0"/>
+	</widget>
+	<widget field="Gyro Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="943" y="357"/>
+	</widget>
+	<widget field="Gyro Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="1230" y="363"/>
+	</widget>
 	<widget field="Pusher In Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="960" y="310"/>
 		<width>178</width>
@@ -12,7 +21,7 @@
 		<location x="614" y="59"/>
 	</widget>
 	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
-		<location x="959" y="375"/>
+		<location x="962" y="522"/>
 	</widget>
 	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="10" y="279"/>
@@ -33,8 +42,8 @@
 		<location x="230" y="118"/>
 		<width>169</width>
 		<height>33</height>
-		<property name="Color to show when true" value="0.0.0.255"/>
-		<property name="Color to show when false" value="51.255.51.255"/>
+		<property name="Color to show when true" value="51.255.51.255"/>
+		<property name="Color to show when false" value="0.0.0.255"/>
 	</widget>
 	<widget field="Tote Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="229" y="94"/>
@@ -46,34 +55,35 @@
 		<location x="229" y="41"/>
 		<width>155</width>
 		<height>41</height>
-		<property name="Color to show when true" value="0.0.0.255"/>
-		<property name="Color to show when false" value="51.255.51.255"/>
+		<property name="Color to show when true" value="51.255.51.255"/>
+		<property name="Color to show when false" value="0.0.0.255"/>
 	</widget>
 	<widget field="Container Lift at Bottom" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="9" y="120"/>
 		<width>195</width>
 		<height>32</height>
-		<property name="Color to show when true" value="0.0.0.255"/>
-		<property name="Color to show when false" value="51.255.51.255"/>
+		<property name="Color to show when true" value="51.255.51.255"/>
+		<property name="Color to show when false" value="0.0.0.255"/>
 	</widget>
 	<widget field="Container Lift Brake" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="9" y="94"/>
 		<width>177</width>
-		<property name="Color to show when true" value="255.0.0.255"/>
-		<property name="Color to show when false" value="51.255.51.255"/>
+		<property name="Color to show when true" value="51.255.51.255"/>
 	</widget>
 	<widget field="Container Lift at Top" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="10" y="41"/>
 		<width>179</width>
 		<height>41</height>
-		<property name="Color to show when true" value="0.0.0.255"/>
-		<property name="Color to show when false" value="51.255.51.255"/>
+		<property name="Color to show when true" value="51.255.51.255"/>
+		<property name="Color to show when false" value="0.0.0.255"/>
 	</widget>
 	<widget field="Right Drive Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
 		<location x="422" y="313"/>
+		<property name="Buffer Size (samples)" value="1000"/>
 	</widget>
 	<widget field="Left Drive Encoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
 		<location x="6" y="312"/>
+		<property name="Buffer Size (samples)" value="1000"/>
 	</widget>
 	<widget field="Drive Style" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="1192" y="40"/>
@@ -87,5 +97,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="toteElevatorSpeed"/>
 </xml>
