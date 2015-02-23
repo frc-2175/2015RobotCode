@@ -22,7 +22,7 @@ public class MoveToteElevatorManually extends CommandBase {
     @Override
     protected void execute() {
         double elevatorSpeed = Robot.oi.getToteElevatorSpeed();
-        Robot.toteElevator.setToteElevatorSpeed(elevatorSpeed);
+        Robot.toteElevator.setToteElevatorSpeed(-elevatorSpeed);
 
         Robot.toteElevator.updateBrakeSetting();
     }
