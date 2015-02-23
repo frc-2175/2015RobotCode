@@ -294,6 +294,10 @@ public class Robot extends IterativeRobot {
                 Robot.toteElevator.isAtTop());
         SmartDashboard.putBoolean("Tote Lift at Bottom",
                 Robot.toteElevator.isAtBottom());
+        SmartDashboard.putNumber("Container Lift Encoder Distance",
+                Robot.containerElevator.getContainerHeight());
+        SmartDashboard.putNumber("Container Elevator Speed",
+                Robot.containerElevator.getEncoderSpeed());
         SmartDashboard.putBoolean("Pusher In Switch",
                 toteIntake.isPusherRetracted());
         SmartDashboard.putBoolean("Pusher Out", toteIntake.isPusherExtended());

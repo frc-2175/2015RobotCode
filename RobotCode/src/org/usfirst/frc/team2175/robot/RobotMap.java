@@ -205,8 +205,8 @@ public class RobotMap extends AbstractConfig {
         containerSwitchBottom = new DigitalInput(switchBottomValue);
         containerElevatorMotor = new Talon(motorValue);
         containerElevatorEncoder = new Encoder(encoderAValue, encoderBValue,
-                true, EncodingType.k2X);
-        containerElevatorEncoder.setDistancePerPulse(1 / 120 * 12 * 5 / 25.4);
+                false, EncodingType.k2X);
+        containerElevatorEncoder.setDistancePerPulse(1 / 120. * 12 * 5 / 25.4);
         containerElevatorEncoder.reset();
         containerElevatorBrake = new Solenoid(brakeForwardValue);
     }

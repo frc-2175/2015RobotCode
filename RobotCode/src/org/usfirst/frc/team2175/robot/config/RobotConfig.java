@@ -146,20 +146,21 @@ public class RobotConfig extends AbstractConfig {
     }
 
     private ContainerElevatorConfig makeContainerElevatorConfig(Properties prop) {
-        double downSpeed, maxDelta, level0, level1, level2, level3, level4;
+        double downSpeed, maxDelta, level0, level1, level2, level3, level4, level5;
 
         downSpeed = getDoublePropertyValue("containerElevatorDownSpeed", prop);
 
         maxDelta = getDoublePropertyValue("containerElevatorMaxDelta", prop);
 
-        level0 = getDoublePropertyValue("containerPickupHeight", prop);
-        level1 = getDoublePropertyValue("containerDrivingHeight", prop);
-        level2 = getDoublePropertyValue("containerScoringHeight", prop);
-        level3 = getDoublePropertyValue("containerStepHeight", prop);
-        level4 = getDoublePropertyValue("containerStackHeight", prop);
+        level0 = getDoublePropertyValue("containerLevel0Height", prop);
+        level1 = getDoublePropertyValue("containerLevel1Height", prop);
+        level2 = getDoublePropertyValue("containerLevel2Height", prop);
+        level3 = getDoublePropertyValue("containerLevel3Height", prop);
+        level4 = getDoublePropertyValue("containerLevel4Height", prop);
+        level5 = getDoublePropertyValue("containerLevel5Height", prop);
 
         return new ContainerElevatorConfig(downSpeed, maxDelta, level0, level1,
-                level2, level3, level4);
+                level2, level3, level4, level5);
     }
 
     private ToteElevatorConfig makeToteElevatorConfig(Properties prop) {

@@ -104,6 +104,10 @@ public class ContainerElevator extends Subsystem {
         return RobotMap.containerElevatorMotor.get();
     }
 
+    public double getEncoderSpeed() {
+        return RobotMap.containerElevatorEncoder.getRate();
+    }
+
     public void setBrake(boolean on) {
         // This is correct, don't change it
         if (!on) {

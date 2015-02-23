@@ -12,27 +12,31 @@ public class ContainerElevatorConfig extends Subsystem {
 
     public final double downSpeed;
     public final double maxDelta;
-    
+
     public final double level0;
     public final double level1;
     public final double level2;
     public final double level3;
     public final double level4;
+    public final double level5;
 
     public static final String LEVEL0_NAME = "level-0";
     public static final String LEVEL1_NAME = "level-1";
     public static final String LEVEL2_NAME = "level-2";
     public static final String LEVEL3_NAME = "level-3";
     public static final String LEVEL4_NAME = "level-4";
+    public static final String LEVEL5_NAME = "level-5";
 
     private static final int ACCEPTABLE_RANGE = 2;
 
-    public ContainerElevatorConfig(double downSpeed, double maxDelta, double level0, double level1, double level2,
-            double level3, double level4) throws IllegalStateException {
-        if (!(level0 <= level1 && level1 <= level2 && level2 <= level3 && level3 <= level4)) {
+    public ContainerElevatorConfig(double downSpeed, double maxDelta,
+            double level0, double level1, double level2, double level3,
+            double level4, double level5) throws IllegalStateException {
+        if (!(level0 <= level1 && level1 <= level2 && level2 <= level3
+                && level3 <= level4 && level4 <= level5)) {
             throw new IllegalStateException("Elevator levels are not in order.");
         }
-        
+
         this.downSpeed = downSpeed;
         this.maxDelta = maxDelta;
         this.level0 = level0;
@@ -40,7 +44,8 @@ public class ContainerElevatorConfig extends Subsystem {
         this.level2 = level3;
         this.level3 = level3;
         this.level4 = level4;
-        
+        this.level5 = level5;
+
     }
 
     public double getNextLevelUp(double currentLevel) {
@@ -58,12 +63,15 @@ public class ContainerElevatorConfig extends Subsystem {
         } else if (currentLevel < level3 - ACCEPTABLE_RANGE) {
             newLevelValue = level3;
             newLevelName = LEVEL3_NAME;
-        } else {
+        } else if (currentLevel < level4 - ACCEPTABLE_RANGE) {
             newLevelValue = level4;
             newLevelName = LEVEL4_NAME;
+        } else {
+            newLevelValue = level5;
+            newLevelName = LEVEL5_NAME;
         }
 
-        log.fine("currentLevel=" + currentLevel + ", newLevelValue="
+        log.info("currentLevel=" + currentLevel + ", newLevelValue="
                 + newLevelValue + ", newLevelName=" + newLevelName);
 
         return newLevelValue;
@@ -72,30 +80,31 @@ public class ContainerElevatorConfig extends Subsystem {
     public double getNextLevelDown(double currentLevel) {
         double newLevelValue;
         String newLevelName;
-        if (currentLevel > level4 + ACCEPTABLE_RANGE) {
+        if (currentLevel > level5 + ACCEPTABLE_RANGE) {
+            newLevelValue = level5;
+            newLevelName = LEVEL5_NAME;
+        } else if (currentLevel > level4 + ACCEPTABLE_RANGE) {
             newLevelValue = level4;
-            newLevelName = LEVEL0_NAME;
+            newLevelName = LEVEL4_NAME;
         } else if (currentLevel > level3 + ACCEPTABLE_RANGE) {
             newLevelValue = level3;
-            newLevelName = LEVEL0_NAME;
+            newLevelName = LEVEL3_NAME;
         } else if (currentLevel > level2 + ACCEPTABLE_RANGE) {
             newLevelValue = level2;
-            newLevelName = LEVEL0_NAME;
+            newLevelName = LEVEL2_NAME;
         } else if (currentLevel > level1 + ACCEPTABLE_RANGE) {
             newLevelValue = level1;
-            newLevelName = LEVEL0_NAME;
+            newLevelName = LEVEL1_NAME;
         } else {
             newLevelValue = level0;
             newLevelName = LEVEL0_NAME;
         }
 
-        log.fine("currentLevel=" + currentLevel + ", newLevelValue="
+        log.info("currentLevel=" + currentLevel + ", newLevelValue="
                 + newLevelValue + ", newLevelName=" + newLevelName);
 
         return newLevelValue;
     }
-    
-    
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
