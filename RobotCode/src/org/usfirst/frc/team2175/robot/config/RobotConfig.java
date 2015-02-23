@@ -11,6 +11,8 @@ public class RobotConfig extends AbstractConfig {
 
     // drivetrain properties
     private final double deadbandSize;
+    private final double compensateStall;
+    private final double compensateStallTurn;
     private final double gamepadDeadbandSize;
     private final double precisionModeScale;
     private final double driveTrainRamp;
@@ -53,6 +55,10 @@ public class RobotConfig extends AbstractConfig {
                     .loadProperties(PROPERTY_FILE_NAME);
 
             deadbandSize = getDoublePropertyValue("deadbandSize", prop);
+            compensateStall = getDoublePropertyValue("compensateStallConstant",
+                    prop);
+            compensateStallTurn = getDoublePropertyValue(
+                    "compensateStallTurnConstant", prop);
             gamepadDeadbandSize = getDoublePropertyValue("gamepadDeadbandSize",
                     prop);
             driveLeftEncoderDPP = getDoublePropertyValue("driveLeftEncoderDPP",
@@ -262,5 +268,13 @@ public class RobotConfig extends AbstractConfig {
 
     public double getDrivetrainTurnDriveAbsTolerance() {
         return drivetrainTurnDriveAbsTolerance;
+    }
+
+    public double getCompensateStall() {
+        return compensateStall;
+    }
+
+    public double getCompensateStallTurn() {
+        return compensateStallTurn;
     }
 }

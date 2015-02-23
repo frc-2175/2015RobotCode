@@ -158,7 +158,8 @@ public class OI {
      * @return The turn value for arcade drive.
      */
     public double getTurnValue() {
-        return -rightStick.getX();
+        return -getModifiedTurnValue("Turn via rightstick x value",
+                rightStick.getX());
     }
 
     /**
@@ -197,10 +198,42 @@ public class OI {
 
         double multiplier = determinePrecisionMultipler();
 
+        double stallCompensation = Robot.properties.getCompensateStall();
+
         double moveValue = value * multiplier;
 
+        if (moveValue > 0) {
+            moveValue = moveValue + stallCompensation;
+        } else if (moveValue < 0) {
+            moveValue = moveValue - stallCompensation;
+        }
         log.fine("change name=" + name + ", value=" + value + ", multiplier="
                 + multiplier + ", resulting moveValue=" + moveValue);
+
+        if (toteMode.get()) {
+            return Robot.drivetrainRamp.rampInput(moveValue);
+        } else {
+            return (moveValue);
+        }
+    }
+
+    protected double getModifiedTurnValue(String name, double value) {
+        value = handleJoystickDeadband(value);
+
+        double multiplier = determinePrecisionMultipler();
+
+        double stallCompensation = Robot.properties.getCompensateStallTurn();
+
+        double moveValue = value * multiplier;
+
+        if (moveValue > 0) {
+            moveValue = moveValue + stallCompensation;
+        } else if (moveValue < 0) {
+            moveValue = moveValue - stallCompensation;
+        }
+
+        log.fine("change name=" + name + ", value=" + value + ", multiplier="
+                + multiplier + ", resulting turnValue=" + moveValue);
 
         if (toteMode.get()) {
             return Robot.drivetrainRamp.rampInput(moveValue);
