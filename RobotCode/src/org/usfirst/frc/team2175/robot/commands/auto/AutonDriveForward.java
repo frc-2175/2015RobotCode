@@ -10,7 +10,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonDriveForward extends CommandGroup {
 
     public AutonDriveForward() {
-        addSequential(new ArcadeDriveWithInputs(0.5, 0), 2); // TODO refine?
+        addSequential(new ArcadeDriveWithInputs(0.5, 0), 2.75); // TODO
+                                                                // refine?
+                                                                // TODO change
+                                                                // this to
+                                                                // DriveInches
+        // addSequential(new DriveInches(108));
     }
 
 }

@@ -6,25 +6,30 @@ import org.usfirst.frc.team2175.robot.commands.CommandBase;
 /**
  *
  */
-public class TankDriveForTesting extends CommandBase {
-    public TankDriveForTesting() {
+public class MoveContainerElevatorWithInputs extends CommandBase {
+
+    private double input;
+
+    public MoveContainerElevatorWithInputs(double input) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.drivetrain);
+        requires(Robot.containerElevator);
+        this.input = input;
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
         super.initialize();
+        Robot.containerElevator.containerElevatorController.disable();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double leftMoveValue = Robot.oi.leftStick.getY();
-        double rightMoveValue = Robot.oi.rightStick.getY();
-        Robot.drivetrain.tankDrive(leftMoveValue, rightMoveValue);
+        Robot.containerElevator.setContainerElevatorSpeed(input);
+        Robot.containerElevator.updateBrakeSetting();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,8 +41,9 @@ public class TankDriveForTesting extends CommandBase {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.containerElevator.setContainerElevatorSpeed(0);
+        Robot.containerElevator.updateBrakeSetting();
         super.end();
-        Robot.drivetrain.tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

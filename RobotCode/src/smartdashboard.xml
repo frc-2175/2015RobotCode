@@ -1,5 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Gyro setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="195"/>
+	</widget>
+	<widget field="Container Elevator Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="174"/>
+	</widget>
+	<widget field="Container Lift Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="153"/>
+	</widget>
 	<widget field="Zero Tote Elevator" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="0"/>
 	</widget>
@@ -10,11 +19,11 @@
 		<location x="1230" y="363"/>
 	</widget>
 	<widget field="Pusher In Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="960" y="310"/>
+		<location x="1179" y="328"/>
 		<width>178</width>
 	</widget>
 	<widget field="Pusher Out" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="959" y="287"/>
+		<location x="961" y="322"/>
 		<width>153</width>
 	</widget>
 	<widget field="Tote Elevator Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">

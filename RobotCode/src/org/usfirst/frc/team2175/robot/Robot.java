@@ -3,6 +3,8 @@ package org.usfirst.frc.team2175.robot;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.ZeroToteElevator;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNoodleLeft;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNoodleRight;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonGrab1Container;
@@ -250,6 +252,10 @@ public class Robot extends IterativeRobot {
                 new AutonStack2TotesGrab1Container());
         autonChooser.addDefault("8 - Stack 3 totes and grab 1 container",
                 new AutonStack3TotesGrab1Container());
+        autonChooser.addDefault("9 - Prepare to doNoodle Left ;)",
+                new AutonDoNoodleLeft());
+        autonChooser.addDefault("9 - Prepare to doNoodle Right ;)",
+                new AutonDoNoodleRight());
         // command
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
@@ -303,6 +309,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Pusher Out", toteIntake.isPusherExtended());
         SmartDashboard.putNumber("Gyro Angle", RobotMap.gyro.getAngle());
         SmartDashboard.putNumber("Gyro Rate", RobotMap.gyro.getRate());
+
         SmartDashboard.putData("Scheduler", Scheduler.getInstance());
 
         SmartDashboard.putData("Zero Tote Elevator", new ZeroToteElevator());

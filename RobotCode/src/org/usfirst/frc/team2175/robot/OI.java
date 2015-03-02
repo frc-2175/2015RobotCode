@@ -2,9 +2,9 @@ package org.usfirst.frc.team2175.robot;
 
 import java.util.logging.Logger;
 
-import org.usfirst.frc.team2175.robot.commands.ZeroToteElevator;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
+import org.usfirst.frc.team2175.robot.commands.single.MoveTotePusherIn;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
@@ -112,10 +112,7 @@ public class OI {
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
 
-        pushToteIn.whenPressed(new ZeroToteElevator()); // FIXME change
-                                                        // back
-                                                        // to
-                                                        // MoveTotePusherIn()
+        pushToteIn.whenPressed(new MoveTotePusherIn());
         pushToteIn.whenReleased(new StopPusher());
 
         pushToteOut.whenPressed(new PushToteOut());
@@ -179,7 +176,7 @@ public class OI {
      * @return The manual tote elevator speed.
      */
     public double getToteElevatorSpeed() {
-        return handleGamepadDeadband(gamepad.getRawAxis(3));
+        return handleGamepadDeadband(-gamepad.getRawAxis(3));
     }
 
     /**
@@ -207,14 +204,15 @@ public class OI {
         } else if (moveValue < 0) {
             moveValue = moveValue - stallCompensation;
         }
+
         log.fine("change name=" + name + ", value=" + value + ", multiplier="
                 + multiplier + ", resulting moveValue=" + moveValue);
 
-        if (toteMode.get()) {
-            return Robot.drivetrainRamp.rampInput(moveValue);
-        } else {
-            return (moveValue);
-        }
+        // if (toteMode.get()) {
+        // return Robot.drivetrainRamp.rampInput(moveValue);
+        // } else {
+        return (moveValue);
+        // }
     }
 
     protected double getModifiedTurnValue(String name, double value) {
@@ -227,19 +225,21 @@ public class OI {
         double moveValue = value * multiplier;
 
         if (moveValue > 0) {
-            moveValue = moveValue + stallCompensation;
+            moveValue = (1 - stallCompensation) * moveValue + stallCompensation;
+            // moveValue += stallCompensation;
         } else if (moveValue < 0) {
-            moveValue = moveValue - stallCompensation;
+            moveValue = (1 - stallCompensation) * moveValue - stallCompensation;
+            // moveValue -= stallCompensation;
         }
 
         log.fine("change name=" + name + ", value=" + value + ", multiplier="
                 + multiplier + ", resulting turnValue=" + moveValue);
 
-        if (toteMode.get()) {
-            return Robot.drivetrainRamp.rampInput(moveValue);
-        } else {
-            return (moveValue);
-        }
+        // if (toteMode.get()) {
+        // return Robot.drivetrainRamp.rampInput(moveValue);
+        // } else {
+        return (moveValue);
+        // }
     }
 
     /**
@@ -249,7 +249,7 @@ public class OI {
      * @return The multiplier for precision mode, from 0 to 1.
      */
     protected double determinePrecisionMultipler() {
-        final boolean isPrecisionMode = precisionMode.get();
+        final boolean isPrecisionMode = true; // precisionMode.get();
         final double multiplier;
         if (isPrecisionMode) {
             multiplier = Robot.properties.getPrecisionModeScale();
@@ -275,7 +275,7 @@ public class OI {
         if (Math.abs(joystickInput) <= deadbandValue) {
             value = 0;
         } else {
-            value = joystickInput;
+            value = (1 / (1 - deadbandValue)) * (joystickInput - deadbandValue);
         }
 
         log.fine("input=" + joystickInput + ", deadbandValue=" + deadbandValue
@@ -297,7 +297,9 @@ public class OI {
         if (Math.abs(gamepadInput) <= gamepadDeadbandValue) {
             outputValue = 0;
         } else {
-            outputValue = gamepadInput;
+            outputValue = gamepadInput; // (1 / (1 - gamepadDeadbandValue))
+                                        // * (gamepadInput -
+                                        // gamepadDeadbandValue);
         }
 
         return outputValue;

@@ -23,7 +23,7 @@ public class ToteElevator extends Subsystem {
 
     protected void usePIDOutput(double speed) {
         log.fine("speed=" + speed);
-        RobotMap.toteElevatorMotor.set(speed);
+        setToteElevatorSpeed(speed);
     }
 
     /**
@@ -102,9 +102,12 @@ public class ToteElevator extends Subsystem {
      */
     public void setToteElevatorSpeed(double toteElevatorSpeed) {
         double newSpeed;
+        boolean toteIntakeState = Robot.toteIntake.toteIntakeState();
         if (isAtTop() && Robot.oi.getToteElevatorSpeed() > 0) {
             newSpeed = 0;
         } else if (isAtBottom() && Robot.oi.getToteElevatorSpeed() < 0) {
+            newSpeed = 0;
+        } else if (toteIntakeState = false) {
             newSpeed = 0;
         } else {
             newSpeed = toteElevatorSpeed;

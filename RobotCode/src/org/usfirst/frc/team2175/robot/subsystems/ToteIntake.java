@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ToteIntake extends Subsystem {
     private final Logger log = Logger.getLogger(getClass().getName());
+    public boolean armsOpen;
 
     public void setRightWheelSpeed(double wheelSpeed) {
         RobotMap.toteIntakeWheelMotorRight.set(wheelSpeed);
@@ -33,8 +34,10 @@ public class ToteIntake extends Subsystem {
         Value value;
         if (on) {
             value = DoubleSolenoid.Value.kForward;
+            armsOpen = true;
         } else {
             value = DoubleSolenoid.Value.kReverse;
+            armsOpen = false;
         }
         RobotMap.toteIntakeArms.set(value);
     }
@@ -68,6 +71,10 @@ public class ToteIntake extends Subsystem {
 
     public boolean isIntakeArmsOut() {
         return RobotMap.toteIntakeArms.get() == DoubleSolenoid.Value.kReverse;
+    }
+
+    public boolean toteIntakeState() {
+        return armsOpen;
     }
 
     @Override
