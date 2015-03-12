@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.usfirst.frc.team2175.robot.config.AbstractConfig;
 import org.usfirst.frc.team2175.robot.config.PropertiesLoader;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -80,6 +81,9 @@ public class RobotMap extends AbstractConfig {
     public static DoubleSolenoid containerIntakeArms;
     public static DoubleSolenoid containerSpatula;
 
+    // camera
+    public static CameraServer cameraServer;
+
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robotMap.properties";
 
     public void init() {
@@ -93,6 +97,7 @@ public class RobotMap extends AbstractConfig {
         configureToteIntake(props);
         configureTotePusher(props);
         configureContainerIntake(props);
+        configureCamera(props);
     }
 
     private void configurePowerDistributionPanel(Properties props) {
@@ -225,6 +230,12 @@ public class RobotMap extends AbstractConfig {
                 armsReverseValue);
         containerSpatula = new DoubleSolenoid(spatulatForwardValue,
                 spatulatReverseValue);
+    }
+
+    private void configureCamera(Properties props) {
+        String cameraName = getStringPropertyValue("cameraName", props);
+        cameraServer = CameraServer.getInstance();
+        cameraServer.startAutomaticCapture(cameraName);
     }
 
     public static double getLeftTalonSpeed() {
