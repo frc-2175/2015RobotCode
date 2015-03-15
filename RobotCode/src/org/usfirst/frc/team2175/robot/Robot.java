@@ -28,12 +28,18 @@ import org.usfirst.frc.team2175.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team2175.robot.subsystems.ToteElevator;
 import org.usfirst.frc.team2175.robot.subsystems.ToteIntake;
 
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
+import com.ni.vision.VisionException;
+
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -61,6 +67,10 @@ public class Robot extends IterativeRobot {
     public static RobotConfig properties;
     public static KeymapConfig keymap;
     public static PDPCurrentLogger pdpLogger;
+    
+    public static CameraServer cServer;
+    public static Image cFrame;
+    public static int cSession;
 
     Command autonomousCommand;
     Command driveChoice;
@@ -84,9 +94,17 @@ public class Robot extends IterativeRobot {
             pdpLogger.logPDPValues();
         }
     }
+    
+    private class CameraTask extends java.util.TimerTask {
+        @Override
+        public void run() {
+            updateCameraServer();
+        }
+    }
 
     public java.util.Timer controlLoop;
     public java.util.Timer pdpLoggingLoop;
+    public java.util.Timer cameraLoop;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -117,6 +135,8 @@ public class Robot extends IterativeRobot {
         makeAutonChooser();
 
         smartDashboardUpdate();
+        
+        initCamera();
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonDoNothing();
@@ -315,4 +335,22 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Zero Tote Elevator", new ZeroToteElevator());
 
     }
+    public void initCamera() {
+    	cFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+    	cSession = NIVision.IMAQdxOpenCamera(properties.getCameraName(),
+                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+    	NIVision.IMAQdxConfigureGrab(cSession);
+    	CameraServer.getInstance().setQuality(50);
+    	NIVision.IMAQdxStartAcquisition(cSession);
+    	
+    	cameraLoop = new java.util.Timer();
+    	cameraLoop.schedule(new CameraTask(), 0L, (100));
+    }
+    
+    public void updateCameraServer() {
+    	NIVision.IMAQdxGrab(cSession, cFrame, 1);
+        CameraServer.getInstance().setImage(cFrame);
+    }
 }
+
+

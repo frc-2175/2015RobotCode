@@ -48,6 +48,8 @@ public class RobotConfig extends AbstractConfig {
     private final double containerElevatorI;
     private final double containerElevatorD;
     private final double containerElevatorBrakeThreshold;
+    
+    private final String cameraName;
 
     public RobotConfig() {
         try {
@@ -114,6 +116,7 @@ public class RobotConfig extends AbstractConfig {
             precisionModeScale = getDoublePropertyValue("precisionModeScale",
                     prop);
             driveTrainRamp = getDoublePropertyValue("driveTrainRamp", prop);
+            cameraName = getStringPropertyValue("cameraName", prop);
         } catch (Exception e) {
             final String msg = "Problem with processing properties, can't continue:";
             log.log(Level.SEVERE, msg, e);
@@ -277,5 +280,8 @@ public class RobotConfig extends AbstractConfig {
 
     public double getCompensateStallTurn() {
         return compensateStallTurn;
+    }
+    public String getCameraName() {
+    	return cameraName;
     }
 }
