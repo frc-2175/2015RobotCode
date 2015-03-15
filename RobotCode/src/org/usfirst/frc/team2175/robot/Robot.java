@@ -338,6 +338,7 @@ public class Robot extends IterativeRobot {
 
     }
     public void initCamera() {
+    	try {
     	cFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
     	cSession = NIVision.IMAQdxOpenCamera(properties.getCameraName(),
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
@@ -347,6 +348,10 @@ public class Robot extends IterativeRobot {
     	
     	cameraLoop = new java.util.Timer();
     	cameraLoop.schedule(new CameraTask(), 0L, (100));
+    	}
+    	catch (VisionException e) {
+    		e.printStackTrace();
+    	}
     }
     
     public void updateCameraServer() {
