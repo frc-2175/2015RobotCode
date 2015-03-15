@@ -73,7 +73,7 @@ public class Drivetrain extends Subsystem {
                 straightHandler, straightHandler);
         straightDriveController.setAbsoluteTolerance(Robot.properties
                 .getDrivetrainStraightDriveAbsTolerance());
-        straightDriveController.setOutputRange(-0.5, 0.5);
+        straightDriveController.setOutputRange(-.7, .7);
 
     }
 
