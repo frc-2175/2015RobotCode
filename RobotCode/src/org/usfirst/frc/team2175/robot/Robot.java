@@ -291,7 +291,9 @@ public class Robot extends IterativeRobot {
                 new ArcadeDriveSquaredInputs());
         driveChooser.addDefault("Tank Drive for Testing",
                 new TankDriveForTesting());
-
+        driveChooser.addDefault("Arcade with Sniper Mode",
+                new ArcadeDriveWithSticks());
+        
         SmartDashboard.putData("Drive Style", driveChooser);
     }
 

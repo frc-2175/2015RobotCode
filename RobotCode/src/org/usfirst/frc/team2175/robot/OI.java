@@ -57,7 +57,7 @@ public class OI {
     public Joystick leftStick;
     public Joystick rightStick;
     public Joystick gamepad;
-    public JoystickButton precisionMode;
+    public JoystickButton turboMode;
     public JoystickButton toteMode;
     POVButton povUp;
 
@@ -69,7 +69,7 @@ public class OI {
         rightStick = new Joystick(1);
         gamepad = new Joystick(2);
 
-        precisionMode = new JoystickButton(rightStick, 1);
+        turboMode = new JoystickButton(rightStick, 1);
         toteMode = new JoystickButton(leftStick, 1);
 
         deadbandValue = Robot.properties.getDeadbandSize();
@@ -223,7 +223,7 @@ public class OI {
         double stallCompensation = Robot.properties.getCompensateStallTurn();
 
         double moveValue = value * multiplier;
-
+        
         if (moveValue > 0) {
             moveValue = (1 - stallCompensation) * moveValue + stallCompensation;
             // moveValue += stallCompensation;
@@ -249,15 +249,15 @@ public class OI {
      * @return The multiplier for precision mode, from 0 to 1.
      */
     protected double determinePrecisionMultipler() {
-        final boolean isPrecisionMode = true; // precisionMode.get();
+        final boolean isTurboMode = turboMode.get();
         final double multiplier;
-        if (isPrecisionMode) {
+        if (!isTurboMode) {
             multiplier = Robot.properties.getPrecisionModeScale();
         } else {
             multiplier = 1;
         }
 
-        log.fine("isPrecisionMode=" + isPrecisionMode + ", multiplier="
+        log.fine("isTurboMode=" + isTurboMode + ", multiplier="
                 + multiplier);
         return multiplier;
     }
