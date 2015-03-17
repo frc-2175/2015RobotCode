@@ -107,7 +107,7 @@ public class ToteElevator extends Subsystem {
             newSpeed = 0;
         } else if (isAtBottom() && Robot.oi.getToteElevatorSpeed() < 0) {
             newSpeed = 0;
-        } else if (toteIntakeState = false) {
+        } else if (toteIntakeState == false) {
             newSpeed = 0;
         } else {
             newSpeed = toteElevatorSpeed;
