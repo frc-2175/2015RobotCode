@@ -63,7 +63,7 @@ public class Drivetrain extends Subsystem {
 
         turnController.setAbsoluteTolerance(Robot.properties
                 .getDrivetrainTurnDriveAbsTolerance());
-        turnController.setOutputRange(-.7, .7);
+        turnController.setOutputRange(-.8, .8);
 
         StraightDriveControllerHandler straightHandler = new StraightDriveControllerHandler();
         straightDriveController = new PIDController(
