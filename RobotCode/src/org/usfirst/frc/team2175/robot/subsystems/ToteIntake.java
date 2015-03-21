@@ -29,14 +29,18 @@ public class ToteIntake extends Subsystem {
                 + Robot.properties.getToteIntakeWheelsSpeed());
     }
 
-    public void setIntakeArms(boolean on) {
-        log.fine("on=" + on);
+    /**
+     * Sets the state of the tote intake arms.
+     * @param isOpen
+     */
+    public void setIntakeArms(boolean isOpen) {
+        log.fine("isOpen=" + isOpen);
         Value value;
-        if (on) {
-            value = DoubleSolenoid.Value.kForward;
+        if (isOpen) {
+            value = DoubleSolenoid.Value.kReverse;
             armsOpen = true;
         } else {
-            value = DoubleSolenoid.Value.kReverse;
+            value = DoubleSolenoid.Value.kForward;
             armsOpen = false;
         }
         RobotMap.toteIntakeArms.set(value);
@@ -67,10 +71,6 @@ public class ToteIntake extends Subsystem {
         boolean isRetracted = !RobotMap.pusherInSwitch.get();
         log.fine("isRetracted=" + isRetracted);
         return isRetracted;
-    }
-
-    public boolean isIntakeArmsOut() {
-        return RobotMap.toteIntakeArms.get() == DoubleSolenoid.Value.kReverse;
     }
 
     public boolean toteIntakeState() {
