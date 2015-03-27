@@ -32,7 +32,15 @@ public class MoveToteElevatorToPosition extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.toteElevator.toteElevatorController.onTarget();
+    	if(Robot.toteElevator.isAtTop() && Robot.toteElevator.getMotorOutput() > 0){ //FIXME Motor outputs may be backwards.
+        	return true;
+        }
+        else if(Robot.toteElevator.isAtBottom() && Robot.toteElevator.getMotorOutput() < 0){
+        	return true;
+        }
+        else{
+        	return Robot.toteElevator.toteElevatorController.onTarget();
+        }
     }
 
     // Called once after isFinished returns true
