@@ -22,10 +22,10 @@ public class AutonStack1ToteGrab1Container extends CommandGroup {
         addParallel(new CloseContainerIntake());
         addParallel(new MoveContainerElevatorWithInputs(0.75), 1);
         addSequential(new IntakeTote());
-        
-        addSequential(new MoveToteElevatorWithInputs(0.5), 0.75);
-//        addSequential(new MoveToteElevatorToPosition(
-//                Robot.properties.toteConfig.stack));
+
+        addSequential(new MoveToteElevatorWithInputs(0.5), 1.5);
+        // addSequential(new MoveToteElevatorToPosition(
+        // Robot.properties.toteConfig.stack));
         addSequential(new TurnDegrees(90, true));
         addSequential(new DriveInches(108));
         addSequential(new TurnDegrees(-90, true));

@@ -1,49 +1,56 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="556" y="249"/>
+		<property name="Text" value="Connected to Robot"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="556" y="189"/>
+		<property name="Text" value="Connected to Robot"/>
+	</static-widget>
+	<widget field="Right Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="424" y="280"/>
+	</widget>
+	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="10" y="279"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="588" y="210"/>
+	</static-widget>
 	<widget field="Gyro setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="195"/>
+		<location x="27" y="251"/>
 	</widget>
 	<widget field="Container Elevator Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="174"/>
+		<location x="17" y="225"/>
 	</widget>
 	<widget field="Container Lift Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="153"/>
+		<location x="19" y="200"/>
 	</widget>
 	<widget field="Zero Tote Elevator" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="0" y="0"/>
 	</widget>
 	<widget field="Gyro Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
-		<location x="943" y="357"/>
+		<location x="869" y="360"/>
 	</widget>
 	<widget field="Gyro Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="1230" y="363"/>
+		<location x="1121" y="492"/>
 	</widget>
 	<widget field="Pusher In Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="1179" y="328"/>
+		<location x="1062" y="341"/>
 		<width>178</width>
 	</widget>
 	<widget field="Pusher Out" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="961" y="322"/>
+		<location x="951" y="340"/>
 		<width>153</width>
 	</widget>
 	<widget field="Tote Elevator Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="614" y="59"/>
 	</widget>
 	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
-		<location x="962" y="522"/>
-	</widget>
-	<widget field="Left Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="10" y="279"/>
-	</widget>
-	<widget field="Right Drive Talon" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="424" y="280"/>
+		<location x="875" y="529"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="1233" y="23"/>
-		<property name="Text" value="Control Scheme"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="944" y="23"/>
+		<location x="969" y="7"/>
 		<width>146</width>
 		<property name="Text" value="Auto Routine"/>
 	</static-widget>
@@ -95,10 +102,10 @@
 		<property name="Buffer Size (samples)" value="1000"/>
 	</widget>
 	<widget field="Drive Style" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="1192" y="40"/>
+		<location x="1199" y="48"/>
 	</widget>
 	<widget field="Autonomous Routine" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="929" y="37"/>
+		<location x="929" y="23"/>
 	</widget>
 	<widget field="Tote Lift Encoder Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="586" y="91"/>

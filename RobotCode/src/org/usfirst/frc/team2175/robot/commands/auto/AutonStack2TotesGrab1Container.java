@@ -1,11 +1,10 @@
 package org.usfirst.frc.team2175.robot.commands.auto;
 
-import org.usfirst.frc.team2175.robot.Robot;
 import org.usfirst.frc.team2175.robot.commands.groups.IntakeTote;
 import org.usfirst.frc.team2175.robot.commands.groups.StackTote;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
-import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorToPosition;
+import org.usfirst.frc.team2175.robot.commands.single.MoveToteElevatorWithInputs;
 import org.usfirst.frc.team2175.robot.commands.single.TurnDegrees;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,8 +21,10 @@ public class AutonStack2TotesGrab1Container extends CommandGroup {
         // Pick up a tote and a container
         addParallel(new CloseContainerIntake());
         addSequential(new IntakeTote());
-        addSequential(new MoveToteElevatorToPosition(
-                Robot.properties.toteConfig.stack));
+        addSequential(new MoveToteElevatorWithInputs(0.5), 0.75);
+        // FIXME Removed the PID command here. This needs testing
+        // addSequential(new MoveToteElevatorToPosition(
+        // Robot.properties.toteConfig.stack));
 
         // Turn and pick up another tote
         addSequential(new TurnDegrees(180));

@@ -8,16 +8,13 @@ import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNoodleRight;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDoNothing;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonDriveForward;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonGrab1Container;
+import org.usfirst.frc.team2175.robot.commands.auto.AutonGrabContainerOnly;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonMinus1Test;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1Tote;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonStack1ToteGrab1Container;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonStack2Totes;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonStack2TotesGrab1Container;
 import org.usfirst.frc.team2175.robot.commands.auto.AutonStack3TotesGrab1Container;
-import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveSquaredInputs;
-import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithSticks;
-import org.usfirst.frc.team2175.robot.commands.single.TankDriveForTesting;
-import org.usfirst.frc.team2175.robot.commands.single.TankDriveWithSticks;
 import org.usfirst.frc.team2175.robot.config.KeymapConfig;
 import org.usfirst.frc.team2175.robot.config.LoggingConfiguration;
 import org.usfirst.frc.team2175.robot.config.PDPCurrentLogger;
@@ -39,7 +36,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -67,13 +63,13 @@ public class Robot extends IterativeRobot {
     public static RobotConfig properties;
     public static KeymapConfig keymap;
     public static PDPCurrentLogger pdpLogger;
-    
+
     public static CameraServer cServer;
     public static Image cFrame;
     public static int cSession;
 
     Command autonomousCommand;
-    Command driveChoice;
+    // Command driveChoice;
     SendableChooser autonChooser;
     SendableChooser driveChooser;
 
@@ -94,7 +90,7 @@ public class Robot extends IterativeRobot {
             pdpLogger.logPDPValues();
         }
     }
-    
+
     private class CameraTask extends java.util.TimerTask {
         @Override
         public void run() {
@@ -122,7 +118,7 @@ public class Robot extends IterativeRobot {
 
         makeSubsystems();
 
-        makeDriveChooser();
+        // makeDriveChooser();
 
         oi = new OI();
 
@@ -135,7 +131,7 @@ public class Robot extends IterativeRobot {
         makeAutonChooser();
 
         smartDashboardUpdate();
-        
+
         initCamera();
 
         // instantiate the command used for the autonomous period
@@ -174,8 +170,8 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) {
             autonomousCommand.cancel();
         }
-        driveChoice = (Command) driveChooser.getSelected();
-        driveChoice.start();
+        // driveChoice = (Command) driveChooser.getSelected();
+        // driveChoice.start();
 
         RobotMap.gyro.reset();
 
@@ -254,48 +250,50 @@ public class Robot extends IterativeRobot {
         autonChooser = new SendableChooser();
 
         // TODO add all of the auto routines as they are made
-        autonChooser.addDefault("-1 - Test", new AutonMinus1Test());
+        autonChooser.addObject("-1 - Test", new AutonMinus1Test());
         autonChooser.addDefault("0 - No Action", new AutonDoNothing());
-        autonChooser.addDefault("1 - Drive straight into Auto Zone",
+        autonChooser.addObject("1 - Drive straight into Auto Zone",
                 new AutonDriveForward());
-        autonChooser.addDefault("2 - Stack 1 tote and end in Auto Zone",
+        autonChooser.addObject("2 - Stack 1 tote and end in Auto Zone",
                 new AutonStack1Tote());
-        autonChooser.addDefault("3 - Grab 1 Container and end in Auto Zone",
+        autonChooser.addObject("3 - Grab 1 Container and end in Auto Zone",
                 new AutonGrab1Container());
-        autonChooser.addDefault("4 - Stack 2 totes and end in Auto Zone",
+        autonChooser.addObject("4 - Stack 2 totes and end in Auto Zone",
                 new AutonStack2Totes());
-        autonChooser.addDefault("5 - Stack 3 Totes and end in Auto Zone",
+        autonChooser.addObject("5 - Stack 3 Totes and end in Auto Zone",
                 new AutonStack1Tote());
-        autonChooser.addDefault("6 - Stack 1 tote and grab 1 container",
+        autonChooser.addObject("6 - Stack 1 tote and grab 1 container",
                 new AutonStack1ToteGrab1Container());
-        autonChooser.addDefault("7 - Stack 2 totes and grab 1 container",
+        autonChooser.addObject("7 - Stack 2 totes and grab 1 container",
                 new AutonStack2TotesGrab1Container());
-        autonChooser.addDefault("8 - Stack 3 totes and grab 1 container",
+        autonChooser.addObject("8 - Stack 3 totes and grab 1 container",
                 new AutonStack3TotesGrab1Container());
-        autonChooser.addDefault("9 - Prepare to doNoodle Left ;)",
+        autonChooser.addObject("9 - Prepare to doNoodle Left ;)",
                 new AutonDoNoodleLeft());
-        autonChooser.addDefault("9 - Prepare to doNoodle Right ;)",
+        autonChooser.addObject("9 - Prepare to doNoodle Right ;)",
                 new AutonDoNoodleRight());
+        autonChooser.addObject("10 - Grab Container ONLY",
+                new AutonGrabContainerOnly());
         // command
 
         SmartDashboard.putData("Autonomous Routine", autonChooser);
     }
 
-    public void makeDriveChooser() {
-        driveChooser = new SendableChooser();
-
-        driveChooser.addDefault("Arcade with Sniper Mode",
-                new ArcadeDriveWithSticks());
-        driveChooser.addDefault("Tank Drive", new TankDriveWithSticks());
-        driveChooser.addDefault("Arcade with Squared Inputs",
-                new ArcadeDriveSquaredInputs());
-        driveChooser.addDefault("Tank Drive for Testing",
-                new TankDriveForTesting());
-        driveChooser.addDefault("Arcade with Sniper Mode",
-                new ArcadeDriveWithSticks());
-        
-        SmartDashboard.putData("Drive Style", driveChooser);
-    }
+    // public void makeDriveChooser() {
+    // driveChooser = new SendableChooser();
+    //
+    // driveChooser.addObject("Arcade with Sniper Mode",
+    // new ArcadeDriveWithSticks());
+    // driveChooser.addObject("Tank Drive", new TankDriveWithSticks());
+    // driveChooser.addObject("Arcade with Squared Inputs",
+    // new ArcadeDriveSquaredInputs());
+    // driveChooser.addObject("Tank Drive for Testing",
+    // new TankDriveForTesting());
+    // driveChooser.addDefault("Arcade with Sniper Mode",
+    // new ArcadeDriveWithSticks());
+    //
+    // SmartDashboard.putData("Drive Style", driveChooser);
+    // }
 
     private void smartDashboardUpdate() {
         SmartDashboard.putNumber("Left Drive Talon",
@@ -337,27 +335,27 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Zero Tote Elevator", new ZeroToteElevator());
 
     }
+
     public void initCamera() {
-    	try {
-    	cFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-    	cSession = NIVision.IMAQdxOpenCamera(properties.getCameraName(),
-                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-    	NIVision.IMAQdxConfigureGrab(cSession);
-    	CameraServer.getInstance().setQuality(50);
-    	NIVision.IMAQdxStartAcquisition(cSession);
-    	
-    	cameraLoop = new java.util.Timer();
-    	cameraLoop.schedule(new CameraTask(), 0L, (100));
-    	}
-    	catch (VisionException e) {
-    		e.printStackTrace();
-    	}
+        try {
+            cFrame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+            cSession = NIVision
+                    .IMAQdxOpenCamera(
+                            properties.getCameraName(),
+                            NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+            NIVision.IMAQdxConfigureGrab(cSession);
+            CameraServer.getInstance().setQuality(50);
+            NIVision.IMAQdxStartAcquisition(cSession);
+
+            cameraLoop = new java.util.Timer();
+            cameraLoop.schedule(new CameraTask(), 0L, (100));
+        } catch (VisionException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     public void updateCameraServer() {
-    	NIVision.IMAQdxGrab(cSession, cFrame, 1);
+        NIVision.IMAQdxGrab(cSession, cFrame, 1);
         CameraServer.getInstance().setImage(cFrame);
     }
 }
-
-
