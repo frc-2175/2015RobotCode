@@ -28,7 +28,8 @@ public class MoveToteElevatorWithInputs extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.toteElevator.setToteElevatorSpeed(-input);
+        Robot.toteElevator.setToteElevatorSpeed(-input); // FIXME figure this
+                                                         // out
         Robot.toteElevator.updateBrakeSetting();
     }
 
@@ -36,10 +37,10 @@ public class MoveToteElevatorWithInputs extends CommandBase {
     @Override
     protected boolean isFinished() {
         if (Robot.toteElevator.isAtTop()
-                && Robot.toteElevator.getMotorOutput() > 0) {
+                && Robot.toteElevator.getMotorOutput() < 0) {
             return true;
         } else if (Robot.toteElevator.isAtBottom()
-                && Robot.toteElevator.getMotorOutput() < 0) {
+                && Robot.toteElevator.getMotorOutput() > 0) {
             return true;
         } else {
             return false;
