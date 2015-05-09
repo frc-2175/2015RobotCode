@@ -11,7 +11,7 @@ public class StackTote extends CommandGroup {
 
     public StackTote() {
 
-        addSequential(new MoveToteElevatorWithInputs(.5), 1);
         addSequential(new MoveToteElevatorWithInputs(-.3), 1);
+        addSequential(new MoveToteElevatorWithInputs(.5), 1);
     }
 }
