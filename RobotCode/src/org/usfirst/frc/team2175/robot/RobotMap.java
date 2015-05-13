@@ -73,9 +73,9 @@ public class RobotMap extends AbstractConfig {
     public static Talon toteIntakeWheelMotorLeft;
     public static DoubleSolenoid toteIntakeArms;
     public static DigitalInput toteIntakeToteInSwitch;
-    public static Talon totePusher;
-    public static DigitalInput pusherInSwitch;
-    public static DigitalInput pusherOutSwitch;
+
+    // can burglar
+    public static Talon canBurglarMotor;
 
     // container intake
     public static DoubleSolenoid containerIntakeArms;
@@ -95,7 +95,7 @@ public class RobotMap extends AbstractConfig {
         configureToteElevator(props);
         configureContainerElevator(props);
         configureToteIntake(props);
-        configureTotePusher(props);
+        configureCanBurglar(props);
         configureContainerIntake(props);
         configureCamera(props);
     }
@@ -181,16 +181,10 @@ public class RobotMap extends AbstractConfig {
         toteIntakeToteInSwitch = new DigitalInput(inSwitchValue);
     }
 
-    private void configureTotePusher(Properties props) {
-        int pusherArmValue = getIntPropertyValue("tote.pusher.arm", props);
-        int pusherInSwitchValue = getIntPropertyValue("tote.pusher.in.switch",
-                props);
-        int pusherOutSwitchValue = getIntPropertyValue(
-                "tote.pusher.out.switch", props);
+    private void configureCanBurglar(Properties props) {
+        int canBurglarValue = getIntPropertyValue("canBurglar", props);
 
-        totePusher = new Talon(pusherArmValue);
-        pusherInSwitch = new DigitalInput(pusherInSwitchValue);
-        pusherOutSwitch = new DigitalInput(pusherOutSwitchValue);
+        canBurglarMotor = new Talon(canBurglarValue);
     }
 
     private void configureContainerElevator(Properties props) {

@@ -4,16 +4,13 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
-import org.usfirst.frc.team2175.robot.commands.single.MoveTotePusherIn;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
-import org.usfirst.frc.team2175.robot.commands.single.PushToteOut;
 import org.usfirst.frc.team2175.robot.commands.single.ReleaseContainerIntakeArms;
 import org.usfirst.frc.team2175.robot.commands.single.RunLeftToteIntakeWheels;
 import org.usfirst.frc.team2175.robot.commands.single.RunLeftToteIntakeWheelsBackwards;
 import org.usfirst.frc.team2175.robot.commands.single.RunRightToteIntakeWheels;
 import org.usfirst.frc.team2175.robot.commands.single.RunRightToteIntakeWheelsBackwards;
-import org.usfirst.frc.team2175.robot.commands.single.StopPusher;
 import org.usfirst.frc.team2175.robot.commands.single.StowContainerIntakeArms;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -111,12 +108,6 @@ public class OI {
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
-
-        pushToteIn.whenPressed(new MoveTotePusherIn());
-        pushToteIn.whenReleased(new StopPusher());
-
-        pushToteOut.whenPressed(new PushToteOut());
-        pushToteOut.whenReleased(new StopPusher());
 
         stowContainerIntake.whenPressed(new StowContainerIntakeArms());
         releaseContainerIntake.whenPressed(new ReleaseContainerIntakeArms());
@@ -223,7 +214,7 @@ public class OI {
         double stallCompensation = Robot.properties.getCompensateStallTurn();
 
         double moveValue = value * multiplier;
-        
+
         if (moveValue > 0) {
             moveValue = (1 - stallCompensation) * moveValue + stallCompensation;
             // moveValue += stallCompensation;
@@ -257,8 +248,7 @@ public class OI {
             multiplier = 1;
         }
 
-        log.fine("isTurboMode=" + isTurboMode + ", multiplier="
-                + multiplier);
+        log.fine("isTurboMode=" + isTurboMode + ", multiplier=" + multiplier);
         return multiplier;
     }
 

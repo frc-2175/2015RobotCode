@@ -324,9 +324,6 @@ public class Robot extends IterativeRobot {
                 Robot.containerElevator.getContainerHeight());
         SmartDashboard.putNumber("Container Elevator Speed",
                 Robot.containerElevator.getEncoderSpeed());
-        SmartDashboard.putBoolean("Pusher In Switch",
-                toteIntake.isPusherRetracted());
-        SmartDashboard.putBoolean("Pusher Out", toteIntake.isPusherExtended());
         SmartDashboard.putNumber("Gyro Angle", RobotMap.gyro.getAngle());
         SmartDashboard.putNumber("Gyro Rate", RobotMap.gyro.getRate());
 
