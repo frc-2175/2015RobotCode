@@ -42,13 +42,28 @@ public class AutonStack3TotesGrab1Container extends CommandGroup {
 
         // Lift it
         addSequential(new MoveToteElevatorWithInputs(-.5), 1);
-        addParallel(new MoveToteElevatorWithInputs(.8), 2);
-        addSequential(new WaitCommand(.4));
+        addParallel(new WaitCommand( 1));
+        addParallel(new MoveToteElevatorWithInputs(.8), 3);
+        addSequential(new WaitCommand(.6));
 
         // Good to here
 
-        addSequential(new TurnDegrees(-200), 1.5);
-        addSequential(new DriveInches(36), 2);
-
+        addSequential(new TurnDegrees(-195), 1.5);
+        addSequential(new DriveInches(68), 2);
+        addSequential(new TurnDegrees(-142),1.5);
+        
+        addSequential(new WaitCommand(.5));
+        addSequential(new DriveInches(24),2);
+        addSequential(new CloseToteIntake());
+        addParallel(new RunRightToteIntakeWheels(),1);
+        addSequential(new RunLeftToteIntakeWheels(),1);
+        addSequential(new OpenToteIntake());
+        addSequential(new MoveToteElevatorWithInputs(-.8), 3);
+        addSequential(new MoveToteElevatorWithInputs(.4),2);
+        addSequential(new TurnDegrees(-270),1.5);
+        addSequential(new DriveInches(100),3);
+        addSequential(new MoveToteElevatorWithInputs(.4),2);
+        addSequential(new DriveInches(-100),2);
+        		
     }
 }
