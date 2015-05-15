@@ -19,11 +19,11 @@ public class KeymapConfig extends AbstractConfig {
     private final int runLeftToteIntakeWheelsBackwards;
     private final int moveToteElevatorManually;
     private final int moveContainerElevatorManually;
-    private final int pushToteOut;
+    private final int moveBurglarOut;
     private final int stowContainerIntake;
     private final int releaseContainerIntake;
     private final int isContainerElevatorForward;
-    private final int bringPusherIn;
+    private final int moveBurglarIn;
 
     public KeymapConfig() {
         try {
@@ -48,14 +48,14 @@ public class KeymapConfig extends AbstractConfig {
                     "moveToteElevatorManually", prop);
             moveContainerElevatorManually = getIntPropertyValue(
                     "moveContainerElevatorManually", prop);
-            pushToteOut = getIntPropertyValue("pushToteOut", prop);
+            moveBurglarOut = getIntPropertyValue("moveBurglarOut", prop);
             stowContainerIntake = getIntPropertyValue("stowContainerIntake",
                     prop);
             releaseContainerIntake = getIntPropertyValue(
                     "releaseContainerIntake", prop);
             isContainerElevatorForward = getIntPropertyValue(
                     "isContainerElevatorForward", prop);
-            bringPusherIn = getIntPropertyValue("bringPusherIn", prop);
+            moveBurglarIn = getIntPropertyValue("moveBurglarIn", prop);
 
         } catch (Exception e) {
             final String msg = "Problem with processing Keymap, can't continue:";
@@ -104,8 +104,8 @@ public class KeymapConfig extends AbstractConfig {
         return moveContainerElevatorManually;
     }
 
-    public int getPushToteOut() {
-        return pushToteOut;
+    public int getMoveCanBurglarOut() {
+        return moveBurglarOut;
     }
 
     public int getReleaseContainerIntake() {
@@ -116,8 +116,8 @@ public class KeymapConfig extends AbstractConfig {
         return stowContainerIntake;
     }
 
-    public int getBringPusherIn() {
-        return bringPusherIn;
+    public int getMoveCanBurglarIn() {
+        return moveBurglarIn;
     }
 
     public boolean getIsContainerElevatorForward() {

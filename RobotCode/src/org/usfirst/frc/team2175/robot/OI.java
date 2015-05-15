@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
+import org.usfirst.frc.team2175.robot.commands.single.MoveCanBurglar;
 import org.usfirst.frc.team2175.robot.commands.single.OpenContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.OpenToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.ReleaseContainerIntakeArms;
@@ -89,10 +90,10 @@ public class OI {
                 Robot.keymap.getOpenToteIntake());
         JoystickButton closeToteIntake = new JoystickButton(rightStick,
                 Robot.keymap.getCloseToteIntake());
-        JoystickButton pushToteOut = new JoystickButton(gamepad,
-                Robot.keymap.getPushToteOut());
-        JoystickButton pushToteIn = new JoystickButton(gamepad,
-                Robot.keymap.getBringPusherIn());
+        JoystickButton moveCanBurglarOut = new JoystickButton(gamepad,
+                Robot.keymap.getMoveCanBurglarOut());
+        JoystickButton moveCanBurglarIn = new JoystickButton(gamepad,
+                Robot.keymap.getMoveCanBurglarIn());
         JoystickButton stowContainerIntake = new JoystickButton(gamepad,
                 Robot.keymap.getStowContainerIntake());
         JoystickButton releaseContainerIntake = new JoystickButton(gamepad,
@@ -108,6 +109,11 @@ public class OI {
         openContainerIntake.whenPressed(new OpenContainerIntake());
         openToteIntake.whenPressed(new OpenToteIntake());
         closeToteIntake.whenPressed(new CloseToteIntake());
+
+        moveCanBurglarIn.whenPressed(new MoveCanBurglar(.5));
+        moveCanBurglarIn.whenReleased(new MoveCanBurglar(0));
+        moveCanBurglarOut.whenPressed(new MoveCanBurglar(-.5));
+        moveCanBurglarOut.whenReleased(new MoveCanBurglar(0));
 
         stowContainerIntake.whenPressed(new StowContainerIntakeArms());
         releaseContainerIntake.whenPressed(new ReleaseContainerIntakeArms());
