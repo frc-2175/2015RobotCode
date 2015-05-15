@@ -82,7 +82,7 @@ public class RobotMap extends AbstractConfig {
     public static DoubleSolenoid containerSpatula;
 
     // camera
-    public static CameraServer cameraServer;
+   // public static CameraServer cameraServer;
 
     private static final String PROPERTY_FILE_NAME = "/home/lvuser/robotMap.properties";
 
@@ -97,7 +97,7 @@ public class RobotMap extends AbstractConfig {
         configureToteIntake(props);
         configureCanBurglar(props);
         configureContainerIntake(props);
-        configureCamera(props);
+     //   configureCamera(props);
     }
 
     private void configurePowerDistributionPanel(Properties props) {
@@ -226,11 +226,11 @@ public class RobotMap extends AbstractConfig {
                 spatulatReverseValue);
     }
 
-    private void configureCamera(Properties props) {
-        String cameraName = getStringPropertyValue("cameraName", props);
-        cameraServer = CameraServer.getInstance();
-        cameraServer.startAutomaticCapture(cameraName);
-    }
+   // private void configureCamera(Properties props) {
+     //   String cameraName = getStringPropertyValue("cameraName", props);
+     //   cameraServer = CameraServer.getInstance();
+       // cameraServer.startAutomaticCapture(cameraName);
+    //}
 
     public static double getLeftTalonSpeed() {
         return leftTalon.get();
