@@ -2,6 +2,7 @@ package org.usfirst.frc.team2175.robot.commands.auto;
 
 import org.usfirst.frc.team2175.robot.commands.groups.IntakeTote;
 import org.usfirst.frc.team2175.robot.commands.groups.StackTote;
+import org.usfirst.frc.team2175.robot.commands.single.ArcadeDriveWithInputs;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
@@ -30,11 +31,11 @@ public class AutonStack3TotesGrab1Container extends CommandGroup {
         addSequential(new WaitCommand(0.25));
         addParallel(new MoveContainerElevatorWithInputs(1), 1.5);
         addParallel(new MoveToteElevatorWithInputs(.5), 1.7);
-        addSequential(new WaitCommand(.5));
+        addSequential(new WaitCommand(.1));
         addSequential(new TurnDegrees(-165));
 
         // Drive for second tote
-        addSequential(new DriveInches(18), .5);
+        addSequential(new DriveInches(20), 1);
 
         // Intake it
         addSequential(new CloseToteIntake());
@@ -42,7 +43,7 @@ public class AutonStack3TotesGrab1Container extends CommandGroup {
         addParallel(new DriveInches(12), 0.5);
         addSequential(new RunLeftToteIntakeWheels(), 1);
         
-        addSequential(new TurnDegrees(-190), 1.5);
+        addSequential(new TurnDegrees(-192), 1.5);
         addParallel(new OpenToteIntake());
         addParallel(new StackTote());
         addSequential(new DriveInches(71), 2);
@@ -57,7 +58,9 @@ public class AutonStack3TotesGrab1Container extends CommandGroup {
         addParallel(new RunLeftToteIntakeWheels(),1);
         addSequential(new TurnDegrees(-270),1.5);
         addParallel(new MoveToteElevatorWithInputs(-.6),1);
-        addSequential(new DriveInches(75),2);
+        addSequential(new ArcadeDriveWithInputs(1,0),1);
+        addSequential(new ArcadeDriveWithInputs(.5,0),.3);
+        addSequential(new OpenToteIntake());
         addParallel(new RunRightToteIntakeWheelsBackwards(),1);
         addParallel(new RunLeftToteIntakeWheelsBackwards(),1);
         addSequential(new DriveInches(-75),2);
