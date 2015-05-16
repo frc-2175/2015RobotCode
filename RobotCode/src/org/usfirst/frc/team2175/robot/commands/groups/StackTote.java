@@ -13,7 +13,7 @@ public class StackTote extends CommandGroup {
     public StackTote() {
 
     	addSequential(new MoveToteElevatorWithInputs(-.5), 1);
-        addParallel(new WaitCommand( 1));
+        addSequential(new WaitCommand( .5));
         addParallel(new MoveToteElevatorWithInputs(.8), 3);
         addSequential(new WaitCommand(.6));
     }
