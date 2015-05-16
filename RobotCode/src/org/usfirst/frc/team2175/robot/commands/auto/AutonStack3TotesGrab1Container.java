@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2175.robot.commands.auto;
 
 import org.usfirst.frc.team2175.robot.commands.groups.IntakeTote;
+import org.usfirst.frc.team2175.robot.commands.groups.StackTote;
 import org.usfirst.frc.team2175.robot.commands.single.CloseContainerIntake;
 import org.usfirst.frc.team2175.robot.commands.single.CloseToteIntake;
 import org.usfirst.frc.team2175.robot.commands.single.DriveInches;
@@ -38,24 +39,19 @@ public class AutonStack3TotesGrab1Container extends CommandGroup {
         addParallel(new RunRightToteIntakeWheels(), 1);
         addParallel(new DriveInches(12), 0.5);
         addSequential(new RunLeftToteIntakeWheels(), 1);
+        
+        addSequential(new TurnDegrees(-195), 1.5);
+        addParallel(new DriveInches(68), 2);
         addSequential(new OpenToteIntake());
-
-        // Lift it
-        addSequential(new MoveToteElevatorWithInputs(-.5), 1);
-        addParallel(new WaitCommand( 1));
-        addParallel(new MoveToteElevatorWithInputs(.8), 3);
-        addSequential(new WaitCommand(.6));
+        addParallel(new StackTote());
 
         // Good to here
-
-        addSequential(new TurnDegrees(-195), 1.5);
-        addSequential(new DriveInches(68), 2);
-        addSequential(new TurnDegrees(-142),1.5);
+        addSequential(new TurnDegrees(-147),1.5);
         
         addSequential(new WaitCommand(.5));
         addSequential(new DriveInches(24),2);
         addSequential(new CloseToteIntake());
-        addParallel(new RunRightToteIntakeWheels(),1);
+        addSequential(new RunRightToteIntakeWheels(),1);
         addSequential(new RunLeftToteIntakeWheels(),1);
         addSequential(new OpenToteIntake());
         addSequential(new MoveToteElevatorWithInputs(-.8), 3);
