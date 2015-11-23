@@ -31,11 +31,13 @@ import com.ni.vision.VisionException;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -67,6 +69,23 @@ public class Robot extends IterativeRobot {
     public static CameraServer cServer;
     public static Image cFrame;
     public static int cSession;
+    
+    //3 Tote Values
+     public static double moveContainerElevator;
+    public static double moveToteElevator;
+    
+    public static double turn1;
+    public static double turn2;
+    public static double turn3;
+    public static double turn4;
+    
+    public static double drive1;
+    public static double drive2;
+    public static double drive3;
+    public static double drive4;
+    public static double drive5;
+    public static double driveFinal;
+    
 
     Command autonomousCommand;
     // Command driveChoice;
@@ -294,6 +313,8 @@ public class Robot extends IterativeRobot {
     //
     // SmartDashboard.putData("Drive Style", driveChooser);
     // }
+    
+   
 
     private void smartDashboardUpdate() {
         SmartDashboard.putNumber("Left Drive Talon",
@@ -331,6 +352,22 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("Zero Tote Elevator", new ZeroToteElevator());
 
+        try {
+        	moveContainerElevator = SmartDashboard.getNumber("moveContainerElevator");
+        	moveToteElevator = SmartDashboard.getNumber("moveToteElevator");
+        	turn1 = SmartDashboard.getNumber("turn1");
+        	drive1 = SmartDashboard.getNumber("drive1");
+        	drive2 = SmartDashboard.getNumber("drive2");
+        	turn2 = SmartDashboard.getNumber("turn2");
+        	drive3 = SmartDashboard.getNumber("drive3");
+        	turn3 = SmartDashboard.getNumber("turn3");
+        	drive4 = SmartDashboard.getNumber("drive4");
+        	turn4 = SmartDashboard.getNumber("turn4");
+        	drive5 = SmartDashboard.getNumber("drive5");
+        	driveFinal = SmartDashboard.getNumber("driveFinal");
+        } catch (TableKeyNotDefinedException e) {
+        	System.out.println(e.getMessage());
+        }
     }
 
     public void initCamera() {
